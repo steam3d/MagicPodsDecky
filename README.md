@@ -2,6 +2,8 @@
 
 A magic plugin for the Decky Loader that allows you to control your AirPods and Beats headphones in a comfortable way.
 
+![](./docs/images/screenshot-1.png)
+
 ## 🎨 Features
 
 🔋Displays the charge level in 1% steps  
