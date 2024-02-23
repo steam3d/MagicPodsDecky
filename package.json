@@ -1,0 +1,56 @@
+{
+  "name": "magicpods-decky",
+  "version": "1.0.0",
+  "description": "Monitor the battery level of your AirPods and Beats. Easily switch between noise cancellation modes and enjoy the magic.",
+  "scripts": {
+    "build": "shx rm -rf dist && rollup -c",
+    "watch": "rollup -c -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steam3d/MagicPodsDecky.git"
+  },
+  "keywords": [
+    "bluetooth",
+    "battery",
+    "airpods",
+    "steam-deck",
+    "beats",
+    "headphones"
+  ],
+  "author": "Aleksandr Maslov <MagicPods@outlook.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/steam3d/MagicPodsDecky/issues"
+  },
+  "homepage": "https://github.com/steam3d/MagicPodsDecky/#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.1.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-typescript": "^8.3.3",
+    "@types/react": "16.14.0",
+    "@types/webpack": "^5.28.0",
+    "rollup": "^2.77.1",
+    "rollup-plugin-import-assets": "^1.1.1",
+    "shx": "^0.3.4",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "decky-frontend-lib": "^3.24.5",
+    "react-icons": "^4.4.0",
+    "i18next": "^23.8.2",
+    "react-i18next": "^14.0.5"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "react",
+        "react-dom"
+      ]
+    }
+  }
+}

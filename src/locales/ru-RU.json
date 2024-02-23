@@ -1,0 +1,49 @@
+{
+  "translation": {
+    "battery_left": "Левый",
+    "battery_right": "Правый",
+    "battery_case": "Кейс",
+    "battery_single": "Заряд",
+    "capabilities_noisecancellation_label": "Шумоподавление",
+    "capabilities_noisecancellation_notchlabel_off": "Выкл.",
+    "capabilities_noisecancellation_notchlabel_transparency": "Проз.",
+    "capabilities_noisecancellation_notchlabel_anc": "Шум.",
+    "websocket_connection_issue": "Что-то пошло не так, попробуйте перезагрузить.",
+    "headphones_disconnected": "Подключите наушники, чтобы отобразить уровень заряда батареи и настроить параметры",
+    "settings_low_battery_label":"Уведомление о низком заряде",
+    "settings_low_battery_label_notchlabel_off":"Выкл.",
+    "settings_language_button_label":"Язык",
+    "settings_language_menu_label":"Выберите язык",
+    "settings_language_menu_canceltext":"Отмена",
+    "settings_hotkey_anc_label":"Горячая клавиша переключения режимов шумоподавления",
+    "settings_hotkey_anc_description":"Нажмите {{hotkey}} для переключения между режимами шумоподавления",
+    "bluetooth": "Bluetooth",
+    "headphones":"Наушники",
+    "notif_error_websocket_connection_issue": "Ошибка! Откройте плагин для подробностей",
+    "notif_low_battery": "Осталось {{battery}}%. Зарядите ваши наушники",
+
+    "faq_tip1_header":"Что умеет MagicPods for Steam Deck?",
+    "faq_tip1_description":"Показывать уровень заряда и переключать режим шумоподавления (если наушники его поддерживают).",
+
+    "faq_tip2_header":"Какие наушники поддерживаются?",
+    "faq_tip2_description":"AirPods 1-2, AirPods Pro 1-2, AirPods 3, AirPods Max, Beats Fit Pro и возможно другие Beats модели. Пожалуйста, напишите в <lnk>Discord</lnk>, если Ваши Beats работают.",
+
+    "faq_tip3_header":"Как добавить наушники?",
+    "faq_tip3_description":"Выполните сопряжение наушников в настройках Bluetooth Steam Deck, они автоматически появятся в MagicPods на вкладке со значком наушники.",
+
+    "faq_tip4_header":"Как посмотреть уровень заряда?",
+    "faq_tip4_description":"Подключите наушники и перейдите на вкладку со значком заряда.",
+
+    "faq_tip5_header":"Как изменить режим шумоподавления?",
+    "faq_tip5_description":"Подключите наушники с поддержкой шумоподавления, перейдите на вкладку со значком заряда. Используйте ползунок шумоподавления для переключения между режимами.",
+
+    "faq_tip6_header":"Как предложить новую функцию?",
+    "faq_tip6_description":"Присоединяйтесь к нашему сообществу в <lnk>Discord</lnk>, там мы обсуждаем новые функции и работу MagicPods.",
+
+    "faq_tip7_header":"Как сообщить об ошибке?",
+    "faq_tip7_description":"Напишите на {{mail}} или в <lnk>Discord</lnk>.",
+
+    "faq_tip8_header":"Как посмотреть уровень заряда кейса?",
+    "faq_tip8_description":"Подключите наушники и положите хотя бы один AirPod в открытый кейс. Перейдите на вкладку со значком заряда, через несколько секунд появится уровень заряда кейса."
+  }
+}

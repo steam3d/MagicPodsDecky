@@ -1,0 +1,10 @@
+{
+  "name": "MagicPods",
+  "author": "Aleksandr Maslov & Andrey Litvintsev",
+  "flags": [],
+  "publish": {
+    "tags": ["bluetooth", "battery", "airpods", "beats", "headphones"],
+    "description": "Monitor the battery level of your AirPods and Beats. Easily switch between noise cancellation modes and enjoy the magic.",
+    "image": "https://opengraph.githubassets.com/1/SteamDeckHomebrew/PluginLoader"
+  }
+}
