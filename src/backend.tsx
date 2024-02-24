@@ -124,7 +124,7 @@ export class Backend {
             this.socket.removeEventListener("error", this.onErrorHandler);
         }
         this.log("trying connect socket");
-        this.socket = new WebSocket("ws://localhost:9001");
+        this.socket = new WebSocket("ws://localhost:2020");
         this.socket.addEventListener("open", this.onOpenHandler);
         this.socket.addEventListener("message", this.onMessageHandler);
         this.socket.addEventListener("close", this.onCloseHandler);
