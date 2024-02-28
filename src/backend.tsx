@@ -2,6 +2,7 @@ import {
     ServerAPI,
   } from "decky-frontend-lib";
 import { Controller } from "./controller";
+import { Player } from "./player";
 
 export const enum BackendSocketState {
     UNINSTANTIATED = -2,
@@ -16,6 +17,7 @@ export class Backend {
 
     deckyApi: ServerAPI;
     controller: Controller;
+    player: Player;
     private socket!: WebSocket;
     private socketState = BackendSocketState.UNINSTANTIATED;
 
@@ -80,6 +82,7 @@ export class Backend {
     constructor(deckyApi: ServerAPI) {
         this.deckyApi = deckyApi;
         this.controller = new Controller(this);
+        this.player = new Player(this);
         this.connect();
     }
 

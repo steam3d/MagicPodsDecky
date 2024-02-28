@@ -273,6 +273,7 @@ export default definePlugin((serverApi: ServerAPI) => {
       backend.offSocketConnectionChanged(onConnectionChanged);
       backend.offJsonMessageReceived(onJsonMessageReceived);
       backend.controller.disable();
+      backend.player.disable();
       backend.disconnect();
     },
   };

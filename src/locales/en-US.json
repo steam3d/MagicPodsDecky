@@ -17,6 +17,8 @@
     "settings_language_menu_canceltext":"Cancel",
     "settings_hotkey_anc_label":"Switch noise cancellation hotkey",
     "settings_hotkey_anc_description":"Press {{hotkey}} to switch between noise cancelling modes",
+    "settings_fix_disconnects_label":"Disable headphone standby mode",
+    "settings_fix_disconnects_description":"Fixes the problem of endless connect/disconnect headphones",
     "bluetooth": "Bluetooth",
     "headphones":"Headphones",
     "notif_error_websocket_connection_issue": "Error! Open the plugin for more info",
