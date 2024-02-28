@@ -129,7 +129,7 @@ const Content: VFC<{backend: Backend }> = ({backend }) => {
   const [currentTabRoute, setCurrentTabRoute] = useState<string>("info");
 
   return (
-    <div style={{ height: "406px", width: "300px", position: "fixed", marginTop: "-12px" }}>
+    <div style={{ height: "406px", width: "300px", position: "fixed", marginTop: "-12px", overflow: "hidden" }}>
       {connectionErrorValue &&
         <div style={{ display: "flex", paddingTop: "12px", paddingLeft: "16px", paddingRight: "16px", alignItems: "center" }}>
           <div className={staticClasses.Text} style={{ paddingRight: "8px", width: "100%" }}>
