@@ -14,14 +14,14 @@ class Settings():
             self.config.read(self.configpath)
             logging.info("Loading settings.ini")
         else:
-            self.config["Settings"] = {}
+            self.config["Settings"] = {"version": 1}
             logging.info("settings.ini does not exist. Create virtual settings")
 
 
     def load(self, key):
         value = self._storage(key)
         logger.debug("Load setting  %s -> %s", key, value)
-        return value;
+        return value
 
     def save(self, key, value):
         logger.debug("Save setting  %s -> %s", key, value)
@@ -32,8 +32,10 @@ class Settings():
     def _storage(self, key):
         branch = self.config["Settings"]
         if key == "notif_low_battery":
-            return branch.get(key, 0)
+            return branch.get(key, 30)
         elif key == "anc_l5_r5_switch":
+            return branch.get(key, False)
+        elif key == "fix_disconnects":
             return branch.get(key, False)
         else:
             return None

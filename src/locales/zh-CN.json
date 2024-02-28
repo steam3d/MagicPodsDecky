@@ -17,6 +17,8 @@
     "settings_language_menu_canceltext":"取消",
     "settings_hotkey_anc_label":"切换噪音消除快捷键",
     "settings_hotkey_anc_description":"按下 {{hotkey}} 可切换降噪模式",
+    "settings_fix_disconnects_label":"禁用耳机待机模式",
+    "settings_fix_disconnects_description":"修复了无休止地连接/断开耳机的问题",
     "bluetooth": "蓝牙",
     "headphones":"耳机",
     "notif_error_websocket_connection_issue": "错误！打开插件获取更多信息",
