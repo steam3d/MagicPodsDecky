@@ -13,8 +13,8 @@ export class Player {
     }
 
     async updateSetting() {
-        const enableFixDisconnectingValue = (await this.backend.deckyApi.callPluginMethod("load_setting", { key: "fix_disconnects" })).result;
-        this.enabled = (String(enableFixDisconnectingValue).toLowerCase() == "true");
+        const enableFixDisconnectsValue = (await this.backend.deckyApi.callPluginMethod("load_setting", { key: "fix_disconnects" })).result;
+        this.enabled = (String(enableFixDisconnectsValue).toLowerCase() == "true");
         this.backend.log(`Update player setting to: ${this.enabled}`)
 
         // Make action only when headphones connected

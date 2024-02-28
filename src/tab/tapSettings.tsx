@@ -31,7 +31,7 @@ const IconStyle = {
 export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
     const [lowBatterySliderValue, setLowBatterySliderValue] = useState<number>(-1);
     const [enableSwitchAncValue, setEnableSwitchAncValue] = useState<boolean>(false);
-    const [enableFixDisconnectingValue, setFixDisconnectingValue] = useState<boolean>(false);
+    const [enableFixDisconnectsValue, setFixDisconnectsValue] = useState<boolean>(false);
     const [languageValue, setLanguageValue] = useState<{ tag: string; nativeName: string }[]>([])
     const { i18n } = useTranslation();
 
@@ -43,8 +43,8 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
             const enableSwitchAncValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "anc_l5_r5_switch" })).result;
             setEnableSwitchAncValue((String(enableSwitchAncValue).toLowerCase() == "true"));
 
-            const enableFixDisconnectingValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "fix_disconnects" })).result;
-            setFixDisconnectingValue((String(enableFixDisconnectingValue).toLowerCase() == "true"));
+            const enableFixDisconnectsValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "fix_disconnects" })).result;
+            setFixDisconnectsValue((String(enableFixDisconnectsValue).toLowerCase() == "true"));
         }
 
         getSetting();
@@ -97,8 +97,8 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={enableFixDisconnectingValue} label={t("settings_fix_disconnects_label")} description={t("settings_fix_disconnects_description")}  onChange={async (b) => {
-                            setFixDisconnectingValue(b);
+                        <ToggleField checked={enableFixDisconnectsValue} label={t("settings_fix_disconnects_label")} description={t("settings_fix_disconnects_description")}  onChange={async (b) => {
+                            setFixDisconnectsValue(b);
                             await backend.deckyApi.callPluginMethod("save_setting", { key: "fix_disconnects", value: b });
                             backend.player.updateSetting();
                         }} />
