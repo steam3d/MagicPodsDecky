@@ -21,16 +21,6 @@ A magic plugin for the Decky Loader that allows you to control your AirPods and 
 
 ## 💾 Installation
 
-### Using the Decky store
-
-1. Install [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader/tree/main?tab=readme-ov-file#-installation)
-2. Switch to steam game mode
-3. Press <img src="./docs/images/dark/qam.svg#gh-light-mode-only" height=16><img src="./docs/images/light/qam.svg#gh-dark-mode-only" height=16>
-4. Go to the tab <img src="./docs/images/dark/plug.svg#gh-light-mode-only" height=16><img src="./docs/images/light/plug.svg#gh-dark-mode-only" height=16>
-5. In the upper right corner, click <img src="./docs/images/dark/store.svg#gh-light-mode-only" height=16><img src="./docs/images/light/store.svg#gh-dark-mode-only" height=16>
-6. Find MagicPods in the plugin list or search for it
-7. Press the Install button
-
 ### Using the Decky developer mode
 
 1. Install [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader/tree/main?tab=readme-ov-file#-installation)
@@ -40,7 +30,7 @@ A magic plugin for the Decky Loader that allows you to control your AirPods and 
 5. In the upper right corner, click <img src="./docs/images/dark/gear.svg#gh-light-mode-only" height=16><img src="./docs/images/light/gear.svg#gh-dark-mode-only" height=16>
 6. On the General tab, enable developer mode
 7. Go to the Developer tab
-8. Type in the URL `magicpods.app/plugin`
+8. Type in the URL `https://magicpods.app/plugin`
 9. Press the Install button
 
 ## 🚀 Getting started

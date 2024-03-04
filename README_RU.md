@@ -21,15 +21,6 @@
 
 ## 💾 Установка
 
-### Через магазин Decky
-
-1. Установите [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader/tree/main?tab=readme-ov-file#-installation)
-2. Нажмите <img src="./docs/images/dark/qam.svg#gh-light-mode-only" height=16><img src="./docs/images/light/qam.svg#gh-dark-mode-only" height=16>
-3. Перейдите на вкладку <img src="./docs/images/dark/plug.svg#gh-light-mode-only" height=16><img src="./docs/images/light/plug.svg#gh-dark-mode-only" height=16>
-4. В правом верхнем углу нажмите <img src="./docs/images/dark/store.svg#gh-light-mode-only" height=16><img src="./docs/images/light/store.svg#gh-dark-mode-only" height=16>
-5. Найдите в списке плагинов или через поиск MagicPods
-6. Нажмите установить
-
 ### Через режим разработчика
 
 1. Установите [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader/tree/main?tab=readme-ov-file#-installation)
@@ -38,7 +29,7 @@
 4. В правом верхнем углу нажмите <img src="./docs/images/dark/gear.svg#gh-light-mode-only" height=16><img src="./docs/images/light/gear.svg#gh-dark-mode-only" height=16>
 5. Включите режим разработчика на вкладке общее
 6. Перейдите на вкладку разработчик
-7. Напишите в URL `magicpods.app/plugin`
+7. Напишите в URL `https://magicpods.app/plugin`
 8. Нажмите установить
 
 ## 🚀 С чего начать
