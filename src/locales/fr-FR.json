@@ -1,1 +1,14 @@
-{}
+{
+    "translation": {
+        "settings_hotkey_anc_label": "Touche de raccourci pour la réduction de bruit",
+        "battery_case": "Boîtier",
+        "battery_single": "Batterie",
+        "capabilities_noisecancellation_label": "Annulation active du bruit",
+        "capabilities_noisecancellation_notchlabel_off": "Désactivé",
+        "settings_low_battery_label": "Notification de batterie faible",
+        "settings_low_battery_label_notchlabel_off": "Désactivé",
+        "settings_language_button_label": "Langue",
+        "settings_language_menu_canceltext": "Annuler",
+        "headphones": "Écouteurs"
+    }
+}
