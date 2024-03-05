@@ -27,7 +27,7 @@ export const QuickTutorialRouter: VFC = () => {
         textAlign: 'left',
     };
 
-let discord = <a href="https://discord.com/invite/UyY4PY768V" target="_blank" style={{textDecoration: "none"}}/>;
+let discord = <a href="https://discord.com/invite/ARSm6CG7jf" target="_blank" style={{textDecoration: "none"}}/>;
     return (
         <div style={containerStyle}>
                      
