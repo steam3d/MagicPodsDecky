@@ -1,6 +1,6 @@
 {
   "name": "magicpods-decky",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Monitor the battery level of your AirPods and Beats. Easily switch between noise cancellation modes and enjoy the magic.",
   "scripts": {
     "build": "shx rm -rf dist && rollup -c",
