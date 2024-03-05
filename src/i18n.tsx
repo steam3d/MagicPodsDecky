@@ -5,6 +5,7 @@ import { initReactI18next } from "react-i18next";
 import enUS from "./locales/en-US.json";
 import ruRU from "./locales/ru-RU.json";
 import zhCN from "./locales/zh-CN.json";
+import frFR from "./locales/fr-FR.json";
 
 i18n
   .use(initReactI18next)
@@ -18,6 +19,7 @@ i18n
       "en-US": enUS,
       "ru-RU": ruRU,
       "zh-CN": zhCN,
+      "fr-FR": frFR,
     },
     //debug: true,
     lng: navigator.language,
