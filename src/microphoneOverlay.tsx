@@ -3,6 +3,26 @@ import { VFC, useEffect, useState } from "react";
 import { ULKeys, ULUpperKeys, isPressed } from "./keys";
 import { Backend } from "./backend";
 
+export interface Device {
+    id: number;
+    sName: string;
+    bHasOutput: boolean;
+    bIsDefaultOutputDevice: boolean;
+    flOutputVolume: number;
+    bHasInput: boolean;
+    bIsDefaultInputDevice: boolean;
+    flInputVolume: number;
+}
+
+
+export interface AudioDeviceInfo {
+    activeOutputDeviceId: number;
+    activeInputDeviceId: number;
+    overrideOutputDeviceId: number;
+    overrideInputDeviceId: number;
+    vecDevices: Device[];
+}
+
 enum UIComposition {
     Hidden = 0,
     Notification = 1,
@@ -28,9 +48,13 @@ const useUIComposition: (composition: UIComposition) => void = findModuleChild(
     }
 );
 
+let micId = -1;
+let micSavedVolume = -1;
+let volume_register: any;
+
 export const MicrophoneOverlay: VFC<{ backend: Backend }> = ({ backend }) => {
     const [visible, setVisible] = useState(false);
-    useUIComposition(visible ? UIComposition.Overlay : UIComposition.Hidden);
+    useUIComposition(visible ? UIComposition.Notification : UIComposition.Hidden);
 
     let keyPressingTime = Date.now();
     let keyPressed = false;
@@ -42,18 +66,35 @@ export const MicrophoneOverlay: VFC<{ backend: Backend }> = ({ backend }) => {
                 for (const inputs of changes) {
                     if (isPressed(ULUpperKeys.QAM, inputs.ulUpperButtons) && isPressed(ULKeys.L5, inputs.ulButtons)) {
                         if (keyPressed != true && Date.now() - keyPressingTime > 350) {
+
+                            // Keys
                             (Router as any).DisableHomeAndQuickAccessButtons();
                             keyPressingTime = Date.now();
                             keyPressed = true;
                             qamPressed = true;
-                            const result = (await backend.deckyApi.callPluginMethod("mic_toggle", {})).result;
-                            const state = Number(result);
-                            backend.log(`State type ${typeof result})`);
-                            backend.log(`State type ${typeof state})`);
-                            backend.log(`State ${state})`);
-                            if (state !== -1) {
-                                backend.log("`state`")
-                                setVisible(state === 0 ? true : false);
+
+                            // Mute mic
+                            if (micId === -1 && micSavedVolume === -1) {
+
+                                // Mic info
+                                const devices = await SteamClient.System.Audio.GetDevices() as AudioDeviceInfo;
+                                micId = devices.activeInputDeviceId;
+                                devices.vecDevices.forEach(dev => {
+                                    if (dev.id === micId) {
+                                        micSavedVolume = dev.flInputVolume
+                                    }
+                                });
+
+                                backend.log(devices);
+                                backend.log(`audioDeviceId ${micId} volume ${micSavedVolume})`);
+
+                                // Set mic volume
+                                await SteamClient.System.Audio.SetDeviceVolume(micId, 0, 0);
+                                setVisible(true);
+                            }
+                            // Unmute mic
+                            else {
+                                await SteamClient.System.Audio.SetDeviceVolume(micId, 0, micSavedVolume);
                             }
                         }
                     }
@@ -62,19 +103,31 @@ export const MicrophoneOverlay: VFC<{ backend: Backend }> = ({ backend }) => {
                             qamPressed = false;
                             setTimeout(() => {
                                 (Router as any).EnableHomeAndQuickAccessButtons();
-                                backend.log("Enable QAM")
-                                //console.log("Enable QAM");
+                                //backend.log("Enable QAM")
                             }, 350);
                         }
                         if (keyPressed != false) {
-                            backend.log("Button release")
-                            //console.log("Button release");                                
+                            //backend.log("Button release")                             
                             keyPressed = false;
                         }
                     }
                 }
             }
         );
+
+        backend.log("RegisterForDeviceVolumeChanged");
+        // Mic changes
+        volume_register = SteamClient.System.Audio.RegisterForDeviceVolumeChanged(
+            (audioDeviceId: number, audioType: number, volume: number) => {
+                if (audioDeviceId === micId && audioType === 0 && volume !== 0) {
+                    micId = -1;
+                    micSavedVolume = -1;
+                    setVisible(false);
+                    backend.log(`audioDeviceId ${audioDeviceId} audioType ${audioType} volume ${volume})`);
+                }
+            }
+        );
+
         return () => {
             input_register.unregister();
         };
