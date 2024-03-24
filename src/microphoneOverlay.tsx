@@ -66,7 +66,12 @@ export const MicrophoneOverlay: VFC<{ backend: Backend }> = ({ backend }) => {
                 for (const inputs of changes) {
                     if (isPressed(ULUpperKeys.QAM, inputs.ulUpperButtons) && isPressed(ULKeys.L5, inputs.ulButtons)) {
                         if (keyPressed != true && Date.now() - keyPressingTime > 350) {
-
+                            
+                            const enableToggleMicValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "mic_qam_l5_toggle" })).result; //shortcut_mic_toggle when setup keys will be available
+                            if (!(String(enableToggleMicValue).toLowerCase() == "true")){
+                                return;
+                            }                           
+                            
                             // Keys
                             (Router as any).DisableHomeAndQuickAccessButtons();
                             keyPressingTime = Date.now();
