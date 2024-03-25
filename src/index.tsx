@@ -20,7 +20,7 @@ import { Backend, BackendSocketState } from "./backend";
 import { LogoIcon } from "./icons";
 import { LogRouter } from "./pages/log";
 import { TabDebug } from "./tab/tabDebug";
-import { MicrophoneOverlay } from "./microphoneOverlay";
+import { MicrophoneOverlay } from "./micOverlay";
 
 const Content: VFC<{backend: Backend }> = ({backend }) => {
   useEffect(() => {
