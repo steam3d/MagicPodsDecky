@@ -58,7 +58,7 @@ export const MicrophoneOverlay: VFC<{ backend: Backend }> = ({ backend }) => {
 
     useEffect(() => {
         backend.log("RegisterForInputChanged");
-        const input = new Input([Button.QUICK_ACCESS_MENU, Button.L5]);
+        const input = new Input([Button.QUICK_ACCESS_MENU, Button.L4]);
         input.onShortcutPressed(onShortcutPressed);
 
         backend.log("RegisterForDeviceVolumeChanged");

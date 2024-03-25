@@ -4,7 +4,6 @@ from logging.handlers import RotatingFileHandler
 from mp.core import CoreService
 from mp.settings import Settings
 from mp.player import Player
-from mp.mic import Microphone
 import decky_plugin
 
 # Create a logger
@@ -75,10 +74,7 @@ class Plugin:
         self.player.start()        
     
     async def stop(self):
-        self.player.stop()
-          
-    async def mic_toggle(self):
-        return self.mic.Toggle()  
+        self.player.stop()         
 
     # Asyncio-compatible long-running code, executed in a task when the plugin is loaded
     async def _main(self):
@@ -87,7 +83,6 @@ class Plugin:
         self.core = CoreService(decky_plugin.DECKY_PLUGIN_DIR, "MagicPodsCore", bin_logging)
         self.is_backend_allowed = True # Allow reconnecting socket when user using plugin
         self.player = Player(os.path.join(decky_plugin.DECKY_PLUGIN_DIR, "silence.mp3"),bin_logging)
-        self.mic = Microphone()
 
         self.core.start()
         logger.info("_main finished")
