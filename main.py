@@ -74,7 +74,7 @@ class Plugin:
         self.player.start()        
     
     async def stop(self):
-        self.player.stop()  
+        self.player.stop()         
 
     # Asyncio-compatible long-running code, executed in a task when the plugin is loaded
     async def _main(self):

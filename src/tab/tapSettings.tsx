@@ -31,6 +31,7 @@ const IconStyle = {
 export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
     const [lowBatterySliderValue, setLowBatterySliderValue] = useState<number>(-1);
     const [enableSwitchAncValue, setEnableSwitchAncValue] = useState<boolean>(false);
+    const [enableToggleMicValue, setEnableToggleMicValue] = useState<boolean>(false);
     const [enableFixDisconnectsValue, setFixDisconnectsValue] = useState<boolean>(false);
     const [languageValue, setLanguageValue] = useState<{ tag: string; nativeName: string }[]>([])
     const { i18n } = useTranslation();
@@ -40,11 +41,14 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
             const lowBatterySettingValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "notif_low_battery" })).result;
             setLowBatterySliderValue(Number(lowBatterySettingValue));
 
-            const enableSwitchAncValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "anc_l5_r5_switch" })).result;
+            const enableSwitchAncValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "anc_l5_r5_switch" })).result; //shortcut_anc_switch when setup keys will be available
             setEnableSwitchAncValue((String(enableSwitchAncValue).toLowerCase() == "true"));
 
             const enableFixDisconnectsValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "fix_disconnects" })).result;
             setFixDisconnectsValue((String(enableFixDisconnectsValue).toLowerCase() == "true"));
+
+            const enableToggleMicValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "mic_qam_l5_toggle" })).result; //shortcut_mic_toggle when setup keys will be available
+            setEnableToggleMicValue((String(enableToggleMicValue).toLowerCase() == "true"));
         }
 
         getSetting();
@@ -101,6 +105,13 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                             setFixDisconnectsValue(b);
                             await backend.deckyApi.callPluginMethod("save_setting", { key: "fix_disconnects", value: b });
                             backend.player.updateSetting();
+                        }} />
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <ToggleField checked={enableToggleMicValue} label={t("settings_hotkey_mic_label")} description={t("settings_hotkey_mic_description", { hotkey: "●●●+L4" })}  onChange={async (b) => {
+                            setEnableToggleMicValue(b);
+                            await backend.deckyApi.callPluginMethod("save_setting", { key: "mic_qam_l5_toggle", value: b });                                                    
                         }} />
                     </PanelSectionRow>
 

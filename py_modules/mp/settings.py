@@ -37,5 +37,7 @@ class Settings():
             return branch.get(key, False)
         elif key == "fix_disconnects":
             return branch.get(key, False)
+        elif key == "mic_qam_l5_toggle":
+            return branch.get(key, False)
         else:
             return None

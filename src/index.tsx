@@ -20,6 +20,7 @@ import { Backend, BackendSocketState } from "./backend";
 import { LogoIcon } from "./icons";
 import { LogRouter } from "./pages/log";
 import { TabDebug } from "./tab/tabDebug";
+import { MicrophoneOverlay } from "./micOverlay";
 
 const Content: VFC<{backend: Backend }> = ({backend }) => {
   useEffect(() => {
@@ -259,6 +260,7 @@ export default definePlugin((serverApi: ServerAPI) => {
   backend.onSocketConnectionChanged(onConnectionChanged);
   backend.onJsonMessageReceived(onJsonMessageReceived);
   serverApi.routerHook.addRoute("/magicpods-log", () => (<LogRouter backend={backend}/>));
+  serverApi.routerHook.addGlobalComponent("MicrophoneOverlay", () => (<MicrophoneOverlay backend={backend}/>));
   backend.log("Plugin loaded");
 
   return {
@@ -270,6 +272,7 @@ export default definePlugin((serverApi: ServerAPI) => {
       serverApi.routerHook.removeRoute("/magicpods-qr-links");
       serverApi.routerHook.removeRoute("/magicpods-tutorial");
       serverApi.routerHook.removeRoute("/magicpods-log");
+      serverApi.routerHook.removeGlobalComponent("MicrophoneOverlay");
       backend.offSocketConnectionChanged(onConnectionChanged);
       backend.offJsonMessageReceived(onJsonMessageReceived);
       backend.controller.disable();
