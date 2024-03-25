@@ -275,7 +275,7 @@ export default definePlugin((serverApi: ServerAPI) => {
       serverApi.routerHook.removeGlobalComponent("MicrophoneOverlay");
       backend.offSocketConnectionChanged(onConnectionChanged);
       backend.offJsonMessageReceived(onJsonMessageReceived);
-      backend.controller.disable();
+      backend.bgAncSwitch.disable();
       backend.player.disable();
       backend.disconnect();
     },

@@ -96,7 +96,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                         <ToggleField checked={enableSwitchAncValue} label={t("settings_hotkey_anc_label")} description={t("settings_hotkey_anc_description", { hotkey: "L5+R5" })} onChange={async (b) => {
                             setEnableSwitchAncValue(b);
                             await backend.deckyApi.callPluginMethod("save_setting", { key: "anc_l5_r5_switch", value: b });
-                            backend.controller.updateSetting();
+                            backend.bgAncSwitch.updateSetting();
                         }} />
                     </PanelSectionRow>
 

@@ -2,7 +2,7 @@ import { Backend } from "./backend";
 import { Button, Input } from "./input";
 import { headphoneInfoProps } from "./tab/tabInfo";
 
-export class Controller {
+export class BackgroundAncSwitch {
     private backend;
     private anc = 0;
     private address = "";
