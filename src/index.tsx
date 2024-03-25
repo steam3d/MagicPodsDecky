@@ -234,6 +234,7 @@ export default definePlugin((serverApi: ServerAPI) => {
 
         if (battery.status === 2 &&
             battery.charging === false &&
+            battery.battery !== 0 && // Sometimes headphones send battery 0 and immediately update battery to real value
             battery.battery < minBattery) {
             minBattery = battery.battery;
           }
