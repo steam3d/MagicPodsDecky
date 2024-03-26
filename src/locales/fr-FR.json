@@ -10,7 +10,7 @@
         "settings_language_button_label": "Langue",
         "settings_language_menu_canceltext": "Annuler",
         "headphones": "Écouteurs",
-        "settings_hotkey_anc_description": "Appuyez sur {{hotkey}} pour basculer entre les modes de réduction du bruit",
+        "settings_hotkey_anc_description": "Appuyez sur <Key1/> + <Key2/> pour basculer entre les modes de réduction du bruit",
         "notif_low_battery": "{{battery}}% restant. Rechargez vos écouteurs.",
         "faq_tip6_description": "Rejoignez notre communauté <lnk>Discord</lnk> afin de discuter des nouvelles fonctionnalité et en apprendre plus à propos de MagicPods.",
         "websocket_connection_issue": "Quelque chose s'est mal déroulé, essayez de recharger.",

@@ -13,8 +13,9 @@ import {
 } from "decky-frontend-lib";
 import { VFC, useEffect, useState } from 'react';
 import i18next, { t } from 'i18next';
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Backend } from "../backend";
+import { L4, L5, QUICK_ACCESS_MENU } from "../ButtonIcons";
 
 let sliderTimeoutId: NodeJS.Timeout;
 
@@ -27,6 +28,12 @@ const DialogButtonStyle = {
 const IconStyle = {
     display: "block", marginLeft: "Auto", marginRight: "Auto"
 }
+
+const buttonStyle = {
+    height: "16px",
+    width: "auto",
+    marginBottom: "-4px"
+};
 
 export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
     const [lowBatterySliderValue, setLowBatterySliderValue] = useState<number>(-1);
@@ -93,7 +100,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={enableSwitchAncValue} label={t("settings_hotkey_anc_label")} description={t("settings_hotkey_anc_description", { hotkey: "●●●+L5" })} onChange={async (b) => {
+                        <ToggleField checked={enableSwitchAncValue} label={t("settings_hotkey_anc_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle}/>, Key2: <L5 style={buttonStyle}/> }} />} onChange={async (b) => {
                             setEnableSwitchAncValue(b);
                             await backend.deckyApi.callPluginMethod("save_setting", { key: "anc_l5_r5_switch", value: b });
                             backend.bgAncSwitch.updateSetting();
@@ -109,7 +116,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={enableToggleMicValue} label={t("settings_hotkey_mic_label")} description={t("settings_hotkey_mic_description", { hotkey: "●●●+L4" })}  onChange={async (b) => {
+                        <ToggleField checked={enableToggleMicValue} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle}/>, Key2: <L4 style={buttonStyle}/> }} />}  onChange={async (b) => {
                             setEnableToggleMicValue(b);
                             await backend.deckyApi.callPluginMethod("save_setting", { key: "mic_qam_l5_toggle", value: b });                                                    
                         }} />
