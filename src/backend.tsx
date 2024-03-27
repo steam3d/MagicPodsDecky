@@ -1,7 +1,7 @@
 import {
     ServerAPI,
   } from "decky-frontend-lib";
-import { Controller } from "./controller";
+import { BackgroundAncSwitch } from "./bgAncSwitch";
 import { Player } from "./player";
 
 export const enum BackendSocketState {
@@ -16,7 +16,7 @@ export class Backend {
     static readonly maxAttempts = 10;
 
     deckyApi: ServerAPI;
-    controller: Controller;
+    bgAncSwitch: BackgroundAncSwitch;
     player: Player;
     private socket!: WebSocket;
     private socketState = BackendSocketState.UNINSTANTIATED;
@@ -81,7 +81,7 @@ export class Backend {
 
     constructor(deckyApi: ServerAPI) {
         this.deckyApi = deckyApi;
-        this.controller = new Controller(this);
+        this.bgAncSwitch = new BackgroundAncSwitch(this);
         this.player = new Player(this);
         this.connect();
     }
