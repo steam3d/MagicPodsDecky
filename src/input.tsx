@@ -42,6 +42,7 @@ export class Input {
     private qamAndSteamDisabled = false;
     private input_register: any;
     private shortcut: Button[];
+    private ignoreButtons: Button[] = [Button.LEFT_TOUCHPAD_TOUCH, Button.RIGHT_TOUCHPAD_TOUCH, Button.LEFT_JOYSTICK_TOUCH, Button.RIGHT_JOYSTICK_TOUCH] //Ignore touch
 
     constructor(shortcut: Button[]) {
         this.shortcut = shortcut;
@@ -71,7 +72,9 @@ export class Input {
         this.input_register.unregister();
     }
 
-    private OnButtonsPressed(buttons: Button[]) {
+    private OnButtonsPressed(buttons: Button[]) {        
+        buttons = buttons.filter(item => !this.ignoreButtons.includes(item))
+
         if (this.shortcut.length === buttons.length && this.shortcut.every((value) => buttons.includes(value))) {
             if (this.shortcutPressed != true && Date.now() - this.keyPressingTime > 350) {
 

@@ -52,7 +52,7 @@ let micId = -1;
 let micSavedVolume = -1;
 let volume_register: any;
 
-export const MicrophoneOverlay: VFC<{ backend: Backend }> = ({ backend }) => {
+export const BackgroundMicrophoneMute: VFC<{ backend: Backend }> = ({ backend }) => {
     const [visible, setVisible] = useState(false);
     useUIComposition(visible ? UIComposition.Notification : UIComposition.Hidden);
 
