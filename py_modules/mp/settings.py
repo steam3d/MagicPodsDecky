@@ -39,5 +39,7 @@ class Settings():
             return branch.get(key, False)
         elif key == "mic_qam_l5_toggle":
             return branch.get(key, False)
+        elif key == "check_update":
+            return branch.get(key, True)
         else:
             return None

@@ -30,6 +30,16 @@ export const TabDebug: VFC<{ backend: Backend; }> = ({ backend }) => {
                         <ButtonItem
                             layout="below"
                             onClick={async () => {
+                                backend.update.disable();
+                            }}>
+                            Stop check update
+                        </ButtonItem>
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <ButtonItem
+                            layout="below"
+                            onClick={async () => {
                                 await backend.deckyApi.callPluginMethod("play", {})
                             }}>
                             Play
