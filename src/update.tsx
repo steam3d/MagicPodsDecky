@@ -31,7 +31,7 @@ export class Update {
         const enableCheckUpdateValue = (await this.backend.deckyApi.callPluginMethod("load_setting", { key: "check_update" })).result;
         if (String(enableCheckUpdateValue).toLowerCase() == "true") {
             const isUpdateAvailable = await this.IsUpdateAvailable();
-            
+
             // show only one notification
             if (isUpdateAvailable && !this.isAvailable) {
                 this.backend.log("Showing update available notification");
@@ -50,30 +50,30 @@ export class Update {
 
         // Danger. Fetch does not cache right now, but behavior can be changed by Decky update
         const response = await this.backend.deckyApi.fetchNoCors(this.url, {
-            method: "GET",             
+            method: "GET",
             headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
+                Accept: "application/json",
+                "Content-Type": "application/json",
             },
-          });
-        
-          if (!response.success)
+        });
+
+        if (!response.success || Number((response.result as any).status) != 200)
             return false;
-          
+
         const json: Meta = JSON.parse((response.result as any).body);
-        
+
         // No 'Access-Control-Allow-Origin' header is present on the requested resource.
         // We must add header 'Access-Control-Allow-Origin' '*' on server
         // const response = await fetch(this.url, { cache: "no-cache" });
-        
+
         // if (!response.ok)
         //     return false;
-       
+
         // const json = await response.json() as Meta;
 
         if (json.version == null)
             return false;
-        
+
         const result = (await this.backend.deckyApi.callPluginMethod("get_ver", {}));
 
         if (!result.success)
