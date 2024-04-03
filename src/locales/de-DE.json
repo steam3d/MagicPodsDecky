@@ -17,7 +17,7 @@
         "capabilities_noisecancellation_notchlabel_off": "Aus",
         "capabilities_noisecancellation_notchlabel_transparency": "Tran.",
         "capabilities_noisecancellation_notchlabel_anc": "ANC",
-        "websocket_connection_issue": "Etwas ist schiefgelaufen, versuche neu zu laden.",
+        "websocket_connection_issue": "Etwas ist schiefgelaufen, versuche neu zu laden",
         "settings_low_battery_label": "Benachrichtigung bei niedrigem Akkustand",
         "settings_low_battery_label_notchlabel_off": "Aus",
         "settings_language_button_label": "Sprache",
@@ -40,6 +40,9 @@
         "settings_hotkey_mic_label": "Stummschaltung Tastenkombination",
         "settings_hotkey_mic_description": "Drücke <Key1/> + <Key2/>, um die Stummschaltung zu (de-)aktivieren",
         "settings_hotkey_anc_label": "Tastenkombination für Modus Wechsel",
-        "settings_fix_disconnects_description": "Löst das Problem der konstanten Verbindung/Trennung der Kopfhörer"
+        "settings_fix_disconnects_description": "Löst das Problem der konstanten Verbindung/Trennung der Kopfhörer",
+        "update_available_message": "Update verfügbar",
+        "settings_check_update_label": "Auf Updates prüfen",
+        "notif_update_available": "Update verfügbar"
     }
 }
