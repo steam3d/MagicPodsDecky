@@ -40,6 +40,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
     const [enableSwitchAncValue, setEnableSwitchAncValue] = useState<boolean>(false);
     const [enableToggleMicValue, setEnableToggleMicValue] = useState<boolean>(false);
     const [enableFixDisconnectsValue, setFixDisconnectsValue] = useState<boolean>(false);
+    const [enableCheckUpdateValue, setEnableCheckUpdateValue] = useState<boolean>(true);
     const [languageValue, setLanguageValue] = useState<{ tag: string; nativeName: string }[]>([])
     const { i18n } = useTranslation();
 
@@ -56,6 +57,9 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
 
             const enableToggleMicValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "mic_qam_l5_toggle" })).result; //shortcut_mic_toggle when setup keys will be available
             setEnableToggleMicValue((String(enableToggleMicValue).toLowerCase() == "true"));
+
+            const enableCheckUpdateValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "check_update" })).result; //shortcut_mic_toggle when setup keys will be available
+            setEnableCheckUpdateValue((String(enableCheckUpdateValue).toLowerCase() == "true"));
         }
 
         getSetting();
@@ -119,6 +123,16 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                         <ToggleField checked={enableToggleMicValue} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle}/>, Key2: <L4 style={buttonStyle}/> }} />}  onChange={async (b) => {
                             setEnableToggleMicValue(b);
                             await backend.deckyApi.callPluginMethod("save_setting", { key: "mic_qam_l5_toggle", value: b });                                                    
+                        }} />
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <ToggleField checked={enableCheckUpdateValue} label={t("settings_check_update_label")} onChange={async (b) => {
+                            setEnableCheckUpdateValue(b);
+                            if (!b){
+                                backend.update.hide();
+                            };
+                            await backend.deckyApi.callPluginMethod("save_setting", { key: "check_update", value: b });                                                    
                         }} />
                     </PanelSectionRow>
 

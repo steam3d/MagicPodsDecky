@@ -74,7 +74,10 @@ class Plugin:
         self.player.start()        
     
     async def stop(self):
-        self.player.stop()         
+        self.player.stop()
+
+    async def get_ver(self):
+        return decky_plugin.DECKY_PLUGIN_VERSION
 
     # Asyncio-compatible long-running code, executed in a task when the plugin is loaded
     async def _main(self):
