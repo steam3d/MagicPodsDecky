@@ -13,7 +13,7 @@
         "settings_hotkey_anc_description": "Appuyez sur <Key1/> + <Key2/> pour basculer entre les modes de réduction du bruit",
         "notif_low_battery": "{{battery}}% restant. Rechargez vos écouteurs.",
         "faq_tip6_description": "Rejoignez notre communauté <lnk>Discord</lnk> afin de discuter des nouvelles fonctionnalité et en apprendre plus à propos de MagicPods.",
-        "websocket_connection_issue": "Quelque chose s'est mal déroulé, essayez de recharger.",
+        "websocket_connection_issue": "Quelque chose s'est mal déroulé, essayez de recharger",
         "headphones_disconnected": "Connectez des écouteurs pour afficher leurs niveaux de batteries et ajuster leurs paramètres",
         "settings_language_menu_label": "Choisissez la langue",
         "capabilities_noisecancellation_notchlabel_anc": "ANC",
@@ -38,6 +38,11 @@
         "faq_tip3_description": "Appairez les écouteurs dans les paramètres bluetooth du Steam Deck. Ils apparaîtront automatiquement dans MagicPods dans l'onglet à l’icône de casque audio.",
         "faq_tip4_header": "Comment puis-je vérifier le niveaux de batterie ?",
         "faq_tip4_description": "Connectez les écouteurs et accédez à l'onglet à l’icône d’éclaire.",
-        "faq_tip8_description": "Connectez les écouteurs et placez au moins un AirPods dans le boitier ouvert. Accédez à l'onglet à l’icône d’éclaire, après quelques secondes, le niveaux de charge du boitier s'affichera."
+        "faq_tip8_description": "Connectez les écouteurs et placez au moins un AirPods dans le boitier ouvert. Accédez à l'onglet à l’icône d’éclaire, après quelques secondes, le niveaux de charge du boitier s'affichera.",
+        "update_available_message": "Mise à jour disponible",
+        "settings_hotkey_mic_label": "Touche de raccourci pour couper le microphone",
+        "settings_hotkey_mic_description": "Appuyez sur <Key1/> + <Key2/> pour couper ou rétablir le microphone",
+        "settings_check_update_label": "Vérifie les mises à jour",
+        "notif_update_available": "Mise à jour disponible"
     }
 }
