@@ -8,7 +8,7 @@
         "capabilities_noisecancellation_notchlabel_off": "关闭",
         "capabilities_noisecancellation_notchlabel_transparency": "通透模式",
         "capabilities_noisecancellation_notchlabel_anc": "降噪",
-        "websocket_connection_issue": "出错了，请尝试刷新。",
+        "websocket_connection_issue": "出错了，请尝试刷新",
         "headphones_disconnected": "连接耳机以查看电池电量和调整设置",
         "settings_low_battery_label": "低电量提醒",
         "settings_low_battery_label_notchlabel_off": "关闭",
@@ -40,6 +40,9 @@
         "faq_tip7_header": "如何报告错误？",
         "faq_tip7_description": "请致信 {{mail}} 或 <lnk>Discord</lnk>。",
         "faq_tip8_header": "如何检查 AirPods 耳机盒的电池电量？",
-        "faq_tip8_description": "连接耳机，并将至少一个 AirPod 放入打开的 AirPods 耳机盒中。导航至 '充电 '图标选项卡，几秒钟后，手机壳的电量就会显示出来。"
+        "faq_tip8_description": "连接耳机，并将至少一个 AirPod 放入打开的 AirPods 耳机盒中。导航至 '充电 '图标选项卡，几秒钟后，手机壳的电量就会显示出来。",
+        "update_available_message": "更新可用",
+        "settings_check_update_label": "检查更新",
+        "notif_update_available": "更新可用"
     }
 }
