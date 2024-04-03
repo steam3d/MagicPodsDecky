@@ -8,7 +8,7 @@
         "capabilities_noisecancellation_notchlabel_off": "Off",
         "capabilities_noisecancellation_notchlabel_transparency": "Tran.",
         "capabilities_noisecancellation_notchlabel_anc": "ANC",
-        "websocket_connection_issue": "Something went wrong, try reloading.",
+        "websocket_connection_issue": "Something went wrong, try reloading",
         "update_available_message": "Update available",
         "headphones_disconnected": "Connect headphones to display their battery level and adjust settings",
         "settings_low_battery_label": "Low battery notification",
