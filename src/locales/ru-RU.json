@@ -8,7 +8,7 @@
         "capabilities_noisecancellation_notchlabel_off": "Выкл.",
         "capabilities_noisecancellation_notchlabel_transparency": "Проз.",
         "capabilities_noisecancellation_notchlabel_anc": "Шум.",
-        "websocket_connection_issue": "Что-то пошло не так, попробуйте перезагрузить.",
+        "websocket_connection_issue": "Что-то пошло не так, попробуйте перезагрузить",
         "headphones_disconnected": "Подключите наушники, чтобы отобразить уровень заряда батареи и настроить параметры",
         "settings_low_battery_label": "Уведомление о низком заряде",
         "settings_low_battery_label_notchlabel_off": "Выкл.",
@@ -40,6 +40,9 @@
         "faq_tip7_header": "Как сообщить об ошибке?",
         "faq_tip7_description": "Напишите на {{mail}} или в <lnk>Discord</lnk>.",
         "faq_tip8_header": "Как посмотреть уровень заряда кейса?",
-        "faq_tip8_description": "Подключите наушники и положите хотя бы один AirPod в открытый кейс. Перейдите на вкладку со значком заряда, через несколько секунд появится уровень заряда кейса."
+        "faq_tip8_description": "Подключите наушники и положите хотя бы один AirPod в открытый кейс. Перейдите на вкладку со значком заряда, через несколько секунд появится уровень заряда кейса.",
+        "update_available_message": "Доступно обновление",
+        "settings_check_update_label": "Проверять обновления",
+        "notif_update_available": "Доступно обновление"
     }
 }
