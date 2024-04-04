@@ -129,10 +129,8 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                     <PanelSectionRow>
                         <ToggleField checked={enableCheckUpdateValue} label={t("settings_check_update_label")} onChange={async (b) => {
                             setEnableCheckUpdateValue(b);
-                            if (!b){
-                                backend.update.hide();
-                            };
-                            await backend.deckyApi.callPluginMethod("save_setting", { key: "check_update", value: b });                                                    
+                            await backend.deckyApi.callPluginMethod("save_setting", { key: "check_update", value: b }); 
+                            await backend.update.CheckUpdate();                                                   
                         }} />
                     </PanelSectionRow>
 

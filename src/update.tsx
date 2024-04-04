@@ -3,37 +3,44 @@ import { Backend } from "./backend";
 import { LogoIcon } from "./icons";
 
 export class Update {
+    private updateReceivedListeners: Array<(isUpdateAvailable: boolean) => void> = [];
     private backend: Backend;
-    private timer: NodeJS.Timer;
-    private interval = 60 * 60 * 24 * 1000; // 1 day
-    //private interval = 10 * 1000; // testing only
     private url = "https://magicpods.app/plugin/meta.json";
 
-    public isAvailable = false;
+    private _isAvailable = false;
+    get isAvailable(): boolean {
+        return this._isAvailable;
+    }
 
     constructor(backend: Backend) {
         this.backend = backend;
-        this.CheckUpdate();
-        this.timer = setInterval(() => this.CheckUpdate(), this.interval);
+        this.CheckUpdate(true);
     }
 
-    public disable() {
-        clearInterval(this.timer);
+    onUpdateMessageReceived(callback: (isUpdateAvailable: boolean) => void) {
+        this.updateReceivedListeners.push(callback);
     }
 
-    // UI check this value and show or hide update message
-    public hide() {
-        this.isAvailable = false;
+    offUpdateMessageReceived(callback: (isUpdateAvailable: boolean) => void) {
+        const index = this.updateReceivedListeners.indexOf(callback);
+        if (index !== -1) {
+            this.updateReceivedListeners.splice(index, 1);
+        }
     }
 
-    private async CheckUpdate() {
+    private notifyUpdateMessageReceivedListeners(isUpdateAvailable: boolean) {
+        this.updateReceivedListeners.forEach(callback => {
+            callback(isUpdateAvailable);
+        });
+    }
+
+    public async CheckUpdate(showNotification = false): Promise<void> {
         this.backend.log("Checking update");
         const enableCheckUpdateValue = (await this.backend.deckyApi.callPluginMethod("load_setting", { key: "check_update" })).result;
         if (String(enableCheckUpdateValue).toLowerCase() == "true") {
-            const isUpdateAvailable = await this.IsUpdateAvailable();
+            this._isAvailable = await this.IsUpdateAvailable();
 
-            // show only one notification
-            if (isUpdateAvailable && !this.isAvailable) {
+            if (showNotification) {
                 this.backend.log("Showing update available notification");
                 this.backend.deckyApi.toaster.toast({
                     icon: <LogoIcon />,
@@ -41,8 +48,11 @@ export class Update {
                     body: t("notif_update_available")
                 });
             }
-            this.isAvailable = isUpdateAvailable;
         }
+        else {
+            this._isAvailable = false; //Hide notification if use do not want to see updates
+        }
+        this.notifyUpdateMessageReceivedListeners(this.isAvailable);
     }
 
     private async IsUpdateAvailable(): Promise<boolean> {

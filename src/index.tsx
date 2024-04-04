@@ -33,14 +33,21 @@ const Content: VFC<{ backend: Backend }> = ({ backend }) => {
     const state = backend.getSocketState();
     onConnectionChanged(state);
 
+    setUpdateAvailableValue(backend.update.isAvailable);
+    backend.update.onUpdateMessageReceived(onUpdateMessageChanged);
 
     return () => {
       backend.offSocketConnectionChanged(onConnectionChanged);
       backend.offJsonMessageReceived(onJsonMessageReceived);
+      backend.update.offUpdateMessageReceived(onUpdateMessageChanged);
     };
 
 
   }, []);
+
+  const onUpdateMessageChanged = (isUpdateAvailable: boolean) => {
+    setUpdateAvailableValue(isUpdateAvailable);
+  }
 
   const onConnectionChanged = (state: BackendSocketState) => {
     if (state === BackendSocketState.OPEN) {
@@ -80,6 +87,7 @@ const Content: VFC<{ backend: Backend }> = ({ backend }) => {
   const [infoValue, setInfoValue] = useState<headphoneInfoProps>()
   const [defaultBluetoothValue, setDefaultBluetoothValue] = useState<defaultBluetoothProps>()
   const [connectionErrorValue, setConnectionErrorValue] = useState<boolean>(false)
+  const [updateAvailableValue, setUpdateAvailableValue] = useState<boolean>(false)
   const [isButtonDisabledValue, setIsButtonDisabledValue] = useState<boolean>(false)
 
   const data = {
@@ -152,7 +160,7 @@ const Content: VFC<{ backend: Backend }> = ({ backend }) => {
           </DialogButton>
         </div>}
 
-      {backend.update.isAvailable &&
+      {updateAvailableValue &&
         <div style={{ display: "flex", paddingTop: "12px", paddingLeft: "16px", paddingRight: "16px", alignItems: "center" }}>
           <div className={staticClasses.Text} style={{ width: "100%" }}>
             {t("update_available_message")}
@@ -292,7 +300,6 @@ export default definePlugin((serverApi: ServerAPI) => {
       backend.offJsonMessageReceived(onJsonMessageReceived);
       backend.bgAncSwitch.disable();
       backend.player.disable();
-      backend.update.disable();
       backend.disconnect();
     },
   };
