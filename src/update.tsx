@@ -40,7 +40,7 @@ export class Update {
         if (String(enableCheckUpdateValue).toLowerCase() == "true") {
             this._isAvailable = await this.IsUpdateAvailable();
 
-            if (showNotification) {
+            if (this._isAvailable && showNotification) {
                 this.backend.log("Showing update available notification");
                 this.backend.deckyApi.toaster.toast({
                     icon: <LogoIcon />,
@@ -101,7 +101,7 @@ export class Update {
         this.backend.log(`Server ver: ${json.version} | Local ver: ${version}`);
 
         for (let i = 0; i < 3; i += 1) {
-            this.backend.log(serverVersion[i], ">", localVersion[i]);
+            //this.backend.log(serverVersion[i], ">", localVersion[i]);
 
             if (serverVersion[i] > localVersion[i]) {
                 this.backend.log("Update: available");
