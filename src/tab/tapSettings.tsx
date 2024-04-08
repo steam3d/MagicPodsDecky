@@ -120,7 +120,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={enableToggleMicValue} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle}/>, Key2: <L4 style={buttonStyle}/> }} />}  onChange={async (b) => {
+                        <ToggleField checked={enableToggleMicValue} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle}/>, Key2: <L4 style={buttonStyle}/> }} />}  onChange={async (b) => {
                             setEnableToggleMicValue(b);
                             await backend.deckyApi.callPluginMethod("save_setting", { key: "mic_qam_l5_toggle", value: b });                                                    
                         }} />
