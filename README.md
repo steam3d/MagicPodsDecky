@@ -48,6 +48,9 @@ All you need to do is select your headphones and connect them, and the charge le
 
 In the [Discord](https://discord.com/invite/UyY4PY768V) community you can suggest an idea or report a problem.
 
+## 🩼 Known issue
+
+As long as the disabled microphone icon is displayed during any game, it is not possible to open the Decky Store, Decky Settings or Screenshots page. This problem is due to a peculiarity of the Steam interface.
 
 ## 💖 Developers
 
