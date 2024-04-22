@@ -76,14 +76,11 @@ class Plugin:
     async def stop(self):
         self.player.stop()
 
-    async def get_ver(self):
-        return decky_plugin.DECKY_PLUGIN_VERSION
-
     # Asyncio-compatible long-running code, executed in a task when the plugin is loaded
     async def _main(self):
         logger.debug("_main starting")
         self.settings = Settings(decky_plugin.DECKY_PLUGIN_SETTINGS_DIR)
-        self.core = CoreService(decky_plugin.DECKY_PLUGIN_DIR, "MagicPodsCore", bin_logging)
+        self.core = CoreService(os.path.join(decky_plugin.DECKY_PLUGIN_DIR, "bin"), "MagicPodsCore", bin_logging)
         self.is_backend_allowed = True # Allow reconnecting socket when user using plugin
         self.player = Player(os.path.join(decky_plugin.DECKY_PLUGIN_DIR, "silence.mp3"),bin_logging)
 

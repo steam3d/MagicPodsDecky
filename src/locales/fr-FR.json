@@ -39,10 +39,7 @@
         "faq_tip4_header": "Comment puis-je vérifier le niveaux de batterie ?",
         "faq_tip4_description": "Connectez les écouteurs et accédez à l'onglet à l’icône d’éclaire.",
         "faq_tip8_description": "Connectez les écouteurs et placez au moins un AirPods dans le boitier ouvert. Accédez à l'onglet à l’icône d’éclaire, après quelques secondes, le niveaux de charge du boitier s'affichera.",
-        "update_available_message": "Mise à jour disponible",
         "settings_hotkey_mic_label": "Touche de raccourci pour couper le microphone",
-        "settings_hotkey_mic_description": "Appuyez sur <Key1/> + <Key2/> pour couper ou rétablir le microphone",
-        "settings_check_update_label": "Vérifie les mises à jour",
-        "notif_update_available": "Mise à jour disponible"
+        "settings_hotkey_mic_description": "Appuyez sur <Key1/> + <Key2/> pour couper ou rétablir le microphone"
     }
 }

@@ -33,21 +33,13 @@ const Content: VFC<{ backend: Backend }> = ({ backend }) => {
     const state = backend.getSocketState();
     onConnectionChanged(state);
 
-    setUpdateAvailableValue(backend.update.isAvailable);
-    backend.update.onUpdateMessageReceived(onUpdateMessageChanged);
-
     return () => {
       backend.offSocketConnectionChanged(onConnectionChanged);
       backend.offJsonMessageReceived(onJsonMessageReceived);
-      backend.update.offUpdateMessageReceived(onUpdateMessageChanged);
     };
 
 
   }, []);
-
-  const onUpdateMessageChanged = (isUpdateAvailable: boolean) => {
-    setUpdateAvailableValue(isUpdateAvailable);
-  }
 
   const onConnectionChanged = (state: BackendSocketState) => {
     if (state === BackendSocketState.OPEN) {
@@ -87,7 +79,6 @@ const Content: VFC<{ backend: Backend }> = ({ backend }) => {
   const [infoValue, setInfoValue] = useState<headphoneInfoProps>()
   const [defaultBluetoothValue, setDefaultBluetoothValue] = useState<defaultBluetoothProps>()
   const [connectionErrorValue, setConnectionErrorValue] = useState<boolean>(false)
-  const [updateAvailableValue, setUpdateAvailableValue] = useState<boolean>(false)
   const [isButtonDisabledValue, setIsButtonDisabledValue] = useState<boolean>(false)
 
   const data = {
@@ -158,20 +149,7 @@ const Content: VFC<{ backend: Backend }> = ({ backend }) => {
             }}>
             <svg style={{ display: "block", marginTop: "-4px" }} width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.0608 4.48844C11.8828 4.38507 12.4653 3.63495 12.3619 2.81299C12.2586 1.99104 11.5084 1.40851 10.6865 1.51188C5.97823 2.10399 2.1833 5.83131 1.58187 10.6572C0.925634 15.9227 4.27647 20.8622 9.41005 22.1733C14.5452 23.4847 19.8439 20.7515 21.7747 15.8084C23.1662 12.2459 22.4971 8.33342 20.2724 5.47532C20.9708 5.34719 21.5 4.7354 21.5 4C21.5 3.17157 20.8284 2.5 20 2.5H16C15.1716 2.5 14.5 3.17157 14.5 4V8C14.5 8.82843 15.1716 9.5 16 9.5C16.8284 9.5 17.5 8.82843 17.5 8V6.84125C19.4093 8.91101 20.0578 11.9584 18.9803 14.7169C17.5981 18.2556 13.8121 20.2012 10.1524 19.2666C6.4911 18.3315 4.08842 14.8028 4.55884 11.0282C4.98961 7.57163 7.70599 4.91034 11.0608 4.48844Z" fill="currentColor" /></svg>
           </DialogButton>
-        </div>}
-
-      {updateAvailableValue &&
-        <div style={{ display: "flex", paddingTop: "12px", paddingLeft: "16px", paddingRight: "16px", alignItems: "center" }}>
-          <div className={staticClasses.Text} style={{ width: "100%" }}>
-            {t("update_available_message")}
-          </div>
-          <DialogButton style={{ height: "28px", width: "40px", minWidth: "40px", padding: "10px 12px" }} onClick={() => {
-            Navigation.CloseSideMenus();
-            Navigation.NavigateToExternalWeb("https://magicpods.app/steamdeck/update/");
-          }}>
-            <svg style={{ display: "block", marginTop: "-4px" }} width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.3446 7.52746C15.2065 5.79745 13.7123 4.4871 11.9725 4.58347C11.9167 4.58656 11.8607 4.58695 11.8048 4.58463C10.216 4.51869 8.80508 5.59273 8.44566 7.14178C8.22931 8.07425 7.29801 8.65477 6.36555 8.43842C5.43309 8.22207 4.85257 7.29077 5.06892 6.3583C5.79868 3.21306 8.64502 1.02401 11.8647 1.1182C15.4898 0.96226 18.5823 3.73738 18.8084 7.36905C18.8106 7.40491 18.8117 7.44082 18.8117 7.47675C18.8117 10.1247 16.8817 11.7547 15.6866 12.7263C15.5292 12.8543 15.3829 12.9717 15.2465 13.0811L15.2463 13.0813C14.7746 13.4598 14.4216 13.7431 14.1368 14.0407C13.9126 14.275 13.8539 14.3972 13.841 14.4325C13.8303 15.3805 13.0584 16.1458 12.1079 16.1458C11.1506 16.1458 10.3746 15.3698 10.3746 14.4125C10.3746 13.1688 11.0529 12.2496 11.6323 11.6441C12.0918 11.1639 12.6821 10.6919 13.1774 10.2959C13.2907 10.2052 13.3991 10.1186 13.4998 10.0367C14.7636 9.00914 15.3222 8.3338 15.3446 7.52746ZM13.8377 14.4435L13.8379 14.4423L13.8392 14.4377C13.8385 14.4415 13.8377 14.4435 13.8377 14.4435ZM14.1871 20.7716C14.1871 21.9314 13.2469 22.8716 12.0871 22.8716C10.9273 22.8716 9.98706 21.9314 9.98706 20.7716C9.98706 19.6118 10.9273 18.6716 12.0871 18.6716C13.2469 18.6716 14.1871 19.6118 14.1871 20.7716Z" fill="currentColor" /></svg>
-          </DialogButton>
-        </div>}
+        </div>}    
       <Tabs
         activeTab={currentTabRoute}
         // @ts-ignore
