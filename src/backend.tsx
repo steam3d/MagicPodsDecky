@@ -3,7 +3,6 @@ import {
   } from "decky-frontend-lib";
 import { BackgroundAncSwitch } from "./bgAncSwitch";
 import { Player } from "./player";
-import { Update } from "./update";
 
 export const enum BackendSocketState {
     UNINSTANTIATED = -2,
@@ -19,7 +18,6 @@ export class Backend {
     deckyApi: ServerAPI;
     bgAncSwitch: BackgroundAncSwitch;
     player: Player;
-    update: Update;
     private socket!: WebSocket;
     private socketState = BackendSocketState.UNINSTANTIATED;
 
@@ -85,7 +83,6 @@ export class Backend {
         this.deckyApi = deckyApi;
         this.bgAncSwitch = new BackgroundAncSwitch(this);
         this.player = new Player(this);
-        this.update = new Update(this);
         this.connect();
     }
 

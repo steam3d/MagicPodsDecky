@@ -40,9 +40,6 @@
         "settings_hotkey_mic_label": "Stummschaltung Tastenkombination",
         "settings_hotkey_mic_description": "Drücke <Key1/> + <Key2/>, um die Stummschaltung zu (de-)aktivieren",
         "settings_hotkey_anc_label": "Tastenkombination für Modus Wechsel",
-        "settings_fix_disconnects_description": "Löst das Problem der konstanten Verbindung/Trennung der Kopfhörer",
-        "update_available_message": "Update verfügbar",
-        "settings_check_update_label": "Auf Updates prüfen",
-        "notif_update_available": "Update verfügbar"
+        "settings_fix_disconnects_description": "Löst das Problem der konstanten Verbindung/Trennung der Kopfhörer"
     }
 }
