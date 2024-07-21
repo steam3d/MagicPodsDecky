@@ -78,7 +78,13 @@ export const TabHeadphones: VFC<{
     if (setDefaultBluetooth != null)
         setDefaultBluetooth({ enabled: b });
 
-    void SteamClient.System.Bluetooth.SetEnabled(b);
+    if (b){
+      backend.enableDefaultBluetoothAdapter();
+    }
+    else{
+      backend.disableDefaultBluetoothAdapter();
+    }
+    //void SteamClient.System.Bluetooth.SetEnabled(b); // disabled due SteamClient.System.Bluetooth is not available since Steam Deck OS 3.5.19 
   };
 
   return (
