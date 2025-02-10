@@ -9,6 +9,7 @@ import frFR from "./locales/fr-FR.json";
 import deDE from "./locales/de-DE.json";
 import esES from "./locales/es-ES.json";
 import ptBr from "./locales/pt-BR.json";
+import elGr from "./locales/el-GR.json";
 
 i18n
   .use(initReactI18next)
@@ -26,6 +27,7 @@ i18n
       "de-DE": deDE,
       "es-ES": esES,
       "pt-BR": ptBr,
+      "el-GR": elGr,
     },
     //debug: true,
     lng: navigator.language,
