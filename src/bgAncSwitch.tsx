@@ -2,9 +2,18 @@ import { Backend } from "./backend";
 import { Button, Input } from "./input";
 import { headphoneInfoProps } from "./tab/tabInfo";
 
+const AncMode = {
+    OFF: 1,
+    TRANSPARENCY: 2,
+    ADAPTIVE: 4,
+    WIND: 8,
+    ANC: 16,
+  };  
+
 export class BackgroundAncSwitch {
     private backend;
-    private anc = 0;
+    private selected = 0;
+    private options = 0;
     private address = "";
     private enabled = false;
     private connected = false;
@@ -40,16 +49,19 @@ export class BackgroundAncSwitch {
     }
 
     private onJsonMessageReceived = (json: object) => {
-        this.backend.log("Process hotkey message");
+        this.backend.log("Process switch anc hotkey message");    
 
         if (!json.hasOwnProperty("info"))
             return;
 
         if (Object.keys(json["info"]).length !== 0) {
             const info = json["info"] as headphoneInfoProps;
-            if (info.capabilities.anc != null) {
-                if (this.anc !== info.capabilities.anc)
-                    this.anc = info.capabilities.anc
+            if (info.capabilities?.anc != null) {
+                if (this.selected !== info.capabilities.anc.selected)
+                    this.selected = info.capabilities.anc.selected;
+
+                if (this.options !== info.capabilities.anc.options)
+                    this.options = info.capabilities.anc.options;
 
                 if (this.address !== info.address)
                     this.address = info.address;
@@ -63,7 +75,7 @@ export class BackgroundAncSwitch {
         }
         else {
             this.unregister();
-            this.anc = 0;
+            this.selected = 0;
             this.address = "";
             this.connected = false;
         }
@@ -86,24 +98,55 @@ export class BackgroundAncSwitch {
         }
     }
 
-    private onShortcutPressed = () => {
+    private onShortcutPressed = async () => {
         this.backend.log("Hotkey pressed")
-        if (this.anc !== 0) {
-            let nextAnc = 0;
 
-            if (this.anc == 2) {
-                nextAnc = 1;
-            }
-            else if (this.anc == 1) {
-                nextAnc = 3;
-            }
-            else if (this.anc == 3) {
-                nextAnc = 2;
-            }
+        let isOff = await this.backend.loadBooleanSetting("allow_anc_mode_off");
+        let isTransparency = await this.backend.loadBooleanSetting("allow_anc_mode_transparency");
+        let isAdaptive = await this.backend.loadBooleanSetting("allow_anc_mode_adaptive");
+        let isWind = await this.backend.loadBooleanSetting("allow_anc_mode_wind");
+        let isAnc = await this.backend.loadBooleanSetting("allow_anc_mode_anc");
 
-            if (nextAnc !== 0) {
-                this.backend.setAnc(this.address, nextAnc);
-            }
+        this.backend.log("Options: ", this.options);
+        this.backend.log("Selected: ", this.selected);
+
+
+        let modes = [];
+
+        if (isOff && (this.options & AncMode.OFF) != 0){
+            modes.push(AncMode.OFF)
+        }
+
+        if (isTransparency && (this.options & AncMode.TRANSPARENCY) != 0) {
+            modes.push(AncMode.TRANSPARENCY)
+        }
+
+        if (isAdaptive && (this.options & AncMode.ADAPTIVE) != 0) {
+            modes.push(AncMode.ADAPTIVE)
+        }
+
+        if (isWind && (this.options & AncMode.WIND) != 0) {
+            modes.push(AncMode.WIND)
+        }
+
+        if (isAnc && (this.options & AncMode.ANC) != 0) {
+            modes.push(AncMode.ANC)
+        }
+
+        this.backend.log(modes);
+
+        if (modes.length <= 1)
+            this.backend.log("Nothing to do: fewer than two modes selected.");
+
+        let nextAnc = modes.find(x => x > this.selected);
+        if (nextAnc === undefined){
+            nextAnc = modes[0];
+        }
+
+        this.backend.log(nextAnc);
+        
+        if (nextAnc !== 0) {
+            this.backend.setAnc(this.address, nextAnc);
         }
     }
 }
