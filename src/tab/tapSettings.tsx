@@ -36,32 +36,31 @@ const buttonStyle = {
 };
 
 export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
-    const [lowBatterySliderValue, setLowBatterySliderValue] = useState<number>(-1);
-    const [enableSwitchAncValue, setEnableSwitchAncValue] = useState<boolean>(false);
-    const [enableToggleMicValue, setEnableToggleMicValue] = useState<boolean>(false);
-    const [enableFixDisconnectsValue, setFixDisconnectsValue] = useState<boolean>(false);
+    const [sliderLowBattery, setSliderLowBattery] = useState<number>(-1);
+    const [toggleSwitchAncHotkey, setToggleSwitchAncHotkey] = useState<boolean>(false);
+    const [toggleMicHotkey, setToggleMicHotkey] = useState<boolean>(false);
+    const [toggleFixDisconnects, setToggleFixDisconnects] = useState<boolean>(false);
+    const [toggleAncOff, setToggleAncOff] = useState<boolean>(false);
+    const [toggleAncTransparency, setToggleAncTransparency] = useState<boolean>(false);
+    const [toggleAncAdaptive, setToggleAncAdaptive] = useState<boolean>(false);
+    const [toggleAncWind, setToggleAncWind] = useState<boolean>(false);
+    const [toggleAncOn, setToggleAncOn] = useState<boolean>(false);
 
-    const [enableToggleAncModeOffValue, setEnableToggleAncModeOffValue] = useState<boolean>(false);
-    const [enableToggleAncModeTransparencyValue, setEnableToggleAncModeTransparencyValue] = useState<boolean>(false);
-    const [enableToggleAncModeAdaptiveValue, setEnableToggleAncModeAdaptiveValue] = useState<boolean>(false);
-    const [enableToggleAncModeWindValue, setEnableToggleAncModeWindValue] = useState<boolean>(false);
-    const [enableToggleAncModeAncValue, setEnableToggleAncModeAncValue] = useState<boolean>(false);
-
-    const [languageValue, setLanguageValue] = useState<{ tag: string; nativeName: string }[]>([])
+    const [availableLanguages, setAvailableLanguages] = useState<{ tag: string; nativeName: string }[]>([])
     const { i18n } = useTranslation();
 
     useEffect(() => {
         const getSetting = async () => {
-            setLowBatterySliderValue(await backend.loadNumberSetting("notif_low_battery") ?? -1);
-            setEnableSwitchAncValue(await backend.loadBooleanSetting("anc_l5_r5_switch"));
-            setFixDisconnectsValue(await backend.loadBooleanSetting("fix_disconnects"));
-            setEnableToggleMicValue(await backend.loadBooleanSetting("mic_qam_l5_toggle"));
-            setEnableToggleAncModeOffValue(await backend.loadBooleanSetting("allow_anc_mode_off"));
-            setEnableToggleAncModeTransparencyValue(await backend.loadBooleanSetting("allow_anc_mode_transparency"));
-            setEnableToggleAncModeAdaptiveValue(await backend.loadBooleanSetting("allow_anc_mode_adaptive"));
-            setEnableToggleAncModeWindValue(await backend.loadBooleanSetting("allow_anc_mode_wind"));
-            setEnableToggleAncModeAncValue(await backend.loadBooleanSetting("allow_anc_mode_anc"));
-        }
+            setSliderLowBattery(await backend.loadNumberSetting("notif_low_battery") ?? -1);
+            setToggleSwitchAncHotkey(await backend.loadBooleanSetting("anc_l5_r5_switch"));
+            setToggleFixDisconnects(await backend.loadBooleanSetting("fix_disconnects"));
+            setToggleMicHotkey(await backend.loadBooleanSetting("mic_qam_l5_toggle"));
+            setToggleAncOff(await backend.loadBooleanSetting("allow_anc_mode_off"));
+            setToggleAncTransparency(await backend.loadBooleanSetting("allow_anc_mode_transparency"));
+            setToggleAncAdaptive(await backend.loadBooleanSetting("allow_anc_mode_adaptive"));
+            setToggleAncWind(await backend.loadBooleanSetting("allow_anc_mode_wind"));
+            setToggleAncOn(await backend.loadBooleanSetting("allow_anc_mode_anc"));
+        };
 
         getSetting();
         const availableLocales = Object.keys(i18next.services.resourceStore.data);
@@ -70,7 +69,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
             nativeName: new Intl.DisplayNames([locale], { type: 'language' }).of(locale) || locale
         }));
         backend.log(updatedLanguageValue);
-        setLanguageValue(updatedLanguageValue);
+        setAvailableLanguages(updatedLanguageValue);
     }, []);
     return (
         <>
@@ -78,7 +77,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                 <PanelSection title={t("settings_header")}>
                     <PanelSectionRow>
                         <SliderField
-                            value={lowBatterySliderValue}
+                            value={sliderLowBattery}
                             max={100}
                             min={0}
                             step={1}
@@ -92,7 +91,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                                 { label: "", notchIndex: 1, value: 100 },
                             ]}
                             onChange={(n) => {
-                                setLowBatterySliderValue(n);
+                                setSliderLowBattery(n);
                                 if (sliderTimeoutId)
                                     clearTimeout(sliderTimeoutId);
 
@@ -105,24 +104,24 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={enableSwitchAncValue} label={t("settings_hotkey_anc_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle} />, Key2: <L5 style={buttonStyle} /> }} />} onChange={async (b) => {
-                            setEnableSwitchAncValue(b);
+                        <ToggleField checked={toggleSwitchAncHotkey} label={t("settings_hotkey_anc_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle} />, Key2: <L5 style={buttonStyle} /> }} />} onChange={async (b) => {
+                            setToggleSwitchAncHotkey(b);
                             await backend.saveSetting("anc_l5_r5_switch", b);
                             backend.bgAncSwitch.updateSetting();
                         }} />
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={enableFixDisconnectsValue} label={t("settings_fix_disconnects_label")} description={t("settings_fix_disconnects_description")} onChange={async (b) => {
-                            setFixDisconnectsValue(b);
+                        <ToggleField checked={toggleFixDisconnects} label={t("settings_fix_disconnects_label")} description={t("settings_fix_disconnects_description")} onChange={async (b) => {
+                            setToggleFixDisconnects(b);
                             await backend.saveSetting("fix_disconnects", b);
                             backend.player.updateSetting();
                         }} />
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={enableToggleMicValue} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle} />, Key2: <L4 style={buttonStyle} /> }} />} onChange={async (b) => {
-                            setEnableToggleMicValue(b);
+                        <ToggleField checked={toggleMicHotkey} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle} />, Key2: <L4 style={buttonStyle} /> }} />} onChange={async (b) => {
+                            setToggleMicHotkey(b);
                             await backend.saveSetting("mic_qam_l5_toggle", b);
                         }} />
                     </PanelSectionRow>
@@ -130,32 +129,32 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
 
                 <PanelSection title={t("settings_anc_modes_header")}>
                     <PanelSectionRow>
-                        <ToggleField checked={enableToggleAncModeOffValue} label={t("settings_anc_modes_off")} onChange={async (b) => {
-                            setEnableToggleAncModeOffValue(b);
+                        <ToggleField checked={toggleAncOff} label={t("settings_anc_modes_off")} onChange={async (b) => {
+                            setToggleAncOff(b);
                             await backend.saveSetting("allow_anc_mode_off", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={enableToggleAncModeTransparencyValue} label={t("settings_anc_modes_transparency")} onChange={async (b) => {
-                            setEnableToggleAncModeTransparencyValue(b);
+                        <ToggleField checked={toggleAncTransparency} label={t("settings_anc_modes_transparency")} onChange={async (b) => {
+                            setToggleAncTransparency(b);
                             await backend.saveSetting("allow_anc_mode_transparency", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={enableToggleAncModeAdaptiveValue} label={t("settings_anc_modes_adaptive")} onChange={async (b) => {
-                            setEnableToggleAncModeAdaptiveValue(b);
+                        <ToggleField checked={toggleAncAdaptive} label={t("settings_anc_modes_adaptive")} onChange={async (b) => {
+                            setToggleAncAdaptive(b);
                             await backend.saveSetting("allow_anc_mode_adaptive", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={enableToggleAncModeWindValue} label={t("settings_anc_modes_wind")} onChange={async (b) => {
-                            setEnableToggleAncModeWindValue(b);
+                        <ToggleField checked={toggleAncWind} label={t("settings_anc_modes_wind")} onChange={async (b) => {
+                            setToggleAncWind(b);
                             await backend.saveSetting("allow_anc_mode_wind", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={enableToggleAncModeAncValue} label={t("settings_anc_modes_anc")} onChange={async (b) => {
-                            setEnableToggleAncModeAncValue(b);
+                        <ToggleField checked={toggleAncOn} label={t("settings_anc_modes_anc")} onChange={async (b) => {
+                            setToggleAncOn(b);
                             await backend.saveSetting("allow_anc_mode_anc", b);
                         }} />
                     </PanelSectionRow>
@@ -169,7 +168,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                             onClick={(e) =>
                                 showContextMenu(
                                     <Menu label={t("settings_language_menu_label")} cancelText={t("settings_language_menu_canceltext")} onCancel={() => { }}>
-                                        {languageValue.map((lng) => (
+                                        {availableLanguages.map((lng) => (
                                             <MenuItem key={lng.tag} disabled={i18n.resolvedLanguage === lng.tag} onSelected={() => { i18n.changeLanguage(lng.tag); backend.log(i18n.resolvedLanguage); }}>{lng.nativeName}</MenuItem>
                                         ))}
                                     </Menu>,
@@ -177,7 +176,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                                 )
                             }
                         >
-                            {languageValue.find(lng => lng.tag == i18n.resolvedLanguage)?.nativeName || i18n.resolvedLanguage}
+                            {availableLanguages.find(lng => lng.tag == i18n.resolvedLanguage)?.nativeName || i18n.resolvedLanguage}
                         </ButtonItem>
                     </PanelSectionRow>
                     <Focusable style={{ display: "flex", justifyContent: "space-between", columnGap: "8px", paddingTop: "8px", paddingBottom: "8px" }}>
