@@ -1,14 +1,6 @@
 import { Backend } from "./backend";
 import { Button, Input } from "./input";
-import { headphoneInfoProps } from "./tab/tabInfo";
-
-const AncMode = {
-    OFF: 1,
-    TRANSPARENCY: 2,
-    ADAPTIVE: 4,
-    WIND: 8,
-    ANC: 16,
-  };  
+import { AncModes, headphoneInfoProps } from "./tab/tabInfo";
 
 export class BackgroundAncSwitch {
     private backend;
@@ -27,8 +19,7 @@ export class BackgroundAncSwitch {
     }
 
     async updateSetting() {
-        const enableSwitchAncValue = (await this.backend.deckyApi.callPluginMethod("load_setting", { key: "anc_l5_r5_switch" })).result;
-        this.enabled = (String(enableSwitchAncValue).toLowerCase() == "true");
+        this.enabled = await this.backend.loadBooleanSetting("anc_l5_r5_switch");
         this.backend.log(`Update hotkey setting to: ${this.enabled}`)
 
         // Make action only when headphones connected
@@ -49,7 +40,7 @@ export class BackgroundAncSwitch {
     }
 
     private onJsonMessageReceived = (json: object) => {
-        this.backend.log("Process switch anc hotkey message");    
+        this.backend.log("Process switch anc hotkey message");
 
         if (!json.hasOwnProperty("info"))
             return;
@@ -113,24 +104,24 @@ export class BackgroundAncSwitch {
 
         let modes = [];
 
-        if (isOff && (this.options & AncMode.OFF) != 0){
-            modes.push(AncMode.OFF)
+        if (isOff && (this.options & AncModes.OFF) != 0){
+            modes.push(AncModes.OFF)
         }
 
-        if (isTransparency && (this.options & AncMode.TRANSPARENCY) != 0) {
-            modes.push(AncMode.TRANSPARENCY)
+        if (isTransparency && (this.options & AncModes.TRANSPARENCY) != 0) {
+            modes.push(AncModes.TRANSPARENCY)
         }
 
-        if (isAdaptive && (this.options & AncMode.ADAPTIVE) != 0) {
-            modes.push(AncMode.ADAPTIVE)
+        if (isAdaptive && (this.options & AncModes.ADAPTIVE) != 0) {
+            modes.push(AncModes.ADAPTIVE)
         }
 
-        if (isWind && (this.options & AncMode.WIND) != 0) {
-            modes.push(AncMode.WIND)
+        if (isWind && (this.options & AncModes.WIND) != 0) {
+            modes.push(AncModes.WIND)
         }
 
-        if (isAnc && (this.options & AncMode.ANC) != 0) {
-            modes.push(AncMode.ANC)
+        if (isAnc && (this.options & AncModes.ANC) != 0) {
+            modes.push(AncModes.ANC)
         }
 
         this.backend.log(modes);
@@ -144,7 +135,7 @@ export class BackgroundAncSwitch {
         }
 
         this.backend.log(nextAnc);
-        
+
         if (nextAnc !== 0) {
             this.backend.setAnc(this.address, nextAnc);
         }

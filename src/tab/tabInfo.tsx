@@ -53,7 +53,7 @@ let sliderTimeoutId: NodeJS.Timeout;
 
 
 
-const AncMode = {
+export const AncModes = {
   OFF: 1,
   TRANSPARENCY: 2,
   ADAPTIVE: 4,
@@ -88,39 +88,39 @@ const getAncSliderConfig = async (backend: Backend, options: number, selected: n
       return null;
 
     //The order is important OFF->TRA->ADAP->WIND->ANC
-    if (isOff && (options & AncMode.OFF) != 0){
+    if (isOff && (options & AncModes.OFF) != 0){
         _count += 1;
         _labels.push( { label: t("capabilities_noisecancellation_notchlabel_off"), notchIndex: _count-1, value: _count },);
-        _convertBack[_count] = AncMode.OFF;
-        if ((selected & AncMode.OFF) != 0 ) _selectedIndex = _count;
+        _convertBack[_count] = AncModes.OFF;
+        if ((selected & AncModes.OFF) != 0 ) _selectedIndex = _count;
     }
 
-    if (isTransparency && (options & AncMode.TRANSPARENCY) != 0){
+    if (isTransparency && (options & AncModes.TRANSPARENCY) != 0){
         _count += 1;
         _labels.push( { label: t("capabilities_noisecancellation_notchlabel_transparency"), notchIndex: _count-1, value: _count },);
-        _convertBack[_count] = AncMode.TRANSPARENCY;
-        if ((selected & AncMode.TRANSPARENCY) != 0 ) _selectedIndex = _count;
+        _convertBack[_count] = AncModes.TRANSPARENCY;
+        if ((selected & AncModes.TRANSPARENCY) != 0 ) _selectedIndex = _count;
     }
 
-    if (isAdaptive && (options & AncMode.ADAPTIVE) != 0){
+    if (isAdaptive && (options & AncModes.ADAPTIVE) != 0){
         _count += 1;
         _labels.push( { label: t("capabilities_noisecancellation_notchlabel_adaptive"), notchIndex: _count-1, value: _count },);
-        _convertBack[_count] = AncMode.ADAPTIVE;
-        if ((selected & AncMode.ADAPTIVE) != 0 ) _selectedIndex = _count;
+        _convertBack[_count] = AncModes.ADAPTIVE;
+        if ((selected & AncModes.ADAPTIVE) != 0 ) _selectedIndex = _count;
     }
 
-    if (isWind && (options & AncMode.WIND) != 0){
+    if (isWind && (options & AncModes.WIND) != 0){
         _count += 1;
         _labels.push( { label: t("capabilities_noisecancellation_notchlabel_wind"), notchIndex: _count-1, value: _count },);
-        _convertBack[_count] = AncMode.WIND;
-        if ((selected & AncMode.WIND) != 0 ) _selectedIndex = _count;
+        _convertBack[_count] = AncModes.WIND;
+        if ((selected & AncModes.WIND) != 0 ) _selectedIndex = _count;
     }
 
-    if (isAnc && (options & AncMode.ANC) != 0){
+    if (isAnc && (options & AncModes.ANC) != 0){
         _count += 1;
         _labels.push( { label: t("capabilities_noisecancellation_notchlabel_anc"), notchIndex: _count-1, value: _count },);
-        _convertBack[_count] = AncMode.ANC;
-        if ((selected & AncMode.ANC) != 0 ) _selectedIndex = _count;
+        _convertBack[_count] = AncModes.ANC;
+        if ((selected & AncModes.ANC) != 0 ) _selectedIndex = _count;
     }
 
     backend.log("Options count", _count);
