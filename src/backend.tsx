@@ -102,6 +102,52 @@ export class Backend {
         await this.deckyApi.callPluginMethod("logger_react", { msg: message });
       }
 
+    //settings
+    private async loadSetting<T = string>(key: string): Promise<T | null> {
+        try {
+          const response = await this.deckyApi.callPluginMethod<{ key: string }, T>("load_setting", { key });
+          if (response.success) {
+            return response.result;
+          } else {
+            this.log("Failed to load setting:", key, response.result);
+            return null;
+          }
+        } catch (e) {
+          this.log("Exception while loading setting:", key, e);
+          return null;
+        }
+    }
+
+    async loadBooleanSetting(key: string): Promise<boolean> {
+        const value = await this.loadSetting<string>(key);
+        return String(value).toLowerCase() === "true";
+      }
+
+    public async loadNumberSetting(key: string): Promise<number | null> {
+        const value = await this.loadSetting<string | number>(key);
+        const parsed = Number(value);
+        if (isNaN(parsed)) {
+          this.log("Invalid number in setting:", key, value);
+          return null;
+        }
+        return parsed;
+    }
+
+    async saveSetting(key: string, value: any): Promise<boolean> {
+        try {
+          const response = await this.deckyApi.callPluginMethod("save_setting", { key, value });
+          if (response.success) {
+            return true;
+          } else {
+            this.log("Failed to save setting:", key, response.result);
+            return false;
+          }
+        } catch (e) {
+          this.log("Exception while saving setting:", key, e);
+          return false;
+        }
+    }
+
     getSocketState() {
         return this.socketState;
     }
