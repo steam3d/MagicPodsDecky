@@ -39,5 +39,15 @@ class Settings():
             return branch.get(key, False)
         elif key == "mic_qam_l5_toggle":
             return branch.get(key, False)
+        elif key == "allow_anc_mode_off":
+            return branch.get(key, True)
+        elif key == "allow_anc_mode_transparency":
+            return branch.get(key, True)
+        elif key == "allow_anc_mode_adaptive":
+            return branch.get(key, True)
+        elif key == "allow_anc_mode_wind":
+            return branch.get(key, True)
+        elif key == "allow_anc_mode_anc":
+            return branch.get(key, True)
         else:
             return None
