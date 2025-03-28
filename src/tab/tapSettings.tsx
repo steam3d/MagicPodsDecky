@@ -40,6 +40,13 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
     const [enableSwitchAncValue, setEnableSwitchAncValue] = useState<boolean>(false);
     const [enableToggleMicValue, setEnableToggleMicValue] = useState<boolean>(false);
     const [enableFixDisconnectsValue, setFixDisconnectsValue] = useState<boolean>(false);
+
+    const [enableToggleAncModeOffValue, setEnableToggleAncModeOffValue] = useState<boolean>(false);
+    const [enableToggleAncModeTransparencyValue, setEnableToggleAncModeTransparencyValue] = useState<boolean>(false);
+    const [enableToggleAncModeAdaptiveValue, setEnableToggleAncModeAdaptiveValue] = useState<boolean>(false);
+    const [enableToggleAncModeWindValue, setEnableToggleAncModeWindValue] = useState<boolean>(false);
+    const [enableToggleAncModeAncValue, setEnableToggleAncModeAncValue] = useState<boolean>(false);
+
     const [languageValue, setLanguageValue] = useState<{ tag: string; nativeName: string }[]>([])
     const { i18n } = useTranslation();
 
@@ -56,6 +63,21 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
 
             const enableToggleMicValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "mic_qam_l5_toggle" })).result; //shortcut_mic_toggle when setup keys will be available
             setEnableToggleMicValue((String(enableToggleMicValue).toLowerCase() == "true"));
+
+            const enableToggleAncModeOffValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "allow_anc_mode_off" })).result;
+            setEnableToggleAncModeOffValue((String(enableToggleAncModeOffValue).toLowerCase() == "true"));
+
+            const enableToggleAncModeTransparencyValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "allow_anc_mode_transparency" })).result;
+            setEnableToggleAncModeTransparencyValue((String(enableToggleAncModeTransparencyValue).toLowerCase() == "true"));
+
+            const enableToggleAncModeAdaptiveValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "allow_anc_mode_adaptive" })).result;
+            setEnableToggleAncModeAdaptiveValue((String(enableToggleAncModeAdaptiveValue).toLowerCase() == "true"));
+
+            const enableToggleAncModeWindValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "allow_anc_mode_wind" })).result;
+            setEnableToggleAncModeWindValue((String(enableToggleAncModeWindValue).toLowerCase() == "true"));
+
+            const enableToggleAncModeAncValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "allow_anc_mode_anc" })).result;
+            setEnableToggleAncModeAncValue((String(enableToggleAncModeAncValue).toLowerCase() == "true"));
         }
 
         getSetting();
@@ -70,7 +92,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
     return (
         <>
             <div style={{ marginLeft: "-8px", marginRight: "-8px" }}>
-                <PanelSection>
+                <PanelSection title={t("settings_header")}>
                     <PanelSectionRow>
                         <SliderField
                             value={lowBatterySliderValue}
@@ -100,7 +122,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={enableSwitchAncValue} label={t("settings_hotkey_anc_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle}/>, Key2: <L5 style={buttonStyle}/> }} />} onChange={async (b) => {
+                        <ToggleField checked={enableSwitchAncValue} label={t("settings_hotkey_anc_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle} />, Key2: <L5 style={buttonStyle} /> }} />} onChange={async (b) => {
                             setEnableSwitchAncValue(b);
                             await backend.deckyApi.callPluginMethod("save_setting", { key: "anc_l5_r5_switch", value: b });
                             backend.bgAncSwitch.updateSetting();
@@ -108,7 +130,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={enableFixDisconnectsValue} label={t("settings_fix_disconnects_label")} description={t("settings_fix_disconnects_description")}  onChange={async (b) => {
+                        <ToggleField checked={enableFixDisconnectsValue} label={t("settings_fix_disconnects_label")} description={t("settings_fix_disconnects_description")} onChange={async (b) => {
                             setFixDisconnectsValue(b);
                             await backend.deckyApi.callPluginMethod("save_setting", { key: "fix_disconnects", value: b });
                             backend.player.updateSetting();
@@ -116,12 +138,47 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={enableToggleMicValue} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle}/>, Key2: <L4 style={buttonStyle}/> }} />}  onChange={async (b) => {
+                        <ToggleField checked={enableToggleMicValue} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle} />, Key2: <L4 style={buttonStyle} /> }} />} onChange={async (b) => {
                             setEnableToggleMicValue(b);
-                            await backend.deckyApi.callPluginMethod("save_setting", { key: "mic_qam_l5_toggle", value: b });                                                    
+                            await backend.deckyApi.callPluginMethod("save_setting", { key: "mic_qam_l5_toggle", value: b });
                         }} />
                     </PanelSectionRow>
+                </PanelSection>
 
+                <PanelSection title={t("settings_anc_modes_header")}>
+                    <PanelSectionRow>
+                        <ToggleField checked={enableToggleAncModeOffValue} label={t("settings_anc_modes_off")} onChange={async (b) => {
+                            setEnableToggleAncModeOffValue(b);
+                            await backend.deckyApi.callPluginMethod("save_setting", { key: "allow_anc_mode_off", value: b });
+                        }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                        <ToggleField checked={enableToggleAncModeTransparencyValue} label={t("settings_anc_modes_transparency")} onChange={async (b) => {
+                            setEnableToggleAncModeTransparencyValue(b);
+                            await backend.deckyApi.callPluginMethod("save_setting", { key: "allow_anc_mode_transparency", value: b });
+                        }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                        <ToggleField checked={enableToggleAncModeAdaptiveValue} label={t("settings_anc_modes_adaptive")} onChange={async (b) => {
+                            setEnableToggleAncModeAdaptiveValue(b);
+                            await backend.deckyApi.callPluginMethod("save_setting", { key: "allow_anc_mode_adaptive", value: b });
+                        }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                        <ToggleField checked={enableToggleAncModeWindValue} label={t("settings_anc_modes_wind")} onChange={async (b) => {
+                            setEnableToggleAncModeWindValue(b);
+                            await backend.deckyApi.callPluginMethod("save_setting", { key: "allow_anc_mode_wind", value: b });
+                        }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                        <ToggleField checked={enableToggleAncModeAncValue} label={t("settings_anc_modes_anc")} onChange={async (b) => {
+                            setEnableToggleAncModeAncValue(b);
+                            await backend.deckyApi.callPluginMethod("save_setting", { key: "allow_anc_mode_anc", value: b });
+                        }} />
+                    </PanelSectionRow>
+                </PanelSection>
+
+                <PanelSection title={t("settings_misc_header")}>
                     <PanelSectionRow>
                         <ButtonItem
                             layout="below"
@@ -130,7 +187,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                                 showContextMenu(
                                     <Menu label={t("settings_language_menu_label")} cancelText={t("settings_language_menu_canceltext")} onCancel={() => { }}>
                                         {languageValue.map((lng) => (
-                                            <MenuItem disabled={i18n.resolvedLanguage === lng.tag} onSelected={() => { i18n.changeLanguage(lng.tag); backend.log(i18n.resolvedLanguage); }}>{lng.nativeName}</MenuItem>
+                                            <MenuItem key={lng.tag} disabled={i18n.resolvedLanguage === lng.tag} onSelected={() => { i18n.changeLanguage(lng.tag); backend.log(i18n.resolvedLanguage); }}>{lng.nativeName}</MenuItem>
                                         ))}
                                     </Menu>,
                                     e.currentTarget ?? window
@@ -140,7 +197,7 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
                             {languageValue.find(lng => lng.tag == i18n.resolvedLanguage)?.nativeName || i18n.resolvedLanguage}
                         </ButtonItem>
                     </PanelSectionRow>
-                    <Focusable style={{display: "flex", justifyContent: "space-between", columnGap: "8px", paddingTop: "8px", paddingBottom: "8px" }}>
+                    <Focusable style={{ display: "flex", justifyContent: "space-between", columnGap: "8px", paddingTop: "8px", paddingBottom: "8px" }}>
                         <DialogButton style={DialogButtonStyle} onClick={() => {
                             Navigation.CloseSideMenus();
                             Navigation.Navigate("/magicpods-quick-tutorial");
