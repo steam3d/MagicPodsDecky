@@ -129,31 +129,31 @@ export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
 
                 <PanelSection title={t("settings_anc_modes_header")}>
                     <PanelSectionRow>
-                        <ToggleField checked={toggleAncOff} label={t("settings_anc_modes_off")} onChange={async (b) => {
+                        <ToggleField checked={toggleAncOff} label={t("settings_anc_modes_off_label")} onChange={async (b) => {
                             setToggleAncOff(b);
                             await backend.saveSetting("allow_anc_mode_off", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={toggleAncTransparency} label={t("settings_anc_modes_transparency")} onChange={async (b) => {
+                        <ToggleField checked={toggleAncTransparency} label={t("settings_anc_modes_transparency_label")} onChange={async (b) => {
                             setToggleAncTransparency(b);
                             await backend.saveSetting("allow_anc_mode_transparency", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={toggleAncAdaptive} label={t("settings_anc_modes_adaptive")} onChange={async (b) => {
+                        <ToggleField checked={toggleAncAdaptive} label={t("settings_anc_modes_adaptive_label")} onChange={async (b) => {
                             setToggleAncAdaptive(b);
                             await backend.saveSetting("allow_anc_mode_adaptive", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={toggleAncWind} label={t("settings_anc_modes_wind")} onChange={async (b) => {
+                        <ToggleField checked={toggleAncWind} label={t("settings_anc_modes_wind_label")} onChange={async (b) => {
                             setToggleAncWind(b);
                             await backend.saveSetting("allow_anc_mode_wind", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={toggleAncOn} label={t("settings_anc_modes_anc")} onChange={async (b) => {
+                        <ToggleField checked={toggleAncOn} label={t("settings_anc_modes_anc_label")} onChange={async (b) => {
                             setToggleAncOn(b);
                             await backend.saveSetting("allow_anc_mode_anc", b);
                         }} />
