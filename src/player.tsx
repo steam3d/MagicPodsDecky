@@ -1,4 +1,5 @@
 import { Backend } from "./backend";
+import { headphoneInfoProps } from "./tab/tabInfo";
 
 export class Player {
     private backend;
@@ -13,8 +14,7 @@ export class Player {
     }
 
     async updateSetting() {
-        const enableFixDisconnectsValue = (await this.backend.deckyApi.callPluginMethod("load_setting", { key: "fix_disconnects" })).result;
-        this.enabled = (String(enableFixDisconnectsValue).toLowerCase() == "true");
+        this.enabled = await this.backend.loadBooleanSetting("fix_disconnects");
         this.backend.log(`Update player setting to: ${this.enabled}`)
 
         // Make action only when headphones connected
@@ -37,10 +37,11 @@ export class Player {
     private onJsonMessageReceived = (json: object) => {
         this.backend.log("Process player message");
 
-        if (!json.hasOwnProperty("info"))
-        return;
+        const typedJson = json as { info?: headphoneInfoProps };
+        if (typedJson?.info == null)
+            return;
 
-        if (Object.keys(json["info"]).length !== 0) {            
+        if (Object.keys(typedJson.info).length !== 0) {
                 if (this.connected !== true){
                     this.connected = true;
                     this.register();
