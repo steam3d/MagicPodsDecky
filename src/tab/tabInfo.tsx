@@ -37,7 +37,7 @@ interface BatteryProps {
 }
 
 interface CapabilitiesProps {
-  anc?:AncProps;
+  anc?: AncProps;
   battery?: BatteryProps;
 }
 
@@ -62,81 +62,74 @@ export const AncModes = {
 };
 
 const getAncSliderConfig = async (backend: Backend, options: number, selected: number) => {
-    backend.log("Options: ", options);
-    backend.log("Selected: ", selected);
+  backend.log("Options: ", options);
+  backend.log("Selected: ", selected);
 
-    let _count = 0;
-    let _selectedIndex = 0;
-    let _labels = [];
-    let _convertBack: { [key: number]: number } = {};
+  let _count = 0;
+  let _selectedIndex = 0;
+  let _labels = [];
+  let _convertBack: { [key: number]: number } = {};
 
+  let isOff = await backend.loadBooleanSetting("allow_anc_mode_off");
+  let isTransparency = await backend.loadBooleanSetting("allow_anc_mode_transparency");
+  let isAdaptive = await backend.loadBooleanSetting("allow_anc_mode_adaptive");
+  let isWind = await backend.loadBooleanSetting("allow_anc_mode_wind");
+  let isAnc = await backend.loadBooleanSetting("allow_anc_mode_anc");
 
-    const enableToggleAncModeOffValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "allow_anc_mode_off" })).result;
-    const enableToggleAncModeTransparencyValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "allow_anc_mode_transparency" })).result;
-    const enableToggleAncModeAdaptiveValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "allow_anc_mode_adaptive" })).result;
-    const enableToggleAncModeWindValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "allow_anc_mode_wind" })).result;
-    const enableToggleAncModeAncValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "allow_anc_mode_anc" })).result;
+  const trueCount = [isOff, isTransparency, isAdaptive, isWind, isAnc].filter(Boolean).length;
+  if (trueCount < 2)
+    return null;
 
-    let isOff = String(enableToggleAncModeOffValue).toLowerCase() == "true";
-    let isTransparency = String(enableToggleAncModeTransparencyValue).toLowerCase() == "true";
-    let isAdaptive = String(enableToggleAncModeAdaptiveValue).toLowerCase() == "true";
-    let isWind = String(enableToggleAncModeWindValue).toLowerCase() == "true";
-    let isAnc = String(enableToggleAncModeAncValue).toLowerCase() == "true";
+  //The order is important OFF->TRA->ADAP->WIND->ANC
+  if (isOff && (options & AncModes.OFF) != 0) {
+    _count += 1;
+    _labels.push({ label: t("capabilities_noisecancellation_notchlabel_off"), notchIndex: _count - 1, value: _count },);
+    _convertBack[_count] = AncModes.OFF;
+    if ((selected & AncModes.OFF) != 0) _selectedIndex = _count;
+  }
 
-    const trueCount = [isOff, isTransparency, isAdaptive, isWind, isAnc].filter(Boolean).length;
-    if (trueCount < 2)
-      return null;
+  if (isTransparency && (options & AncModes.TRANSPARENCY) != 0) {
+    _count += 1;
+    _labels.push({ label: t("capabilities_noisecancellation_notchlabel_transparency"), notchIndex: _count - 1, value: _count },);
+    _convertBack[_count] = AncModes.TRANSPARENCY;
+    if ((selected & AncModes.TRANSPARENCY) != 0) _selectedIndex = _count;
+  }
 
-    //The order is important OFF->TRA->ADAP->WIND->ANC
-    if (isOff && (options & AncModes.OFF) != 0){
-        _count += 1;
-        _labels.push( { label: t("capabilities_noisecancellation_notchlabel_off"), notchIndex: _count-1, value: _count },);
-        _convertBack[_count] = AncModes.OFF;
-        if ((selected & AncModes.OFF) != 0 ) _selectedIndex = _count;
-    }
+  if (isAdaptive && (options & AncModes.ADAPTIVE) != 0) {
+    _count += 1;
+    _labels.push({ label: t("capabilities_noisecancellation_notchlabel_adaptive"), notchIndex: _count - 1, value: _count },);
+    _convertBack[_count] = AncModes.ADAPTIVE;
+    if ((selected & AncModes.ADAPTIVE) != 0) _selectedIndex = _count;
+  }
 
-    if (isTransparency && (options & AncModes.TRANSPARENCY) != 0){
-        _count += 1;
-        _labels.push( { label: t("capabilities_noisecancellation_notchlabel_transparency"), notchIndex: _count-1, value: _count },);
-        _convertBack[_count] = AncModes.TRANSPARENCY;
-        if ((selected & AncModes.TRANSPARENCY) != 0 ) _selectedIndex = _count;
-    }
+  if (isWind && (options & AncModes.WIND) != 0) {
+    _count += 1;
+    _labels.push({ label: t("capabilities_noisecancellation_notchlabel_wind"), notchIndex: _count - 1, value: _count },);
+    _convertBack[_count] = AncModes.WIND;
+    if ((selected & AncModes.WIND) != 0) _selectedIndex = _count;
+  }
 
-    if (isAdaptive && (options & AncModes.ADAPTIVE) != 0){
-        _count += 1;
-        _labels.push( { label: t("capabilities_noisecancellation_notchlabel_adaptive"), notchIndex: _count-1, value: _count },);
-        _convertBack[_count] = AncModes.ADAPTIVE;
-        if ((selected & AncModes.ADAPTIVE) != 0 ) _selectedIndex = _count;
-    }
+  if (isAnc && (options & AncModes.ANC) != 0) {
+    _count += 1;
+    _labels.push({ label: t("capabilities_noisecancellation_notchlabel_anc"), notchIndex: _count - 1, value: _count },);
+    _convertBack[_count] = AncModes.ANC;
+    if ((selected & AncModes.ANC) != 0) _selectedIndex = _count;
+  }
 
-    if (isWind && (options & AncModes.WIND) != 0){
-        _count += 1;
-        _labels.push( { label: t("capabilities_noisecancellation_notchlabel_wind"), notchIndex: _count-1, value: _count },);
-        _convertBack[_count] = AncModes.WIND;
-        if ((selected & AncModes.WIND) != 0 ) _selectedIndex = _count;
-    }
+  backend.log("Options count", _count);
+  backend.log("Selected index", _selectedIndex);
+  backend.log(_labels);
+  backend.log(_convertBack);
 
-    if (isAnc && (options & AncModes.ANC) != 0){
-        _count += 1;
-        _labels.push( { label: t("capabilities_noisecancellation_notchlabel_anc"), notchIndex: _count-1, value: _count },);
-        _convertBack[_count] = AncModes.ANC;
-        if ((selected & AncModes.ANC) != 0 ) _selectedIndex = _count;
-    }
+  return {
+    value: _selectedIndex,
+    max: _count,
+    notchCount: _count,
+    labels: _labels,
+    convert: _convertBack,
+  };
 
-    backend.log("Options count", _count);
-    backend.log("Selected index", _selectedIndex);
-    backend.log(_labels);
-    backend.log(_convertBack);
-
-    return {
-      value: _selectedIndex,
-      max: _count,
-      notchCount: _count,
-      labels: _labels,
-      convert: _convertBack,
-    };
-
-    };
+};
 
 export const TabInfo: VFC<{
   info?: headphoneInfoProps,
@@ -159,7 +152,7 @@ export const TabInfo: VFC<{
 
     fetchConfig();
   }, [info, backend]);
-  
+
   return (
     <>
       <div style={{ marginLeft: "-8px", marginRight: "-8px" }}>
