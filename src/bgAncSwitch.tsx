@@ -42,11 +42,13 @@ export class BackgroundAncSwitch {
     private onJsonMessageReceived = (json: object) => {
         this.backend.log("Process switch anc hotkey message");
 
-        if (!json.hasOwnProperty("info"))
+        const typedJson = json as { info?: headphoneInfoProps };
+
+        if (typedJson?.info == null)
             return;
 
-        if (Object.keys(json["info"]).length !== 0) {
-            const info = json["info"] as headphoneInfoProps;
+        if (Object.keys(typedJson.info).length !== 0) {
+            const info = typedJson.info as headphoneInfoProps;
             if (info.capabilities?.anc != null) {
                 if (this.selected !== info.capabilities.anc.selected)
                     this.selected = info.capabilities.anc.selected;

@@ -61,16 +61,20 @@ const Content: VFC<{ backend: Backend }> = ({ backend }) => {
       return;
     }
 
-    if (lastJsonMessage.hasOwnProperty("info")) {
-      setInfoValue(Object.keys(lastJsonMessage["info"]).length === 0 ? undefined : lastJsonMessage["info"] as headphoneInfoProps);
+    lastJsonMessage = data;
+
+    const typedJson = lastJsonMessage as { info?: headphoneInfoProps,  defaultbluetooth?: defaultBluetoothProps, headphones?: headphonesListProps[]};
+
+    if (typedJson?.info != null) {
+      setInfoValue(Object.keys(typedJson.info).length === 0? undefined: typedJson.info as headphoneInfoProps);
     }
 
-    if (lastJsonMessage.hasOwnProperty("defaultbluetooth")) {
-      setDefaultBluetoothValue(Object.keys(lastJsonMessage["defaultbluetooth"]).length === 0 ? undefined : lastJsonMessage["defaultbluetooth"] as defaultBluetoothProps);
+    if (typedJson?.defaultbluetooth != null) {
+      setDefaultBluetoothValue(Object.keys(typedJson.defaultbluetooth).length === 0 ? undefined : typedJson.defaultbluetooth as defaultBluetoothProps);
     }
 
-    if (lastJsonMessage.hasOwnProperty("headphones")) {
-      setHeadphonesValue(Object.keys(lastJsonMessage["headphones"]).length === 0 ? [] : lastJsonMessage["headphones"] as headphonesListProps[]);
+    if (typedJson?.headphones != null) {
+      setHeadphonesValue(typedJson.headphones.length === 0 ? [] : typedJson.headphones as headphonesListProps[]);
     }
 
   };
@@ -99,30 +103,35 @@ const Content: VFC<{ backend: Backend }> = ({ backend }) => {
       name: "AirPods (steam3d)",
       address: "12:45:ds:23:fd:12",
       connected: true,
-      battery: {
-        single: {
-          battery: 0,
-          charging: true,
-          status: 0,
-        },
-        left: {
-          battery: 0,
-          charging: false,
-          status: 2,
-        },
-        right: {
-          battery: 50,
-          charging: false,
-          status: 2,
-        },
-        case: {
-          battery: 100,
-          charging: true,
-          status: 3,
-        },
-      },
       capabilities: {
-        anc: 2
+        battery: {
+            single: {
+              battery: 0,
+              charging: true,
+              status: 0,
+            },
+            left: {
+              battery: 0,
+              charging: false,
+              status: 2,
+            },
+            right: {
+              battery: 50,
+              charging: false,
+              status: 2,
+            },
+            case: {
+              battery: 100,
+              charging: true,
+              status: 3,
+            },
+            readonly: true,
+          },
+        anc:{
+            options: 0b00011111,
+            selected: 0b00000001,
+            readonly: false,
+        }
       }
     }
   }
@@ -149,7 +158,7 @@ const Content: VFC<{ backend: Backend }> = ({ backend }) => {
             }}>
             <svg style={{ display: "block", marginTop: "-4px" }} width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.0608 4.48844C11.8828 4.38507 12.4653 3.63495 12.3619 2.81299C12.2586 1.99104 11.5084 1.40851 10.6865 1.51188C5.97823 2.10399 2.1833 5.83131 1.58187 10.6572C0.925634 15.9227 4.27647 20.8622 9.41005 22.1733C14.5452 23.4847 19.8439 20.7515 21.7747 15.8084C23.1662 12.2459 22.4971 8.33342 20.2724 5.47532C20.9708 5.34719 21.5 4.7354 21.5 4C21.5 3.17157 20.8284 2.5 20 2.5H16C15.1716 2.5 14.5 3.17157 14.5 4V8C14.5 8.82843 15.1716 9.5 16 9.5C16.8284 9.5 17.5 8.82843 17.5 8V6.84125C19.4093 8.91101 20.0578 11.9584 18.9803 14.7169C17.5981 18.2556 13.8121 20.2012 10.1524 19.2666C6.4911 18.3315 4.08842 14.8028 4.55884 11.0282C4.98961 7.57163 7.70599 4.91034 11.0608 4.48844Z" fill="currentColor" /></svg>
           </DialogButton>
-        </div>}    
+        </div>}
       <Tabs
         activeTab={currentTabRoute}
         // @ts-ignore
@@ -215,22 +224,28 @@ export default definePlugin((serverApi: ServerAPI) => {
   const onJsonMessageReceived = async (json: object) => {
     backend.log("Process background message");
 
-    if (!json.hasOwnProperty("info"))
-      return;
+    const typedJson = json as { info?: headphoneInfoProps };
 
-    if (Object.keys(json["info"]).length !== 0) {
+    if (typedJson?.info == null)
+      return;    
 
-      const lowBatterySettingValue = Number((await backend.deckyApi.callPluginMethod("load_setting", { key: "notif_low_battery" })).result);
+    if (Object.keys(typedJson.info).length !== 0) {
+
+      const lowBatterySettingValue = await backend.loadNumberSetting("notif_low_battery") ?? 0;
+
       if (lowBatterySettingValue <= 0)
         return;
 
-      const info = json["info"] as headphoneInfoProps;
+      const info = typedJson.info as headphoneInfoProps;
+
+      if (info.capabilities.battery == null)
+        return;
 
       let minBattery = 100;
 
-      for (let key in info.battery) {
+      for (let key of ["single", "left", "right", "case"] as const) {
 
-        let battery = info.battery[key] as BatteryDataProps
+        let battery = info.capabilities.battery[key] as BatteryDataProps
 
         if (battery.status === 2 &&
           battery.charging === false &&
