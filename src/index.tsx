@@ -145,7 +145,19 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
   const [currentTabRoute, setCurrentTabRoute] = useState<string>("info");
 
   return (
-    <div style={{ height: "100%", width: "300px", position: "fixed", marginTop: "-12px", overflow: "hidden" }}>
+    <>
+
+<style>
+{`
+.magicpods-tabs > div > div:first-child::before {
+  background: #0D141C;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+`}
+</style>
+
+    <div className="magicpods-tabs" style={{ height: "100%", width: "300px", position: "fixed", marginTop: "-12px", overflow: "hidden" }}>
       {connectionErrorValue &&
         <div style={{ display: "flex", paddingTop: "12px", paddingLeft: "16px", paddingRight: "16px", alignItems: "center" }}>
           <div className={staticClasses.Text} style={{ paddingRight: "8px", width: "100%" }}>
@@ -199,6 +211,7 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
         ]}
       />
     </div>
+    </>
   );
 };
 
