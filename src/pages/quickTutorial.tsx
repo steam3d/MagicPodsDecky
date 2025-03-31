@@ -1,6 +1,6 @@
 import {
     staticClasses
-  } from "decky-frontend-lib";
+  } from "@decky/ui";
 import {Trans} from 'react-i18next'
 import React, { VFC } from 'react';
 

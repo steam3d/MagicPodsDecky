@@ -1,3 +1,4 @@
+import { call } from "@decky/api";
 import { Backend } from "./backend";
 import { headphoneInfoProps } from "./tab/tabInfo";
 
@@ -57,13 +58,13 @@ export class Player {
 
     private async register() {
         if (this.enabled) {
-            await this.backend.deckyApi.callPluginMethod("play", {})
+            await call<[], void>("play");
             this.backend.log("Player started")
         }
     }
 
     private async unregister() {
-            await this.backend.deckyApi.callPluginMethod("stop", {})
-            this.backend.log("Player stopped")
+        await call<[], void>("stop");
+        this.backend.log("Player stopped")
     }
 }

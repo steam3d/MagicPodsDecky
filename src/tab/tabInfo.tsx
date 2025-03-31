@@ -5,9 +5,9 @@ import {
   joinClassNames,
   SliderField,
   staticClasses
-} from "decky-frontend-lib";
+} from "@decky/ui";
 import { t } from 'i18next';
-import { useEffect, useState, VFC } from 'react';
+import { useEffect, useState, FC } from 'react';
 import { Battery } from "../components/battery";
 import { Backend } from "../backend";
 
@@ -131,7 +131,7 @@ const getAncSliderConfig = async (backend: Backend, options: number, selected: n
 
 };
 
-export const TabInfo: VFC<{
+export const TabInfo: FC<{
   info?: headphoneInfoProps,
   setInfoValue: (value: headphoneInfoProps) => void,
   backend: Backend,

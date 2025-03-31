@@ -1,19 +1,11 @@
 import {
     gamepadSliderClasses,
     gamepadDialogClasses,
-  } from "decky-frontend-lib";
+  } from "@decky/ui";
 
-import { VFC } from 'react';
+import { FC } from 'react';
 
-interface BatteryProps {
-  title: string;
-  battery: number;
-  isCharging: boolean,
-  status: number,
-}
-
-//export const Battery: VFC<{ props: BatteryProps }> = ({ props  }) => {
-export const Battery: VFC<{ title: string; battery: number; isCharging: boolean, status: number, }> = ({ title, battery, isCharging, status  }) => {
+export const Battery: FC<{ title: string; battery: number; isCharging: boolean, status: number, }> = ({ title, battery, isCharging, status  }) => {
     return (
       <>
       {status !== 0 && status !== 1 &&
@@ -35,5 +27,5 @@ export const Battery: VFC<{ title: string; battery: number; isCharging: boolean,
             </div>
         </div>}
       </>
-    );  
+    );
 }

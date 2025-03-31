@@ -1,4 +1,4 @@
-import { Router} from "decky-frontend-lib";
+import { Router} from "@decky/ui";
 
 export const enum Button {
     R2 = 0,
@@ -35,7 +35,7 @@ export const enum Button {
 }
 
 export class Input {
-    
+
     private onButtonsPressedListeners: Array<() => void> = [];
     private keyPressingTime = Date.now();
     private shortcutPressed = false;
@@ -72,7 +72,7 @@ export class Input {
         this.input_register.unregister();
     }
 
-    private OnButtonsPressed(buttons: Button[]) {        
+    private OnButtonsPressed(buttons: Button[]) {
         buttons = buttons.filter(item => !this.ignoreButtons.includes(item))
 
         if (this.shortcut.length === buttons.length && this.shortcut.every((value) => buttons.includes(value))) {
@@ -102,7 +102,7 @@ export class Input {
                 }, 350);
             }
             if (this.shortcutPressed != false){
-                //console.log("Shortcut released") 
+                //console.log("Shortcut released")
                 this.shortcutPressed = false;
             }
         }

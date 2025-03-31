@@ -10,8 +10,8 @@ import {
     ToggleField,
     DialogButton,
     Focusable
-} from "decky-frontend-lib";
-import { VFC, useEffect, useState } from 'react';
+} from "@decky/ui";
+import { FC, useEffect, useState } from 'react';
 import i18next, { t } from 'i18next';
 import { Trans, useTranslation } from 'react-i18next'
 import { Backend } from "../backend";
@@ -35,7 +35,7 @@ const buttonStyle = {
     marginBottom: "-4px"
 };
 
-export const TabSettings: VFC<{ backend: Backend; }> = ({ backend }) => {
+export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
     const [sliderLowBattery, setSliderLowBattery] = useState<number>(-1);
     const [toggleSwitchAncHotkey, setToggleSwitchAncHotkey] = useState<boolean>(false);
     const [toggleMicHotkey, setToggleMicHotkey] = useState<boolean>(false);

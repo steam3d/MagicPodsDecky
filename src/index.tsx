@@ -1,12 +1,16 @@
 import {
   definePlugin,
-  ServerAPI,
   staticClasses,
   Tabs,
   DialogButton,
-  Navigation,
-} from "decky-frontend-lib";
-import { VFC, useState, useEffect } from 'react';
+} from "@decky/ui";
+import {
+  call,
+  routerHook,
+  toaster
+ } from "@decky/api";
+
+import { FC, useState, useEffect } from 'react';
 import { BatteryDataProps, TabInfo, headphoneInfoProps } from "./tab/tabInfo";
 
 import { TabHeadphones, defaultBluetoothProps } from "./tab/tabHeadphones";
@@ -22,8 +26,10 @@ import { LogoIcon } from "./icons";
 import { LogRouter } from "./pages/log";
 import { TabDebug } from "./tab/tabDebug";
 import { BackgroundMicrophoneMute } from "./bgMicMute";
+import { initI18n } from "./i18n";
 
-const Content: VFC<{ backend: Backend }> = ({ backend }) => {
+
+const Content: FC<{ backend: Backend }> = ({ backend }) => {
   useEffect(() => {
     backend.log("Starting UI");
 
@@ -149,11 +155,10 @@ const Content: VFC<{ backend: Backend }> = ({ backend }) => {
             onClick={async () => {
               backend.log("restart_backend started");
               setIsButtonDisabledValue(true);
-              let result = (await backend.deckyApi.callPluginMethod("restart_backend", {}));
-              if (result.success) {
-                backend.connect();
-                backend.log("backend restarted", result.success);
-              }
+              await call<[], void>("restart_backend");
+              backend.connect();
+              backend.log("backend restarted");
+
               backend.log("restart_backend ended")
             }}>
             <svg style={{ display: "block", marginTop: "-4px" }} width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.0608 4.48844C11.8828 4.38507 12.4653 3.63495 12.3619 2.81299C12.2586 1.99104 11.5084 1.40851 10.6865 1.51188C5.97823 2.10399 2.1833 5.83131 1.58187 10.6572C0.925634 15.9227 4.27647 20.8622 9.41005 22.1733C14.5452 23.4847 19.8439 20.7515 21.7747 15.8084C23.1662 12.2459 22.4971 8.33342 20.2724 5.47532C20.9708 5.34719 21.5 4.7354 21.5 4C21.5 3.17157 20.8284 2.5 20 2.5H16C15.1716 2.5 14.5 3.17157 14.5 4V8C14.5 8.82843 15.1716 9.5 16 9.5C16.8284 9.5 17.5 8.82843 17.5 8V6.84125C19.4093 8.91101 20.0578 11.9584 18.9803 14.7169C17.5981 18.2556 13.8121 20.2012 10.1524 19.2666C6.4911 18.3315 4.08842 14.8028 4.55884 11.0282C4.98961 7.57163 7.70599 4.91034 11.0608 4.48844Z" fill="currentColor" /></svg>
@@ -185,24 +190,25 @@ const Content: VFC<{ backend: Backend }> = ({ backend }) => {
             content: <TabSettings backend={backend} />,
             id: "settings",
           }
-          // ,{
-          //   // @ts-ignore
-          //   title: <svg style={{ display: "block" }} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.7497 5.78366C16.7497 6.23366 16.508 6.64199 16.1247 6.85033L14.6747 7.63366L13.4413 8.29199L10.883 9.67533C10.608 9.82533 10.308 9.90033 9.99968 9.90033C9.69134 9.90033 9.39134 9.82533 9.11634 9.67533L3.87467 6.85033C3.49134 6.64199 3.24967 6.23366 3.24967 5.78366C3.24967 5.33366 3.49134 4.92533 3.87467 4.71699L5.51634 3.83366L6.82467 3.12533L9.11634 1.89199C9.66634 1.59199 10.333 1.59199 10.883 1.89199L16.1247 4.71699C16.508 4.92533 16.7497 5.33366 16.7497 5.78366ZM8.24993 10.6588L3.37493 8.22544C2.99994 8.03378 2.5666 8.05878 2.20827 8.27544C1.84993 8.49211 1.6416 8.87544 1.6416 9.29211V13.9004C1.6416 14.7004 2.08327 15.4171 2.79993 15.7754L7.67493 18.2088C7.8416 18.2921 8.02494 18.3338 8.20827 18.3338C8.42494 18.3338 8.6416 18.2754 8.83327 18.1504C9.1916 17.9338 9.39993 17.5504 9.39993 17.1338V12.5254C9.40827 11.7338 8.9666 11.0171 8.24993 10.6588ZM18.3581 13.9V9.29169C18.3581 8.87502 18.1414 8.49169 17.7914 8.27502C17.4331 8.05002 16.9997 8.03336 16.6247 8.22502L14.7914 9.14169L13.5414 9.76669L11.7497 10.6584C11.0331 11.0167 10.5914 11.7334 10.5914 12.5334V17.1334C10.5914 17.55 10.8081 17.9334 11.1581 18.15C11.3581 18.275 11.5747 18.3334 11.7914 18.3334C11.9747 18.3334 12.1581 18.2917 12.3247 18.2084L17.1997 15.7667C17.9164 15.4084 18.3581 14.6917 18.3581 13.9Z" fill="currentColor"/></svg>,
-          //   content: <TabDebug backend={backend} />,
-          //   id: "debug",
-          // }
+          ,{
+            // @ts-ignore
+            title: <svg style={{ display: "block" }} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.7497 5.78366C16.7497 6.23366 16.508 6.64199 16.1247 6.85033L14.6747 7.63366L13.4413 8.29199L10.883 9.67533C10.608 9.82533 10.308 9.90033 9.99968 9.90033C9.69134 9.90033 9.39134 9.82533 9.11634 9.67533L3.87467 6.85033C3.49134 6.64199 3.24967 6.23366 3.24967 5.78366C3.24967 5.33366 3.49134 4.92533 3.87467 4.71699L5.51634 3.83366L6.82467 3.12533L9.11634 1.89199C9.66634 1.59199 10.333 1.59199 10.883 1.89199L16.1247 4.71699C16.508 4.92533 16.7497 5.33366 16.7497 5.78366ZM8.24993 10.6588L3.37493 8.22544C2.99994 8.03378 2.5666 8.05878 2.20827 8.27544C1.84993 8.49211 1.6416 8.87544 1.6416 9.29211V13.9004C1.6416 14.7004 2.08327 15.4171 2.79993 15.7754L7.67493 18.2088C7.8416 18.2921 8.02494 18.3338 8.20827 18.3338C8.42494 18.3338 8.6416 18.2754 8.83327 18.1504C9.1916 17.9338 9.39993 17.5504 9.39993 17.1338V12.5254C9.40827 11.7338 8.9666 11.0171 8.24993 10.6588ZM18.3581 13.9V9.29169C18.3581 8.87502 18.1414 8.49169 17.7914 8.27502C17.4331 8.05002 16.9997 8.03336 16.6247 8.22502L14.7914 9.14169L13.5414 9.76669L11.7497 10.6584C11.0331 11.0167 10.5914 11.7334 10.5914 12.5334V17.1334C10.5914 17.55 10.8081 17.9334 11.1581 18.15C11.3581 18.275 11.5747 18.3334 11.7914 18.3334C11.9747 18.3334 12.1581 18.2917 12.3247 18.2084L17.1997 15.7667C17.9164 15.4084 18.3581 14.6917 18.3581 13.9Z" fill="currentColor"/></svg>,
+            content: <TabDebug backend={backend} />,
+            id: "debug",
+          }
         ]}
       />
     </div>
   );
 };
 
-export default definePlugin((serverApi: ServerAPI) => {
-  serverApi.routerHook.addRoute("/magicpods-qr-links", QrLinksRouter, {
+export default definePlugin(() => {
+  initI18n();
+  routerHook.addRoute("/magicpods-qr-links", QrLinksRouter, {
     exact: true,
   },);
 
-  serverApi.routerHook.addRoute("/magicpods-quick-tutorial", QuickTutorialRouter, {
+  routerHook.addRoute("/magicpods-quick-tutorial", QuickTutorialRouter, {
     exact: true,
   },);
 
@@ -212,7 +218,7 @@ export default definePlugin((serverApi: ServerAPI) => {
 
   const onConnectionChanged = (state: BackendSocketState) => {
     if (state === BackendSocketState.ERROR) {
-      backend.deckyApi.toaster.toast({
+      toaster.toast({
         icon: <LogoIcon />,
         title: "MagicPods",
         duration: 15_000,
@@ -227,7 +233,7 @@ export default definePlugin((serverApi: ServerAPI) => {
     const typedJson = json as { info?: headphoneInfoProps };
 
     if (typedJson?.info == null)
-      return;    
+      return;
 
     if (Object.keys(typedJson.info).length !== 0) {
 
@@ -259,7 +265,7 @@ export default definePlugin((serverApi: ServerAPI) => {
         minBattery <= lowBatterySettingValue) {
         AllowLowBatteryNotification = false;
         backend.log(`Showing low battery notification ${minBattery}%`)
-        backend.deckyApi.toaster.toast({
+        toaster.toast({
           icon: <LogoIcon />,
           title: "MagicPods",
           body: t("notif_low_battery", { battery: minBattery })
@@ -272,11 +278,11 @@ export default definePlugin((serverApi: ServerAPI) => {
     }
   }
 
-  const backend = new Backend(serverApi);
+  const backend = new Backend();
   backend.onSocketConnectionChanged(onConnectionChanged);
   backend.onJsonMessageReceived(onJsonMessageReceived);
-  serverApi.routerHook.addRoute("/magicpods-log", () => (<LogRouter backend={backend} />));
-  serverApi.routerHook.addGlobalComponent("BackgroundMicrophoneMute", () => (<BackgroundMicrophoneMute backend={backend} />));
+  routerHook.addRoute("/magicpods-log", () => (<LogRouter backend={backend} />));
+  routerHook.addGlobalComponent("BackgroundMicrophoneMute", () => (<BackgroundMicrophoneMute backend={backend} />));
   backend.log("Plugin loaded");
 
   return {
@@ -285,10 +291,10 @@ export default definePlugin((serverApi: ServerAPI) => {
     icon: <LogoIcon />,
     onDismount() {
       backend.log("onDismount");
-      serverApi.routerHook.removeRoute("/magicpods-qr-links");
-      serverApi.routerHook.removeRoute("/magicpods-tutorial");
-      serverApi.routerHook.removeRoute("/magicpods-log");
-      serverApi.routerHook.removeGlobalComponent("BackgroundMicrophoneMute");
+      routerHook.removeRoute("/magicpods-qr-links");
+      routerHook.removeRoute("/magicpods-tutorial");
+      routerHook.removeRoute("/magicpods-log");
+      routerHook.removeGlobalComponent("BackgroundMicrophoneMute");
       backend.offSocketConnectionChanged(onConnectionChanged);
       backend.offJsonMessageReceived(onJsonMessageReceived);
       backend.bgAncSwitch.disable();

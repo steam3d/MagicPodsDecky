@@ -1,5 +1,5 @@
-import { findModuleChild } from "decky-frontend-lib";
-import { VFC, useEffect, useState } from "react";
+import { findModuleChild } from "@decky/ui";
+import { FC, useEffect, useState } from "react";
 import { Backend } from "./backend";
 import { Button, Input } from "./input";
 
@@ -48,7 +48,7 @@ const useUIComposition: (composition: UIComposition) => void = findModuleChild(
     }
 );
 
-export const MicrophoneMute: VFC = () => {
+export const MicrophoneMute: FC = () => {
     useUIComposition(UIComposition.Notification);
     return (
         <div style={{
@@ -75,7 +75,7 @@ let micId = -1;
 let micSavedVolume = -1;
 let volume_register: any;
 
-export const BackgroundMicrophoneMute: VFC<{ backend: Backend }> = ({ backend }) => {
+export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) => {
     const [visible, setVisible] = useState(false);
     useEffect(() => {
         backend.log("RegisterForInputChanged");
@@ -102,8 +102,8 @@ export const BackgroundMicrophoneMute: VFC<{ backend: Backend }> = ({ backend })
     }, []);
 
     const onShortcutPressed = async () => {
-        const enableToggleMicValue = (await backend.deckyApi.callPluginMethod("load_setting", { key: "mic_qam_l5_toggle" })).result; //shortcut_mic_toggle when setup keys will be available
-        if (!(String(enableToggleMicValue).toLowerCase() == "true")) {
+        const enableToggleMicValue = await backend.loadBooleanSetting("mic_qam_l5_toggle"); //shortcut_mic_toggle when setup keys will be available
+        if (!enableToggleMicValue) {
             return;
         }
 

@@ -1,5 +1,6 @@
 import { VFC, useEffect, useState, useRef  } from 'react';
 import { Backend } from "../backend";
+import { call } from '@decky/api';
 
 export const LogRouter: VFC<{ backend: Backend }> = ({ backend }) => {
 
@@ -18,14 +19,14 @@ export const LogRouter: VFC<{ backend: Backend }> = ({ backend }) => {
         fontFamily:"monospace",
         fontSize: "12px",
         lineHeight: "12px"
-        
+
     };
     const divRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         backend.log("LogRouter");
         const getLog = async () => {
-            let output = (await backend.deckyApi.callPluginMethod("read_logs", {})).result as string;
+            let output = await call<[], string>("read_logs");
             setLogValue(output);}
 
             setTimeout(() => {
@@ -38,7 +39,7 @@ export const LogRouter: VFC<{ backend: Backend }> = ({ backend }) => {
     },[]);
 
     return (
-        <div style={containerStyle} ref={divRef}>                
+        <div style={containerStyle} ref={divRef}>
             {logValue}
         </div>
     );

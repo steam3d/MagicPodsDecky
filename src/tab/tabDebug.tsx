@@ -3,14 +3,19 @@ import {
     PanelSectionRow,
     ButtonItem,
     Navigation,
-} from "decky-frontend-lib";
-import { VFC } from 'react';
+} from "@decky/ui";
+import {
+    call,
+    toaster
+   } from "@decky/api";
+
+import { FC } from 'react';
 import { t } from 'i18next';
 
 import { LogoIcon } from "../icons";
 import { Backend } from "../backend";
 
-export const TabDebug: VFC<{ backend: Backend; }> = ({ backend }) => {
+export const TabDebug: FC<{ backend: Backend; }> = ({ backend }) => {
     return (
         <>
             <div style={{ marginLeft: "-8px", marginRight: "-8px" }}>
@@ -30,7 +35,7 @@ export const TabDebug: VFC<{ backend: Backend; }> = ({ backend }) => {
                         <ButtonItem
                             layout="below"
                             onClick={async () => {
-                                backend.update.disable();
+                                //backend.update.disable();
                             }}>
                             Stop check update
                         </ButtonItem>
@@ -40,7 +45,7 @@ export const TabDebug: VFC<{ backend: Backend; }> = ({ backend }) => {
                         <ButtonItem
                             layout="below"
                             onClick={async () => {
-                                await backend.deckyApi.callPluginMethod("play", {})
+                                await call<[], void>("play");
                             }}>
                             Play
                         </ButtonItem>
@@ -50,7 +55,7 @@ export const TabDebug: VFC<{ backend: Backend; }> = ({ backend }) => {
                         <ButtonItem
                             layout="below"
                             onClick={async () => {
-                                await backend.deckyApi.callPluginMethod("stop", {})
+                                await call<[], void>("stop");
                             }}>
                             Stop
                         </ButtonItem>
@@ -79,7 +84,7 @@ export const TabDebug: VFC<{ backend: Backend; }> = ({ backend }) => {
                         <ButtonItem
                             layout="below"
                             onClick={async () => {
-                                await backend.deckyApi.callPluginMethod("debug_start_backed", {})
+                                await call<[], void>("debug_start_backed");
                             }}>
                             Start backend
                         </ButtonItem>
@@ -89,7 +94,7 @@ export const TabDebug: VFC<{ backend: Backend; }> = ({ backend }) => {
                         <ButtonItem
                             layout="below"
                             onClick={async () => {
-                                await backend.deckyApi.callPluginMethod("debug_stop_backed", {})
+                                await call<[], void>("debug_stop_backed");
                             }}>
                             Stop backend
                         </ButtonItem>
@@ -100,11 +105,8 @@ export const TabDebug: VFC<{ backend: Backend; }> = ({ backend }) => {
                             layout="below"
                             onClick={async () => {
                                 backend.log("restart_backend started");
-                                let result = (await backend.deckyApi.callPluginMethod("restart_backend", {}));
-                                if (result.success) {
-                                  backend.connect();
-                                  backend.log("backend restarted", result.success);
-                                }
+                                await call<[], void>("restart_backend");
+                                backend.connect();
                                 backend.log("restart_backend ended")
                               }}>
                             Restart backend and connect socket
@@ -114,7 +116,7 @@ export const TabDebug: VFC<{ backend: Backend; }> = ({ backend }) => {
 
                     <PanelSectionRow>
                         <ButtonItem layout="below" onClick={async () => {
-                            backend.deckyApi.toaster.toast({
+                            toaster.toast({
                                 icon: <LogoIcon />,
                                 title: "MagicPods",
                                 duration: 15_000,
@@ -127,7 +129,7 @@ export const TabDebug: VFC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
                     <PanelSectionRow>
                         <ButtonItem layout="below" onClick={async () => {
-                            backend.deckyApi.toaster.toast({
+                            toaster.toast({
                                 icon: <LogoIcon />,
                                 title: "MagicPods",
                                 duration: 15_000,

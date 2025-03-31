@@ -3,9 +3,9 @@ import {
   PanelSection,
   PanelSectionRow,
   ToggleField,
-} from "decky-frontend-lib";
+} from "@decky/ui";
 import { t } from 'i18next';
-import { VFC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { Backend } from "../backend";
 
 
@@ -19,7 +19,7 @@ export interface defaultBluetoothProps {
   enabled: boolean;
 }
 
-export const TabHeadphones: VFC<{
+export const TabHeadphones: FC<{
   defaultBluetooth?: defaultBluetoothProps,
   setDefaultBluetooth?: (value?: defaultBluetoothProps | ((prevVar?: defaultBluetoothProps) => defaultBluetoothProps)) => void,
   headphones: headphonesListProps[],
@@ -84,7 +84,7 @@ export const TabHeadphones: VFC<{
     else{
       backend.disableDefaultBluetoothAdapter();
     }
-    //void SteamClient.System.Bluetooth.SetEnabled(b); // disabled due SteamClient.System.Bluetooth is not available since Steam Deck OS 3.5.19 
+    //void SteamClient.System.Bluetooth.SetEnabled(b); // disabled due SteamClient.System.Bluetooth is not available since Steam Deck OS 3.5.19
   };
 
   return (

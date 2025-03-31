@@ -1,6 +1,6 @@
 import {
-    ServerAPI,
-  } from "decky-frontend-lib";
+    call
+  } from "@decky/api";
 import { BackgroundAncSwitch } from "./bgAncSwitch";
 import { Player } from "./player";
 
@@ -15,7 +15,6 @@ export const enum BackendSocketState {
 export class Backend {
     static readonly maxAttempts = 10;
 
-    deckyApi: ServerAPI;
     bgAncSwitch: BackgroundAncSwitch;
     player: Player;
     private socket!: WebSocket;
@@ -50,7 +49,7 @@ export class Backend {
         }
 
         if (this.reconnectAttempts !== 0){
-            const isBackendAllowed = (await this.deckyApi.callPluginMethod("backend_allowed", {})).result as boolean
+            const isBackendAllowed = await call<[], boolean>("backend_allowed");
             if (!isBackendAllowed){ // When user delete the plugin, we do not want to reconnect socket.
                 this.log("Running backend is prohibited by python")
                 this.notifySocketConnectionChanged(BackendSocketState.CLOSED)
@@ -61,7 +60,7 @@ export class Backend {
                 clearTimeout(this.reconnectTimeoutId);
 
             this.log("Trying start bucked due socket closed");
-            await this.deckyApi.callPluginMethod("start_backed", {})
+            await call("start_backed");
 
             this.reconnectTimeoutId = setTimeout(async () => {
                 this.notifySocketConnectionChanged(BackendSocketState.CONNECTING)
@@ -79,8 +78,7 @@ export class Backend {
         this.log(`Socket error (${this.convert(this.socket.readyState)})`, error);
     };
 
-    constructor(deckyApi: ServerAPI) {
-        this.deckyApi = deckyApi;
+    constructor() {
         this.bgAncSwitch = new BackgroundAncSwitch(this);
         this.player = new Player(this);
         this.connect();
@@ -99,22 +97,17 @@ export class Backend {
         }
         message = message.trim();
         console.log(message);
-        await this.deckyApi.callPluginMethod("logger_react", { msg: message });
+        await call<[msg: string], void>("logger_react", message);
       }
 
     //settings
     private async loadSetting<T = string>(key: string): Promise<T | null> {
         try {
-          const response = await this.deckyApi.callPluginMethod<{ key: string }, T>("load_setting", { key });
-          if (response.success) {
-            return response.result;
-          } else {
-            this.log("Failed to load setting:", key, response.result);
-            return null;
-          }
+            const response = await call<[key: string], T>("load_setting", key);
+            return response;
         } catch (e) {
-          this.log("Exception while loading setting:", key, e);
-          return null;
+            this.log("Exception while loading setting:", key, e);
+            return null;
         }
     }
 
@@ -135,16 +128,11 @@ export class Backend {
 
     async saveSetting(key: string, value: any): Promise<boolean> {
         try {
-          const response = await this.deckyApi.callPluginMethod("save_setting", { key, value });
-          if (response.success) {
-            return true;
-          } else {
-            this.log("Failed to save setting:", key, response.result);
-            return false;
-          }
+            const response = await call<[key:string, value: any], boolean>("save_setting", key, value);
+            return response;
         } catch (e) {
-          this.log("Exception while saving setting:", key, e);
-          return false;
+            this.log("Exception while saving setting:", key, e);
+            return false;
         }
     }
 

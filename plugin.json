@@ -2,6 +2,7 @@
   "name": "MagicPods",
   "author": "Aleksandr Maslov & Andrey Litvintsev",
   "flags": [],
+  "api_version": 1,
   "publish": {
     "tags": ["bluetooth", "battery", "airpods", "beats", "headphones"],
     "description": "Monitor the battery level of your AirPods and Beats. Easily switch between noise cancellation modes and enjoy the magic.",
