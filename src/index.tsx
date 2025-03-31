@@ -2,13 +2,16 @@ import {
   definePlugin,
   staticClasses,
   Tabs,
-  DialogButton,
+  DialogButton
 } from "@decky/ui";
 import {
   call,
   routerHook,
   toaster
  } from "@decky/api";
+
+import initI18n from "./i18n";
+import { t } from 'i18next';
 
 import { FC, useState, useEffect } from 'react';
 import { BatteryDataProps, TabInfo, headphoneInfoProps } from "./tab/tabInfo";
@@ -19,15 +22,11 @@ import { TabSettings } from "./tab/tapSettings";
 import { QuickTutorialRouter } from "./pages/quickTutorial";
 import { QrLinksRouter } from "./pages/qrLinks";
 
-import "./i18n"
-import { t } from 'i18next';
 import { Backend, BackendSocketState } from "./backend";
 import { LogoIcon } from "./icons";
 import { LogRouter } from "./pages/log";
 import { TabDebug } from "./tab/tabDebug";
 import { BackgroundMicrophoneMute } from "./bgMicMute";
-import { initI18n } from "./i18n";
-
 
 const Content: FC<{ backend: Backend }> = ({ backend }) => {
   useEffect(() => {

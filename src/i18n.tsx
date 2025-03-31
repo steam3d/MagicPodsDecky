@@ -11,8 +11,8 @@ import esES from "./locales/es-ES.json";
 import ptBr from "./locales/pt-BR.json";
 import elGr from "./locales/el-GR.json";
 
-export const initI18n = () => {
-i18n
+function initI18n(){
+  i18n
   .use(initReactI18next)
   //.use(LanguageDetector)
   .init({
@@ -35,4 +35,6 @@ i18n
     //lng: "zh-CN",
     fallbackLng: "en-US",
   });
-};
+}
+
+export default initI18n;
