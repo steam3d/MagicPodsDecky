@@ -24,22 +24,6 @@
         "bluetooth": "蓝牙",
         "headphones": "耳机",
         "notif_error_websocket_connection_issue": "错误！打开插件获取更多信息",
-        "notif_low_battery": "电量剩余 {{battery}}%，请为您的耳机充电。",
-        "faq_tip1_header": "MagicPods for Steam Deck 能带来什么？",
-        "faq_tip1_description": "显示电池电量并切换降噪模式（如果耳机支持）。",
-        "faq_tip2_header": "支持哪些耳机？",
-        "faq_tip2_description": "AirPods 1-2、AirPods Pro 1-2、AirPods 3、AirPods Max、Beats Fit Pro 以及可能的其他 Beats 型号。如果您的 Beats 可以使用，请在 <lnk>Discord</lnk> 留言。",
-        "faq_tip3_header": "如何添加耳机？",
-        "faq_tip3_description": "在 Steam Deck 蓝牙设置中配对耳机。它们将自动出现在 MagicPods 的耳机图标选项卡上。",
-        "faq_tip4_header": "如何检查电池电量？",
-        "faq_tip4_description": "连接耳机并导航至充电图标选项卡。",
-        "faq_tip5_header": "如何切换降噪模式？",
-        "faq_tip5_description": "连接耳机并导航至充电图标选项卡。使用降噪滑块在不同模式间切换。",
-        "faq_tip6_header": "如何提出新功能？",
-        "faq_tip6_description": "加入我们的 <lnk>Discord</lnk> 社区，讨论 MagicPods 的新功能并了解更多信息。",
-        "faq_tip7_header": "如何报告错误？",
-        "faq_tip7_description": "请致信 {{mail}} 或 <lnk>Discord</lnk>。",
-        "faq_tip8_header": "如何检查 AirPods 耳机盒的电池电量？",
-        "faq_tip8_description": "连接耳机，并将至少一个 AirPod 放入打开的 AirPods 耳机盒中。导航至 '充电 '图标选项卡，几秒钟后，手机壳的电量就会显示出来。"
+        "notif_low_battery": "电量剩余 {{battery}}%，请为您的耳机充电。"
     }
 }

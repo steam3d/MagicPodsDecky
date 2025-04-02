@@ -19,8 +19,6 @@ import { BatteryDataProps, TabInfo, headphoneInfoProps } from "./tab/tabInfo";
 import { TabHeadphones, defaultBluetoothProps } from "./tab/tabHeadphones";
 import { headphonesListProps } from "./tab/tabHeadphones";
 import { TabSettings } from "./tab/tapSettings";
-import { QuickTutorialRouter } from "./pages/quickTutorial";
-import { QrLinksRouter } from "./pages/qrLinks";
 
 import { Backend, BackendSocketState } from "./backend";
 import { LogoIcon } from "./icons";
@@ -216,15 +214,6 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
 
 export default definePlugin(() => {
   initI18n();
-  routerHook.addRoute("/magicpods-qr-links", QrLinksRouter, {
-    exact: true,
-  },);
-
-  routerHook.addRoute("/magicpods-quick-tutorial", QuickTutorialRouter, {
-    exact: true,
-  },);
-
-
 
   let AllowLowBatteryNotification = true;
 
@@ -303,8 +292,6 @@ export default definePlugin(() => {
     icon: <LogoIcon />,
     onDismount() {
       backend.log("onDismount");
-      routerHook.removeRoute("/magicpods-qr-links");
-      routerHook.removeRoute("/magicpods-tutorial");
       routerHook.removeRoute("/magicpods-log");
       routerHook.removeGlobalComponent("BackgroundMicrophoneMute");
       backend.offSocketConnectionChanged(onConnectionChanged);
