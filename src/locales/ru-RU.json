@@ -25,7 +25,7 @@
         "headphones": "Наушники",
         "notif_error_websocket_connection_issue": "Ошибка! Откройте плагин для подробностей",
         "notif_low_battery": "Осталось {{battery}}%. Зарядите ваши наушники.",
-        "faq_tip1_header": "Что умеет MagicPods for Steam Deck?",
+        "faq_tip1_header": "Что умеет MagicPods для Steam Deck?",
         "faq_tip1_description": "Показывать уровень заряда и переключать режим шумоподавления (если наушники его поддерживают).",
         "faq_tip2_header": "Какие наушники поддерживаются?",
         "faq_tip2_description": "AirPods 1-2, AirPods Pro 1-2, AirPods 3, AirPods Max, Beats Fit Pro и возможно другие Beats модели. Пожалуйста, напишите в <lnk>Discord</lnk>, если Ваши Beats работают.",
