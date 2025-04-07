@@ -325,13 +325,18 @@ export class Backend {
 
 
     setAnc(address: string, value: number) {
-        const json = {
-            method: "SetAnc",
+        const json = 
+        {
+            method: "SetCapabilities",
             arguments: {
-                address: address,
-                value: value
+              address: address,
+              "capabilities": {
+                "anc": {
+                  "selected": value
+                }
+              }
             }
-        }
+          }
         this.sendToSocket(JSON.stringify(json))
     }
 }
