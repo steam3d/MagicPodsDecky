@@ -64,8 +64,6 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
       return;
     }
 
-    lastJsonMessage = data;
-
     const typedJson = lastJsonMessage as { info?: headphoneInfoProps,  defaultbluetooth?: defaultBluetoothProps, headphones?: headphonesListProps[]};
 
     if (typedJson?.info != null) {
@@ -82,63 +80,11 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
 
   };
 
-  const [headphonesValue, setHeadphonesValue] = useState<headphonesListProps[]>([])
-  const [infoValue, setInfoValue] = useState<headphoneInfoProps>()
-  const [defaultBluetoothValue, setDefaultBluetoothValue] = useState<defaultBluetoothProps>()
-  const [connectionErrorValue, setConnectionErrorValue] = useState<boolean>(false)
-  const [isButtonDisabledValue, setIsButtonDisabledValue] = useState<boolean>(false)
-
-  const data = {
-    headphones: [
-      { name: "Z AirPods (steam3d)", address: "12:45:ds:23:fd:11", connected: true },
-      { name: "G AirPods Max (steam3d)", address: "12:45:ds:23:fd:12", connected: false },
-      { name: "AirPods Pro (steam3d)", address: "12:45:ds:23:fd:13", connected: false },
-      { name: "PowerBeatsPro", address: "12:45:ds:23:fd:14", connected: false },
-      { name: "Sony SBH20", address: "12:45:ds:23:fd:15", connected: true },
-
-    ],
-
-    defaultbluetooth: {
-      enabled: true
-    },
-
-    info: {
-      name: "AirPods (steam3d)",
-      address: "12:45:ds:23:fd:12",
-      connected: true,
-      capabilities: {
-        battery: {
-            single: {
-              battery: 0,
-              charging: true,
-              status: 0,
-            },
-            left: {
-              battery: 0,
-              charging: false,
-              status: 2,
-            },
-            right: {
-              battery: 50,
-              charging: false,
-              status: 2,
-            },
-            case: {
-              battery: 100,
-              charging: true,
-              status: 3,
-            },
-            readonly: true,
-          },
-        anc:{
-            options: 0b00011111,
-            selected: 0b00000001,
-            readonly: false,
-        }
-      }
-    }
-  }
-
+  const [headphonesValue, setHeadphonesValue] = useState<headphonesListProps[]>([]);
+  const [infoValue, setInfoValue] = useState<headphoneInfoProps>();
+  const [defaultBluetoothValue, setDefaultBluetoothValue] = useState<defaultBluetoothProps>();
+  const [connectionErrorValue, setConnectionErrorValue] = useState<boolean>(false);
+  const [isButtonDisabledValue, setIsButtonDisabledValue] = useState<boolean>(false);
   const [currentTabRoute, setCurrentTabRoute] = useState<string>("info");
 
   return (
@@ -154,7 +100,7 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
 `}
 </style>
 
-    <div className="magicpods-tabs" style={{ height: "100%", width: "300px", position: "fixed", marginTop: "-12px", overflow: "hidden" }}>
+    <div className="magicpods-tabs" style={{ height: "95%", width: "300px", position: "fixed", marginTop: "-12px", overflow: "hidden" }}>
       {connectionErrorValue &&
         <div style={{ display: "flex", paddingTop: "12px", paddingLeft: "16px", paddingRight: "16px", alignItems: "center" }}>
           <div className={staticClasses.Text} style={{ paddingRight: "8px", width: "100%" }}>
