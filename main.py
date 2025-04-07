@@ -12,7 +12,7 @@ _logger = logging.getLogger("magicpods")
 _logger.setLevel(lvl)
 
 # Create a file handler and set the level to DEBUG
-file_handler = RotatingFileHandler(os.path.join(decky_plugin.DECKY_PLUGIN_LOG_DIR, "magicpodslog.txt"), mode='a', maxBytes=5*1024*1024, backupCount=0)
+file_handler = RotatingFileHandler(os.path.join(decky_plugin.DECKY_PLUGIN_LOG_DIR, "magicpodslog.txt"), mode='a', maxBytes=5*1024*1024, backupCount=1)
 file_handler.setLevel(lvl)
 
 # Create a console handler and set the level to INFO
@@ -20,7 +20,7 @@ console_handler = logging.StreamHandler()
 console_handler.setLevel(lvl)
 
 # Create a formatter and set it to the handlers
-formatter = logging.Formatter('%(asctime)s  %(levelname)-5s  %(tag)s    %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+formatter = logging.Formatter('%(asctime)s  %(levelname)-5s  %(tag)s  %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 file_handler.setFormatter(formatter)
 console_handler.setFormatter(formatter)
 
@@ -71,8 +71,8 @@ class Plugin:
         return self.is_backend_allowed
 
     async def play(self):
-        self.player.start()        
-    
+        self.player.start()
+
     async def stop(self):
         self.player.stop()
 
