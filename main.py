@@ -4,7 +4,7 @@ from logging.handlers import RotatingFileHandler
 from mp.core import CoreService
 from mp.settings import Settings
 from mp.player import Player
-import decky_plugin
+import decky
 
 # Create a logger
 lvl = logging.DEBUG
@@ -12,7 +12,7 @@ _logger = logging.getLogger("magicpods")
 _logger.setLevel(lvl)
 
 # Create a file handler and set the level to DEBUG
-file_handler = RotatingFileHandler(os.path.join(decky_plugin.DECKY_PLUGIN_LOG_DIR, "magicpodslog.txt"), mode='a', maxBytes=5*1024*1024, backupCount=1)
+file_handler = RotatingFileHandler(os.path.join(decky.DECKY_PLUGIN_LOG_DIR, "magicpodslog.txt"), mode='a', maxBytes=5*1024*1024, backupCount=1)
 file_handler.setLevel(lvl)
 
 # Create a console handler and set the level to INFO
@@ -53,7 +53,7 @@ class Plugin:
 
     async def read_logs(self):
         output = ""
-        with open(os.path.join(decky_plugin.DECKY_PLUGIN_LOG_DIR, "magicpodslog.txt")) as file:
+        with open(os.path.join(decky.DECKY_PLUGIN_LOG_DIR, "magicpodslog.txt")) as file:
             for line in (file.readlines() [-150:]):
                 output += line
         return output
@@ -79,10 +79,10 @@ class Plugin:
     # Asyncio-compatible long-running code, executed in a task when the plugin is loaded
     async def _main(self):
         logger.debug("_main starting")
-        self.settings = Settings(decky_plugin.DECKY_PLUGIN_SETTINGS_DIR)
-        self.core = CoreService(os.path.join(decky_plugin.DECKY_PLUGIN_DIR, "bin"), "MagicPodsCore", bin_logging)
+        self.settings = Settings(decky.DECKY_PLUGIN_SETTINGS_DIR)
+        self.core = CoreService(os.path.join(decky.DECKY_PLUGIN_DIR, "bin"), "MagicPodsCore", bin_logging)
         self.is_backend_allowed = True # Allow reconnecting socket when user using plugin
-        self.player = Player(os.path.join(decky_plugin.DECKY_PLUGIN_DIR, "silence.mp3"),bin_logging)
+        self.player = Player(os.path.join(decky.DECKY_PLUGIN_DIR, "silence.mp3"),bin_logging)
 
         self.core.start()
         logger.info("_main finished")
