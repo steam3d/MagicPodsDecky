@@ -104,17 +104,17 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={toggleFixDisconnects} label={t("settings_fix_disconnects_label")} description={t("settings_fix_disconnects_description")} onChange={async (b) => {
-                            setToggleFixDisconnects(b);
-                            await backend.saveSetting("fix_disconnects", b);
-                            backend.player.updateSetting();
+                        <ToggleField checked={toggleMicHotkey} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle} />, Key2: <L4 style={buttonStyle} /> }} />} onChange={async (b) => {
+                            setToggleMicHotkey(b);
+                            await backend.saveSetting("mic_qam_l5_toggle", b);
                         }} />
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={toggleMicHotkey} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle} />, Key2: <L4 style={buttonStyle} /> }} />} onChange={async (b) => {
-                            setToggleMicHotkey(b);
-                            await backend.saveSetting("mic_qam_l5_toggle", b);
+                        <ToggleField checked={toggleFixDisconnects} label={t("settings_fix_disconnects_label")} description={t("settings_fix_disconnects_description")} onChange={async (b) => {
+                            setToggleFixDisconnects(b);
+                            await backend.saveSetting("fix_disconnects", b);
+                            backend.player.updateSetting();
                         }} />
                     </PanelSectionRow>
 
