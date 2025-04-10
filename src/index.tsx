@@ -28,7 +28,7 @@ import { BackgroundMicrophoneMute } from "./bgMicMute";
 
 const Content: FC<{ backend: Backend }> = ({ backend }) => {
   useEffect(() => {
-    backend.log("Starting UI");
+    backend.log("Index: Starting UI");
 
     backend.onSocketConnectionChanged(onConnectionChanged);
     backend.onJsonMessageReceived(onJsonMessageReceived);
@@ -58,7 +58,7 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
   };
 
   const onJsonMessageReceived = (lastJsonMessage: object) => {
-    backend.log("Process foreground message");
+    backend.log("Index: Json message received");
 
     if (lastJsonMessage === null) {
       return;
@@ -108,13 +108,11 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
           </div>
           <DialogButton disabled={isButtonDisabledValue} style={{ height: "28px", width: "40px", minWidth: "40px", padding: "10px 12px" }}
             onClick={async () => {
-              backend.log("restart_backend started");
+              backend.log("Index: Restarting backend");
               setIsButtonDisabledValue(true);
               await call<[], void>("restart_backend");
               backend.connect();
-              backend.log("backend restarted");
-
-              backend.log("restart_backend ended")
+              backend.log("Index: Backend restarted");
             }}>
             <svg style={{ display: "block", marginTop: "-4px" }} width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.0608 4.48844C11.8828 4.38507 12.4653 3.63495 12.3619 2.81299C12.2586 1.99104 11.5084 1.40851 10.6865 1.51188C5.97823 2.10399 2.1833 5.83131 1.58187 10.6572C0.925634 15.9227 4.27647 20.8622 9.41005 22.1733C14.5452 23.4847 19.8439 20.7515 21.7747 15.8084C23.1662 12.2459 22.4971 8.33342 20.2724 5.47532C20.9708 5.34719 21.5 4.7354 21.5 4C21.5 3.17157 20.8284 2.5 20 2.5H16C15.1716 2.5 14.5 3.17157 14.5 4V8C14.5 8.82843 15.1716 9.5 16 9.5C16.8284 9.5 17.5 8.82843 17.5 8V6.84125C19.4093 8.91101 20.0578 11.9584 18.9803 14.7169C17.5981 18.2556 13.8121 20.2012 10.1524 19.2666C6.4911 18.3315 4.08842 14.8028 4.55884 11.0282C4.98961 7.57163 7.70599 4.91034 11.0608 4.48844Z" fill="currentColor" /></svg>
           </DialogButton>
@@ -175,7 +173,7 @@ export default definePlugin(() => {
   };
 
   const onJsonMessageReceived = async (json: object) => {
-    backend.log("Process background message");
+    backend.log("LowBattNotif: Json message received");
 
     const typedJson = json as { info?: headphoneInfoProps };
 
@@ -211,7 +209,7 @@ export default definePlugin(() => {
       if (AllowLowBatteryNotification &&
         minBattery <= lowBatterySettingValue) {
         AllowLowBatteryNotification = false;
-        backend.log(`Showing low battery notification ${minBattery}%`)
+        backend.log(`LowBattNotif: Showing low battery notification ${minBattery}%`);
         toaster.toast({
           icon: <LogoIcon />,
           title: "MagicPods",
@@ -220,7 +218,7 @@ export default definePlugin(() => {
       }
     }
     else {
-      backend.log("From background. Empty info allowing low battery notification");
+      backend.log("LowBattNotif: Empty info allow low battery notification");
       AllowLowBatteryNotification = true;
     }
   }
@@ -230,14 +228,14 @@ export default definePlugin(() => {
   backend.onJsonMessageReceived(onJsonMessageReceived);
   routerHook.addRoute("/magicpods-log", () => (<LogRouter backend={backend} />));
   routerHook.addGlobalComponent("BackgroundMicrophoneMute", () => (<BackgroundMicrophoneMute backend={backend} />));
-  backend.log("Plugin loaded");
+  backend.log("Plugin: Loaded");
 
   return {
     title: <div className={staticClasses.Title}>MagicPods</div>,
     content: <Content backend={backend} />,
     icon: <LogoIcon />,
     onDismount() {
-      backend.log("onDismount");
+      backend.log("Plugin: Dismounting");
       routerHook.removeRoute("/magicpods-log");
       routerHook.removeGlobalComponent("BackgroundMicrophoneMute");
       backend.offSocketConnectionChanged(onConnectionChanged);

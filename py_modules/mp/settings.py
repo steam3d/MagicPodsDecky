@@ -49,5 +49,7 @@ class Settings():
             return branch.get(key, True)
         elif key == "allow_anc_mode_anc":
             return branch.get(key, True)
+        elif key == "log_level":
+            return branch.get(key, 50)
         else:
             return None

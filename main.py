@@ -6,32 +6,25 @@ from mp.settings import Settings
 from mp.player import Player
 import decky
 
-# Create a logger
-lvl = logging.DEBUG
+# Setup logger level prefix
+logging.addLevelName(logging.DEBUG,    "DBG")
+logging.addLevelName(logging.INFO,     "INF")
+logging.addLevelName(logging.WARNING,  "WRN")
+logging.addLevelName(logging.ERROR,    "ERR")
+logging.addLevelName(logging.CRITICAL, "CRT")
+
+# Setup logger
 _logger = logging.getLogger("magicpods")
-_logger.setLevel(lvl)
-
-# Create a file handler and set the level to DEBUG
 file_handler = RotatingFileHandler(os.path.join(decky.DECKY_PLUGIN_LOG_DIR, "magicpodslog.txt"), mode='a', maxBytes=5*1024*1024, backupCount=1)
-file_handler.setLevel(lvl)
-
-# Create a console handler and set the level to INFO
-console_handler = logging.StreamHandler()
-console_handler.setLevel(lvl)
-
-# Create a formatter and set it to the handlers
-formatter = logging.Formatter('%(asctime)s  %(levelname)-5s  %(tag)s  %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+formatter = logging.Formatter('%(asctime)s  %(levelname)-3s  %(tag)s  %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 file_handler.setFormatter(formatter)
-console_handler.setFormatter(formatter)
-
-# Add the handlers to the logger
 _logger.addHandler(file_handler)
-_logger.addHandler(console_handler)
 
+# Custom loggers
 logger = logging.LoggerAdapter(_logger, {"tag": "py"})
 
 def bin_logging(msg):
-    _logger.info(msg, extra={"tag": "bi"})
+    _logger.error(msg, extra={"tag": "bi"})
 
 class Plugin:
 
@@ -43,7 +36,7 @@ class Plugin:
         self.core.restart()
 
     async def logger_react(self, msg):
-        _logger.info(msg, extra={"tag": "re"})
+        _logger.warning(msg, extra={"tag": "re"})
 
     async def load_setting(self, key):
         return self.settings.load(key)
@@ -57,6 +50,13 @@ class Plugin:
             for line in (file.readlines() [-150:]):
                 output += line
         return output
+
+    async def update_log_level(self):
+        lvl = int(self.settings.load("log_level"))
+        _logger.setLevel(lvl)
+        for handler in _logger.handlers:
+            handler.setLevel(lvl)
+        logger.critical("Set log level to %d ", lvl)
 
     async def debug_start_backed(self):
         self.is_backend_allowed = True # do not forget to add this to debug methods
@@ -78,8 +78,10 @@ class Plugin:
 
     # Asyncio-compatible long-running code, executed in a task when the plugin is loaded
     async def _main(self):
-        logger.debug("_main starting")
         self.settings = Settings(decky.DECKY_PLUGIN_SETTINGS_DIR)
+        await self.update_log_level()
+
+        logger.info("_main %s starting", decky.DECKY_PLUGIN_VERSION)
         self.core = CoreService(os.path.join(decky.DECKY_PLUGIN_DIR, "bin"), "MagicPodsCore", bin_logging)
         self.is_backend_allowed = True # Allow reconnecting socket when user using plugin
         self.player = Player(os.path.join(decky.DECKY_PLUGIN_DIR, "silence.mp3"),bin_logging)

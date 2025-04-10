@@ -78,11 +78,11 @@ let volume_register: any;
 export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) => {
     const [visible, setVisible] = useState(false);
     useEffect(() => {
-        backend.log("RegisterForInputChanged");
+        backend.log("MicMute: RegisterForInputChanged");
         const input = new Input([Button.QUICK_ACCESS_MENU, Button.L4]);
         input.onShortcutPressed(onShortcutPressed);
 
-        backend.log("RegisterForDeviceVolumeChanged");
+        backend.log("MicMute: RegisterForDeviceVolumeChanged");
         // Mic changes
         volume_register = SteamClient.System.Audio.RegisterForDeviceVolumeChanged(
             (audioDeviceId: number, audioType: number, volume: number) => {
@@ -90,7 +90,7 @@ export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) 
                     micId = -1;
                     micSavedVolume = -1;
                     setVisible(false);
-                    backend.log(`Changed: audioDeviceId ${audioDeviceId} audioType ${audioType} volume ${volume})`);
+                    backend.log("MicMute: Changed: audioDeviceId", audioDeviceId, "audioType", audioType, "volume", volume);
                 }
             }
         );
@@ -102,7 +102,7 @@ export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) 
     }, []);
 
     const onShortcutPressed = async () => {
-        const enableToggleMicValue = await backend.loadBooleanSetting("mic_qam_l5_toggle"); //shortcut_mic_toggle when setup keys will be available
+        const enableToggleMicValue = await backend.loadBooleanSetting("mic_qam_l5_toggle");
         if (!enableToggleMicValue) {
             return;
         }
@@ -117,8 +117,8 @@ export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) 
                 }
             });
 
-            backend.log(devices);
-            backend.log(`Saved: audioDeviceId ${micId} volume ${micSavedVolume})`);
+            backend.log("MicMute:", devices);
+            backend.log("MicMute: Saved: audioDeviceId", micId, "volume", micSavedVolume);
 
             // Mute mic
             await SteamClient.System.Audio.SetDeviceVolume(micId, 0, 0);

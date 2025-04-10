@@ -15,6 +15,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Backend } from "../backend";
 import { L4, L5, QUICK_ACCESS_MENU } from "../ButtonIcons";
 import PanelSocialButton from "../components/socialButton";
+import { call } from "@decky/api";
 
 let sliderTimeoutId: NodeJS.Timeout;
 
@@ -26,6 +27,7 @@ const buttonStyle = {
 
 export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
     const [sliderLowBattery, setSliderLowBattery] = useState<number>(-1);
+    const [sliderLogLevel, setSliderLogLevel] = useState<number>(-1);
     const [toggleSwitchAncHotkey, setToggleSwitchAncHotkey] = useState<boolean>(false);
     const [toggleMicHotkey, setToggleMicHotkey] = useState<boolean>(false);
     const [toggleFixDisconnects, setToggleFixDisconnects] = useState<boolean>(false);
@@ -41,6 +43,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
     useEffect(() => {
         const getSetting = async () => {
             setSliderLowBattery(await backend.loadNumberSetting("notif_low_battery") ?? -1);
+            setSliderLogLevel(await backend.loadNumberSetting("log_level") ?? -1);
             setToggleSwitchAncHotkey(await backend.loadBooleanSetting("anc_l5_r5_switch"));
             setToggleFixDisconnects(await backend.loadBooleanSetting("fix_disconnects"));
             setToggleMicHotkey(await backend.loadBooleanSetting("mic_qam_l5_toggle"));
@@ -57,7 +60,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
             tag: locale,
             nativeName: new Intl.DisplayNames([locale], { type: 'language' }).of(locale) || locale
         }));
-        backend.log(updatedLanguageValue);
+        backend.log("Settings:", updatedLanguageValue);
         setAvailableLanguages(updatedLanguageValue);
     }, []);
     return (
@@ -86,7 +89,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
 
                                 let starttime = Date.now();
                                 sliderTimeoutId = setTimeout(async () => {
-                                    backend.log(n, "Elapsed", Date.now() - starttime);
+                                    backend.log("Settings: Elapsed", Date.now() - starttime, "Set low battery to", n);
                                     await backend.saveSetting("notif_low_battery", n);
                                 }, 350)
                             }} />
@@ -186,6 +189,40 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                         Discord
                     </PanelSocialButton>
 
+                    </PanelSection>
+
+                    <PanelSection title={t("settings_debug_header")}>
+                    <PanelSectionRow>
+                        <SliderField
+                            value={50-sliderLogLevel}
+                            max={40}
+                            min={0}
+                            step={10}
+                            label={t("settings_debug_level_label")}
+                            notchCount={5}
+                            notchTicksVisible={true}
+                            notchLabels={[
+                                { label: "Off", notchIndex: 0, value: 0 },
+                                { label: "Err", notchIndex: 1, value: 10 },
+                                { label: "Wrn", notchIndex: 2, value: 20 },
+                                { label: "Inf", notchIndex: 3, value: 30 },
+                                { label: "Dbg", notchIndex: 4, value: 40 },
+                            ]}
+                            onChange={(n) => {
+                                const nn = 50-n;
+                                setSliderLogLevel(nn);
+                                if (sliderTimeoutId)
+                                    clearTimeout(sliderTimeoutId);
+
+                                let starttime = Date.now();
+                                sliderTimeoutId = setTimeout(async () => {
+                                    backend.log("Settings: Elapsed", Date.now() - starttime, "Set log level to", nn);                                    
+                                    await backend.saveSetting("log_level", nn);
+                                    await call<[], void>("update_log_level");
+                                }, 350)
+                            }} />
+                    </PanelSectionRow>
+
                     <PanelSectionRow>
                     <ButtonItem
                         layout="below"
@@ -195,7 +232,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                             Navigation.CloseSideMenus();
                             Navigation.Navigate("/magicpods-log");
                         }}>
-                            {t("settings_button_log")}
+                            {t("settings_debug_log_button")}
                         </ButtonItem>
                     </PanelSectionRow>
                 </PanelSection>

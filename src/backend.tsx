@@ -30,20 +30,20 @@ export class Backend {
 
     onOpenHandler = (event: Event) => {
         this.reconnectAttempts = Backend.maxAttempts
-        this.log(`Socket opened (${this.convert(this.socket.readyState)})`, event);
+        this.log("Backend: Socket opened (", this.convert(this.socket.readyState), ")", event);
         this.notifySocketConnectionChanged(BackendSocketState.OPEN)
     };
 
     onMessageHandler = (event: MessageEvent) => {
-        this.log('Message received:', event.data);
+        this.log("Backend: Message received:", event.data);
         this.notifyJsonMessageReceivedListeners(event.data);
     };
 
     onCloseHandler = async (event: CloseEvent) => {
-        this.log(`Socket closed (${this.convert(this.socket.readyState)})`, event);
+        this.log("Backend: Socket closed (", this.convert(this.socket.readyState), ")", event);
 
         if (!this.allowReconnect){
-            this.log("Reconnecting is prohibited")
+            this.log("Backend: Reconnecting is prohibited");
                 this.notifySocketConnectionChanged(BackendSocketState.CLOSED)
                 return;
         }
@@ -51,7 +51,7 @@ export class Backend {
         if (this.reconnectAttempts !== 0){
             const isBackendAllowed = await call<[], boolean>("backend_allowed");
             if (!isBackendAllowed){ // When user delete the plugin, we do not want to reconnect socket.
-                this.log("Running backend is prohibited by python")
+                this.log("Backend: Running backend is prohibited by python");
                 this.notifySocketConnectionChanged(BackendSocketState.CLOSED)
                 return;
             }
@@ -59,13 +59,13 @@ export class Backend {
             if (this.reconnectTimeoutId)
                 clearTimeout(this.reconnectTimeoutId);
 
-            this.log("Trying start bucked due socket closed");
+            this.log("Backend: Trying start bucked due socket closed");
             await call("start_backed");
 
             this.reconnectTimeoutId = setTimeout(async () => {
                 this.notifySocketConnectionChanged(BackendSocketState.CONNECTING)
                 this.reconnectAttempts -= 1;
-                this.log(`Trying reconnecting socket due socket closed. Left attempts ${this.reconnectAttempts} `);
+                this.log("Backend: Trying reconnecting socket due socket closed. Left attempts", this.reconnectAttempts);
                 this.socketConnect();
                 }, 1000)
         }
@@ -75,7 +75,7 @@ export class Backend {
     };
 
     onErrorHandler = (error: Event) => {
-        this.log(`Socket error (${this.convert(this.socket.readyState)})`, error);
+        this.log("Backend: Socket error (", this.convert(this.socket.readyState), ")", error);
     };
 
     constructor() {
@@ -96,7 +96,7 @@ export class Backend {
           message += " "
         }
         message = message.trim();
-        console.log(message);
+        //console.log(message);
         await call<[msg: string], void>("logger_react", message);
       }
 
@@ -106,7 +106,7 @@ export class Backend {
             const response = await call<[key: string], T>("load_setting", key);
             return response;
         } catch (e) {
-            this.log("Exception while loading setting:", key, e);
+            this.log("Backend: Exception while loading setting:", key, e);
             return null;
         }
     }
@@ -120,7 +120,7 @@ export class Backend {
         const value = await this.loadSetting<string | number>(key);
         const parsed = Number(value);
         if (isNaN(parsed)) {
-          this.log("Invalid number in setting:", key, value);
+          this.log("Backend: Invalid number in setting:", key, value);
           return null;
         }
         return parsed;
@@ -131,7 +131,7 @@ export class Backend {
             const response = await call<[key:string, value: any], boolean>("save_setting", key, value);
             return response;
         } catch (e) {
-            this.log("Exception while saving setting:", key, e);
+            this.log("Backend: Exception while saving setting:", key, e);
             return false;
         }
     }
@@ -154,13 +154,13 @@ export class Backend {
     private socketConnect() {
         this.socketDisconnect();
         if (this.socket){
-            this.log("removeEventListener from socket");
+            this.log("Backend: RemoveEventListener from socket");
             this.socket.removeEventListener("open", this.onOpenHandler);
             this.socket.removeEventListener("message", this.onMessageHandler);
             this.socket.removeEventListener("close", this.onCloseHandler);
             this.socket.removeEventListener("error", this.onErrorHandler);
         }
-        this.log("trying connect socket");
+        this.log("Backend: Trying connect socket");
         this.socket = new WebSocket("ws://localhost:2020");
         this.socket.addEventListener("open", this.onOpenHandler);
         this.socket.addEventListener("message", this.onMessageHandler);
@@ -172,7 +172,7 @@ export class Backend {
         if (this.socket) {
             if(this.socket.readyState == 1){ //open
                 this.socket.close();
-                this.log('Socket disconnected');
+                this.log('Backend: Socket disconnected');
             }
         }
     }
@@ -214,7 +214,7 @@ export class Backend {
         if (this.socketState === state) {
             return;
         }
-        this.log("socketState changed to", this.convert(state))
+        this.log("Backend: SocketState changed to", this.convert(state));
         this.socketState = state;
         this.socketConnectionChangedListeners.forEach(callback => {
             callback(this.socketState);
@@ -250,11 +250,11 @@ export class Backend {
 
     sendToSocket(str: string) {
         if (this.socket.readyState == 1) {//open
-            this.log("Sending:", str)
+            this.log("Backend: Sending:", str);
             this.socket.send(str);
         }
         else{
-            this.log(`Failed (readyState: ${this.socket.readyState}, socketState: ${this.socketState}) to send: ${str}`);
+            this.log("Backend: Failed (readyState:", this.socket.readyState, "socketState:", this.socketState, ") to send:", str);
         }
     }
 
@@ -325,7 +325,7 @@ export class Backend {
 
 
     setAnc(address: string, value: number) {
-        const json = 
+        const json =
         {
             method: "SetCapabilities",
             arguments: {

@@ -20,7 +20,7 @@ export class BackgroundAncSwitch {
 
     async updateSetting() {
         this.enabled = await this.backend.loadBooleanSetting("anc_l5_r5_switch");
-        this.backend.log(`Update hotkey setting to: ${this.enabled}`)
+        this.backend.log("AncSwitch: Update enabled option to:", this.enabled);
 
         // Make action only when headphones connected
         if (this.connected) {
@@ -40,7 +40,7 @@ export class BackgroundAncSwitch {
     }
 
     private onJsonMessageReceived = (json: object) => {
-        this.backend.log("Process switch anc hotkey message");
+        this.backend.log("AncSwitch: Json message received");
 
         const typedJson = json as { info?: headphoneInfoProps };
 
@@ -69,6 +69,7 @@ export class BackgroundAncSwitch {
         else {
             this.unregister();
             this.selected = 0;
+            this.options = 0;
             this.address = "";
             this.connected = false;
         }
@@ -78,7 +79,7 @@ export class BackgroundAncSwitch {
         if (this.enabled && this.input == null) {
             this.input = new Input([Button.QUICK_ACCESS_MENU, Button.L5]);
             this.input.onShortcutPressed(this.onShortcutPressed);
-            this.backend.log("Hotkey registered")
+            this.backend.log("AncSwitch: Hotkey registered");
         }
     }
 
@@ -87,12 +88,12 @@ export class BackgroundAncSwitch {
             this.input.offShortcutPressed(this.onShortcutPressed);
             this.input.unregister();
             this.input = undefined;
-            this.backend.log("Hotkey unregistered")
+            this.backend.log("AncSwitch: Hotkey unregistered");
         }
     }
 
     private onShortcutPressed = async () => {
-        this.backend.log("Hotkey pressed")
+        this.backend.log("AncSwitch: Hotkey pressed");
 
         let isOff = await this.backend.loadBooleanSetting("allow_anc_mode_off");
         let isTransparency = await this.backend.loadBooleanSetting("allow_anc_mode_transparency");
@@ -100,9 +101,7 @@ export class BackgroundAncSwitch {
         let isWind = await this.backend.loadBooleanSetting("allow_anc_mode_wind");
         let isAnc = await this.backend.loadBooleanSetting("allow_anc_mode_anc");
 
-        this.backend.log("Options: ", this.options);
-        this.backend.log("Selected: ", this.selected);
-
+        this.backend.log("AncSwitch: Options:", this.options, "Selected:", this.selected);
 
         let modes = [];
 
@@ -126,17 +125,17 @@ export class BackgroundAncSwitch {
             modes.push(AncModes.ANC)
         }
 
-        this.backend.log(modes);
+        this.backend.log("AncSwitch: UI modes:", modes);
 
         if (modes.length <= 1)
-            this.backend.log("Nothing to do: fewer than two modes selected.");
+            this.backend.log("AncSwitch: Nothing to do: fewer than two modes selected.");
 
         let nextAnc = modes.find(x => x > this.selected);
         if (nextAnc === undefined){
             nextAnc = modes[0];
         }
 
-        this.backend.log(nextAnc);
+        this.backend.log("AncSwitch: Next selected mode:", nextAnc);
 
         if (nextAnc !== 0) {
             this.backend.setAnc(this.address, nextAnc);
