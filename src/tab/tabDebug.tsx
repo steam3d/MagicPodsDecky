@@ -7,13 +7,65 @@ import {
 import {
     call,
     toaster
-   } from "@decky/api";
+} from "@decky/api";
 
+import * as classes from "@decky/ui/dist/utils/static-classes";
 import { FC } from 'react';
 import { t } from 'i18next';
 
 import { LogoIcon } from "../icons";
 import { Backend } from "../backend";
+
+export const data = {
+    headphones: [
+        { name: "Z AirPods (steam3d)", address: "12:45:ds:23:fd:11", connected: true },
+        { name: "G AirPods Max (steam3d)", address: "12:45:ds:23:fd:12", connected: false },
+        { name: "AirPods Pro (steam3d)", address: "12:45:ds:23:fd:13", connected: false },
+        { name: "PowerBeatsPro", address: "12:45:ds:23:fd:14", connected: false },
+        { name: "Sony SBH20", address: "12:45:ds:23:fd:15", connected: true },
+
+    ],
+
+    defaultbluetooth: {
+        enabled: true
+    },
+
+    info: {
+        name: "AirPods (steam3d)",
+        address: "12:45:ds:23:fd:12",
+        connected: true,
+        capabilities: {
+            battery: {
+                single: {
+                    battery: 0,
+                    charging: true,
+                    status: 0,
+                },
+                left: {
+                    battery: 0,
+                    charging: false,
+                    status: 2,
+                },
+                right: {
+                    battery: 50,
+                    charging: false,
+                    status: 2,
+                },
+                case: {
+                    battery: 100,
+                    charging: true,
+                    status: 3,
+                },
+                readonly: true,
+            },
+            anc: {
+                options: 0b00011111,
+                selected: 0b00000001,
+                readonly: false,
+            }
+        }
+    }
+}
 
 export const TabDebug: FC<{ backend: Backend; }> = ({ backend }) => {
     return (
@@ -35,9 +87,16 @@ export const TabDebug: FC<{ backend: Backend; }> = ({ backend }) => {
                         <ButtonItem
                             layout="below"
                             onClick={async () => {
-                                //backend.update.disable();
+                                for (const [groupName, groupObj] of Object.entries(classes)) {
+                                    if (typeof groupObj === "object" && groupObj !== null) {
+                                        backend.log(`\n=== ${groupName} ===`);
+                                        for (const [name, value] of Object.entries(groupObj)) {
+                                            backend.log(`${name}: ${value}`);
+                                        }
+                                    }
+                                }
                             }}>
-                            Stop check update
+                            print classes
                         </ButtonItem>
                     </PanelSectionRow>
 
@@ -108,7 +167,7 @@ export const TabDebug: FC<{ backend: Backend; }> = ({ backend }) => {
                                 await call<[], void>("restart_backend");
                                 backend.connect();
                                 backend.log("restart_backend ended")
-                              }}>
+                            }}>
                             Restart backend and connect socket
                         </ButtonItem>
                     </PanelSectionRow>
