@@ -76,12 +76,12 @@ export const TabHeadphones: FC<{
 
   const onChangeBluetoothAdapterToggleField = (b: boolean) => {
     if (setDefaultBluetooth != null)
-        setDefaultBluetooth({ enabled: b });
+      setDefaultBluetooth({ enabled: b });
 
-    if (b){
+    if (b) {
       backend.enableDefaultBluetoothAdapter();
     }
-    else{
+    else {
       backend.disableDefaultBluetoothAdapter();
     }
     //void SteamClient.System.Bluetooth.SetEnabled(b); // disabled due SteamClient.System.Bluetooth is not available since Steam Deck OS 3.5.19
@@ -99,20 +99,23 @@ export const TabHeadphones: FC<{
 
         {(headphones.length !== 0) &&
           <PanelSection title={t("headphones")}>
-            {headphones.map((headphone, index) => (
-              <PanelSectionRow>
-                <ToggleField checked={checkedHeadphones[headphone.address]} label={headphone.name} disabled={disabledHeadphones[headphone.address]} onChange={(b) => {
-                  backend.logInfo("Headphones: Change connection to", b, "for", headphone.name, "(", headphone.address, ")");
-                  handleToggleFieldChange(headphone.address, b);
-                  if (b){
-                    backend.connectDevice(headphone.address);
-                  }
-                  else{
-                    backend.disconnectDevice(headphone.address);
-                  }
-                }} />
-              </PanelSectionRow>
-            ))}
+            {headphones
+              .slice()
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((headphone, index) => (
+                <PanelSectionRow>
+                  <ToggleField checked={checkedHeadphones[headphone.address]} label={headphone.name} disabled={disabledHeadphones[headphone.address]} onChange={(b) => {
+                    backend.logInfo("Headphones: Change connection to", b, "for", headphone.name, "(", headphone.address, ")");
+                    handleToggleFieldChange(headphone.address, b);
+                    if (b) {
+                      backend.connectDevice(headphone.address);
+                    }
+                    else {
+                      backend.disconnectDevice(headphone.address);
+                    }
+                  }} />
+                </PanelSectionRow>
+              ))}
           </PanelSection>
         }
       </div>
