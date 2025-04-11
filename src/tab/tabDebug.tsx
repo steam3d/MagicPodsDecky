@@ -89,9 +89,9 @@ export const TabDebug: FC<{ backend: Backend; }> = ({ backend }) => {
                             onClick={async () => {
                                 for (const [groupName, groupObj] of Object.entries(classes)) {
                                     if (typeof groupObj === "object" && groupObj !== null) {
-                                        backend.log(`\n=== ${groupName} ===`);
+                                        backend.logDebug(`\n=== ${groupName} ===`);
                                         for (const [name, value] of Object.entries(groupObj)) {
-                                            backend.log(`${name}: ${value}`);
+                                            backend.logDebug(`${name}: ${value}`);
                                         }
                                     }
                                 }
@@ -117,6 +117,21 @@ export const TabDebug: FC<{ backend: Backend; }> = ({ backend }) => {
                                 await call<[], void>("stop");
                             }}>
                             Stop
+                        </ButtonItem>
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <ButtonItem
+                            layout="below"
+                            onClick={async () => {
+                                backend.logCritical("logCritical");
+                                backend.logError("logError");
+                                backend.logWarning("logWarning");
+                                backend.logInfo("logInfo");
+                                backend.logDebug("logDebug");
+                                backend.logTrace("logTrace");
+                            }}>
+                            Test logs
                         </ButtonItem>
                     </PanelSectionRow>
 
@@ -163,10 +178,10 @@ export const TabDebug: FC<{ backend: Backend; }> = ({ backend }) => {
                         <ButtonItem
                             layout="below"
                             onClick={async () => {
-                                backend.log("restart_backend started");
+                                backend.logDebug("restart_backend started");
                                 await call<[], void>("restart_backend");
                                 backend.connect();
-                                backend.log("restart_backend ended")
+                                backend.logDebug("restart_backend ended")
                             }}>
                             Restart backend and connect socket
                         </ButtonItem>

@@ -24,7 +24,21 @@ _logger.addHandler(file_handler)
 logger = logging.LoggerAdapter(_logger, {"tag": "py"})
 
 def bin_logging(msg):
-    _logger.error(msg, extra={"tag": "bi"})
+    lvl = msg[:3]
+    if lvl == "TRC":
+        _logger.debug(msg[4:], extra={"tag": "bi"})
+    elif lvl == "DBG":
+        _logger.debug(msg[4:], extra={"tag": "bi"})
+    elif lvl == "INF":
+        _logger.info(msg[4:], extra={"tag": "bi"})
+    elif lvl == "WRN":
+        _logger.warning(msg[4:], extra={"tag": "bi"})
+    elif lvl == "ERR":
+        _logger.error(msg[4:], extra={"tag": "bi"})
+    elif lvl == "CRT":
+        _logger.critical(msg[4:], extra={"tag": "bi"})
+    else:
+        _logger.error(msg, extra={"tag": "bi"})
 
 class Plugin:
 
@@ -35,8 +49,21 @@ class Plugin:
         logger.info("Restarting")
         self.core.restart()
 
-    async def logger_react(self, msg):
-        _logger.warning(msg, extra={"tag": "re"})
+    async def logger_react(self, lvl, msg):
+        if lvl == 0:
+            _logger.debug(msg, extra={"tag": "re"})
+        elif lvl == 10:
+            _logger.debug(msg, extra={"tag": "re"})
+        elif lvl == 20:
+            _logger.info(msg, extra={"tag": "re"})
+        elif lvl == 30:
+            _logger.warning(msg, extra={"tag": "re"})
+        elif lvl == 40:
+            _logger.error(msg, extra={"tag": "re"})
+        elif lvl == 50:
+            _logger.critical(msg, extra={"tag": "re"})
+        else:
+            _logger.error(msg, extra={"tag": "re"})
 
     async def load_setting(self, key):
         return self.settings.load(key)
@@ -53,10 +80,11 @@ class Plugin:
 
     async def update_log_level(self):
         lvl = int(self.settings.load("log_level"))
+        lvl = 10 if lvl == 0 else lvl #I do not want to add a trace method, so I print trace logs to debug.
         _logger.setLevel(lvl)
         for handler in _logger.handlers:
             handler.setLevel(lvl)
-        logger.critical("Set log level to %d ", lvl)
+        logger.critical("Set log level to %d", lvl)
 
     async def debug_start_backed(self):
         self.is_backend_allowed = True # do not forget to add this to debug methods

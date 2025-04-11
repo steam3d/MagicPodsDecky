@@ -16,7 +16,7 @@ export class Player {
 
     async updateSetting() {
         this.enabled = await this.backend.loadBooleanSetting("fix_disconnects");
-        this.backend.log("Player: Update enabled option to:", this.enabled);
+        this.backend.logInfo("Player: Update enabled option to:", this.enabled);
 
         // Make action only when headphones connected
         if (this.connected) {
@@ -36,7 +36,7 @@ export class Player {
     }
 
     private onJsonMessageReceived = (json: object) => {
-        this.backend.log("Player: Json message received");
+        this.backend.logDebug("Player: Json message received");
 
         const typedJson = json as { info?: headphoneInfoProps };
         if (typedJson?.info == null)
@@ -59,12 +59,12 @@ export class Player {
     private async register() {
         if (this.enabled) {
             await call<[], void>("play");
-            this.backend.log("Player: started");
+            this.backend.logDebug("Player: started");
         }
     }
 
     private async unregister() {
         await call<[], void>("stop");
-        this.backend.log("Player: stopped");
+        this.backend.logDebug("Player: stopped");
     }
 }

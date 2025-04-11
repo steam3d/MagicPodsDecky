@@ -14,6 +14,7 @@ export const enum BackendSocketState {
 
 export class Backend {
     static readonly maxAttempts = 10;
+    private logLevel = 0;
 
     bgAncSwitch: BackgroundAncSwitch;
     player: Player;
@@ -28,22 +29,23 @@ export class Backend {
     private reconnectTimeoutId: NodeJS.Timeout | undefined;
 
 
-    onOpenHandler = (event: Event) => {
+    onOpenHandler = async (event: Event) => {
         this.reconnectAttempts = Backend.maxAttempts
-        this.log("Backend: Socket opened (", this.convert(this.socket.readyState), ")", event);
+        this.logInfo("Backend: Socket opened (", this.convert(this.socket.readyState), ")", event);
+        await this.updateBinaryLogLevel();
         this.notifySocketConnectionChanged(BackendSocketState.OPEN)
     };
 
     onMessageHandler = (event: MessageEvent) => {
-        this.log("Backend: Message received:", event.data);
+        this.logInfo("Backend: Message received:", event.data);
         this.notifyJsonMessageReceivedListeners(event.data);
     };
 
     onCloseHandler = async (event: CloseEvent) => {
-        this.log("Backend: Socket closed (", this.convert(this.socket.readyState), ")", event);
+        this.logInfo("Backend: Socket closed (", this.convert(this.socket.readyState), ")", event);
 
         if (!this.allowReconnect){
-            this.log("Backend: Reconnecting is prohibited");
+            this.logError("Backend: Reconnecting is prohibited");
                 this.notifySocketConnectionChanged(BackendSocketState.CLOSED)
                 return;
         }
@@ -51,7 +53,7 @@ export class Backend {
         if (this.reconnectAttempts !== 0){
             const isBackendAllowed = await call<[], boolean>("backend_allowed");
             if (!isBackendAllowed){ // When user delete the plugin, we do not want to reconnect socket.
-                this.log("Backend: Running backend is prohibited by python");
+                this.logError("Backend: Running backend is prohibited by python");
                 this.notifySocketConnectionChanged(BackendSocketState.CLOSED)
                 return;
             }
@@ -59,13 +61,13 @@ export class Backend {
             if (this.reconnectTimeoutId)
                 clearTimeout(this.reconnectTimeoutId);
 
-            this.log("Backend: Trying start bucked due socket closed");
+            this.logInfo("Backend: Trying start bucked due socket closed");
             await call("start_backed");
 
             this.reconnectTimeoutId = setTimeout(async () => {
                 this.notifySocketConnectionChanged(BackendSocketState.CONNECTING)
                 this.reconnectAttempts -= 1;
-                this.log("Backend: Trying reconnecting socket due socket closed. Left attempts", this.reconnectAttempts);
+                this.logInfo("Backend: Trying reconnecting socket due socket closed. Left attempts", this.reconnectAttempts);
                 this.socketConnect();
                 }, 1000)
         }
@@ -75,30 +77,16 @@ export class Backend {
     };
 
     onErrorHandler = (error: Event) => {
-        this.log("Backend: Socket error (", this.convert(this.socket.readyState), ")", error);
+        this.logError("Backend: Socket error (", this.convert(this.socket.readyState), ")", error);
     };
 
     constructor() {
+        this.updateReactLogLevel().catch(console.error);
         this.bgAncSwitch = new BackgroundAncSwitch(this);
         this.player = new Player(this);
         this.connect();
     }
 
-    async log (...args: any[]) {
-        var message = "";
-        for (var i = 0; i < args.length; ++i) {
-          if (typeof args[i] == 'object') {
-            message += (JSON && JSON.stringify ? JSON.stringify(args[i]) : String(args[i]))
-          }
-          else {
-            message += String(args[i])
-          }
-          message += " "
-        }
-        message = message.trim();
-        //console.log(message);
-        await call<[msg: string], void>("logger_react", message);
-      }
 
     //settings
     private async loadSetting<T = string>(key: string): Promise<T | null> {
@@ -106,7 +94,7 @@ export class Backend {
             const response = await call<[key: string], T>("load_setting", key);
             return response;
         } catch (e) {
-            this.log("Backend: Exception while loading setting:", key, e);
+            this.logError("Backend: Exception while loading setting:", key, e);
             return null;
         }
     }
@@ -120,7 +108,7 @@ export class Backend {
         const value = await this.loadSetting<string | number>(key);
         const parsed = Number(value);
         if (isNaN(parsed)) {
-          this.log("Backend: Invalid number in setting:", key, value);
+          this.logError("Backend: Invalid number in setting:", key, value);
           return null;
         }
         return parsed;
@@ -131,7 +119,7 @@ export class Backend {
             const response = await call<[key:string, value: any], boolean>("save_setting", key, value);
             return response;
         } catch (e) {
-            this.log("Backend: Exception while saving setting:", key, e);
+            this.logError("Backend: Exception while saving setting:", key, e);
             return false;
         }
     }
@@ -154,13 +142,13 @@ export class Backend {
     private socketConnect() {
         this.socketDisconnect();
         if (this.socket){
-            this.log("Backend: RemoveEventListener from socket");
+            this.logDebug("Backend: RemoveEventListener from socket");
             this.socket.removeEventListener("open", this.onOpenHandler);
             this.socket.removeEventListener("message", this.onMessageHandler);
             this.socket.removeEventListener("close", this.onCloseHandler);
             this.socket.removeEventListener("error", this.onErrorHandler);
         }
-        this.log("Backend: Trying connect socket");
+        this.logDebug("Backend: Trying connect socket");
         this.socket = new WebSocket("ws://localhost:2020");
         this.socket.addEventListener("open", this.onOpenHandler);
         this.socket.addEventListener("message", this.onMessageHandler);
@@ -172,7 +160,7 @@ export class Backend {
         if (this.socket) {
             if(this.socket.readyState == 1){ //open
                 this.socket.close();
-                this.log('Backend: Socket disconnected');
+                this.logInfo('Backend: Socket disconnected');
             }
         }
     }
@@ -214,7 +202,7 @@ export class Backend {
         if (this.socketState === state) {
             return;
         }
-        this.log("Backend: SocketState changed to", this.convert(state));
+        this.logInfo("Backend: SocketState changed to", this.convert(state));
         this.socketState = state;
         this.socketConnectionChangedListeners.forEach(callback => {
             callback(this.socketState);
@@ -250,11 +238,11 @@ export class Backend {
 
     sendToSocket(str: string) {
         if (this.socket.readyState == 1) {//open
-            this.log("Backend: Sending:", str);
+            this.logInfo("Backend: Sending:", str);
             this.socket.send(str);
         }
         else{
-            this.log("Backend: Failed (readyState:", this.socket.readyState, "socketState:", this.socketState, ") to send:", str);
+            this.logError("Backend: Failed (readyState:", this.socket.readyState, "socketState:", this.socketState, ") to send:", str);
         }
     }
 
@@ -330,13 +318,81 @@ export class Backend {
             method: "SetCapabilities",
             arguments: {
               address: address,
-              "capabilities": {
-                "anc": {
-                  "selected": value
+              capabilities: {
+                anc: {
+                  selected: value
                 }
               }
             }
           }
         this.sendToSocket(JSON.stringify(json))
+    }
+
+    SetLogLevel(value: number){
+        const json =
+        {
+            method: "SetLogLevel",
+            arguments: {
+                selected: value,
+            }
+          }
+        this.sendToSocket(JSON.stringify(json))
+    }
+
+    // Custom logger
+    public async updateBinaryLogLevel() {
+        let option = await this.loadNumberSetting("log_level") ?? 0
+        this.SetLogLevel(option);
+    }
+    public async updateReactLogLevel(){
+        let option = await this.loadNumberSetting("log_level") ?? 0
+        this.logLevel = option;
+        this.logCritical("Set log level to", option);
+    }
+
+    private convertToString (...args: any[]): string {
+        var message = "";
+        for (var i = 0; i < args.length; ++i) {
+          if (typeof args[i] == 'object') {
+            message += (JSON && JSON.stringify ? JSON.stringify(args[i]) : String(args[i]))
+          }
+          else {
+            message += String(args[i])
+          }
+          message += " "
+        }
+        message = message.trim();
+        return message;
+    }
+
+    async logCritical(...args: any[]){
+        if (50 < this.logLevel) return;
+        await call<[lvl: Number, msg: string], void>("logger_react", 50, this.convertToString(...args));
+    }
+
+    async logError(...args: any[]){
+        if (40 < this.logLevel) return;
+        await call<[lvl: Number, msg: string], void>("logger_react", 40, this.convertToString(...args));
+    }
+
+    async logWarning(...args: any[]){
+        if (30 < this.logLevel) return;
+        await call<[lvl: Number, msg: string], void>("logger_react", 30, this.convertToString(...args));
+    }
+
+    async logInfo(...args: any[]){
+        if (20 < this.logLevel) return;
+        await call<[lvl: Number, msg: string], void>("logger_react", 20, this.convertToString(...args));
+    }
+
+    async logDebug(...args: any[]){
+        if (10 < this.logLevel) return;
+        await call<[lvl: Number, msg: string], void>("logger_react", 10, this.convertToString(...args));
+    }
+
+    //Do not use! Trace Added for backwards compatibility
+    async logTrace(...args: any[]){
+        if (0 < this.logLevel) return;
+        await call<[lvl: Number, msg: string], void>("logger_react", 0, this.convertToString(...args));
     }
 }

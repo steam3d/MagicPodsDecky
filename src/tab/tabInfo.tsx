@@ -62,7 +62,7 @@ export const AncModes = {
 };
 
 const getAncSliderConfig = async (backend: Backend, options: number, selected: number) => {
-  backend.log("Info: Options:", options, "Selected:", selected);
+  backend.logDebug("Info: Options:", options, "Selected:", selected);
 
   let _count = 0;
   let _selectedIndex = 0;
@@ -115,7 +115,7 @@ const getAncSliderConfig = async (backend: Backend, options: number, selected: n
     if ((selected & AncModes.ANC) != 0) _selectedIndex = _count;
   }
 
-  backend.log("Info: SelectedIndex:", _selectedIndex, "Count:", _count, "ConvertBackDict:", _convertBack, "Label:", _labels);
+  backend.logDebug("Info: SelectedIndex:", _selectedIndex, "Count:", _count, "ConvertBackDict:", _convertBack, "Label:", _labels);
 
   return {
     value: _selectedIndex,
@@ -180,7 +180,7 @@ export const TabInfo: FC<{
                   notchLabels={config.labels}
                   onChange={(n) => {
                     const v = config.convert[n] ?? 0;
-                    backend.log("Info: ANC slider changed to UI:", n, "Native:", v);
+                    backend.logDebug("Info: ANC slider changed to UI:", n, "Native:", v);
                     if (info?.capabilities?.anc != null) {
                       const clonedInfo = { ...info };
                       clonedInfo.capabilities.anc!.selected = v;
@@ -192,7 +192,7 @@ export const TabInfo: FC<{
 
                     let starttime = Date.now();
                     sliderTimeoutId = setTimeout(() => {
-                      backend.log("Info: Elapsed:", Date.now() - starttime, "send set ANC to", v);
+                      backend.logInfo("Info: Elapsed:", Date.now() - starttime, "send set ANC to", v);
                       backend.setAnc(info!.address, v);
                     }, 350)
                   }} />

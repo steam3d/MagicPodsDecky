@@ -78,11 +78,11 @@ let volume_register: any;
 export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) => {
     const [visible, setVisible] = useState(false);
     useEffect(() => {
-        backend.log("MicMute: RegisterForInputChanged");
+        backend.logDebug("MicMute: RegisterForInputChanged");
         const input = new Input([Button.QUICK_ACCESS_MENU, Button.L4]);
         input.onShortcutPressed(onShortcutPressed);
 
-        backend.log("MicMute: RegisterForDeviceVolumeChanged");
+        backend.logDebug("MicMute: RegisterForDeviceVolumeChanged");
         // Mic changes
         volume_register = SteamClient.System.Audio.RegisterForDeviceVolumeChanged(
             (audioDeviceId: number, audioType: number, volume: number) => {
@@ -90,7 +90,7 @@ export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) 
                     micId = -1;
                     micSavedVolume = -1;
                     setVisible(false);
-                    backend.log("MicMute: Changed: audioDeviceId", audioDeviceId, "audioType", audioType, "volume", volume);
+                    backend.logDebug("MicMute: Changed: audioDeviceId", audioDeviceId, "audioType", audioType, "volume", volume);
                 }
             }
         );
@@ -117,8 +117,8 @@ export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) 
                 }
             });
 
-            backend.log("MicMute:", devices);
-            backend.log("MicMute: Saved: audioDeviceId", micId, "volume", micSavedVolume);
+            backend.logDebug("MicMute:", devices);
+            backend.logDebug("MicMute: Saved: audioDeviceId", micId, "volume", micSavedVolume);
 
             // Mute mic
             await SteamClient.System.Audio.SetDeviceVolume(micId, 0, 0);

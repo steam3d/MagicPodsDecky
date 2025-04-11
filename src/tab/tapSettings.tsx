@@ -60,7 +60,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
             tag: locale,
             nativeName: new Intl.DisplayNames([locale], { type: 'language' }).of(locale) || locale
         }));
-        backend.log("Settings:", updatedLanguageValue);
+        backend.logDebug("Settings:", updatedLanguageValue);
         setAvailableLanguages(updatedLanguageValue);
     }, []);
     return (
@@ -89,7 +89,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
 
                                 let starttime = Date.now();
                                 sliderTimeoutId = setTimeout(async () => {
-                                    backend.log("Settings: Elapsed", Date.now() - starttime, "Set low battery to", n);
+                                    backend.logInfo("Settings: Elapsed", Date.now() - starttime, "Set low battery to", n);
                                     await backend.saveSetting("notif_low_battery", n);
                                 }, 350)
                             }} />
@@ -126,7 +126,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                                 showContextMenu(
                                     <Menu label={t("settings_language_menu_label")} cancelText={t("settings_language_menu_canceltext")} onCancel={() => { }}>
                                         {availableLanguages.map((lng) => (
-                                            <MenuItem key={lng.tag} disabled={i18n.resolvedLanguage === lng.tag} onSelected={() => { i18n.changeLanguage(lng.tag); backend.log(i18n.resolvedLanguage); }}>{lng.nativeName}</MenuItem>
+                                            <MenuItem key={lng.tag} disabled={i18n.resolvedLanguage === lng.tag} onSelected={() => { i18n.changeLanguage(lng.tag); backend.logDebug(i18n.resolvedLanguage); }}>{lng.nativeName}</MenuItem>
                                         ))}
                                     </Menu>,
                                     e.currentTarget ?? window
@@ -195,11 +195,11 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                     <PanelSectionRow>
                         <SliderField
                             value={50-sliderLogLevel}
-                            max={40}
+                            max={50}
                             min={0}
                             step={10}
                             label={t("settings_debug_level_label")}
-                            notchCount={5}
+                            notchCount={6}
                             notchTicksVisible={true}
                             notchLabels={[
                                 { label: "Off", notchIndex: 0, value: 0 },
@@ -207,6 +207,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                                 { label: "Wrn", notchIndex: 2, value: 20 },
                                 { label: "Inf", notchIndex: 3, value: 30 },
                                 { label: "Dbg", notchIndex: 4, value: 40 },
+                                { label: "TRC", notchIndex: 5, value: 50 },
                             ]}
                             onChange={(n) => {
                                 const nn = 50-n;
@@ -216,9 +217,11 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
 
                                 let starttime = Date.now();
                                 sliderTimeoutId = setTimeout(async () => {
-                                    backend.log("Settings: Elapsed", Date.now() - starttime, "Set log level to", nn);                                    
+                                    backend.logInfo("Settings: Elapsed", Date.now() - starttime, "Set log level to", nn);                                    
                                     await backend.saveSetting("log_level", nn);
                                     await call<[], void>("update_log_level");
+                                    await backend.updateReactLogLevel();
+                                    await backend.updateBinaryLogLevel();
                                 }, 350)
                             }} />
                     </PanelSectionRow>

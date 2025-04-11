@@ -24,7 +24,7 @@ export const LogRouter: VFC<{ backend: Backend }> = ({ backend }) => {
     const divRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        backend.log("LogRouter");
+        backend.logDebug("LogRouter");
         const getLog = async () => {
             let output = await call<[], string>("read_logs");
             setLogValue(output);}

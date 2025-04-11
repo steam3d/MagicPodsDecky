@@ -36,7 +36,7 @@ export const TabHeadphones: FC<{
       [address]: true,
     }));
 
-    backend.log("Headphones: Updated setCheckedHeadphones");
+    backend.logDebug("Headphones: Updated setCheckedHeadphones");
     setCheckedHeadphones((prevState) => ({
       ...prevState,
       [address]: disabled,
@@ -45,7 +45,7 @@ export const TabHeadphones: FC<{
   };
 
   useEffect(() => {
-    backend.log("Headphones: Updated headphones");
+    backend.logDebug("Headphones: Updated headphones");
     setDisabledHeadphones({});
 
     headphones.forEach(headphone => {
@@ -102,7 +102,7 @@ export const TabHeadphones: FC<{
             {headphones.map((headphone, index) => (
               <PanelSectionRow>
                 <ToggleField checked={checkedHeadphones[headphone.address]} label={headphone.name} disabled={disabledHeadphones[headphone.address]} onChange={(b) => {
-                  backend.log("Headphones: Change connection to", b, "for", headphone.name, "(", headphone.address, ")");
+                  backend.logInfo("Headphones: Change connection to", b, "for", headphone.name, "(", headphone.address, ")");
                   handleToggleFieldChange(headphone.address, b);
                   if (b){
                     backend.connectDevice(headphone.address);
