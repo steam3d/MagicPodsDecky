@@ -6,20 +6,42 @@ A magic plugin for the Decky Loader that allows you to control your AirPods and 
 
 ## 🎨 Features
 
-🔋Displays the charge level in 1% steps  
-⚙️ Noise cancellation control  
-🎉 New features coming soon  
+🔋 Battery level  
+⚙️ Noise control  
+🔌 Fix headphones disconnects  
+🎙️ Hotkey to mute microphone  
+🔄 Hotkey to cycle between noise modes  
+🎉 New features coming soon
 
 ## 🎧 Headphones supported
 
-- AirPods 1-2
-- AirPods 3
-- AirPods Pro 1-2
-- AirPods Max
-- Beats Fit Pro
-- Possible other Beats models
+| Apple            | Beats                  | Samsung           |
+| ---------------- | ---------------------- | ----------------- |
+| AirPods 1        | PowerBeats Pro         | Galaxy Buds       |
+| AirPods 2        | PowerBeats Pro 2       | Galaxy Buds Plus  |
+| AirPods 3        | PowerBeats 3           | Galaxy Buds Live  |
+| AirPods 4        | PowerBeats 4           | Galaxy Buds Pro   |
+| AirPods 4 (ANC)  | Beats Fit Pro          | Galaxy Buds 2     |
+| AirPods Pro      | Beats Studio Buds      | Galaxy Buds 2 Pro |
+| AirPods Pro 2    | Beats Studio Buds Plus | Galaxy Buds Fe    |
+| AirPods Max      | Beats Studio Pro       | Galaxy Buds 3     |
+| AirPods Max 2024 | Beats Solo 3           | Galaxy Buds 3 Pro | 
+|                  | Beats Solo Pro         |                   |
+|                  | Beats Studio 3         |                   |
+|                  | Beats X                |                   |
+|                  | Beats Flex             |                   |
 
 ## 💾 Installation
+
+### Using the Decky Store
+
+1. Install [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader/tree/main?tab=readme-ov-file#-installation)
+2. Switch to steam game mode
+3. Press <img src="./docs/images/dark/qam.svg#gh-light-mode-only" height=16><img src="./docs/images/light/qam.svg#gh-dark-mode-only" height=16>
+4. Go to the tab <img src="./docs/images/dark/plug.svg#gh-light-mode-only" height=16><img src="./docs/images/light/plug.svg#gh-dark-mode-only" height=16>
+5. In the upper right corner, click <img src="./docs/images/dark/store.svg#gh-light-mode-only" height=16><img src="./docs/images/light/store.svg#gh-dark-mode-only" height=16>
+6. Find `MagicPods` in the plugin list or search for it
+7. Press the `Install` button
 
 ### Using the Decky developer mode
 
@@ -39,18 +61,27 @@ Now that you have MagicPods, press <img src="./docs/images/dark/qam.svg#gh-light
 
 <img src="./docs/images/dark/mp-charge.svg#gh-light-mode-only" height=16><img src="./docs/images/light/mp-charge.svg#gh-dark-mode-only" height=16> displays information about the current charge level and additional features, if supported by the headphones.  
 <img src="./docs/images/dark/mp-hd.svg#gh-light-mode-only" height=16><img src="./docs/images/light/mp-hd.svg#gh-dark-mode-only" height=16> shows headphones supported by MagicPods, here you can connect/disconnect headphones and control Bluetooth.  
-<img src="./docs/images/dark/mp-sett.svg#gh-light-mode-only" height=16><img src="./docs/images/light/mp-sett.svg#gh-dark-mode-only" height=16> contains a quick reference guide and other useful information.  
+<img src="./docs/images/dark/mp-sett.svg#gh-light-mode-only" height=16><img src="./docs/images/light/mp-sett.svg#gh-dark-mode-only" height=16> Contains additional features, settings, and other useful information.  
 
 All you need to do is select your headphones and connect them, and the charge level and additional features will appear on the <img src="./docs/images/dark/mp-charge.svg#gh-light-mode-only" height=16><img src="./docs/images/light/mp-charge.svg#gh-dark-mode-only" height=16> tab
 
+## 🌐 Become a Translator
+
+Go to the [MagicPods-SteamDeck](https://weblate.magicpods.app/engage/magicpods-steamdeck/) project. Register (don’t forget to check your Spam folder — the confirmation email might end up there), or suggest translations without creating an account.
+
+Use the shortest phrases and abbreviations possible — the Steam interface is very compact. Refer to the screenshots attached to each phrase. Note: in the settings, noise control modes are written in full, while the mode switch slider uses shortened names.
 
 ## 🧪 Ideas and bugs
 
 In the [Discord](https://discord.com/invite/UyY4PY768V) community you can suggest an idea or report a problem.
 
-## 🩼 Known issue
+## 🩼 Known issues
 
-As long as the disabled microphone icon is displayed during any game, it is not possible to open the Decky Store, Decky Settings or Screenshots page. This problem is due to a peculiarity of the Steam interface.
+Hotkeys stop working after opening the controller settings in the Steam menu — the solution is to restart the plugin.
+
+## 💰 Donate
+
+[Support the project here](https://magicpods.app/donate/) — every bit helps ❤️
 
 ## 💖 Developers
 
