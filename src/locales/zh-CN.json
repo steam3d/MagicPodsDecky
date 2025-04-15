@@ -24,6 +24,11 @@
         "bluetooth": "蓝牙",
         "headphones": "耳机",
         "notif_error_websocket_connection_issue": "错误！打开插件获取更多信息",
-        "notif_low_battery": "电量剩余 {{battery}}%，请为您的耳机充电。"
+        "notif_low_battery": "电量剩余 {{battery}}%，请为您的耳机充电。",
+        "settings_anc_modes_transparency_label": "通透模式",
+        "settings_anc_modes_off_label": "关闭",
+        "settings_anc_modes_adaptive_label": "自适应",
+        "settings_anc_modes_wind_label": "风力消除",
+        "settings_anc_modes_anc_label": "噪音消除"
     }
 }
