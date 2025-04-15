@@ -22,8 +22,13 @@
         "headphones": "헤드폰",
         "settings_fix_disconnects_description": "헤드폰이 끝없이 연결/분리되는 문제를 수정합니다",
         "notif_error_websocket_connection_issue": "오류가 발생했습니다! 플러그인을 열어 자세한 정보를 확인하세요",
-        "notif_low_battery": "배터리가 {{battery}}% 남았습니다. 헤드폰을 충전해주세요.",        
+        "notif_low_battery": "배터리가 {{battery}}% 남았습니다. 헤드폰을 충전해주세요.",
         "websocket_connection_issue": "무엇인가가 잘못되었습니다, 다시 시도해주세요",
-        "headphones_disconnected": "헤드폰을 연결하여 배터리 잔량을 표시하고 설정을 조정하세요"
+        "headphones_disconnected": "헤드폰을 연결하여 배터리 잔량을 표시하고 설정을 조정하세요",
+        "settings_anc_modes_adaptive_label": "적응형 오디오",
+        "settings_anc_modes_off_label": "끔",
+        "settings_anc_modes_wind_label": "바람 차단",
+        "settings_anc_modes_transparency_label": "주변음 허용",
+        "settings_anc_modes_anc_label": "노이즈 캔슬링"
     }
 }
