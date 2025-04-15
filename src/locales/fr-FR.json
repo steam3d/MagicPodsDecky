@@ -24,6 +24,11 @@
         "settings_fix_disconnects_label": "Désactiver le mode veille des écouteurs",
         "notif_error_websocket_connection_issue": "Erreur ! Ouvrez le plugin pour plus d'informations",
         "settings_hotkey_mic_label": "Touche de raccourci pour couper le microphone",
-        "settings_hotkey_mic_description": "Appuyez sur <Key1/> + <Key2/> pour couper ou rétablir le microphone"
+        "settings_hotkey_mic_description": "Appuyez sur <Key1/> + <Key2/> pour couper ou rétablir le microphone",
+        "settings_anc_modes_transparency_label": "Transparence",
+        "settings_anc_modes_adaptive_label": "Adaptatif",
+        "settings_anc_modes_wind_label": "Annulation du vent",
+        "settings_anc_modes_anc_label": "Annulation du bruit",
+        "settings_anc_modes_off_label": "Désactivé"
     }
 }
