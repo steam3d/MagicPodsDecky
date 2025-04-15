@@ -24,6 +24,11 @@
         "bluetooth": "Bluetooth",
         "headphones": "Наушники",
         "notif_error_websocket_connection_issue": "Ошибка! Откройте плагин для подробностей",
-        "notif_low_battery": "Осталось {{battery}}%. Зарядите ваши наушники."
+        "notif_low_battery": "Осталось {{battery}}%. Зарядите ваши наушники.",
+        "settings_anc_modes_transparency_label": "Прозрачность",
+        "settings_anc_modes_adaptive_label": "Адаптивно",
+        "settings_anc_modes_wind_label": "Подавление шума ветра",
+        "settings_anc_modes_anc_label": "Шумоподавление",
+        "settings_anc_modes_off_label": "Выключено"
     }
 }
