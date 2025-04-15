@@ -51,7 +51,7 @@ const PanelSocialButton: FC<{
                 <DialogButton
                     onClick={() => navLink(url)}
                     onSecondaryButton={() => showQrModal(url)}
-                    onSecondaryActionDescription={t("settings_social_button_description_egg")}>
+                    onSecondaryActionDescription="Press to win">
                     {children}
                 </DialogButton>
                 <DialogButton
