@@ -22,10 +22,20 @@
         "notif_error_websocket_connection_issue": "Erro! Abra o plugin para mais informações",
         "notif_low_battery": "{{battery}}% de carga. Recarregue os fones de ouvido.",
         "settings_low_battery_label": "Notificação de bateria fraca",
-        "settings_anc_modes_transparency_label": "Transparência",
-        "settings_anc_modes_adaptive_label": "Adaptativo",
-        "settings_anc_modes_wind_label": "Cancelamento de vento",
-        "settings_anc_modes_anc_label": "Cancelamento de ruído",
-        "settings_anc_modes_off_label": "Desligado"
+        "settings_anc_modes_transparency_label": "<icon/>Transparência",
+        "settings_anc_modes_adaptive_label": "<icon/>Adaptativo",
+        "settings_anc_modes_wind_label": "<icon/>Cancelamento de vento",
+        "settings_anc_modes_anc_label": "<icon/>Cancelamento de ruído",
+        "settings_anc_modes_off_label": "<icon/>Desligado",
+        "settings_header": "Configurações",
+        "settings_misc_header": "Links úteis",
+        "settings_anc_modes_header": "Modos exibidos",
+        "settings_social_button_description": "Mostrar código QR",
+        "settings_social_button_start": "Primeiros passos",
+        "settings_debug_header": "Depuração",
+        "settings_social_button_translate": "Ajudar a traduzir",
+        "settings_social_button_donate": "Doar",
+        "settings_debug_level_label": "Nível de log",
+        "settings_debug_log_button": "Registros de eventos"
     }
 }
