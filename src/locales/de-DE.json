@@ -6,7 +6,7 @@
         "notif_error_websocket_connection_issue": "Fehler! Öffne das Plugin für weitere Infos",
         "notif_low_battery": "{{battery}}% verbleibend. Lade deine Kopfhörer.",
         "battery_left": "Links",
-        "capabilities_noisecancellation_label": "Geräuschunterdrückung",
+        "capabilities_noise_control_label": "Geräuschunterdrückung",
         "bluetooth": "Bluetooth",
         "battery_right": "Rechts",
         "battery_case": "Case",

@@ -177,7 +177,7 @@ export const TabInfo: FC<{
                   max={config.max}
                   min={1}
                   step={1}
-                  label={t("capabilities_noisecancellation_label")}
+                  label={t("capabilities_noise_control_label")}
                   notchCount={config.notchCount}
                   notchTicksVisible={false}
                   // @ts-ignore

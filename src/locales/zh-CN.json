@@ -4,7 +4,7 @@
         "battery_right": "右",
         "battery_case": "充电盒",
         "battery_single": "已充电",
-        "capabilities_noisecancellation_label": "噪音消除",
+        "capabilities_noise_control_label": "噪音消除",
         "websocket_connection_issue": "出错了，请尝试刷新",
         "headphones_disconnected": "连接耳机以查看电池电量和调整设置",
         "settings_low_battery_label": "低电量提醒",

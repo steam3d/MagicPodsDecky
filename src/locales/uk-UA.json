@@ -4,7 +4,7 @@
         "headphones_disconnected": "Підключіть навушники, щоб побачити рівень заряду батареї та налаштувати параметри",
         "notif_low_battery": "Залишилось {{battery}}%. Зарядіть ваші навушники.",
         "settings_fix_disconnects_description": "Вирішує проблему нескінченного підключення/відключення навушників",
-        "capabilities_noisecancellation_label": "Шумозаглушення",
+        "capabilities_noise_control_label": "Шумозаглушення",
         "settings_hotkey_anc_label": "Гаряча клавіша зміни шумопоглинання",
         "faq_tip2_description": "AirPods 1-2, AirPods Pro 1-2, AirPods 3, AirPods Max, Beats Fit Pro і можливо інші Beats моделі. Будь ласка, напишіть в <lnk>Discord</lnk>, якщо ваші Beats працюють.",
         "battery_right": "Правий",

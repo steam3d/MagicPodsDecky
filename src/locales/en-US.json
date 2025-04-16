@@ -4,7 +4,7 @@
         "battery_right": "Right",
         "battery_case": "Case",
         "battery_single": "Charge",
-        "capabilities_noisecancellation_label": "Noise control",
+        "capabilities_noise_control_label": "Noise control",
         "websocket_connection_issue": "Something went wrong, try reloading",
         "headphones_disconnected": "Connect headphones to display their battery level and adjust settings",
         "settings_low_battery_label": "Low battery notification",

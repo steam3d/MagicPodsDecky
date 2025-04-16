@@ -5,7 +5,7 @@
         "websocket_connection_issue": "Aconteceu algo errado, tente recarregar",
         "battery_left": "Esquerdo",
         "battery_right": "Direito",
-        "capabilities_noisecancellation_label": "Cancelamento de ruído",
+        "capabilities_noise_control_label": "Cancelamento de ruído",
         "headphones_disconnected": "Conecte os fones para visualizar o nível de bateria e ajustar configurações",
         "settings_low_battery_label_notchlabel_off": "Desl.",
         "settings_language_button_label": "Idioma",
