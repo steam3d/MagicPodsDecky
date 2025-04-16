@@ -20,8 +20,22 @@
         "capabilities_noise_control_label": "ශබ්දය අවලංගු කිරීම",
         "settings_low_battery_label_notchlabel_off": "අක්රියයි",
         "settings_hotkey_anc_description": "ශබ්ද අවලංගු කිරීමේ මාතයන් අතර මාරුවීමට <key1/> + <key2/> ඔබන්න",
-        "settings_hotkey_mic_description": "නිශ්ශබ්ද / නිශ්ශබ්ද මයික්රොෆෝනය සඳහා <key1/> + <key2/> ඔබන්න",
+        "settings_hotkey_mic_description": "මයික්රොෆෝනය නිශ්ශබ්ද / නිශ්ශබ්ද නොවීමට <key1/> + <key2/> ඔබන්න",
         "notif_error_websocket_connection_issue": "දෝෂය! වැඩි විස්තර සඳහා ප්ලගිනය විවෘත කරන්න",
-        "settings_anc_modes_off_label": "අක්රියයි"
+        "settings_anc_modes_off_label": "<icon/>අක්රියයි",
+        "settings_header": "සැකසුම්",
+        "settings_anc_modes_transparency_label": "<icon/>පැහැදිලි බව",
+        "settings_social_button_description": "QR කේතය පෙන්වන්න",
+        "settings_social_button_start": "ආරම්භ කිරීම",
+        "settings_social_button_translate": "පරිවර්තනයට උදව් කරන්න",
+        "settings_social_button_donate": "පරිත්‍යාග කරන්න",
+        "settings_anc_modes_adaptive_label": "<icon/>අනුරූපණශීලී",
+        "settings_anc_modes_wind_label": "<icon/>සුළඟ අහෝසි කිරීම",
+        "settings_anc_modes_anc_label": "<icon/>ශබ්ද අහෝසි කිරීම",
+        "settings_debug_header": "දෝෂ නිරාකරණය",
+        "settings_debug_log_button": "සිදුවීම් ලොග්",
+        "settings_anc_modes_header": "පෙන්වෙන ප්‍රකාර",
+        "settings_misc_header": "ප්‍රයෝජනවත් සබැඳි",
+        "settings_debug_level_label": "ලොග් මට්ටම"
     }
 }
