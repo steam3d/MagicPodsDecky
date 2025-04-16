@@ -69,7 +69,7 @@ All you need to do is select your headphones and connect them, and the charge le
 
 Go to the [MagicPods-SteamDeck](https://weblate.magicpods.app/engage/magicpods-steamdeck/) project. Register (don’t forget to check your Spam folder — the confirmation email might end up there), or suggest translations without creating an account.
 
-Use the shortest phrases and abbreviations possible — the Steam interface is very compact. Refer to the screenshots attached to each phrase. Note: in the settings, noise control modes are written in full, while the mode switch slider uses shortened names.
+Use the shortest phrases and abbreviations possible — the Steam interface is very compact. Refer to the screenshots attached to each phrase.
 
 ## 🧪 Ideas and bugs
 
