@@ -13,7 +13,7 @@ import { FC, useEffect, useState } from 'react';
 import i18next, { t } from 'i18next';
 import { Trans, useTranslation } from 'react-i18next'
 import { Backend } from "../backend";
-import { L4, L5, QUICK_ACCESS_MENU } from "../ButtonIcons";
+import { ANC_MODE_ADAPTIVE, ANC_MODE_ANC, ANC_MODE_OFF, ANC_MODE_TRANSPARENCY, ANC_MODE_WIND, L4, L5, QUICK_ACCESS_MENU } from "../ButtonIcons";
 import PanelSocialButton from "../components/socialButton";
 import { call } from "@decky/api";
 
@@ -24,6 +24,13 @@ const buttonStyle = {
     width: "auto",
     marginBottom: "-4px"
 };
+
+const iconModesStyle = {
+    display: "block",
+    marginTop: "-4px",
+    alignSelf: "center",
+    minWidth: "24px"
+}
 
 export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
     const [sliderLowBattery, setSliderLowBattery] = useState<number>(-1);
@@ -140,31 +147,31 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
 
                 <PanelSection title={t("settings_anc_modes_header")}>
                     <PanelSectionRow>
-                        <ToggleField checked={toggleAncOff} label={t("settings_anc_modes_off_label")} onChange={async (b) => {
+                        <ToggleField checked={toggleAncOff} label={<Trans i18nKey="settings_anc_modes_off_label" components={{ icon: <ANC_MODE_OFF style={iconModesStyle} /> }} />} onChange={async (b) => {
                             setToggleAncOff(b);
                             await backend.saveSetting("allow_anc_mode_off", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={toggleAncTransparency} label={t("settings_anc_modes_transparency_label")} onChange={async (b) => {
+                        <ToggleField checked={toggleAncTransparency} label={<Trans i18nKey="settings_anc_modes_transparency_label" components={{ icon: <ANC_MODE_TRANSPARENCY style={iconModesStyle} /> }} />} onChange={async (b) => {
                             setToggleAncTransparency(b);
                             await backend.saveSetting("allow_anc_mode_transparency", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={toggleAncAdaptive} label={t("settings_anc_modes_adaptive_label")} onChange={async (b) => {
+                        <ToggleField checked={toggleAncAdaptive} label={<Trans i18nKey="settings_anc_modes_adaptive_label" components={{ icon: <ANC_MODE_ADAPTIVE style={iconModesStyle} /> }} />} onChange={async (b) => {
                             setToggleAncAdaptive(b);
                             await backend.saveSetting("allow_anc_mode_adaptive", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={toggleAncWind} label={t("settings_anc_modes_wind_label")} onChange={async (b) => {
+                        <ToggleField checked={toggleAncWind} label={<Trans i18nKey="settings_anc_modes_wind_label" components={{ icon: <ANC_MODE_WIND style={iconModesStyle} /> }} />} onChange={async (b) => {
                             setToggleAncWind(b);
                             await backend.saveSetting("allow_anc_mode_wind", b);
                         }} />
                     </PanelSectionRow>
                     <PanelSectionRow>
-                        <ToggleField checked={toggleAncOn} label={t("settings_anc_modes_anc_label")} onChange={async (b) => {
+                        <ToggleField checked={toggleAncOn} label={<Trans i18nKey="settings_anc_modes_anc_label" components={{ icon: <ANC_MODE_ANC style={iconModesStyle} /> }} />} onChange={async (b) => {
                             setToggleAncOn(b);
                             await backend.saveSetting("allow_anc_mode_anc", b);
                         }} />
@@ -217,7 +224,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
 
                                 let starttime = Date.now();
                                 sliderTimeoutId = setTimeout(async () => {
-                                    backend.logInfo("Settings: Elapsed", Date.now() - starttime, "Set log level to", nn);                                    
+                                    backend.logInfo("Settings: Elapsed", Date.now() - starttime, "Set log level to", nn);
                                     await backend.saveSetting("log_level", nn);
                                     await call<[], void>("update_log_level");
                                     await backend.updateReactLogLevel();

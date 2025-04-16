@@ -10,11 +10,16 @@ import { t } from 'i18next';
 import { useEffect, useState, FC } from 'react';
 import { Battery } from "../components/battery";
 import { Backend } from "../backend";
+import { ANC_MODE_ADAPTIVE, ANC_MODE_ANC, ANC_MODE_OFF, ANC_MODE_TRANSPARENCY, ANC_MODE_WIND } from "../ButtonIcons";
 
 const FieldWithSeparator = joinClassNames(
   gamepadDialogClasses.Field,
   gamepadDialogClasses.WithBottomSeparatorStandard
 )
+
+const iconModesStyle = {
+  display: "block"  
+}
 
 export interface BatteryDataProps {
   battery: number,
@@ -51,8 +56,6 @@ export interface headphoneInfoProps {
 
 let sliderTimeoutId: NodeJS.Timeout;
 
-
-
 export const AncModes = {
   OFF: 1,
   TRANSPARENCY: 2,
@@ -82,35 +85,35 @@ const getAncSliderConfig = async (backend: Backend, options: number, selected: n
   //The order is important OFF->TRA->ADAP->WIND->ANC
   if (isOff && (options & AncModes.OFF) != 0) {
     _count += 1;
-    _labels.push({ label: t("capabilities_noisecancellation_notchlabel_off"), notchIndex: _count - 1, value: _count },);
+    _labels.push({ label: <ANC_MODE_OFF style={iconModesStyle} />, notchIndex: _count - 1, value: _count },);
     _convertBack[_count] = AncModes.OFF;
     if ((selected & AncModes.OFF) != 0) _selectedIndex = _count;
   }
 
   if (isTransparency && (options & AncModes.TRANSPARENCY) != 0) {
     _count += 1;
-    _labels.push({ label: t("capabilities_noisecancellation_notchlabel_transparency"), notchIndex: _count - 1, value: _count },);
+    _labels.push({ label: <ANC_MODE_TRANSPARENCY style={iconModesStyle} />, notchIndex: _count - 1, value: _count },);
     _convertBack[_count] = AncModes.TRANSPARENCY;
     if ((selected & AncModes.TRANSPARENCY) != 0) _selectedIndex = _count;
   }
 
   if (isAdaptive && (options & AncModes.ADAPTIVE) != 0) {
     _count += 1;
-    _labels.push({ label: t("capabilities_noisecancellation_notchlabel_adaptive"), notchIndex: _count - 1, value: _count },);
+    _labels.push({ label: <ANC_MODE_ADAPTIVE style={iconModesStyle} />, notchIndex: _count - 1, value: _count },);
     _convertBack[_count] = AncModes.ADAPTIVE;
     if ((selected & AncModes.ADAPTIVE) != 0) _selectedIndex = _count;
   }
 
   if (isWind && (options & AncModes.WIND) != 0) {
     _count += 1;
-    _labels.push({ label: t("capabilities_noisecancellation_notchlabel_wind"), notchIndex: _count - 1, value: _count },);
+    _labels.push({ label: <ANC_MODE_WIND style={iconModesStyle} />, notchIndex: _count - 1, value: _count },);
     _convertBack[_count] = AncModes.WIND;
     if ((selected & AncModes.WIND) != 0) _selectedIndex = _count;
   }
 
   if (isAnc && (options & AncModes.ANC) != 0) {
     _count += 1;
-    _labels.push({ label: t("capabilities_noisecancellation_notchlabel_anc"), notchIndex: _count - 1, value: _count },);
+    _labels.push({ label: <ANC_MODE_ANC style={iconModesStyle} />, notchIndex: _count - 1, value: _count },);
     _convertBack[_count] = AncModes.ANC;
     if ((selected & AncModes.ANC) != 0) _selectedIndex = _count;
   }
@@ -176,7 +179,8 @@ export const TabInfo: FC<{
                   step={1}
                   label={t("capabilities_noisecancellation_label")}
                   notchCount={config.notchCount}
-                  notchTicksVisible={true}
+                  notchTicksVisible={false}
+                  // @ts-ignore
                   notchLabels={config.labels}
                   onChange={(n) => {
                     const v = config.convert[n] ?? 0;
