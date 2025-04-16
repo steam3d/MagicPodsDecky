@@ -23,10 +23,20 @@
         "bluetooth": "Блютуз",
         "headphones": "Навушники",
         "notif_error_websocket_connection_issue": "Помилка! Відкрийте плагін для детальної інформації",
-        "settings_anc_modes_transparency_label": "Проникність",
-        "settings_anc_modes_adaptive_label": "Адаптивна",
-        "settings_anc_modes_wind_label": "Подавлення шуму вітру",
-        "settings_anc_modes_anc_label": "Шумозаглушення",
-        "settings_anc_modes_off_label": "Вимкнено"
+        "settings_anc_modes_transparency_label": "<icon/>Проникність",
+        "settings_anc_modes_adaptive_label": "<icon/>Адаптивна",
+        "settings_anc_modes_wind_label": "<icon/>Подавлення шуму вітру",
+        "settings_anc_modes_anc_label": "<icon/>Шумозаглушення",
+        "settings_anc_modes_off_label": "<icon/>Вимкнено",
+        "settings_header": "Налаштування",
+        "settings_misc_header": "Корисні посилання",
+        "settings_anc_modes_header": "Режими відображення",
+        "settings_social_button_description": "Показати QR-код",
+        "settings_debug_level_label": "Рівень журналювання",
+        "settings_debug_log_button": "Журнали подій",
+        "settings_social_button_donate": "Пожертвувати",
+        "settings_debug_header": "Зневадження",
+        "settings_social_button_start": "Початок роботи",
+        "settings_social_button_translate": "Допомогти з перекладом"
     }
 }
