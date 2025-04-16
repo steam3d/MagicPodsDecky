@@ -2,7 +2,7 @@
     "translation": {
         "battery_left": "Левый",
         "battery_right": "Правый",
-        "battery_case": "Кейс",
+        "battery_case": "Футляр",
         "battery_single": "Заряд",
         "capabilities_noise_control_label": "Шумоподавление",
         "websocket_connection_issue": "Что-то пошло не так, попробуйте перезагрузить",
@@ -36,6 +36,6 @@
         "settings_social_button_start": "Начало работы",
         "settings_header": "Настройки",
         "settings_misc_header": "Полезные ссылки",
-        "settings_social_button_translate": "Помощь с переводом"
+        "settings_social_button_translate": "Перевести"
     }
 }
