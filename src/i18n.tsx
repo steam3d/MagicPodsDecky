@@ -10,6 +10,9 @@ import deDE from "./locales/de-DE.json";
 import esES from "./locales/es-ES.json";
 import ptBr from "./locales/pt-BR.json";
 import elGr from "./locales/el-GR.json";
+import koKR from "./locales/ko-KR.json";
+import siLK from "./locales/si-LK.json";
+import ukUA from "./locales/uk-UA.json";
 
 function initI18n(){
   i18n
@@ -29,6 +32,9 @@ function initI18n(){
       "es-ES": esES,
       "pt-BR": ptBr,
       "el-GR": elGr,
+      "ko-KR": koKR,
+      "si-LK": siLK,
+      "uk-UA": ukUA
     },
     //debug: true,
     lng: navigator.language,
