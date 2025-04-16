@@ -22,10 +22,20 @@
         "notif_low_battery": "배터리가 {{battery}}% 남았습니다. 헤드폰을 충전해주세요.",
         "websocket_connection_issue": "무엇인가가 잘못되었습니다, 다시 시도해주세요",
         "headphones_disconnected": "헤드폰을 연결하여 배터리 잔량을 표시하고 설정을 조정하세요",
-        "settings_anc_modes_adaptive_label": "적응형 오디오",
-        "settings_anc_modes_off_label": "끔",
-        "settings_anc_modes_wind_label": "바람 차단",
-        "settings_anc_modes_transparency_label": "주변음 허용",
-        "settings_anc_modes_anc_label": "노이즈 캔슬링"
+        "settings_anc_modes_adaptive_label": "<icon/>적응형 오디오",
+        "settings_anc_modes_off_label": "<icon/>끔",
+        "settings_anc_modes_wind_label": "<icon/>바람 차단",
+        "settings_anc_modes_transparency_label": "<icon/>주변음 허용",
+        "settings_anc_modes_anc_label": "<icon/>노이즈 캔슬링",
+        "settings_misc_header": "유용한 링크",
+        "settings_header": "설정",
+        "settings_social_button_description": "QR 코드 표시",
+        "settings_debug_header": "디버깅",
+        "settings_debug_level_label": "로그 수준",
+        "settings_social_button_donate": "기부하기",
+        "settings_anc_modes_header": "표시된 모드",
+        "settings_social_button_start": "시작하기",
+        "settings_social_button_translate": "번역을 도와주세요",
+        "settings_debug_log_button": "이벤트 로그"
     }
 }
