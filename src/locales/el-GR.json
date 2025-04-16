@@ -22,10 +22,20 @@
         "bluetooth": "Bluetooth",
         "notif_error_websocket_connection_issue": "Σφάλμα! Ανοίξτε την προσθήκη για περισσότερες πληροφορίες",
         "settings_hotkey_mic_description": "Πατήστε <key1/> + <key2/> για να κάνετε σίγαση/ τέλος σίγασης μικροφώνου",
-        "settings_anc_modes_off_label": "Ανενεργό",
-        "settings_anc_modes_adaptive_label": "Προσαρμοστικό",
-        "settings_anc_modes_transparency_label": "Διαφάνεια",
-        "settings_anc_modes_wind_label": "Ακύρωση θορύβου ανέμου",
-        "settings_anc_modes_anc_label": "Ακύρωση Θορύβου"
+        "settings_anc_modes_off_label": "<icon/>Ανενεργό",
+        "settings_anc_modes_adaptive_label": "<icon/>Προσαρμοστικό",
+        "settings_anc_modes_transparency_label": "<icon/>Διαφάνεια",
+        "settings_anc_modes_wind_label": "<icon/>Ακύρωση θορύβου ανέμου",
+        "settings_anc_modes_anc_label": "<icon/>Ακύρωση Θορύβου",
+        "settings_header": "Ρυθμίσεις",
+        "settings_misc_header": "Χρήσιμοι σύνδεσμοι",
+        "settings_social_button_description": "Εμφάνιση κωδικού QR",
+        "settings_social_button_start": "Ξεκινώντας",
+        "settings_anc_modes_header": "Εμφανιζόμενες λειτουργίες",
+        "settings_social_button_translate": "Βοηθήστε στη μετάφραση",
+        "settings_social_button_donate": "Κάντε δωρεά",
+        "settings_debug_header": "Εντοπισμός σφαλμάτων",
+        "settings_debug_log_button": "Συμβάντα",
+        "settings_debug_level_label": "Επίπεδο καταγραφής"
     }
 }
