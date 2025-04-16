@@ -22,10 +22,20 @@
         "headphones": "Наушники",
         "notif_error_websocket_connection_issue": "Ошибка! Откройте плагин для подробностей",
         "notif_low_battery": "Осталось {{battery}}%. Зарядите ваши наушники.",
-        "settings_anc_modes_transparency_label": "Прозрачность",
-        "settings_anc_modes_adaptive_label": "Адаптивно",
-        "settings_anc_modes_wind_label": "Подавление шума ветра",
-        "settings_anc_modes_anc_label": "Шумоподавление",
-        "settings_anc_modes_off_label": "Выключено"
+        "settings_anc_modes_transparency_label": "<icon/>Прозрачность",
+        "settings_anc_modes_adaptive_label": "<icon/>Адаптивно",
+        "settings_anc_modes_wind_label": "<icon/>Подавление шума ветра",
+        "settings_anc_modes_anc_label": "<icon/>Шумоподавление",
+        "settings_anc_modes_off_label": "<icon/>Выключено",
+        "settings_debug_header": "Отладка",
+        "settings_debug_level_label": "Уровень журналирования",
+        "settings_debug_log_button": "Журнал событий",
+        "settings_social_button_donate": "Пожертвовать",
+        "settings_anc_modes_header": "Отображаемые режимы",
+        "settings_social_button_description": "Показать QR-код",
+        "settings_social_button_start": "Начало работы",
+        "settings_header": "Настройки",
+        "settings_misc_header": "Полезные ссылки",
+        "settings_social_button_translate": "Помощь с переводом"
     }
 }
