@@ -20,7 +20,7 @@
         "settings_hotkey_mic_description": "Presione <key1/> + <key2/> para silenciar/activar el micrófono",
         "notif_low_battery": "{{battery}}% restante. Cargue sus auriculares.",
         "notif_error_websocket_connection_issue": "¡Error! Abra el complemento para obtener más información",
-        "capabilities_noise_control_label": "Anulación del ruido",
+        "capabilities_noise_control_label": "Control de ruido",
         "settings_low_battery_label_notchlabel_off": "Apagado",
         "settings_anc_modes_adaptive_label": "<icon/>Adaptativo",
         "settings_anc_modes_wind_label": "<icon/>Cancelación de viento",
