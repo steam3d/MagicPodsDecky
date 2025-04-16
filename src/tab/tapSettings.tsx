@@ -103,7 +103,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={toggleSwitchAncHotkey} label={t("settings_hotkey_anc_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle} />, Key2: <L5 style={buttonStyle} /> }} />} onChange={async (b) => {
+                        <ToggleField checked={toggleSwitchAncHotkey} label={t("settings_hotkey_anc_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ key1: <QUICK_ACCESS_MENU style={buttonStyle} />, key2: <L5 style={buttonStyle} /> }} />} onChange={async (b) => {
                             setToggleSwitchAncHotkey(b);
                             await backend.saveSetting("anc_l5_r5_switch", b);
                             backend.bgAncSwitch.updateSetting();
@@ -111,7 +111,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={toggleMicHotkey} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ Key1: <QUICK_ACCESS_MENU style={buttonStyle} />, Key2: <L4 style={buttonStyle} /> }} />} onChange={async (b) => {
+                        <ToggleField checked={toggleMicHotkey} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ key1: <QUICK_ACCESS_MENU style={buttonStyle} />, key2: <L4 style={buttonStyle} /> }} />} onChange={async (b) => {
                             setToggleMicHotkey(b);
                             await backend.saveSetting("mic_qam_l5_toggle", b);
                         }} />

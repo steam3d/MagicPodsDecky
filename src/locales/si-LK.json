@@ -23,7 +23,7 @@
         "capabilities_noisecancellation_label": "ශබ්දය අවලංගු කිරීම",
         "settings_low_battery_label_notchlabel_off": "අක්රියයි",
         "settings_hotkey_anc_description": "ශබ්ද අවලංගු කිරීමේ මාතයන් අතර මාරුවීමට <Key1/> +<Key2/> ඔබන්න",
-        "settings_hotkey_mic_description": "නිශ්ශබ්ද / නිශ්ශබ්ද මයික්රොෆෝනය සඳහා <Key1/> + <Key2/> ඔබන්න",
+        "settings_hotkey_mic_description": "නිශ්ශබ්ද / නිශ්ශබ්ද මයික්රොෆෝනය සඳහා <key1/> + <key2/> ඔබන්න",
         "notif_error_websocket_connection_issue": "දෝෂය! වැඩි විස්තර සඳහා ප්ලගිනය විවෘත කරන්න",
         "settings_anc_modes_off_label": "අක්රියයි"
     }
