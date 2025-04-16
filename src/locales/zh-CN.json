@@ -28,7 +28,7 @@
         "settings_anc_modes_wind_label": "<icon/>风力消除",
         "settings_anc_modes_anc_label": "<icon/>噪音消除",
         "settings_misc_header": "实用链接",
-        "settings_social_button_translate": "帮助翻译",
+        "settings_social_button_translate": "翻译",
         "settings_debug_level_label": "日志级别",
         "settings_debug_log_button": "事件日志",
         "settings_debug_header": "调试",
