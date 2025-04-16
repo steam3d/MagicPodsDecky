@@ -22,10 +22,20 @@
         "settings_hotkey_mic_description": "Drücke <key1/> + <key2/>, um die Stummschaltung zu (de-)aktivieren",
         "settings_hotkey_anc_label": "Tastenkombination für Modus Wechsel",
         "settings_fix_disconnects_description": "Löst das Problem der konstanten Verbindung/Trennung der Kopfhörer",
-        "settings_anc_modes_off_label": "Aus",
-        "settings_anc_modes_transparency_label": "Transparenzmodus",
-        "settings_anc_modes_adaptive_label": "Adaptiv",
-        "settings_anc_modes_anc_label": "Geräuschunterdrückung",
-        "settings_anc_modes_wind_label": "Windgeräuschunterdrückung"
+        "settings_anc_modes_off_label": "<icon/>Aus",
+        "settings_anc_modes_transparency_label": "<icon/>Transparenzmodus",
+        "settings_anc_modes_adaptive_label": "<icon/>Adaptiv",
+        "settings_anc_modes_anc_label": "<icon/>Geräuschunterdrückung",
+        "settings_anc_modes_wind_label": "<icon/>Windgeräuschunterdrückung",
+        "settings_anc_modes_header": "Anzeigemodi",
+        "settings_social_button_description": "QR-Code anzeigen",
+        "settings_debug_header": "Fehlersuche",
+        "settings_social_button_donate": "Spenden",
+        "settings_misc_header": "Nützliche Links",
+        "settings_social_button_start": "Erste Schritte",
+        "settings_social_button_translate": "Beim Übersetzen helfen",
+        "settings_debug_level_label": "Protokollebene",
+        "settings_debug_log_button": "Ereignisprotokolle",
+        "settings_header": "Einstellungen"
     }
 }
