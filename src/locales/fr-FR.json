@@ -22,10 +22,20 @@
         "notif_error_websocket_connection_issue": "Erreur ! Ouvrez le plugin pour plus d'informations",
         "settings_hotkey_mic_label": "Touche de raccourci pour couper le microphone",
         "settings_hotkey_mic_description": "Appuyez sur <key1/> + <key2/> pour couper ou rétablir le microphone",
-        "settings_anc_modes_transparency_label": "Transparence",
-        "settings_anc_modes_adaptive_label": "Adaptatif",
-        "settings_anc_modes_wind_label": "Annulation du vent",
-        "settings_anc_modes_anc_label": "Annulation du bruit",
-        "settings_anc_modes_off_label": "Désactivé"
+        "settings_anc_modes_transparency_label": "<icon/>Transparence",
+        "settings_anc_modes_adaptive_label": "<icon/>Adaptatif",
+        "settings_anc_modes_wind_label": "<icon/>Annulation du vent",
+        "settings_anc_modes_anc_label": "<icon/>Annulation du bruit",
+        "settings_anc_modes_off_label": "<icon/>Désactivé",
+        "settings_header": "Paramètres",
+        "settings_misc_header": "Liens utiles",
+        "settings_anc_modes_header": "Modes affichés",
+        "settings_social_button_description": "Afficher le code QR",
+        "settings_social_button_start": "Premiers pas",
+        "settings_social_button_translate": "Aider à traduire",
+        "settings_social_button_donate": "Faire un don",
+        "settings_debug_header": "Débogage",
+        "settings_debug_level_label": "Niveau de journalisation",
+        "settings_debug_log_button": "Journaux d'événements"
     }
 }
