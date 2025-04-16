@@ -17,7 +17,7 @@
         "notif_low_battery": "{{battery}}% ඉතිරිව ඇත. ඔබේ හෙඩ්ෆෝන් ආරෝපණය කරන්න.",
         "battery_left": "වම",
         "websocket_connection_issue": "යමක් වැරදී, නැවත පූරණය කිරීමට උත්සාහ කරන්න",
-        "capabilities_noise_control_label": "ශබ්දය අවලංගු කිරීම",
+        "capabilities_noise_control_label": "ශබ්ද පාලනය",
         "settings_low_battery_label_notchlabel_off": "අක්රියයි",
         "settings_hotkey_anc_description": "ශබ්ද අවලංගු කිරීමේ මාතයන් අතර මාරුවීමට <key1/> + <key2/> ඔබන්න",
         "settings_hotkey_mic_description": "මයික්රොෆෝනය නිශ්ශබ්ද / නිශ්ශබ්ද නොවීමට <key1/> + <key2/> ඔබන්න",
