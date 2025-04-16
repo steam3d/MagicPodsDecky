@@ -24,6 +24,11 @@
         "settings_fix_disconnects_label": "Απενεργοποίηση λειτουργία αναμονής ακουστικών",
         "bluetooth": "Bluetooth",
         "notif_error_websocket_connection_issue": "Σφάλμα! Ανοίξτε την προσθήκη για περισσότερες πληροφορίες",
-        "settings_hotkey_mic_description": "Πατήστε <Key1/> + <Key2/> για να κάνετε σίγαση/ τέλος σίγασης μικροφώνου"
+        "settings_hotkey_mic_description": "Πατήστε <Key1/> + <Key2/> για να κάνετε σίγαση/ τέλος σίγασης μικροφώνου",
+        "settings_anc_modes_off_label": "Ανενεργό",
+        "settings_anc_modes_adaptive_label": "Προσαρμοστικό",
+        "settings_anc_modes_transparency_label": "Διαφάνεια",
+        "settings_anc_modes_wind_label": "Ακύρωση θορύβου ανέμου",
+        "settings_anc_modes_anc_label": "Ακύρωση Θορύβου"
     }
 }

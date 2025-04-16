@@ -24,6 +24,11 @@
         "headphones": "Fones de ouvido",
         "notif_error_websocket_connection_issue": "Erro! Abra o plugin para mais informações",
         "notif_low_battery": "{{battery}}% de carga. Recarregue os fones de ouvido.",
-        "settings_low_battery_label": "Notificação de bateria fraca"
+        "settings_low_battery_label": "Notificação de bateria fraca",
+        "settings_anc_modes_transparency_label": "Transparência",
+        "settings_anc_modes_adaptive_label": "Adaptativo",
+        "settings_anc_modes_wind_label": "Cancelamento de vento",
+        "settings_anc_modes_anc_label": "Cancelamento de ruído",
+        "settings_anc_modes_off_label": "Desligado"
     }
 }

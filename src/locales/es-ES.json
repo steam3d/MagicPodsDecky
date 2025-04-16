@@ -24,6 +24,11 @@
         "notif_low_battery": "{{battery}}% restante. Cargue sus auriculares.",
         "notif_error_websocket_connection_issue": "¡Error! Abra el complemento para obtener más información",
         "capabilities_noisecancellation_label": "Anulación del ruido",
-        "settings_low_battery_label_notchlabel_off": "Apagado"
+        "settings_low_battery_label_notchlabel_off": "Apagado",
+        "settings_anc_modes_adaptive_label": "Adaptativo",
+        "settings_anc_modes_wind_label": "Cancelación de viento",
+        "settings_anc_modes_off_label": "Apagado",
+        "settings_anc_modes_transparency_label": "Transparencia",
+        "settings_anc_modes_anc_label": "Anulación del ruido"
     }
 }

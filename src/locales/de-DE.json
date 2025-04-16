@@ -4,7 +4,7 @@
         "settings_fix_disconnects_label": "Deaktiviere Kopfhörer Ruhemodus",
         "headphones": "Kopfhörer",
         "notif_error_websocket_connection_issue": "Fehler! Öffne das Plugin für weitere Infos",
-        "notif_low_battery": "{{battery}}% verbleibend. Lade deine Kopfhörer.",        
+        "notif_low_battery": "{{battery}}% verbleibend. Lade deine Kopfhörer.",
         "battery_left": "Links",
         "capabilities_noisecancellation_label": "Geräuschunterdrückung",
         "bluetooth": "Bluetooth",
@@ -19,11 +19,16 @@
         "settings_low_battery_label_notchlabel_off": "Aus",
         "settings_language_button_label": "Sprache",
         "settings_language_menu_label": "Sprache auswählen",
-        "settings_hotkey_anc_description": "Drücke <Key1/> + <Key2/>, um den Modus der Geräuschunterdrückung zu wechseln",        
+        "settings_hotkey_anc_description": "Drücke <Key1/> + <Key2/>, um den Modus der Geräuschunterdrückung zu wechseln",
         "headphones_disconnected": "Verbinde Kopfhörer um ihren Akkustand anzuzeigen und Einstellungen anzupassen",
         "settings_hotkey_mic_label": "Stummschaltung Tastenkombination",
         "settings_hotkey_mic_description": "Drücke <Key1/> + <Key2/>, um die Stummschaltung zu (de-)aktivieren",
         "settings_hotkey_anc_label": "Tastenkombination für Modus Wechsel",
-        "settings_fix_disconnects_description": "Löst das Problem der konstanten Verbindung/Trennung der Kopfhörer"
+        "settings_fix_disconnects_description": "Löst das Problem der konstanten Verbindung/Trennung der Kopfhörer",
+        "settings_anc_modes_off_label": "Aus",
+        "settings_anc_modes_transparency_label": "Transparenzmodus",
+        "settings_anc_modes_adaptive_label": "Adaptiv",
+        "settings_anc_modes_anc_label": "Geräuschunterdrückung",
+        "settings_anc_modes_wind_label": "Windgeräuschunterdrückung"
     }
 }
