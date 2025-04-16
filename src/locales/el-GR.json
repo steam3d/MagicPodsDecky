@@ -1,15 +1,12 @@
 {
     "translation": {
         "capabilities_noisecancellation_label": "Ακύρωση Θορύβου",
-        "capabilities_noisecancellation_notchlabel_transparency": "Διαφ.",
-        "capabilities_noisecancellation_notchlabel_off": "Ανενεργό",
         "settings_language_menu_canceltext": "Ακύρωση",
         "battery_left": "Αριστερό",
         "settings_hotkey_anc_label": "Πλήκτρο(α) συντόμευσης ακύρωσης θορύβου",
         "battery_right": "Δεξί",
         "battery_case": "Θήκη",
-        "battery_single": "Φόρτιση",
-        "capabilities_noisecancellation_notchlabel_anc": "ΛΑΘ.",
+        "battery_single": "Φόρτιση",        
         "websocket_connection_issue": "Κάτι πήγε στραβά, δοκιμάστε να επαναφορτώσετε",
         "headphones_disconnected": "Συνδέστε τα ακουστικά για να προβάλετε το επίπεδο της μπαταρίας και να προσαρμόσετε τις ρυθμίσεις",
         "settings_low_battery_label": "Ειδοποίηση χαμηλής μπαταρίας",

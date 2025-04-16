@@ -2,7 +2,6 @@
     "translation": {
         "battery_right": "Derecha",
         "battery_single": "Carga",
-        "capabilities_noisecancellation_notchlabel_off": "Apagado",
         "battery_case": "Caja",
         "websocket_connection_issue": "Algo salió mal, intenta volver a intentar",
         "settings_low_battery_label": "Notificación de batería baja",
@@ -15,8 +14,6 @@
         "headphones": "Auriculares",
         "battery_left": "Izquierda",
         "headphones_disconnected": "Conecte auriculares para mostrar el nivel de batería y ajustar la configuración",
-        "capabilities_noisecancellation_notchlabel_transparency": "Tran.",
-        "capabilities_noisecancellation_notchlabel_anc": "ANC",
         "settings_fix_disconnects_label": "Desactivar el modo de espera de los auriculares",
         "bluetooth": "Bluetooth",
         "settings_hotkey_anc_description": "Presione <key1/> + <key2/> para cambiar entre los modos de cancelación de ruido",
