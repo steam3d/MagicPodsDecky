@@ -77,7 +77,8 @@ In the [Discord](https://discord.com/invite/UyY4PY768V) community you can sugges
 
 ## 🩼 Known issues
 
-Hotkeys stop working after opening the controller settings in the Steam menu — the solution is to restart the plugin.
+- Hotkeys stop working after opening the controller settings in the Steam menu — the solution is to restart the plugin.
+- When managing Bluetooth through the plugin, changes are not visible in the Steam interface — the current Bluetooth status is shown only in MagicPods.
 
 ## 💰 Donate
 
