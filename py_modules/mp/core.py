@@ -75,6 +75,7 @@ class CoreBackgroundService(CoreBase):
 
 class CoreService(CoreBase):    
     def __init__(self, x_dir, x_name, on_string_received = None):
+        self.loglevel = 50
         self.task = None
         self.thread = None
         self.onStringReceived = on_string_received
@@ -100,7 +101,7 @@ class CoreService(CoreBase):
     def _start(self):        
         if not self._is_runnig():
             logger.info(self.x_path)
-            self.task = subprocess.Popen([self.x_path], shell=False, stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+            self.task = subprocess.Popen([self.x_path, "-l", str(self.loglevel)], shell=False, stdout=subprocess.PIPE,stderr=subprocess.STDOUT)            
             self.thread = threading.Thread(target=self.reader, args=())
             self.thread.start()
             super()._start()          

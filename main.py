@@ -43,10 +43,12 @@ def bin_logging(msg):
 class Plugin:
 
     async def start_backed(self):
+        self.core.loglevel = int(self.settings.load("log_level"))
         self.core.start()
 
     async def restart_backend(self):
         logger.info("Restarting")
+        self.core.loglevel = int(self.settings.load("log_level"))
         self.core.restart()
 
     async def logger_react(self, lvl, msg):
@@ -88,7 +90,7 @@ class Plugin:
 
     async def debug_start_backed(self):
         self.is_backend_allowed = True # do not forget to add this to debug methods
-        self.core.start()
+        await self.start_backed()
 
     async def debug_stop_backed(self):
         self.is_backend_allowed = False # do not forget to add this to debug methods
@@ -114,7 +116,7 @@ class Plugin:
         self.is_backend_allowed = True # Allow reconnecting socket when user using plugin
         self.player = Player(os.path.join(decky.DECKY_PLUGIN_DIR, "silence.mp3"),bin_logging)
 
-        self.core.start()
+        await self.start_backed()
         logger.info("_main finished")
 
     # Function called first during the unload process, utilize this to handle your plugin being removed

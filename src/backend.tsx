@@ -13,7 +13,7 @@ export const enum BackendSocketState {
 }
 
 export class Backend {
-    static readonly maxAttempts = 10;
+    static readonly maxAttempts = 3;
     private logLevel = 0;
 
     bgAncSwitch: BackgroundAncSwitch;
@@ -32,7 +32,6 @@ export class Backend {
     onOpenHandler = async (event: Event) => {
         this.reconnectAttempts = Backend.maxAttempts
         this.logInfo("Backend: Socket opened (", this.convert(this.socket.readyState), ")", event);
-        await this.updateBinaryLogLevel();
         this.notifySocketConnectionChanged(BackendSocketState.OPEN)
     };
 
