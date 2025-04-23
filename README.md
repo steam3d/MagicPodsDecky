@@ -30,6 +30,7 @@ A magic plugin for the Decky Loader that allows you to control your AirPods and 
 |                  | Beats Studio 3         |                   |
 |                  | Beats X                |                   |
 |                  | Beats Flex             |                   |
+|                  | Beats Solo Buds        |                   |
 
 ## 💾 Installation
 

@@ -30,6 +30,7 @@
 |                  | Beats Studio 3         |                   |
 |                  | Beats X                |                   |
 |                  | Beats Flex             |                   |
+|                  | Beats Solo Buds        |                   |
 
 ## 💾 Установка
 
