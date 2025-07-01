@@ -157,8 +157,9 @@ export const TabInfo: FC<{
       <div style={{ marginLeft: "-8px", marginRight: "-8px" }}>
         {info == null && <div className={staticClasses.Text} style={{ paddingLeft: "16px", paddingRight: "16px" }}>{t("headphones_disconnected")}</div>}
 
-        {info?.capabilities?.battery != null &&
+        {info?.name != null &&
           <PanelSection title={info.name}>
+             {info?.capabilities?.battery != null &&
             <PanelSectionRow>
               <div className={FieldWithSeparator}>
                 <div style={{ display: "flex", padding: "0px 0px 0px 0px" }}>
@@ -169,6 +170,7 @@ export const TabInfo: FC<{
                 </div>
               </div>
             </PanelSectionRow>
+            }
 
             {info?.capabilities?.anc != null && config != null &&
               <PanelSectionRow>
