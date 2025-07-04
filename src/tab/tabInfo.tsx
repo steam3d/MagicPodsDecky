@@ -4,7 +4,8 @@ import {
   gamepadDialogClasses,
   joinClassNames,
   SliderField,
-  staticClasses
+  staticClasses,
+  ToggleField
 } from "@decky/ui";
 import { t } from 'i18next';
 import { useEffect, useState, FC } from 'react';
@@ -41,9 +42,14 @@ interface BatteryProps {
   readonly: boolean,
 }
 
+interface ConversationAwarenessProps{
+  selected: boolean
+}
+
 interface CapabilitiesProps {
   anc?: AncProps;
   battery?: BatteryProps;
+  conversationAwareness?: ConversationAwarenessProps;
 }
 
 export interface headphoneInfoProps {
@@ -55,6 +61,7 @@ export interface headphoneInfoProps {
 }
 
 let sliderTimeoutId: NodeJS.Timeout;
+let sliderConversationAwarenessTimeoutId: NodeJS.Timeout;
 
 export const AncModes = {
   OFF: 1,
@@ -187,11 +194,13 @@ export const TabInfo: FC<{
                   onChange={(n) => {
                     const v = config.convert[n] ?? 0;
                     backend.logDebug("Info: ANC slider changed to UI:", n, "Native:", v);
+                    
                     if (info?.capabilities?.anc != null) {
                       const clonedInfo = { ...info };
                       clonedInfo.capabilities.anc!.selected = v;
                       setInfoValue(clonedInfo);
                     };
+                    
 
                     if (sliderTimeoutId)
                       clearTimeout(sliderTimeoutId);
@@ -201,6 +210,20 @@ export const TabInfo: FC<{
                       backend.logInfo("Info: Elapsed:", Date.now() - starttime, "send set ANC to", v);
                       backend.setAnc(info!.address, v);
                     }, 350)
+                  }} />
+              </PanelSectionRow>
+            }
+
+            {info?.capabilities?.conversationAwareness != null &&
+              <PanelSectionRow>
+                  <ToggleField checked={info?.capabilities?.conversationAwareness.selected} label="Conversation Awareness" onChange={async (b) => {
+                      if (info?.capabilities?.conversationAwareness != null) {
+                        const clonedInfo = { ...info };
+                        clonedInfo.capabilities.conversationAwareness!.selected = b;
+                        setInfoValue(clonedInfo);
+                        backend.logInfo("Send send conversationAwareness to", b);
+                        backend.setCapability("conversationAwareness", info.address, b);
+                    };                                            
                   }} />
               </PanelSectionRow>
             }

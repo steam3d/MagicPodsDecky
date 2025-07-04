@@ -327,6 +327,22 @@ export class Backend {
         this.sendToSocket(JSON.stringify(json))
     }
 
+    setCapability(capability: string, address: string, value: any) {
+        const json =
+        {
+            method: "SetCapabilities",
+            arguments: {
+              address: address,
+              capabilities: {
+                [capability]: {
+                  selected: value
+                }
+              }
+            }
+          }
+        this.sendToSocket(JSON.stringify(json))
+    }
+
     SetLogLevel(value: number){
         const json =
         {
