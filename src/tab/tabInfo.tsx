@@ -46,10 +46,25 @@ interface ConversationAwarenessProps{
   selected: boolean
 }
 
+interface PersonalizedVolumeProps{
+  selected: boolean
+}
+
+interface VolumeSwipeProps{
+  selected: boolean
+}
+
+interface EndCallProps{
+  selected: number
+}
+
 interface CapabilitiesProps {
   anc?: AncProps;
   battery?: BatteryProps;
   conversationAwareness?: ConversationAwarenessProps;
+  personalizedVolume?: PersonalizedVolumeProps;
+  volumeSwipe?: VolumeSwipeProps;
+  endCall?: EndCallProps;
 }
 
 export interface headphoneInfoProps {
@@ -61,7 +76,8 @@ export interface headphoneInfoProps {
 }
 
 let sliderTimeoutId: NodeJS.Timeout;
-let sliderConversationAwarenessTimeoutId: NodeJS.Timeout;
+
+let endCallTimeoutId: NodeJS.Timeout;
 
 export const AncModes = {
   OFF: 1,
@@ -216,7 +232,7 @@ export const TabInfo: FC<{
 
             {info?.capabilities?.conversationAwareness != null &&
               <PanelSectionRow>
-                  <ToggleField checked={info?.capabilities?.conversationAwareness.selected} label="Conversation Awareness" onChange={async (b) => {
+                  <ToggleField checked={info?.capabilities?.conversationAwareness.selected} label="conversationAwareness" onChange={async (b) => {
                       if (info?.capabilities?.conversationAwareness != null) {
                         const clonedInfo = { ...info };
                         clonedInfo.capabilities.conversationAwareness!.selected = b;
@@ -227,7 +243,107 @@ export const TabInfo: FC<{
                   }} />
               </PanelSectionRow>
             }
-          </PanelSection>
+
+            {info?.capabilities?.personalizedVolume != null &&
+              <PanelSectionRow>
+                  <ToggleField checked={info?.capabilities?.personalizedVolume.selected} label="personalizedVolume" onChange={async (b) => {
+                      if (info?.capabilities?.personalizedVolume != null) {
+                        const clonedInfo = { ...info };
+                        clonedInfo.capabilities.personalizedVolume!.selected = b;
+                        setInfoValue(clonedInfo);
+                        backend.logInfo("Send send personalizedVolume to", b);
+                        backend.setCapability("personalizedVolume", info.address, b);
+                    };                                            
+                  }} />
+              </PanelSectionRow>
+            }
+
+            {info?.capabilities?.volumeSwipe != null &&
+              <PanelSectionRow>
+                  <ToggleField checked={info?.capabilities?.volumeSwipe.selected} label="volumeSwipe" onChange={async (b) => {
+                      if (info?.capabilities?.volumeSwipe != null) {
+                        const clonedInfo = { ...info };
+                        clonedInfo.capabilities.volumeSwipe!.selected = b;
+                        setInfoValue(clonedInfo);
+                        backend.logInfo("Send send volumeSwipe to", b);
+                        backend.setCapability("volumeSwipe", info.address, b);
+                    };                                            
+                  }} />
+              </PanelSectionRow>
+            }
+
+          {info?.capabilities?.endCall != null &&
+              <PanelSectionRow>
+                <SliderField
+                  value={info?.capabilities?.endCall.selected}
+                  max={3}
+                  min={2}
+                  step={1}
+                  label="endCall"
+                  notchCount={2}
+                  notchTicksVisible={false}                  
+                  notchLabels={[
+                      { label: "DoublePress", notchIndex: 0, value: 2 },
+                      { label: "SinglePress", notchIndex: 1, value: 3 }
+                  ]}
+                  onChange={(n) => {                                                            
+                    if (info?.capabilities?.endCall != null) {
+                      const clonedInfo = { ...info };
+                      clonedInfo.capabilities.endCall!.selected = n;
+                      setInfoValue(clonedInfo);
+                    };
+                    
+
+                    if (endCallTimeoutId)
+                      clearTimeout(endCallTimeoutId);
+
+                    let starttime = Date.now();
+                    endCallTimeoutId = setTimeout(() => {
+                      if(info?.address){
+                        backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set endCall to", n);
+                        backend.setCapability("endCall", info!.address, n);                      
+                      }
+                    }, 350)
+                    
+                  }} />
+              </PanelSectionRow>
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </PanelSection>          
         }
       </div>
     </>
