@@ -54,7 +54,31 @@ interface VolumeSwipeProps{
   selected: boolean
 }
 
+interface AncOneAirPodProps{
+  selected: boolean
+}
+
 interface EndCallProps{
+  selected: number
+}
+
+interface PressAndHoldDurationProps{
+  selected: number
+}
+
+interface PressSpeedProps{
+  selected: number
+}
+
+interface ToneVolumeProps{
+  selected: number
+}
+
+interface VolumeSwipeLengthProps{
+  selected: number
+}
+
+interface AdaptiveAudioNoiseProps{
   selected: number
 }
 
@@ -63,8 +87,14 @@ interface CapabilitiesProps {
   battery?: BatteryProps;
   conversationAwareness?: ConversationAwarenessProps;
   personalizedVolume?: PersonalizedVolumeProps;
+  ancOneAirPod?: AncOneAirPodProps;
   volumeSwipe?: VolumeSwipeProps;
   endCall?: EndCallProps;
+  pressAndHoldDuration?: PressAndHoldDurationProps;
+  pressSpeed?: PressSpeedProps;
+  toneVolume?: ToneVolumeProps;
+  volumeSwipeLength?: VolumeSwipeLengthProps;
+  adaptiveAudioNoise?: AdaptiveAudioNoiseProps;
 }
 
 export interface headphoneInfoProps {
@@ -78,6 +108,11 @@ export interface headphoneInfoProps {
 let sliderTimeoutId: NodeJS.Timeout;
 
 let endCallTimeoutId: NodeJS.Timeout;
+let pressAndHoldDurationTimeoutId: NodeJS.Timeout;
+let pressSpeedTimeoutId: NodeJS.Timeout;
+let toneVolumeTimeoutId: NodeJS.Timeout;
+let volumeSwipeLengthTimeoutId: NodeJS.Timeout;
+let adaptiveAudioNoiseTimeoutId: NodeJS.Timeout;
 
 export const AncModes = {
   OFF: 1,
@@ -272,6 +307,20 @@ export const TabInfo: FC<{
               </PanelSectionRow>
             }
 
+            {info?.capabilities?.ancOneAirPod != null &&
+              <PanelSectionRow>
+                  <ToggleField checked={info?.capabilities?.ancOneAirPod.selected} label="ancOneAirPod" onChange={async (b) => {
+                      if (info?.capabilities?.ancOneAirPod != null) {
+                        const clonedInfo = { ...info };
+                        clonedInfo.capabilities.ancOneAirPod!.selected = b;
+                        setInfoValue(clonedInfo);
+                        backend.logInfo("Send send ancOneAirPod to", b);
+                        backend.setCapability("ancOneAirPod", info.address, b);
+                    };                                            
+                  }} />
+              </PanelSectionRow>
+            }
+
           {info?.capabilities?.endCall != null &&
               <PanelSectionRow>
                 <SliderField
@@ -302,6 +351,199 @@ export const TabInfo: FC<{
                       if(info?.address){
                         backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set endCall to", n);
                         backend.setCapability("endCall", info!.address, n);                      
+                      }
+                    }, 350)
+                    
+                  }} />
+              </PanelSectionRow>
+            }
+
+
+          {info?.capabilities?.pressAndHoldDuration != null &&
+              <PanelSectionRow>
+                <SliderField
+                  value={info?.capabilities?.pressAndHoldDuration.selected}
+                  max={2}
+                  min={0}
+                  step={1}
+                  label="pressAndHoldDuration"
+                  notchCount={3}
+                  notchTicksVisible={false}                  
+                  notchLabels={[
+                      { label: "Default", notchIndex: 0, value: 0 },
+                      { label: "Shorter", notchIndex: 1, value: 1 },
+                      { label: "Shortest", notchIndex: 2, value: 2 }
+                  ]}
+                  onChange={(n) => {                                                            
+                    if (info?.capabilities?.pressAndHoldDuration != null) {
+                      const clonedInfo = { ...info };
+                      clonedInfo.capabilities.pressAndHoldDuration!.selected = n;
+                      setInfoValue(clonedInfo);
+                    };
+                    
+
+                    if (pressAndHoldDurationTimeoutId)
+                      clearTimeout(pressAndHoldDurationTimeoutId);
+
+                    let starttime = Date.now();
+                    pressAndHoldDurationTimeoutId = setTimeout(() => {
+                      if(info?.address){
+                        backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set pressAndHoldDuration to", n);
+                        backend.setCapability("pressAndHoldDuration", info!.address, n);                      
+                      }
+                    }, 350)
+                    
+                  }} />
+              </PanelSectionRow>
+            }
+
+
+          {info?.capabilities?.pressSpeed != null &&
+              <PanelSectionRow>
+                <SliderField
+                  value={info?.capabilities?.pressSpeed.selected}
+                  max={2}
+                  min={0}
+                  step={1}
+                  label="pressSpeed"
+                  notchCount={3}
+                  notchTicksVisible={false}                  
+                  notchLabels={[
+                      { label: "Default", notchIndex: 0, value: 0 },
+                      { label: "Slower", notchIndex: 1, value: 1 },
+                      { label: "Slowest", notchIndex: 2, value: 2 }
+                  ]}
+                  onChange={(n) => {                                                            
+                    if (info?.capabilities?.pressSpeed != null) {
+                      const clonedInfo = { ...info };
+                      clonedInfo.capabilities.pressSpeed!.selected = n;
+                      setInfoValue(clonedInfo);
+                    };
+                    
+
+                    if (pressSpeedTimeoutId)
+                      clearTimeout(pressSpeedTimeoutId);
+
+                    let starttime = Date.now();
+                    pressSpeedTimeoutId = setTimeout(() => {
+                      if(info?.address){
+                        backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set pressSpeed to", n);
+                        backend.setCapability("pressSpeed", info!.address, n);                      
+                      }
+                    }, 350)
+                    
+                  }} />
+              </PanelSectionRow>
+            }
+
+          {info?.capabilities?.toneVolume != null &&
+              <PanelSectionRow>
+                <SliderField
+                  value={info?.capabilities?.toneVolume.selected}
+                  max={125}
+                  min={15}
+                  step={1}
+                  label="toneVolume"
+                  notchCount={2}
+                  notchTicksVisible={false}
+                  showValue={true}
+                  valueSuffix="%"                  
+                  notchLabels={[
+                      { label: "0", notchIndex: 0, value: 15 },                      
+                      { label: "125", notchIndex: 1, value: 100 }
+                  ]}
+                  onChange={(n) => {                                                            
+                    if (info?.capabilities?.toneVolume != null) {
+                      const clonedInfo = { ...info };
+                      clonedInfo.capabilities.toneVolume!.selected = n;
+                      setInfoValue(clonedInfo);
+                    };
+                    
+
+                    if (toneVolumeTimeoutId)
+                      clearTimeout(toneVolumeTimeoutId);
+
+                    let starttime = Date.now();
+                    toneVolumeTimeoutId = setTimeout(() => {
+                      if(info?.address){
+                        backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set toneVolume to", n);
+                        backend.setCapability("toneVolume", info!.address, n);                      
+                      }
+                    }, 350)
+                    
+                  }} />
+              </PanelSectionRow>
+            }
+
+            {info?.capabilities?.volumeSwipeLength != null &&
+              <PanelSectionRow>
+                <SliderField
+                  value={info?.capabilities?.volumeSwipeLength.selected}
+                  max={2}
+                  min={0}
+                  step={1}
+                  label="volumeSwipeLength"
+                  notchCount={3}
+                  notchTicksVisible={false}                  
+                  notchLabels={[
+                      { label: "Default", notchIndex: 0, value: 0 },
+                      { label: "Longer", notchIndex: 1, value: 1 },
+                      { label: "Longest", notchIndex: 2, value: 2 }
+                  ]}
+                  onChange={(n) => {                                                            
+                    if (info?.capabilities?.volumeSwipeLength != null) {
+                      const clonedInfo = { ...info };
+                      clonedInfo.capabilities.volumeSwipeLength!.selected = n;
+                      setInfoValue(clonedInfo);
+                    };
+                    
+
+                    if (volumeSwipeLengthTimeoutId)
+                      clearTimeout(volumeSwipeLengthTimeoutId);
+
+                    let starttime = Date.now();
+                    volumeSwipeLengthTimeoutId = setTimeout(() => {
+                      if(info?.address){
+                        backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set volumeSwipeLength to", n);
+                        backend.setCapability("volumeSwipeLength", info!.address, n);                      
+                      }
+                    }, 350)
+                    
+                  }} />
+              </PanelSectionRow>
+            }
+
+            {info?.capabilities?.adaptiveAudioNoise != null &&
+              <PanelSectionRow>
+                <SliderField
+                  value={info?.capabilities?.adaptiveAudioNoise.selected}
+                  max={100}
+                  min={0}
+                  step={50}
+                  label="adaptiveAudioNoise"
+                  notchCount={3}
+                  notchTicksVisible={false}                  
+                  notchLabels={[
+                      { label: "More noise", notchIndex: 0, value: 0 },
+                      { label: "Default", notchIndex: 1, value: 50 },
+                      { label: "Less noise", notchIndex: 2, value: 100 }
+                  ]}
+                  onChange={(n) => {                                                            
+                    if (info?.capabilities?.adaptiveAudioNoise != null) {
+                      const clonedInfo = { ...info };
+                      clonedInfo.capabilities.adaptiveAudioNoise!.selected = n;
+                      setInfoValue(clonedInfo);
+                    };
+                    
+
+                    if (adaptiveAudioNoiseTimeoutId)
+                      clearTimeout(adaptiveAudioNoiseTimeoutId);
+
+                    let starttime = Date.now();
+                    adaptiveAudioNoiseTimeoutId = setTimeout(() => {
+                      if(info?.address){
+                        backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set adaptiveAudioNoise to", n);
+                        backend.setCapability("adaptiveAudioNoise", info!.address, n);                      
                       }
                     }, 350)
                     
