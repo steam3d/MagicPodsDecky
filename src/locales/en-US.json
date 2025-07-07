@@ -36,6 +36,40 @@
         "bluetooth": "Bluetooth",
         "headphones": "Headphones",
         "notif_error_websocket_connection_issue": "Error! Open the plugin for more info",
-        "notif_low_battery": "{{battery}}% remaining. Charge your headphones."
+        "notif_low_battery": "{{battery}}% remaining. Charge your headphones.",
+
+        "capabilities_header": "A Little Magic",
+        "capabilities_aap_conversation_awareness_label": "Conversation awareness",
+        "capabilities_aap_conversation_awareness_volume_label": "Volume",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "off",
+        "capabilities_aap_personalized_volume_label": "Personalized volume",
+        "capabilities_aap_adaptive_audio_noise_label": "Adaptive mode",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_more": "More noise",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "Default",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Less noise",
+        "capabilities_aap_anc_one_airpod_label": "ANC with one AirPod",
+        "capabilities_aap_press_and_hold_duration_label": "Press and hold duration",
+        "capabilities_aap_press_and_hold_duration_notchlabel_default": "Default",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Shorter",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "Shortest",
+
+        "capabilities_aap_press_speed_label": "Press speed",
+        "capabilities_aap_press_speed_notchlabel_default": "Default",
+        "capabilities_aap_press_speed_notchlabel_slower": "Slower",
+        "capabilities_aap_press_speed_notchlabel_slowest": "Slowest",
+
+        "capabilities_aap_tone_volume_label": "Tone volume",
+
+        "capabilities_aap_volume_swipe_label": "Volume swipe",
+        "capabilities_aap_volume_swipe_length_label": "Volume swipe length",
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "Default",
+        "capabilities_aap_volume_swipe_length_notchlabel_longer": "Longer",
+        "capabilities_aap_volume_swipe_length_notchlabel_longest": "Longest",
+
+
+        "capabilities_aap_end_call_label": "End call",
+        "capabilities_aap_end_call_notchlabel_single": "Press once",
+        "capabilities_aap_end_call_notchlabel_double": "Press twice",
+        "capabilities_aap_mute_unmute_label": "Mute and unmute"        
     }
 }
