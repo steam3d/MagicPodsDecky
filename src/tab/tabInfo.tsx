@@ -12,7 +12,7 @@ import {
   ModalRoot
 } from "@decky/ui";
 import { t } from 'i18next';
-import { useEffect, useState, FC } from 'react';
+import { useEffect, useState, FC, useRef } from 'react';
 import { Battery } from "../components/battery";
 import { Backend } from "../backend";
 import { ANC_MODE_ADAPTIVE, ANC_MODE_ANC, ANC_MODE_OFF, ANC_MODE_TRANSPARENCY, ANC_MODE_WIND } from "../ButtonIcons";
@@ -84,15 +84,6 @@ export interface headphoneInfoProps {
 
   capabilities: CapabilitiesProps;
 }
-
-let sliderTimeoutId: NodeJS.Timeout;
-
-let endCallTimeoutId: NodeJS.Timeout;
-let pressAndHoldDurationTimeoutId: NodeJS.Timeout;
-let pressSpeedTimeoutId: NodeJS.Timeout;
-let toneVolumeTimeoutId: NodeJS.Timeout;
-let volumeSwipeLengthTimeoutId: NodeJS.Timeout;
-let adaptiveAudioNoiseTimeoutId: NodeJS.Timeout;
 
 export const AncModes = {
   OFF: 1,
@@ -177,14 +168,63 @@ const showQrModal = () => {
     );
 };
 
+
 export const TabInfo: FC<{
   info?: headphoneInfoProps,
   setInfoValue: (value: headphoneInfoProps) => void,
   backend: Backend,
 }> = ({ info, setInfoValue, backend }) => {
 
-  const [config, setConfig] = useState<Awaited<ReturnType<typeof getAncSliderConfig>> | null>(null);  
+  const [config, setConfig] = useState<Awaited<ReturnType<typeof getAncSliderConfig>> | null>(null);
   const [loaded, setLoaded] = useState(false);
+
+
+  const timeoutIds = useRef<Record<string, NodeJS.Timeout>>({});
+  type CapabilityKey = keyof CapabilitiesProps;
+
+  const commonUpdateInfo = (key: CapabilityKey, value: any) => {
+    const capability = info?.capabilities?.[key];
+    if (capability && 'selected' in capability) {
+      const clonedInfo = { ...info };
+      clonedInfo.capabilities = {
+        ...clonedInfo.capabilities,
+        [key]: {
+          ...capability,
+          selected: value,
+        },
+      };
+      setInfoValue(clonedInfo);
+    }
+  }
+
+  const handleBooleanCapabilityChange = (key: CapabilityKey, value: boolean) => {
+      commonUpdateInfo(key, value);    
+      const address = info?.address;
+      if (address){
+        backend.logInfo(`Send set ${key} to`, value);   
+        backend.setCapability(key, address, value);     
+      }
+  }
+
+  const handleNumberCapabilityChange = (key: CapabilityKey, value: number) => {
+    commonUpdateInfo(key, value);
+    if (timeoutIds.current[key])
+      clearTimeout(timeoutIds.current[key]);
+
+    const starttime = Date.now();
+    const address = info?.address;
+
+    timeoutIds.current[key] = setTimeout(() => {
+      if (address) {
+        backend.logInfo(
+          `Info: Elapsed: ${Date.now() - starttime}ms. Send set ${key} to`,
+          value
+        );
+        backend.setCapability(key, address, value);
+      }
+      delete timeoutIds.current[key];
+    }, 350);
+  };
 
   useEffect(() => {
     const fetchConfig = async () => {
@@ -200,7 +240,8 @@ export const TabInfo: FC<{
     };
 
     fetchConfig();
-  }, [info, backend]);
+  },[info?.capabilities?.anc?.options, info?.capabilities?.anc?.selected, backend]); 
+  //[info, backend]);
 
   return (
     <>
@@ -237,26 +278,10 @@ export const TabInfo: FC<{
                   onChange={(n) => {
                     const v = config.convert[n] ?? 0;
                     backend.logDebug("Info: ANC slider changed to UI:", n, "Native:", v);
-
-                    if (info?.capabilities?.anc != null) {
-                      const clonedInfo = { ...info };
-                      clonedInfo.capabilities.anc!.selected = v;
-                      setInfoValue(clonedInfo);
-                    };
-
-
-                    if (sliderTimeoutId)
-                      clearTimeout(sliderTimeoutId);
-
-                    let starttime = Date.now();
-                    sliderTimeoutId = setTimeout(() => {
-                      backend.logInfo("Info: Elapsed:", Date.now() - starttime, "send set ANC to", v);
-                      backend.setAnc(info!.address, v);
-                    }, 350)
-                  }} />
+                    handleNumberCapabilityChange("anc", v);}} />
               </PanelSectionRow>
             }
-
+{/* Fix jumping selection issue */}
             {loaded == true && (
               <>
             <Focusable
@@ -275,15 +300,8 @@ export const TabInfo: FC<{
             {info?.capabilities?.conversationAwareness != null && (
               <>
               <PanelSectionRow>
-                <ToggleField checked={info?.capabilities?.conversationAwareness.selected} label={t("capabilities_aap_conversation_awareness_label")} onChange={async (b) => {
-                  if (info?.capabilities?.conversationAwareness != null) {
-                    const clonedInfo = { ...info };
-                    clonedInfo.capabilities.conversationAwareness!.selected = b;
-                    setInfoValue(clonedInfo);
-                    backend.logInfo("Send send conversationAwareness to", b);
-                    backend.setCapability("conversationAwareness", info.address, b);
-                  };
-                }} />
+                <ToggleField checked={info?.capabilities?.conversationAwareness.selected} label={t("capabilities_aap_conversation_awareness_label")}
+                  onChange={(b) => {handleBooleanCapabilityChange("conversationAwareness", b);}} />
               </PanelSectionRow>
               <PanelSectionRow>
                   <SliderField
@@ -298,9 +316,9 @@ export const TabInfo: FC<{
                     valueSuffix="%"
                     disabled={!info?.capabilities?.conversationAwareness.selected}
                     notchLabels={[
-                      { label: "", notchIndex: 0, value: 0 },                     
-                      { label: t("capabilities_aap_conversation_awareness_volume_label_notchlabel_off"), notchIndex: 1, value: 100 }                      
-                    ]}                    
+                      { label: "", notchIndex: 0, value: 0 },
+                      { label: t("capabilities_aap_conversation_awareness_volume_label_notchlabel_off"), notchIndex: 1, value: 100 }
+                    ]}
                   />
                 </PanelSectionRow>
               </>
@@ -308,15 +326,8 @@ export const TabInfo: FC<{
 
             {info?.capabilities?.personalizedVolume != null &&
               <PanelSectionRow>
-                <ToggleField checked={info?.capabilities?.personalizedVolume.selected} label={t("capabilities_aap_personalized_volume_label")} onChange={async (b) => {
-                  if (info?.capabilities?.personalizedVolume != null) {
-                    const clonedInfo = { ...info };
-                    clonedInfo.capabilities.personalizedVolume!.selected = b;
-                    setInfoValue(clonedInfo);
-                    backend.logInfo("Send send personalizedVolume to", b);
-                    backend.setCapability("personalizedVolume", info.address, b);
-                  };
-                }} />
+                <ToggleField checked={info?.capabilities?.personalizedVolume.selected} label={t("capabilities_aap_personalized_volume_label")}
+                onChange={(b) => {handleBooleanCapabilityChange("personalizedVolume", b);}} />
               </PanelSectionRow>
             }
 
@@ -335,47 +346,16 @@ export const TabInfo: FC<{
                     { label: t("capabilities_aap_adaptive_audio_noise_notchlabel_default"), notchIndex: 1, value: 50 },
                     { label: t("capabilities_aap_adaptive_audio_noise_notchlabel_less"), notchIndex: 2, value: 100 }
                   ]}
-                  onChange={(n) => {
-                    if (info?.capabilities?.adaptiveAudioNoise != null) {
-                      const clonedInfo = { ...info };
-                      clonedInfo.capabilities.adaptiveAudioNoise!.selected = n;
-                      setInfoValue(clonedInfo);
-                    };
-
-
-                    if (adaptiveAudioNoiseTimeoutId)
-                      clearTimeout(adaptiveAudioNoiseTimeoutId);
-
-                    let starttime = Date.now();
-                    adaptiveAudioNoiseTimeoutId = setTimeout(() => {
-                      if (info?.address) {
-                        backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set adaptiveAudioNoise to", n);
-                        backend.setCapability("adaptiveAudioNoise", info!.address, n);
-                      }
-                    }, 350)
-
-                  }} />
+                  onChange={(n) => {handleNumberCapabilityChange("adaptiveAudioNoise", n);}} />
               </PanelSectionRow>
             }
-
-
 
             {info?.capabilities?.ancOneAirPod != null &&
               <PanelSectionRow>
-                <ToggleField checked={info?.capabilities?.ancOneAirPod.selected} label={t("capabilities_aap_anc_one_airpod_label")} onChange={async (b) => {
-                  if (info?.capabilities?.ancOneAirPod != null) {
-                    const clonedInfo = { ...info };
-                    clonedInfo.capabilities.ancOneAirPod!.selected = b;
-                    setInfoValue(clonedInfo);
-                    backend.logInfo("Send send ancOneAirPod to", b);
-                    backend.setCapability("ancOneAirPod", info.address, b);
-                  };
-                }} />
+                <ToggleField checked={info?.capabilities?.ancOneAirPod.selected} label={t("capabilities_aap_anc_one_airpod_label")}
+                onChange={(b) => {handleBooleanCapabilityChange("ancOneAirPod", b);}} />
               </PanelSectionRow>
             }
-
-
-
 
             {info?.capabilities?.pressAndHoldDuration != null &&
               <PanelSectionRow>
@@ -392,26 +372,7 @@ export const TabInfo: FC<{
                     { label: t("capabilities_aap_press_and_hold_duration_notchlabel_shorter"), notchIndex: 1, value: 1 },
                     { label: t("capabilities_aap_press_and_hold_duration_notchlabel_shortest"), notchIndex: 2, value: 2 }
                   ]}
-                  onChange={(n) => {
-                    if (info?.capabilities?.pressAndHoldDuration != null) {
-                      const clonedInfo = { ...info };
-                      clonedInfo.capabilities.pressAndHoldDuration!.selected = n;
-                      setInfoValue(clonedInfo);
-                    };
-
-
-                    if (pressAndHoldDurationTimeoutId)
-                      clearTimeout(pressAndHoldDurationTimeoutId);
-
-                    let starttime = Date.now();
-                    pressAndHoldDurationTimeoutId = setTimeout(() => {
-                      if (info?.address) {
-                        backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set pressAndHoldDuration to", n);
-                        backend.setCapability("pressAndHoldDuration", info!.address, n);
-                      }
-                    }, 350)
-
-                  }} />
+                  onChange={(n) => {handleNumberCapabilityChange("pressAndHoldDuration", n);}} />
               </PanelSectionRow>
             }
 
@@ -431,26 +392,7 @@ export const TabInfo: FC<{
                     { label: t("capabilities_aap_press_speed_notchlabel_slower"), notchIndex: 1, value: 1 },
                     { label: t("capabilities_aap_press_speed_notchlabel_slowest"), notchIndex: 2, value: 2 }
                   ]}
-                  onChange={(n) => {
-                    if (info?.capabilities?.pressSpeed != null) {
-                      const clonedInfo = { ...info };
-                      clonedInfo.capabilities.pressSpeed!.selected = n;
-                      setInfoValue(clonedInfo);
-                    };
-
-
-                    if (pressSpeedTimeoutId)
-                      clearTimeout(pressSpeedTimeoutId);
-
-                    let starttime = Date.now();
-                    pressSpeedTimeoutId = setTimeout(() => {
-                      if (info?.address) {
-                        backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set pressSpeed to", n);
-                        backend.setCapability("pressSpeed", info!.address, n);
-                      }
-                    }, 350)
-
-                  }} />
+                  onChange={(n) => {handleNumberCapabilityChange("pressSpeed", n);}} />
               </PanelSectionRow>
             }
 
@@ -470,40 +412,14 @@ export const TabInfo: FC<{
                     { label: "0", notchIndex: 0, value: 15 },
                     { label: "125", notchIndex: 1, value: 100 }
                   ]}
-                  onChange={(n) => {
-                    if (info?.capabilities?.toneVolume != null) {
-                      const clonedInfo = { ...info };
-                      clonedInfo.capabilities.toneVolume!.selected = n;
-                      setInfoValue(clonedInfo);
-                    };
-
-
-                    if (toneVolumeTimeoutId)
-                      clearTimeout(toneVolumeTimeoutId);
-
-                    let starttime = Date.now();
-                    toneVolumeTimeoutId = setTimeout(() => {
-                      if (info?.address) {
-                        backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set toneVolume to", n);
-                        backend.setCapability("toneVolume", info!.address, n);
-                      }
-                    }, 350)
-
-                  }} />
+                  onChange={(n) => {handleNumberCapabilityChange("toneVolume", n);}} />
               </PanelSectionRow>
             }
 
             {info?.capabilities?.volumeSwipe != null &&
               <PanelSectionRow>
-                <ToggleField checked={info?.capabilities?.volumeSwipe.selected} label={t("capabilities_aap_volume_swipe_label")} onChange={async (b) => {
-                  if (info?.capabilities?.volumeSwipe != null) {
-                    const clonedInfo = { ...info };
-                    clonedInfo.capabilities.volumeSwipe!.selected = b;
-                    setInfoValue(clonedInfo);
-                    backend.logInfo("Send send volumeSwipe to", b);
-                    backend.setCapability("volumeSwipe", info.address, b);
-                  };
-                }} />
+                <ToggleField checked={info?.capabilities?.volumeSwipe.selected} label={t("capabilities_aap_volume_swipe_label")}
+                onChange={(b) => {handleBooleanCapabilityChange("volumeSwipe", b);}} />
               </PanelSectionRow>
             }
 
@@ -522,26 +438,7 @@ export const TabInfo: FC<{
                     { label: t("capabilities_aap_volume_swipe_length_notchlabel_longer"), notchIndex: 1, value: 1 },
                     { label: t("capabilities_aap_volume_swipe_length_notchlabel_longest"), notchIndex: 2, value: 2 }
                   ]}
-                  onChange={(n) => {
-                    if (info?.capabilities?.volumeSwipeLength != null) {
-                      const clonedInfo = { ...info };
-                      clonedInfo.capabilities.volumeSwipeLength!.selected = n;
-                      setInfoValue(clonedInfo);
-                    };
-
-
-                    if (volumeSwipeLengthTimeoutId)
-                      clearTimeout(volumeSwipeLengthTimeoutId);
-
-                    let starttime = Date.now();
-                    volumeSwipeLengthTimeoutId = setTimeout(() => {
-                      if (info?.address) {
-                        backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set volumeSwipeLength to", n);
-                        backend.setCapability("volumeSwipeLength", info!.address, n);
-                      }
-                    }, 350)
-
-                  }} />
+                  onChange={(n) => {handleNumberCapabilityChange("volumeSwipeLength", n);}} />
               </PanelSectionRow>
             }
 
@@ -560,26 +457,7 @@ export const TabInfo: FC<{
                       { label: t("capabilities_aap_end_call_notchlabel_double"), notchIndex: 0, value: 2 },
                       { label: t("capabilities_aap_end_call_notchlabel_single"), notchIndex: 1, value: 3 }
                     ]}
-                    onChange={(n) => {
-                      if (info?.capabilities?.endCall != null) {
-                        const clonedInfo = { ...info };
-                        clonedInfo.capabilities.endCall!.selected = n;
-                        setInfoValue(clonedInfo);
-                      };
-
-
-                      if (endCallTimeoutId)
-                        clearTimeout(endCallTimeoutId);
-
-                      let starttime = Date.now();
-                      endCallTimeoutId = setTimeout(() => {
-                        if (info?.address) {
-                          backend.logInfo("Info: Elapsed:", Date.now() - starttime, "Send set endCall to", n);
-                          backend.setCapability("endCall", info!.address, n);
-                        }
-                      }, 350)
-
-                    }} />
+                    onChange={(n) => {handleNumberCapabilityChange("endCall", n);}} />
                 </PanelSectionRow>
 
                 <PanelSectionRow>
@@ -602,13 +480,6 @@ export const TabInfo: FC<{
             )}
             </>
             )}
-
-
-
-
-
-
-
           </PanelSection>
         }
       </div>
