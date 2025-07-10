@@ -66,6 +66,7 @@ interface CapabilitiesProps {
   anc?: AncProps;
   battery?: BatteryProps;
   conversationAwareness?: BooleanCapabilityProps;
+  conversationAwarenessSpeaking?: BooleanCapabilityProps;
   personalizedVolume?: BooleanCapabilityProps;
   ancOneAirPod?: BooleanCapabilityProps;
   volumeSwipe?: BooleanCapabilityProps;
@@ -75,6 +76,7 @@ interface CapabilitiesProps {
   toneVolume?: NumberCapabilityProps;
   volumeSwipeLength?: NumberCapabilityProps;
   adaptiveAudioNoise?: NumberCapabilityProps;
+
 }
 
 export interface headphoneInfoProps {
