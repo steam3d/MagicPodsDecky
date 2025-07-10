@@ -40,7 +40,7 @@
 
         "capabilities_header": "A Little Magic",
         "capabilities_aap_conversation_awareness_label": "Conversation awareness",
-        "capabilities_aap_conversation_awareness_volume_label": "Volume",
+        "capabilities_aap_conversation_awareness_volume_label": "Decrease volume by",
         "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "off",
         "capabilities_aap_personalized_volume_label": "Personalized volume",
         "capabilities_aap_adaptive_audio_noise_label": "Adaptive mode",

@@ -51,5 +51,7 @@ class Settings():
             return branch.get(key, True)
         elif key == "log_level":
             return branch.get(key, 50)
+        elif key == "conversation_awareness_volume":
+            return branch.get(key, 70)
         else:
             return None

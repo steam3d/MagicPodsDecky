@@ -85,6 +85,8 @@ export interface headphoneInfoProps {
   capabilities: CapabilitiesProps;
 }
 
+let sliderTimeoutId: NodeJS.Timeout;
+
 export const AncModes = {
   OFF: 1,
   TRANSPARENCY: 2,
@@ -177,6 +179,7 @@ export const TabInfo: FC<{
 
   const [config, setConfig] = useState<Awaited<ReturnType<typeof getAncSliderConfig>> | null>(null);
   const [loaded, setLoaded] = useState(false);
+  const [volume, setVolume] = useState<number>(0);
 
 
   const timeoutIds = useRef<Record<string, NodeJS.Timeout>>({});
@@ -240,9 +243,15 @@ export const TabInfo: FC<{
     };
 
     fetchConfig();
-  },[info?.capabilities?.anc?.options, info?.capabilities?.anc?.selected, backend]); 
+  },[info?.capabilities?.anc?.options, info?.capabilities?.anc?.selected]); 
   //[info, backend]);
 
+  useEffect(() => {
+    const fetchSettings = async () => {
+      setVolume(await backend.loadNumberSetting("conversation_awareness_volume") ?? 0);
+    }
+    fetchSettings();
+  }, [info?.capabilities?.conversationAwareness?.selected]);
   return (
     <>
       <div style={{ marginLeft: "-8px", marginRight: "-8px" }}>
@@ -305,7 +314,7 @@ export const TabInfo: FC<{
               </PanelSectionRow>
               <PanelSectionRow>
                   <SliderField
-                    value={30}
+                    value={volume}
                     max={100}
                     min={0}
                     step={1}
@@ -316,10 +325,20 @@ export const TabInfo: FC<{
                     valueSuffix="%"
                     disabled={!info?.capabilities?.conversationAwareness.selected}
                     notchLabels={[
-                      { label: "", notchIndex: 0, value: 0 },
-                      { label: t("capabilities_aap_conversation_awareness_volume_label_notchlabel_off"), notchIndex: 1, value: 100 }
+                      { label: t("capabilities_aap_conversation_awareness_volume_label_notchlabel_off"), notchIndex: 0, value: 0 },
+                      { label: "", notchIndex: 1, value: 100 }
                     ]}
-                  />
+                    onChange={(n) => {
+                      setVolume(n);
+                      if (sliderTimeoutId)
+                          clearTimeout(sliderTimeoutId);
+
+                      let starttime = Date.now();
+                      sliderTimeoutId = setTimeout(async () => {
+                          backend.logInfo("Settings: Elapsed", Date.now() - starttime, "Set volume to", n);
+                          await backend.saveSetting("conversation_awareness_volume", n);
+                      }, 350)
+                  }} />
                 </PanelSectionRow>
               </>
             )}
