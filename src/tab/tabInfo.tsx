@@ -76,7 +76,6 @@ interface CapabilitiesProps {
   toneVolume?: NumberCapabilityProps;
   volumeSwipeLength?: NumberCapabilityProps;
   adaptiveAudioNoise?: NumberCapabilityProps;
-
 }
 
 export interface headphoneInfoProps {
@@ -86,8 +85,6 @@ export interface headphoneInfoProps {
 
   capabilities: CapabilitiesProps;
 }
-
-let sliderTimeoutId: NodeJS.Timeout;
 
 export const AncModes = {
   OFF: 1,
@@ -166,7 +163,7 @@ const getAncSliderConfig = async (backend: Backend, options: number, selected: n
 const showQrModal = () => {
     showModal(
         <ModalRoot>
-            <span style={{ textAlign: 'center', wordBreak: 'break-word' }}>"Это экспериментальные настройки. Некоторые функции могут быть не применимы для Steam Deck, а некоторые функции могут появится даже если ваши наушники их не поддерживают."</span>
+            <span style={{ textAlign: 'center', wordBreak: 'break-word' }}>{t("capabilities_modal")}</span>
         </ModalRoot>,
         window
     );
@@ -332,13 +329,16 @@ export const TabInfo: FC<{
                     ]}
                     onChange={(n) => {
                       setVolume(n);
-                      if (sliderTimeoutId)
-                          clearTimeout(sliderTimeoutId);
+
+                      const key = "conversationAwarenessSpeaking";
+                      if (timeoutIds.current[key])
+                        clearTimeout(timeoutIds.current[key]);
 
                       let starttime = Date.now();
-                      sliderTimeoutId = setTimeout(async () => {
+                      timeoutIds.current[key] = setTimeout(async () => {
                           backend.logInfo("Settings: Elapsed", Date.now() - starttime, "Set volume to", n);
                           await backend.saveSetting("conversation_awareness_volume", n);
+                          delete timeoutIds.current[key];
                       }, 350)
                   }} />
                 </PanelSectionRow>
