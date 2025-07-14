@@ -36,6 +36,21 @@
         "settings_social_button_translate": "Übersetzen",
         "settings_debug_level_label": "Protokollebene",
         "settings_debug_log_button": "Ereignisprotokolle",
-        "settings_header": "Einstellungen"
+        "settings_header": "Einstellungen",
+        "capabilities_aap_conversation_awareness_label": "Konversationserkennung",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Aus",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "Standard",
+        "capabilities_aap_press_and_hold_duration_label": "Drück- und Haltedauer",
+        "capabilities_aap_press_and_hold_duration_notchlabel_default": "Standard",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Kürzer",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "Am kürzesten",
+        "capabilities_aap_press_speed_label": "Druck Geschwindigkeit",
+        "capabilities_aap_press_speed_notchlabel_default": "Standard",
+        "capabilities_aap_press_speed_notchlabel_slower": "Langsamer",
+        "capabilities_aap_press_speed_notchlabel_slowest": "Am langsamsten",
+        "capabilities_aap_tone_volume_label": "Signalton Lautstärke",
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "Standard",
+        "capabilities_aap_volume_swipe_length_notchlabel_longer": "Länger",
+        "capabilities_aap_personalized_volume_label": "Personalisierte Lautstärke"
     }
 }
