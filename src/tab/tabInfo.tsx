@@ -22,7 +22,7 @@ const FieldWithSeparator = joinClassNames(
   gamepadDialogClasses.WithBottomSeparatorStandard
 )
 
-const FieldWithSeparator1 = joinClassNames(
+const OptionsPanelSection = joinClassNames(
   gamepadDialogClasses.HighlightOnFocus,
   gamepadDialogClasses.Field,
   quickAccessMenuClasses.PanelSectionRow,
@@ -299,7 +299,7 @@ export const TabInfo: FC<{
               <>
             <Focusable
               noFocusRing={true}
-              className={FieldWithSeparator1}
+              className={OptionsPanelSection}
               style={{ marginLeft: "-16px", marginRight: "-16px", marginTop: "24px" }}
               onOKButton={() => showQrModal()}>
               <div className={staticClasses.PanelSectionTitle}

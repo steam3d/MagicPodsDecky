@@ -15,6 +15,7 @@ import { t } from 'i18next';
 
 import { LogoIcon } from "../icons";
 import { Backend } from "../backend";
+import { AudioDeviceInfo } from "../bgMicMute";
 
 export const data = {
     headphones: [
@@ -211,6 +212,35 @@ export const TabDebug: FC<{ backend: Backend; }> = ({ backend }) => {
                             })
                         }} >
                             Notif low battery
+                        </ButtonItem>
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                        <ButtonItem layout="below" onClick={async () => {
+                            const devices = await SteamClient.System.Audio.GetDevices() as AudioDeviceInfo;
+                            const id = devices.activeOutputDeviceId;
+                            devices.vecDevices.forEach(dev => {
+                                if (dev.id === id) {
+                                    backend.logDebug(dev.flInputVolume);
+                                }
+                            });
+                            await SteamClient.System.Audio.SetDeviceVolume(id, 1, 0.25);
+                        }} >
+                            Set volume 25%
+                        </ButtonItem>
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <ButtonItem layout="below" onClick={async () => {
+                            const devices = await SteamClient.System.Audio.GetDevices() as AudioDeviceInfo;
+                            const id = devices.activeOutputDeviceId;
+                            devices.vecDevices.forEach(dev => {
+                                if (dev.id === id) {
+                                    backend.logDebug(dev.flInputVolume);
+                                }
+                            });
+                            await SteamClient.System.Audio.SetDeviceVolume(id, 1, 0.50);
+                        }} >
+                            Set volume 50%
                         </ButtonItem>
                     </PanelSectionRow>
                 </PanelSection>

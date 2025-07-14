@@ -39,7 +39,7 @@
         "notif_low_battery": "{{battery}}% remaining. Charge your headphones.",
 
         "capabilities_header": "Options",
-        "capabilities_modal": "Certain features may appear in the interface even if they are not supported by your headphones or the Steam Deck.",
+        "capabilities_modal": "Certain options may appear in the interface even if they are not supported by your headphones or the Steam Deck.",
         "capabilities_aap_conversation_awareness_label": "Conversation awareness",
         "capabilities_aap_conversation_awareness_volume_label": "Decrease volume by",
         "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "off",
