@@ -36,6 +36,21 @@
         "settings_social_button_donate": "Κάντε δωρεά",
         "settings_debug_header": "Εντοπισμός σφαλμάτων",
         "settings_debug_log_button": "Συμβάντα",
-        "settings_debug_level_label": "Επίπεδο καταγραφής"
+        "settings_debug_level_label": "Επίπεδο καταγραφής",
+        "capabilities_aap_conversation_awareness_label": "Αναγνώριση συζητήσεων",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "Προεπιλογή",
+        "capabilities_aap_press_and_hold_duration_label": "Διάρκεια παρατεταμένου πατήματος",
+        "capabilities_aap_press_and_hold_duration_notchlabel_default": "Προεπιλογή",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Σύντομο",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "Πολύ σύντομο",
+        "capabilities_aap_press_speed_label": "Ταχύτητα πατήματος",
+        "capabilities_aap_press_speed_notchlabel_default": "Προεπιλογή",
+        "capabilities_aap_press_speed_notchlabel_slower": "Αργό",
+        "capabilities_aap_press_speed_notchlabel_slowest": "Πολύ Αργό",
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "Προεπιλογή",
+        "capabilities_aap_volume_swipe_length_notchlabel_longer": "Παρατεταμένο",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Απενεργοποιημένο",
+        "capabilities_aap_tone_volume_label": "Ένταση ηχητικών εφέ",
+        "capabilities_aap_personalized_volume_label": "Προσωποποιημένη ένταση"
     }
 }
