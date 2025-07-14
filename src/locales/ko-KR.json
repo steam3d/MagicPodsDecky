@@ -36,6 +36,21 @@
         "settings_anc_modes_header": "표시된 모드",
         "settings_social_button_start": "시작하기",
         "settings_social_button_translate": "번역하기",
-        "settings_debug_log_button": "이벤트 로그"
+        "settings_debug_log_button": "이벤트 로그",
+        "capabilities_aap_conversation_awareness_label": "대화 인지",
+        "capabilities_aap_personalized_volume_label": "개인 맞춤형 음량",
+        "capabilities_aap_press_and_hold_duration_notchlabel_default": "기본",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "더 짧게",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "가장 짧게",
+        "capabilities_aap_press_speed_label": "누르기 속도",
+        "capabilities_aap_press_speed_notchlabel_default": "기본",
+        "capabilities_aap_press_speed_notchlabel_slower": "느리게",
+        "capabilities_aap_press_speed_notchlabel_slowest": "가장 느리게",
+        "capabilities_aap_tone_volume_label": "톤 음량",
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "기본",
+        "capabilities_aap_volume_swipe_length_notchlabel_longer": "길게",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "끔",
+        "capabilities_aap_press_and_hold_duration_label": "길게 누르기 지속 시간",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "기본"
     }
 }
