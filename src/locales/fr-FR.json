@@ -36,6 +36,21 @@
         "settings_social_button_donate": "Faire un don",
         "settings_debug_header": "Débogage",
         "settings_debug_level_label": "Niveau de journalisation",
-        "settings_debug_log_button": "Journaux d'événements"
+        "settings_debug_log_button": "Journaux d'événements",
+        "capabilities_aap_conversation_awareness_label": "Détection de conversation",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "Par défaut",
+        "capabilities_aap_press_and_hold_duration_notchlabel_default": "Par défaut",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Plus court",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "Le plus court",
+        "capabilities_aap_press_speed_label": "Vitesse d'appui",
+        "capabilities_aap_press_speed_notchlabel_default": "Par défaut",
+        "capabilities_aap_press_speed_notchlabel_slower": "Plus lent",
+        "capabilities_aap_press_speed_notchlabel_slowest": "Le plus lent",
+        "capabilities_aap_tone_volume_label": "Volume des tonalités",
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "Par défaut",
+        "capabilities_aap_volume_swipe_length_notchlabel_longer": "Long",
+        "capabilities_aap_personalized_volume_label": "Volume personnalisé",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Désactivé",
+        "capabilities_aap_press_and_hold_duration_label": "Durée de pression et maintien"
     }
 }
