@@ -36,6 +36,21 @@
         "settings_debug_header": "Depuración",
         "settings_debug_level_label": "Nivel de registro",
         "settings_misc_header": "Enlaces útiles",
-        "settings_anc_modes_header": "Modos mostrados"
+        "settings_anc_modes_header": "Modos mostrados",
+        "capabilities_aap_conversation_awareness_label": "Detección de conversación",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "Por omisión",
+        "capabilities_aap_press_and_hold_duration_label": "Duración de mantener pulsado",
+        "capabilities_aap_press_and_hold_duration_notchlabel_default": "Por omisión",
+        "capabilities_aap_personalized_volume_label": "Volumen personalizado",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Corta",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "Muy corta",
+        "capabilities_aap_press_speed_label": "Velocidad de presionado",
+        "capabilities_aap_press_speed_notchlabel_default": "Por omisión",
+        "capabilities_aap_press_speed_notchlabel_slower": "Lenta",
+        "capabilities_aap_press_speed_notchlabel_slowest": "Muy lenta",
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "Por omisión",
+        "capabilities_aap_volume_swipe_length_notchlabel_longer": "Largo",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Apagado",
+        "capabilities_aap_tone_volume_label": "Volumen del tono"
     }
 }
