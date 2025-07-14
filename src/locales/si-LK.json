@@ -36,6 +36,7 @@
         "settings_debug_log_button": "සිදුවීම් ලොග්",
         "settings_anc_modes_header": "පෙන්වෙන ප්‍රකාර",
         "settings_misc_header": "ප්‍රයෝජනවත් සබැඳි",
-        "settings_debug_level_label": "ලොග් මට්ටම"
+        "settings_debug_level_label": "ලොග් මට්ටම",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "අක්රියයි"
     }
 }
