@@ -169,6 +169,11 @@ const showQrModal = () => {
     );
 };
 
+function hasOtherCapabilities(capabilities: CapabilitiesProps): boolean {
+  const { anc, battery, ...rest } = capabilities;
+  return Object.values(rest).some(value => value !== undefined && value !== null);
+}
+
 
 export const TabInfo: FC<{
   info?: headphoneInfoProps,
@@ -200,11 +205,11 @@ export const TabInfo: FC<{
   }
 
   const handleBooleanCapabilityChange = (key: CapabilityKey, value: boolean) => {
-      commonUpdateInfo(key, value);    
+      commonUpdateInfo(key, value);
       const address = info?.address;
       if (address){
-        backend.logInfo(`Send set ${key} to`, value);   
-        backend.setCapability(key, address, value);     
+        backend.logInfo(`Send set ${key} to`, value);
+        backend.setCapability(key, address, value);
       }
   }
 
@@ -242,7 +247,7 @@ export const TabInfo: FC<{
     };
 
     fetchConfig();
-  },[info?.capabilities?.anc?.options, info?.capabilities?.anc?.selected]); 
+  },[info?.capabilities?.anc?.options, info?.capabilities?.anc?.selected]);
   //[info, backend]);
 
   useEffect(() => {
@@ -290,7 +295,7 @@ export const TabInfo: FC<{
               </PanelSectionRow>
             }
 {/* Fix jumping selection issue */}
-            {loaded == true && (
+            {loaded == true && info?.capabilities != null && hasOtherCapabilities(info.capabilities) && (
               <>
             <Focusable
               noFocusRing={true}
