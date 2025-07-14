@@ -36,6 +36,21 @@
         "settings_header": "设置",
         "settings_anc_modes_header": "可显示模式",
         "settings_social_button_description": "显示二维码",
-        "settings_social_button_donate": "捐赠"
+        "settings_social_button_donate": "捐赠",
+        "capabilities_aap_conversation_awareness_label": "对话感知",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "默认",
+        "capabilities_aap_press_and_hold_duration_label": "按住时长",
+        "capabilities_aap_press_and_hold_duration_notchlabel_default": "默认",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "较短",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "最短",
+        "capabilities_aap_press_speed_label": "按压速度",
+        "capabilities_aap_personalized_volume_label": "个性化音量",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "关",
+        "capabilities_aap_press_speed_notchlabel_default": "默认",
+        "capabilities_aap_press_speed_notchlabel_slower": "慢点",
+        "capabilities_aap_press_speed_notchlabel_slowest": "最慢",
+        "capabilities_aap_tone_volume_label": "音量",
+        "capabilities_aap_volume_swipe_length_notchlabel_longer": "长按",
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "默认"
     }
 }
