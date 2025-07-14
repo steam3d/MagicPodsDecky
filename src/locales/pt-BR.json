@@ -36,6 +36,21 @@
         "settings_social_button_translate": "Traduzir",
         "settings_social_button_donate": "Doar",
         "settings_debug_level_label": "Nível de log",
-        "settings_debug_log_button": "Registros de eventos"
+        "settings_debug_log_button": "Registros de eventos",
+        "capabilities_aap_conversation_awareness_label": "Detecção de conversa",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "Padrão",
+        "capabilities_aap_press_and_hold_duration_label": "Duração para manter pressionado",
+        "capabilities_aap_press_and_hold_duration_notchlabel_default": "Padrão",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Curta",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "Mais Curta",
+        "capabilities_aap_press_speed_label": "Velocidade para pressionar",
+        "capabilities_aap_press_speed_notchlabel_slower": "Mais devagar",
+        "capabilities_aap_press_speed_notchlabel_slowest": "Mais lento",
+        "capabilities_aap_tone_volume_label": "Volume do Toque",
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "Padrão",
+        "capabilities_aap_volume_swipe_length_notchlabel_longer": "Longo",
+        "capabilities_aap_personalized_volume_label": "Volume personalizado",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Desl.",
+        "capabilities_aap_press_speed_notchlabel_default": "Padrão"
     }
 }
