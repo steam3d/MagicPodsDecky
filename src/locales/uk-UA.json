@@ -36,6 +36,21 @@
         "settings_social_button_donate": "Пожертвувати",
         "settings_debug_header": "Зневадження",
         "settings_social_button_start": "Початок роботи",
-        "settings_social_button_translate": "Перекласти"
+        "settings_social_button_translate": "Перекласти",
+        "capabilities_aap_conversation_awareness_label": "Розпізнавання розмови",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "За замовчуванням",
+        "capabilities_aap_press_and_hold_duration_label": "Натиснення і утримування",
+        "capabilities_aap_press_and_hold_duration_notchlabel_default": "За замовчуванням",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Коротко",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "Якомога коротше",
+        "capabilities_aap_press_speed_label": "Затримка у натисканнях",
+        "capabilities_aap_press_speed_notchlabel_default": "За замовчуванням",
+        "capabilities_aap_press_speed_notchlabel_slower": "Повільно",
+        "capabilities_aap_press_speed_notchlabel_slowest": "Якомога повільніше",
+        "capabilities_aap_tone_volume_label": "Гучність тону",
+        "capabilities_aap_volume_swipe_length_notchlabel_longer": "Довше",
+        "capabilities_aap_personalized_volume_label": "Адаптивна гучність",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Вимкнено",
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "За замовчуванням"
     }
 }
