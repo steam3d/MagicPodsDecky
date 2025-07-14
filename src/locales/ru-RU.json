@@ -36,6 +36,23 @@
         "settings_social_button_start": "Начало работы",
         "settings_header": "Настройки",
         "settings_misc_header": "Полезные ссылки",
-        "settings_social_button_translate": "Перевести"
+        "settings_social_button_translate": "Перевести",
+        "capabilities_aap_press_and_hold_duration_label": "Нажатие и удерживание",
+        "capabilities_aap_press_and_hold_duration_notchlabel_default": "По умолчанию",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Быстрее",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "Очень быстро",
+        "capabilities_aap_press_speed_label": "Нажатие",
+        "capabilities_aap_press_speed_notchlabel_default": "По умолчанию",
+        "capabilities_aap_press_speed_notchlabel_slower": "Медленнее",
+        "capabilities_aap_press_speed_notchlabel_slowest": "Очень медленно",
+        "capabilities_aap_tone_volume_label": "Громкость тона",
+        "capabilities_header": "Настройки",
+        "capabilities_aap_conversation_awareness_volume_label": "Уменьшить громкость на",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Выкл.",
+        "capabilities_aap_conversation_awareness_label": "Распознавание разговора",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "По умолчанию",
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "По умолчанию",
+        "capabilities_aap_volume_swipe_length_notchlabel_longer": "Дольше",
+        "capabilities_modal": "Некоторые настройки могут отображаться в интерфейсе, даже если они не поддерживаются вашими наушниками или Steam Deck."
     }
 }
