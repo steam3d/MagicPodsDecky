@@ -51,6 +51,9 @@
         "capabilities_aap_tone_volume_label": "Signalton Lautstärke",
         "capabilities_aap_volume_swipe_length_notchlabel_default": "Standard",
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "Länger",
-        "capabilities_aap_personalized_volume_label": "Personalisierte Lautstärke"
+        "capabilities_aap_personalized_volume_label": "Personalisierte Lautstärke",
+        "capabilities_aap_mute_unmute_label": "Stumm oder Ton ein",
+        "capabilities_aap_anc_one_airpod_label": "Geräuschunterdrückung mit einem AirPod",
+        "capabilities_aap_end_call_label": "Anruf beenden"
     }
 }
