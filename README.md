@@ -13,6 +13,18 @@ A magic plugin for the Decky Loader that allows you to control your AirPods and 
 🔄 Hotkey to cycle between noise modes  
 🎉 New features coming soon
 
+### 🔥 Exclusive to AirPods and Beats
+
+Additional settings — just like on iPhone and Mac:
+
+- Audio is lowered during conversation awareness
+- Noise level adjustment in adaptive mode
+- Personalized volume
+- Noise cancellation with one AirPod
+- Press duration adjustment
+- Press and hold duration adjustment
+- Customization of single and double tap for call control
+
 ## 🎧 Headphones supported
 
 | Apple            | Beats                  | Samsung           |
