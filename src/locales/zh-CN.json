@@ -50,7 +50,21 @@
         "capabilities_aap_press_speed_notchlabel_slower": "慢点",
         "capabilities_aap_press_speed_notchlabel_slowest": "最慢",
         "capabilities_aap_tone_volume_label": "音量",
-        "capabilities_aap_volume_swipe_length_notchlabel_longer": "长按",
-        "capabilities_aap_volume_swipe_length_notchlabel_default": "默认"
+        "capabilities_aap_volume_swipe_length_notchlabel_longer": "更长",
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "默认",
+        "capabilities_header": "选项",
+        "capabilities_modal": "即使某些选项不受您的耳机或 Steam Deck 支持，它们仍可能出现在界面中。",
+        "capabilities_aap_conversation_awareness_volume_label": "将音量降低",
+        "capabilities_aap_adaptive_audio_noise_label": "自适应模式",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_more": "更多噪音",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_less": "更少噪音",
+        "capabilities_aap_anc_one_airpod_label": "使用一只 AirPod 消除噪音",
+        "capabilities_aap_volume_swipe_label": "音量滑动",
+        "capabilities_aap_volume_swipe_length_label": "音量滑动距离",
+        "capabilities_aap_volume_swipe_length_notchlabel_longest": "最长",
+        "capabilities_aap_end_call_label": "结束通话",
+        "capabilities_aap_end_call_notchlabel_single": "按一次",
+        "capabilities_aap_end_call_notchlabel_double": "按两次",
+        "capabilities_aap_mute_unmute_label": "静音和取消静音"
     }
 }
