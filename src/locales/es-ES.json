@@ -51,6 +51,9 @@
         "capabilities_aap_volume_swipe_length_notchlabel_default": "Por omisión",
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "Largo",
         "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Apagado",
-        "capabilities_aap_tone_volume_label": "Volumen del tono"
+        "capabilities_aap_tone_volume_label": "Volumen del tono",
+        "capabilities_aap_anc_one_airpod_label": "Cancelación de ruido con un AirPod",
+        "capabilities_aap_end_call_label": "Finalizar llamada",
+        "capabilities_aap_mute_unmute_label": "Silenciar y activar sonido"
     }
 }
