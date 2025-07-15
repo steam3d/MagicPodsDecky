@@ -435,7 +435,7 @@ export const TabInfo: FC<{
                   showValue={true}
                   valueSuffix="%"
                   notchLabels={[
-                    { label: "0", notchIndex: 0, value: 15 },
+                    { label: "15", notchIndex: 0, value: 15 },
                     { label: "125", notchIndex: 1, value: 100 }
                   ]}
                   onChange={(n) => {handleNumberCapabilityChange("toneVolume", n);}} />
