@@ -51,6 +51,9 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "Long",
         "capabilities_aap_personalized_volume_label": "Volume personnalisé",
         "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Désactivé",
-        "capabilities_aap_press_and_hold_duration_label": "Durée de pression et maintien"
+        "capabilities_aap_press_and_hold_duration_label": "Durée de pression et maintien",
+        "capabilities_aap_mute_unmute_label": "Mettre en sourdine et rétablir le son",
+        "capabilities_aap_end_call_label": "Terminer l'appel",
+        "capabilities_aap_anc_one_airpod_label": "Annulation du bruit avec un seul AirPod"
     }
 }
