@@ -51,6 +51,9 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "길게",
         "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "끔",
         "capabilities_aap_press_and_hold_duration_label": "길게 누르기 지속 시간",
-        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "기본"
+        "capabilities_aap_adaptive_audio_noise_notchlabel_default": "기본",
+        "capabilities_aap_end_call_label": "통화 종료하기",
+        "capabilities_aap_mute_unmute_label": "음소거",
+        "capabilities_aap_anc_one_airpod_label": "AIrPods 한 개 착용 시 노이즈 캔슬링"
     }
 }
