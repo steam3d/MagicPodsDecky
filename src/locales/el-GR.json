@@ -51,6 +51,9 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "Παρατεταμένο",
         "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Απενεργοποιημένο",
         "capabilities_aap_tone_volume_label": "Ένταση ηχητικών εφέ",
-        "capabilities_aap_personalized_volume_label": "Προσωποποιημένη ένταση"
+        "capabilities_aap_personalized_volume_label": "Προσωποποιημένη ένταση",
+        "capabilities_aap_anc_one_airpod_label": "Ακύρωση θορύβου με ένα AirPod",
+        "capabilities_aap_end_call_label": "Τέλος κλήσης",
+        "capabilities_aap_mute_unmute_label": "Σίγαση και τέλος σίγασης"
     }
 }
