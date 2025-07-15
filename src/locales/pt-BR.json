@@ -51,6 +51,9 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "Longo",
         "capabilities_aap_personalized_volume_label": "Volume personalizado",
         "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Desl.",
-        "capabilities_aap_press_speed_notchlabel_default": "Padrão"
+        "capabilities_aap_press_speed_notchlabel_default": "Padrão",
+        "capabilities_aap_mute_unmute_label": "Silenciar e ativar som",
+        "capabilities_aap_anc_one_airpod_label": "Cancelamento de ruído com um AirPod",
+        "capabilities_aap_end_call_label": "Encerrar chamada"
     }
 }
