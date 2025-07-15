@@ -51,6 +51,9 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "Довше",
         "capabilities_aap_personalized_volume_label": "Адаптивна гучність",
         "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Вимкнено",
-        "capabilities_aap_volume_swipe_length_notchlabel_default": "За замовчуванням"
+        "capabilities_aap_volume_swipe_length_notchlabel_default": "За замовчуванням",
+        "capabilities_aap_anc_one_airpod_label": "Шумозаглушення із одним навушником AirPod",
+        "capabilities_aap_end_call_label": "Покласти слухавку",
+        "capabilities_aap_mute_unmute_label": "Увімк. і вимк. звуку"
     }
 }
