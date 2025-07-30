@@ -14,11 +14,6 @@ class Player:
         self.onStringReceived = on_string_received
         self.f_path = f_path
 
-        # copy existing environ. Good point to check environ uses in decky 
-        my_env = os.environ.copy()                
-        my_env['XDG_RUNTIME_DIR'] = '/run/user/1000'        
-        self.env = my_env 
-
 
     def _is_runnig(self) -> bool:
         if self.thread == None:            
@@ -38,7 +33,13 @@ class Player:
     def start(self):        
         if not self._is_runnig():
             logger.info(self.f_path)
-            self.task = subprocess.Popen("exec ffplay -loop 0 -nodisp -autoexit -loglevel quiet '{0}'".format(self.f_path), shell=True, stdout=subprocess.PIPE,stderr=subprocess.STDOUT, env=self.env)
+
+            # copy existing environ. Good point to check environ uses in decky
+            env = os.environ.copy()
+            env['XDG_RUNTIME_DIR'] = '/run/user/1000'
+            env['LD_LIBRARY_PATH'] = ''
+
+            self.task = subprocess.Popen("exec ffplay -loop 0 -nodisp -autoexit -loglevel quiet '{0}'".format(self.f_path), shell=True, stdout=subprocess.PIPE,stderr=subprocess.STDOUT, env=env)
             logger.info(self.task)   
             self.thread = threading.Thread(target=self.reader, args=())
             self.thread.start()

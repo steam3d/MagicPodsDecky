@@ -45,12 +45,14 @@ class CoreBase():
         self.start()
 
 
-class CoreBackgroundService(CoreBase):
+class CoreBackgroundService(CoreBase): # Deprecated
     def __init__(self, x_dir, x_name):
         super().__init__(x_dir, x_name)
 
     def _get_backend_pid(self):
-        output = subprocess.Popen("ps -ef", stdout=subprocess.PIPE, shell=True).communicate()[0].decode('utf-8').splitlines()
+        env = os.environ.copy()        
+        env['LD_LIBRARY_PATH'] = ''
+        output = subprocess.Popen("ps -ef", stdout=subprocess.PIPE, shell=True, env=env).communicate()[0].decode('utf-8').splitlines()
         for line in output[1:]:
             fields = line.split()
             if self.x_name in fields[7]:
@@ -101,7 +103,11 @@ class CoreService(CoreBase):
     def _start(self):        
         if not self._is_runnig():
             logger.info(self.x_path)
-            self.task = subprocess.Popen([self.x_path, "-l", str(self.loglevel)], shell=False, stdout=subprocess.PIPE,stderr=subprocess.STDOUT)            
+            
+            env = os.environ.copy()            
+            env['LD_LIBRARY_PATH'] = ''
+
+            self.task = subprocess.Popen([self.x_path, "-l", str(self.loglevel)], shell=False, stdout=subprocess.PIPE,stderr=subprocess.STDOUT, env=env)            
             self.thread = threading.Thread(target=self.reader, args=())
             self.thread.start()
             super()._start()          
