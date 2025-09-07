@@ -54,6 +54,17 @@
         "capabilities_aap_adaptive_audio_noise_notchlabel_default": "기본",
         "capabilities_aap_end_call_label": "통화 종료하기",
         "capabilities_aap_mute_unmute_label": "음소거",
-        "capabilities_aap_anc_one_airpod_label": "AIrPods 한 개 착용 시 노이즈 캔슬링"
+        "capabilities_aap_anc_one_airpod_label": "AIrPods 한 개 착용 시 노이즈 캔슬링",
+        "capabilities_header": "옵션들",
+        "capabilities_modal": "특정 옵션은 헤드폰이나 Steam Deck에서 지원되지 않더라도 인터페이스에 표시될 수 있습니다.",
+        "capabilities_aap_conversation_awareness_volume_label": "볼륨 감소",
+        "capabilities_aap_adaptive_audio_noise_label": "적응형 모드",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_more": "더 큰 노이즈",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_less": "적은 노이즈",
+        "capabilities_aap_volume_swipe_label": "볼륨 스와이프",
+        "capabilities_aap_volume_swipe_length_label": "볼륨 스와이프 길이",
+        "capabilities_aap_volume_swipe_length_notchlabel_longest": "최대",
+        "capabilities_aap_end_call_notchlabel_single": "1회 누르기",
+        "capabilities_aap_end_call_notchlabel_double": "2회 누르기"
     }
 }
