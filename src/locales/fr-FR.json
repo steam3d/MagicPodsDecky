@@ -54,6 +54,17 @@
         "capabilities_aap_press_and_hold_duration_label": "Durée de pression et maintien",
         "capabilities_aap_mute_unmute_label": "Mettre en sourdine et rétablir le son",
         "capabilities_aap_end_call_label": "Terminer l'appel",
-        "capabilities_aap_anc_one_airpod_label": "Annulation du bruit avec un seul AirPod"
+        "capabilities_aap_anc_one_airpod_label": "Annulation du bruit avec un seul AirPod",
+        "capabilities_aap_end_call_notchlabel_single": "Appuyez une fois",
+        "capabilities_aap_end_call_notchlabel_double": "Appuyez deux fois",
+        "capabilities_header": "Options",
+        "capabilities_modal": "Certaines options peuvent apparaître sur l'interface même si elles ne sont pas supporté par vos écouteurs ou le Steam Deck.",
+        "capabilities_aap_conversation_awareness_volume_label": "Diminuer le volume de",
+        "capabilities_aap_adaptive_audio_noise_label": "Mode adaptatif",
+        "capabilities_aap_volume_swipe_length_notchlabel_longest": "Le plus long",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_more": "Plus de bruit",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Moins de bruits",
+        "capabilities_aap_volume_swipe_label": "Faites glisser pour changer le volume",
+        "capabilities_aap_volume_swipe_length_label": "Longueur de la barre de volume"
     }
 }
