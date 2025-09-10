@@ -62,6 +62,9 @@
         "capabilities_aap_adaptive_audio_noise_label": "Adaptiver Modus",
         "capabilities_aap_adaptive_audio_noise_notchlabel_more": "Mehr Umgebungsgeräusche",
         "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Weniger Umgebungsgeräusche",
-        "capabilities_aap_volume_swipe_length_notchlabel_longest": "am längsten"
+        "capabilities_aap_volume_swipe_length_notchlabel_longest": "am längsten",
+        "capabilities_aap_end_call_notchlabel_double": "Drücke zweimal",
+        "capabilities_aap_volume_swipe_label": "Lautstärkenregler",
+        "capabilities_aap_volume_swipe_length_label": "Lautstärkenregellänge"
     }
 }
