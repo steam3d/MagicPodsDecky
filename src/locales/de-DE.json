@@ -54,6 +54,17 @@
         "capabilities_aap_personalized_volume_label": "Personalisierte Lautstärke",
         "capabilities_aap_mute_unmute_label": "Stumm oder Ton ein",
         "capabilities_aap_anc_one_airpod_label": "Geräuschunterdrückung mit einem AirPod",
-        "capabilities_aap_end_call_label": "Anruf beenden"
+        "capabilities_aap_end_call_label": "Anruf beenden",
+        "capabilities_aap_end_call_notchlabel_single": "Einmal drücken",
+        "capabilities_header": "Optionen",
+        "capabilities_modal": "Bestimmte Optionen können in der Benutzeroberfläche angezeigt werden, auch wenn sie von deinen Kopfhörern oder Steam Deck nicht unterstützt werden.",
+        "capabilities_aap_conversation_awareness_volume_label": "Lautstärke verringern um",
+        "capabilities_aap_adaptive_audio_noise_label": "Adaptiver Modus",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_more": "Mehr Umgebungsgeräusche",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Weniger Umgebungsgeräusche",
+        "capabilities_aap_volume_swipe_length_notchlabel_longest": "am längsten",
+        "capabilities_aap_end_call_notchlabel_double": "Drücke zweimal",
+        "capabilities_aap_volume_swipe_label": "Lautstärkenregler",
+        "capabilities_aap_volume_swipe_length_label": "Lautstärkenregellänge"
     }
 }
