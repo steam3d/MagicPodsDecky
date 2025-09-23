@@ -65,6 +65,7 @@
         "capabilities_aap_end_call_label": "End call",
         "capabilities_aap_end_call_notchlabel_single": "Press once",
         "capabilities_aap_end_call_notchlabel_double": "Press twice",
-        "capabilities_aap_mute_unmute_label": "Mute and unmute"
+        "capabilities_aap_mute_unmute_label": "Mute and unmute",
+        "settings_hotkey_error": "<Key1/> Hotkeys are broken in all plugins due to a SteamOS update. No solution yet, hotkeys remain disabled."
     }
 }

@@ -7,15 +7,17 @@ import {
     Menu,
     MenuItem,
     showContextMenu,
-    ToggleField
+    ToggleField,
+    staticClasses
 } from "@decky/ui";
 import { FC, useEffect, useState } from 'react';
 import i18next, { t } from 'i18next';
 import { Trans, useTranslation } from 'react-i18next'
 import { Backend } from "../backend";
-import { ANC_MODE_ADAPTIVE, ANC_MODE_ANC, ANC_MODE_OFF, ANC_MODE_TRANSPARENCY, ANC_MODE_WIND, L4, L5, QUICK_ACCESS_MENU } from "../ButtonIcons";
+import { ANC_MODE_ADAPTIVE, ANC_MODE_ANC, ANC_MODE_OFF, ANC_MODE_TRANSPARENCY, ANC_MODE_WIND, L4, L5, QUICK_ACCESS_MENU, WARNING } from "../ButtonIcons";
 import PanelSocialButton from "../components/socialButton";
 import { call } from "@decky/api";
+import { Input } from "../input";
 
 let sliderTimeoutId: NodeJS.Timeout;
 
@@ -102,8 +104,19 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                             }} />
                     </PanelSectionRow>
 
+                    {!Input.isSupported() &&
+                        <PanelSectionRow>
+                            <div className={staticClasses.Label} style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+                                <Trans
+                                    i18nKey="settings_hotkey_error"
+                                    components={{ Key1: <WARNING style={{ height: "16px", width: "auto", marginBottom: "-3.5px", paddingRight: "0px" }} /> }}
+                                />
+                            </div>                            
+                        </PanelSectionRow>
+                    }
+
                     <PanelSectionRow>
-                        <ToggleField checked={toggleSwitchAncHotkey} label={t("settings_hotkey_anc_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ key1: <QUICK_ACCESS_MENU style={buttonStyle} />, key2: <L5 style={buttonStyle} /> }} />} onChange={async (b) => {
+                        <ToggleField disabled={!Input.isSupported()} checked={toggleSwitchAncHotkey} label={t("settings_hotkey_anc_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ key1: <QUICK_ACCESS_MENU style={buttonStyle} />, key2: <L5 style={buttonStyle} /> }} />} onChange={async (b) => {
                             setToggleSwitchAncHotkey(b);
                             await backend.saveSetting("anc_l5_r5_switch", b);
                             backend.bgAncSwitch.updateSetting();
@@ -111,7 +124,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                     </PanelSectionRow>
 
                     <PanelSectionRow>
-                        <ToggleField checked={toggleMicHotkey} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ key1: <QUICK_ACCESS_MENU style={buttonStyle} />, key2: <L4 style={buttonStyle} /> }} />} onChange={async (b) => {
+                        <ToggleField disabled={!Input.isSupported()} checked={toggleMicHotkey} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ key1: <QUICK_ACCESS_MENU style={buttonStyle} />, key2: <L4 style={buttonStyle} /> }} />} onChange={async (b) => {
                             setToggleMicHotkey(b);
                             await backend.saveSetting("mic_qam_l5_toggle", b);
                         }} />

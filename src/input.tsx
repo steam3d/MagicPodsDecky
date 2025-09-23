@@ -46,6 +46,11 @@ export class Input {
 
     constructor(shortcut: Button[]) {
         this.shortcut = shortcut;
+        
+        if (!Input.isSupported()){
+            return;
+        }
+
         this.input_register = SteamClient.Input.RegisterForControllerStateChanges((changes: any[]) => {
             const buttons: Button[] = [];
             for (const change of changes) {
@@ -69,7 +74,7 @@ export class Input {
     }
 
     unregister(){
-        this.input_register.unregister();
+        this.input_register?.unregister();
     }
 
     private OnButtonsPressed(buttons: Button[]) {
@@ -117,5 +122,9 @@ export class Input {
         if (index !== -1) {
             this.onButtonsPressedListeners.splice(index, 1);
         }
+    }
+
+    static isSupported(): boolean {
+         return SteamClient?.Input?.RegisterForControllerStateChanges != null;
     }
 }
