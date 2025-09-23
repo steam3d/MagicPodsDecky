@@ -36,9 +36,9 @@ Additional settings — just like on iPhone and Mac:
 | AirPods 4 (ANC)  | Beats Fit Pro          | Galaxy Buds 2     |
 | AirPods Pro      | Beats Studio Buds      | Galaxy Buds 2 Pro |
 | AirPods Pro 2    | Beats Studio Buds Plus | Galaxy Buds Fe    |
-| AirPods Max      | Beats Studio Pro       | Galaxy Buds 3     |
-| AirPods Max 2024 | Beats Solo 3           | Galaxy Buds 3 Pro | 
-|                  | Beats Solo Pro         |                   |
+| AirPods Pro 3    | Beats Studio Pro       | Galaxy Buds 3     |
+| AirPods Max      | Beats Solo 3           | Galaxy Buds 3 Pro | 
+| AirPods Max 2024 | Beats Solo Pro         |                   |
 |                  | Beats Studio 3         |                   |
 |                  | Beats X                |                   |
 |                  | Beats Flex             |                   |
