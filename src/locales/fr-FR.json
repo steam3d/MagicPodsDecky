@@ -65,6 +65,7 @@
         "capabilities_aap_adaptive_audio_noise_notchlabel_more": "Plus de bruit",
         "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Moins de bruits",
         "capabilities_aap_volume_swipe_label": "Faites glisser pour changer le volume",
-        "capabilities_aap_volume_swipe_length_label": "Longueur de la barre de volume"
+        "capabilities_aap_volume_swipe_length_label": "Longueur de la barre de volume",
+        "settings_hotkey_error": "Le raccourci clavier <Key1/> est cassée suite à une mise à jour SteamOS. Nous n'avons pas encore de solution, les raccourcis clavier restent désactivés."
     }
 }
