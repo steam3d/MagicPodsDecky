@@ -1,1 +1,19 @@
-{}
+{
+    "translation": {
+        "battery_right": "destra",
+        "battery_case": "caso",
+        "capabilities_noise_control_label": "controllo del rumore",
+        "headphones_disconnected": "Collega le cuffie per visualizzare il livello della batteria e regolare le impostazioni",
+        "settings_low_battery_label": "Notifica batteria scarica",
+        "settings_low_battery_label_notchlabel_off": "Spento",
+        "settings_language_button_label": "Lingua",
+        "settings_language_menu_label": "Scegli la lingua",
+        "settings_language_menu_canceltext": "Cancellare",
+        "settings_hotkey_anc_description": "Premere <key1/> + <key2/> per passare da una modalità di cancellazione del rumore all'altra",
+        "battery_left": "Sinistra",
+        "battery_single": "carica",
+        "websocket_connection_issue": "Qualcosa è andato storto, prova a ricaricare",
+        "settings_hotkey_anc_label": "Tasti di scelta rapida modalità cancellazione rumore",
+        "settings_hotkey_mic_label": "Tasto di scelta rapida per disattivare il microfono"
+    }
+}
