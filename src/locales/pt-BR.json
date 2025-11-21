@@ -54,6 +54,13 @@
         "capabilities_aap_press_speed_notchlabel_default": "Padrão",
         "capabilities_aap_mute_unmute_label": "Silenciar e ativar som",
         "capabilities_aap_anc_one_airpod_label": "Cancelamento de ruído com um AirPod",
-        "capabilities_aap_end_call_label": "Encerrar chamada"
+        "capabilities_aap_end_call_label": "Encerrar chamada",
+        "capabilities_header": "Opções",
+        "capabilities_modal": "Certos recursos podem aparecer na interface mesmo que não sejam compatíveis com seus fones de ouvido ou com o Steam Deck.",
+        "capabilities_aap_conversation_awareness_volume_label": "Diminuir o volume por",
+        "capabilities_aap_adaptive_audio_noise_label": "Modo adaptativo",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_more": "Mais ruído",
+        "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Menos ruído",
+        "capabilities_aap_volume_swipe_label": "Deslizar para volume"
     }
 }
