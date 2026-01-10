@@ -1,10 +1,10 @@
 {
     "translation": {
-        "settings_hotkey_anc_label": "Touche pour la réduction du bruit",
+        "settings_hotkey_anc_label": "Touche de raccourci pour la réduction de bruit",
         "battery_case": "Boîtier",
         "battery_single": "Batterie",
         "capabilities_noise_control_label": "Contrôle du bruit",
-        "settings_low_battery_label": "Avertissement de batterie faible",
+        "settings_low_battery_label": "Notification de batterie faible",
         "settings_low_battery_label_notchlabel_off": "Désactivé",
         "settings_language_button_label": "Langue",
         "settings_language_menu_canceltext": "Annuler",
