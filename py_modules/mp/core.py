@@ -50,7 +50,7 @@ class CoreBackgroundService(CoreBase): # Deprecated
         super().__init__(x_dir, x_name)
 
     def _get_backend_pid(self):
-        env = os.environ.copy()        
+        env = os.environ.copy()
         env['LD_LIBRARY_PATH'] = ''
         output = subprocess.Popen("ps -ef", stdout=subprocess.PIPE, shell=True, env=env).communicate()[0].decode('utf-8').splitlines()
         for line in output[1:]:
@@ -104,8 +104,13 @@ class CoreService(CoreBase):
         if not self._is_runnig():
             logger.info(self.x_path)
             
-            env = os.environ.copy()            
+            env = os.environ.copy()
             env['LD_LIBRARY_PATH'] = ''
+
+            #env["USER"] = "deck"
+            #env["LOGNAME"] = "deck"
+            env["XDG_RUNTIME_DIR"] = "/run/user/1000"
+            #env["DBUS_SESSION_BUS_ADDRESS"] = "unix:path=/run/user/1000/bus"
 
             self.task = subprocess.Popen([self.x_path, "-l", str(self.loglevel)], shell=False, stdout=subprocess.PIPE,stderr=subprocess.STDOUT, env=env)            
             self.thread = threading.Thread(target=self.reader, args=())
