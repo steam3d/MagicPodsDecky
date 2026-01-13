@@ -2,8 +2,8 @@
     "translation": {
         "battery_left": "左",
         "battery_right": "右",
-        "battery_case": "充电盒",
-        "battery_single": "已充电",
+        "battery_case": "充电仓",
+        "battery_single": "电量",
         "capabilities_noise_control_label": "噪音控制",
         "websocket_connection_issue": "出错了，请尝试刷新",
         "headphones_disconnected": "连接耳机以查看电池电量和调整设置",
@@ -45,7 +45,7 @@
         "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "最短",
         "capabilities_aap_press_speed_label": "按压速度",
         "capabilities_aap_personalized_volume_label": "个性化音量",
-        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "关",
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "关闭",
         "capabilities_aap_press_speed_notchlabel_default": "默认",
         "capabilities_aap_press_speed_notchlabel_slower": "慢点",
         "capabilities_aap_press_speed_notchlabel_slowest": "最慢",
@@ -65,6 +65,7 @@
         "capabilities_aap_end_call_label": "结束通话",
         "capabilities_aap_end_call_notchlabel_single": "按一次",
         "capabilities_aap_end_call_notchlabel_double": "按两次",
-        "capabilities_aap_mute_unmute_label": "静音和取消静音"
+        "capabilities_aap_mute_unmute_label": "静音和取消静音",
+        "settings_hotkey_error": "<Key1/> 由于 SteamOS 的一次更新，所有插件中的快捷键都暂时不能使用。在找到解决方案之前，快捷键将处于禁用状态。"
     }
 }

@@ -42,17 +42,17 @@
         "capabilities_aap_press_and_hold_duration_label": "Duración de mantener pulsado",
         "capabilities_aap_press_and_hold_duration_notchlabel_default": "Por omisión",
         "capabilities_aap_personalized_volume_label": "Volumen personalizado",
-        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Corta",
-        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "Muy corta",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Corto",
+        "capabilities_aap_press_and_hold_duration_notchlabel_shortest": "Más corto",
         "capabilities_aap_press_speed_label": "Velocidad de presionado",
         "capabilities_aap_press_speed_notchlabel_default": "Por omisión",
-        "capabilities_aap_press_speed_notchlabel_slower": "Lenta",
-        "capabilities_aap_press_speed_notchlabel_slowest": "Muy lenta",
+        "capabilities_aap_press_speed_notchlabel_slower": "Lento",
+        "capabilities_aap_press_speed_notchlabel_slowest": "Más lento",
         "capabilities_aap_volume_swipe_length_notchlabel_default": "Por omisión",
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "Largo",
         "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Apagado",
         "capabilities_aap_tone_volume_label": "Volumen del tono",
-        "capabilities_aap_anc_one_airpod_label": "Cancelación de ruido con un AirPod",
+        "capabilities_aap_anc_one_airpod_label": "Cancelación de ruido activa con un AirPod",
         "capabilities_aap_end_call_label": "Finalizar llamada",
         "capabilities_aap_mute_unmute_label": "Silenciar y activar sonido",
         "capabilities_header": "Opciones",
@@ -65,6 +65,7 @@
         "capabilities_aap_volume_swipe_length_label": "Longitud del deslizamiento de volumen",
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "Más largo",
         "capabilities_aap_end_call_notchlabel_single": "Presione una vez",
-        "capabilities_aap_end_call_notchlabel_double": "Presione dos veces"
+        "capabilities_aap_end_call_notchlabel_double": "Presione dos veces",
+        "settings_hotkey_error": "<Key1/> Los atajos no funcionan en todos los complementos debido a una actualización de SteamOS. Aún no hay solución, los atajos siguen deshabilitados."
     }
 }
