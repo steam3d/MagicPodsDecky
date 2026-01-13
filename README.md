@@ -8,6 +8,7 @@ A magic plugin for the Decky Loader that allows you to control your AirPods and 
 
 🔋 Battery level  
 ⚙️ Noise control  
+🎧 Switch Bluetooth codec  
 🔌 Fix headphones disconnects  
 🎙️ Hotkey to mute microphone  
 🔄 Hotkey to cycle between noise modes  
