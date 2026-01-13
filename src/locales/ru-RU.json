@@ -66,6 +66,11 @@
         "capabilities_aap_mute_unmute_label": "Вкл. и выкл. звука",
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "Очень длинно",
         "capabilities_aap_end_call_notchlabel_double": "Двойное нажатие",
+        "capabilities_cmn_bluetooth_codec_label": "Bluetooth кодек",
+        "capabilities_cmn_bluetooth_codec_menu": "Выберите кодек",
+        "capabilities_cmn_bluetooth_codec_button_secondary": "Показать описание",
+        "capabilities_cmn_bluetooth_codec_table_codec": "Кодек",
+        "capabilities_cmn_bluetooth_codec_table_description": "Описание",
         "settings_hotkey_error": "<Key1/> Обновление SteamOS сломало работу горячих клавиш во всех плагинах. Пока решение не найдено, горячие клавиши остаются отключены."
     }
 }
