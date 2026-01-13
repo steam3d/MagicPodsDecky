@@ -13,6 +13,9 @@ import elGr from "./locales/el-GR.json";
 import koKR from "./locales/ko-KR.json";
 import siLK from "./locales/si-LK.json";
 import ukUA from "./locales/uk-UA.json";
+import itIT from "./locales/it-IT.json";
+import ptPT from "./locales/pt-PT.json";
+import zhHant from "./locales/zh-Hant.json";
 
 function initI18n(){
   i18n
@@ -34,7 +37,10 @@ function initI18n(){
       "el-GR": elGr,
       "ko-KR": koKR,
       "si-LK": siLK,
-      "uk-UA": ukUA
+      "uk-UA": ukUA,      
+      "it-IT": itIT,
+      "pt-PT": ptPT,
+      "zh-Hant": zhHant
     },
     //debug: true,
     lng: navigator.language,
