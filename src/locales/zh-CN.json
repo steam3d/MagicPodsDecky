@@ -66,6 +66,11 @@
         "capabilities_aap_end_call_notchlabel_single": "按一次",
         "capabilities_aap_end_call_notchlabel_double": "按两次",
         "capabilities_aap_mute_unmute_label": "静音和取消静音",
-        "settings_hotkey_error": "<Key1/> 由于 SteamOS 的一次更新，所有插件中的快捷键都暂时不能使用。在找到解决方案之前，快捷键将处于禁用状态。"
+        "settings_hotkey_error": "<Key1/> 由于 SteamOS 的一次更新，所有插件中的快捷键都暂时不能使用。在找到解决方案之前，快捷键将处于禁用状态。",
+        "capabilities_cmn_bluetooth_codec_label": "蓝牙音频格式",
+        "capabilities_cmn_bluetooth_codec_menu": "选择音频格式",
+        "capabilities_cmn_bluetooth_codec_button_secondary": "查看详情",
+        "capabilities_cmn_bluetooth_codec_table_codec": "格式名称",
+        "capabilities_cmn_bluetooth_codec_table_description": "详情"
     }
 }
