@@ -1,1 +1,20 @@
-{}
+{
+    "translation": {
+        "battery_left": "Lewa",
+        "battery_right": "Prawa",
+        "battery_case": "Obudowa",
+        "battery_single": "Ładowanie",
+        "capabilities_noise_control_label": "Ustawienia redukcji szumów",
+        "websocket_connection_issue": "Coś poszło nie tak, odśwież",
+        "headphones_disconnected": "Podłącz słuchawki, by zobaczyć poziom baterii oraz by zmienić ustawienia",
+        "settings_low_battery_label": "Powiadomienie o niskim stanie baterii",
+        "settings_low_battery_label_notchlabel_off": "Wyłączone",
+        "settings_language_button_label": "Język aplikacji",
+        "settings_language_menu_label": "Wybierz język aplikacji",
+        "settings_language_menu_canceltext": "Anuluj",
+        "settings_hotkey_anc_label": "Skrót do załączenia aktwnej redukcji szumów",
+        "settings_hotkey_anc_description": "Wciśnij <key1/> + <key2/> by przełączać się między trybami redukcji szumów",
+        "settings_hotkey_mic_label": "Skrót do wyciszenia mikrofonu",
+        "settings_hotkey_mic_description": "Wciśnij <key1/> + <key2/> by wyciszyć/odciszyć mikrofon"
+    }
+}
