@@ -66,6 +66,11 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "최대",
         "capabilities_aap_end_call_notchlabel_single": "1회 누르기",
         "capabilities_aap_end_call_notchlabel_double": "2회 누르기",
-        "settings_hotkey_error": "<Key1/> SteamOS 업데이트로 인해 모든 플러그인의 단축키가 작동하지 않습니다. 아직 해결책이 없으며, 단축키는 계속 비활성화된 상태입니다."
+        "settings_hotkey_error": "<Key1/> SteamOS 업데이트로 인해 모든 플러그인의 단축키가 작동하지 않습니다. 아직 해결책이 없으며, 단축키는 계속 비활성화된 상태입니다.",
+        "capabilities_cmn_bluetooth_codec_label": "블루투스 코덱",
+        "capabilities_cmn_bluetooth_codec_menu": "코덱 선택하기",
+        "capabilities_cmn_bluetooth_codec_button_secondary": "설명 보기",
+        "capabilities_cmn_bluetooth_codec_table_codec": "코덱",
+        "capabilities_cmn_bluetooth_codec_table_description": "설명"
     }
 }
