@@ -15,6 +15,22 @@
         "settings_hotkey_anc_label": "Skrót do załączenia aktwnej redukcji szumów",
         "settings_hotkey_anc_description": "Wciśnij <key1/> + <key2/> by przełączać się między trybami redukcji szumów",
         "settings_hotkey_mic_label": "Skrót do wyciszenia mikrofonu",
-        "settings_hotkey_mic_description": "Wciśnij <key1/> + <key2/> by wyciszyć/odciszyć mikrofon"
+        "settings_hotkey_mic_description": "Wciśnij <key1/> + <key2/> by wyciszyć/odciszyć mikrofon",
+        "settings_header": "Ustawienia",
+        "settings_misc_header": "Przydatne linki",
+        "settings_social_button_translate": "Przetłumacz",
+        "settings_social_button_description": "Pokaż kod QR",
+        "headphones": "Słuchawki",
+        "notif_error_websocket_connection_issue": "Błąd! Otwórz wtyczki dla więcej informacji",
+        "notif_low_battery": "{{battery}}% pozostało. Naładuj swoje słuchawki.",
+        "capabilities_header": "Opcje",
+        "capabilities_modal": "Niektóre opcje mogą pokazać w interfejsie nawet jeśli one nie są wspierane przez twoje słuchawki czy przez Steam Deck.",
+        "bluetooth": "Bluetooth",
+        "settings_anc_modes_off_label": "<icon/>Wyłącz",
+        "settings_fix_disconnects_label": "Wyłącz tryb czuwania słuchawek",
+        "settings_fix_disconnects_description": "Naprawia problemy z niekończące się podłączanie/odłączanie słuchawek",
+        "settings_anc_modes_anc_label": "<icon/>Redukcja hałasu",
+        "settings_anc_modes_wind_label": "<icon/>Redukcja szumów",
+        "settings_anc_modes_transparency_label": "<icon/>Tryb kontaktu"
     }
 }
