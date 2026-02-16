@@ -112,7 +112,7 @@ class Plugin:
         await self.update_log_level()
 
         logger.info("_main %s starting", decky.DECKY_PLUGIN_VERSION)
-        self.core = CoreService(os.path.join(decky.DECKY_PLUGIN_DIR, "bin"), "MagicPodsCore", bin_logging)
+        self.core = CoreService(os.path.join(decky.DECKY_PLUGIN_DIR, "bin"), "magicpodscore", bin_logging)
         self.is_backend_allowed = True # Allow reconnecting socket when user using plugin
         self.player = Player(os.path.join(decky.DECKY_PLUGIN_DIR, "silence.mp3"),bin_logging)
 
