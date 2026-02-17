@@ -66,6 +66,11 @@
         "capabilities_aap_press_speed_notchlabel_slowest": "الأبطأ",
         "capabilities_aap_volume_swipe_length_notchlabel_default": "الافتراضي",
         "capabilities_aap_conversation_awareness_volume_label": "خفض مستوى الصوت بـ",
-        "settings_hotkey_error": "<Key1/>مفاتيح الاختصار لا تعمل في كل الاضافات بسبب تحديث لـSteamOS. لا يوجد حل حاليا، الاختصارات ستظل مبطلة."
+        "settings_hotkey_error": "<Key1/>مفاتيح الاختصار لا تعمل في كل الاضافات بسبب تحديث لـSteamOS. لا يوجد حل حاليا، الاختصارات ستظل مبطلة.",
+        "capabilities_cmn_bluetooth_codec_label": "ترميز البلوتوث",
+        "capabilities_cmn_bluetooth_codec_menu": "اختر الترميز",
+        "capabilities_cmn_bluetooth_codec_button_secondary": "عرض الوصف",
+        "capabilities_cmn_bluetooth_codec_table_codec": "الترميز",
+        "capabilities_cmn_bluetooth_codec_table_description": "الوصف"
     }
 }
