@@ -14,7 +14,7 @@ export const enum BackendSocketState {
 }
 
 export class Backend {
-    static readonly maxAttempts = 3;
+    static readonly maxAttempts = -1;
     static readonly supportedApiVersion = 0;
     private logLevel = 0;
 

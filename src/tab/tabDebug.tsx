@@ -9,7 +9,6 @@ import {
     toaster
 } from "@decky/api";
 
-import * as classes from "@decky/ui/dist/utils/static-classes";
 import { FC } from 'react';
 import { t } from 'i18next';
 
@@ -84,22 +83,7 @@ export const TabDebug: FC<{ backend: Backend; }> = ({ backend }) => {
                         </ButtonItem>
                     </PanelSectionRow>
 
-                    <PanelSectionRow>
-                        <ButtonItem
-                            layout="below"
-                            onClick={async () => {
-                                for (const [groupName, groupObj] of Object.entries(classes)) {
-                                    if (typeof groupObj === "object" && groupObj !== null) {
-                                        backend.logDebug(`\n=== ${groupName} ===`);
-                                        for (const [name, value] of Object.entries(groupObj)) {
-                                            backend.logDebug(`${name}: ${value}`);
-                                        }
-                                    }
-                                }
-                            }}>
-                            print classes
-                        </ButtonItem>
-                    </PanelSectionRow>
+
 
                     <PanelSectionRow>
                         <ButtonItem
