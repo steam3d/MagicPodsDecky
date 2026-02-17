@@ -38,7 +38,7 @@ export class Backend {
         this.reconnectAttempts = Backend.maxAttempts;
         this.resetSessionState();
         this.logInfo("Backend: Socket opened (", this.convert(this.socket.readyState), ")", event);
-        this.notifySocketConnectionChanged(BackendSocketState.CONNECTING);
+        this.notifySocketConnectionChanged(BackendSocketState.CLOSED);
     };
 
     onMessageHandler = (event: MessageEvent) => {
@@ -105,7 +105,7 @@ export class Backend {
             await call("start_backed");
 
             this.reconnectTimeoutId = setTimeout(async () => {
-                this.notifySocketConnectionChanged(BackendSocketState.CONNECTING)
+                this.notifySocketConnectionChanged(BackendSocketState.CLOSED)
                 if (Backend.maxAttempts >= 0 && this.reconnectAttempts > 0) {
                     this.reconnectAttempts -= 1;
                 }
