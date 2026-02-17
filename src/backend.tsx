@@ -5,7 +5,8 @@ import { BackgroundAncSwitch } from "./bgAncSwitch";
 import { Player } from "./player";
 
 export const enum BackendSocketState {
-    UNINSTANTIATED = -2,
+    UNINSTANTIATED = -3,
+    INVALIDVERSION = -2,
     ERROR = -1,
     CONNECTING = 0,
     OPEN = 1,
@@ -14,6 +15,7 @@ export const enum BackendSocketState {
 
 export class Backend {
     static readonly maxAttempts = 3;
+    static readonly supportedApiVersion = 0;
     private logLevel = 0;
 
     bgAncSwitch: BackgroundAncSwitch;
@@ -27,17 +29,56 @@ export class Backend {
     private allowReconnect = false;
     private reconnectAttempts!: number;
     private reconnectTimeoutId: NodeJS.Timeout | undefined;
+    private backendApiVersion = -1;
+    private apiReady = false;
+    private unsupportedApi = false;
 
 
     onOpenHandler = async (event: Event) => {
-        this.reconnectAttempts = Backend.maxAttempts
+        this.reconnectAttempts = Backend.maxAttempts;
+        this.resetSessionState();
         this.logInfo("Backend: Socket opened (", this.convert(this.socket.readyState), ")", event);
-        this.notifySocketConnectionChanged(BackendSocketState.OPEN)
+        this.notifySocketConnectionChanged(BackendSocketState.CONNECTING);
     };
 
     onMessageHandler = (event: MessageEvent) => {
         this.logInfo("Backend: Message received:", event.data);
-        this.notifyJsonMessageReceivedListeners(event.data);
+        if (!this.isJsonString(event.data as string)) {
+            return;
+        }
+
+        this.logInfo("1. Backend: Message received");
+        const json = JSON.parse(event.data as string);
+
+        if (this.unsupportedApi) {
+            return;
+        }
+
+        this.logInfo("2. Backend: Message received");
+        if (!this.apiReady) {
+            if (json?.init?.api == null) {
+                return;
+            }
+
+            this.backendApiVersion = Number(json.init.api);
+            if (!Number.isFinite(this.backendApiVersion) || this.backendApiVersion !== Backend.supportedApiVersion) {
+                this.unsupportedApi = true;
+                this.logError(
+                    "Backend: Unsupported API version. Supported:",
+                    Backend.supportedApiVersion,
+                    "Backend:",
+                    this.backendApiVersion
+                );
+                this.notifySocketConnectionChanged(BackendSocketState.INVALIDVERSION);
+                return;
+            }
+
+            this.logInfo("3. Backend: Message received");
+            this.apiReady = true;
+            this.notifySocketConnectionChanged(BackendSocketState.OPEN);
+        }
+
+        this.notifyJsonMessageReceivedListeners(json);
     };
 
     onCloseHandler = async (event: CloseEvent) => {
@@ -49,7 +90,7 @@ export class Backend {
                 return;
         }
 
-        if (this.reconnectAttempts !== 0){
+        if (this.reconnectAttempts > 0 || this.reconnectAttempts === -1){
             const isBackendAllowed = await call<[], boolean>("backend_allowed");
             if (!isBackendAllowed){ // When user delete the plugin, we do not want to reconnect socket.
                 this.logError("Backend: Running backend is prohibited by python");
@@ -65,8 +106,11 @@ export class Backend {
 
             this.reconnectTimeoutId = setTimeout(async () => {
                 this.notifySocketConnectionChanged(BackendSocketState.CONNECTING)
-                this.reconnectAttempts -= 1;
+                if (Backend.maxAttempts >= 0 && this.reconnectAttempts > 0) {
+                    this.reconnectAttempts -= 1;
+                }
                 this.logInfo("Backend: Trying reconnecting socket due socket closed. Left attempts", this.reconnectAttempts);
+                this.resetSessionState();
                 this.socketConnect();
                 }, 1000)
         }
@@ -84,6 +128,24 @@ export class Backend {
         this.bgAncSwitch = new BackgroundAncSwitch(this);
         this.player = new Player(this);
         this.connect();
+    }
+
+    private resetSessionState() {
+        this.unsupportedApi = false;
+        this.backendApiVersion = -1;
+        this.apiReady = false;
+    }
+
+    public getBackendApiVersion() {
+        return this.backendApiVersion;
+    }
+
+    public isApiReady() {
+        return this.apiReady;
+    }
+
+    public isUnsupportedApi() {
+        return this.unsupportedApi;
     }
 
 
@@ -129,12 +191,15 @@ export class Backend {
 
     connect(){
         this.allowReconnect = true;
-        this.reconnectAttempts = Backend.maxAttempts
+        this.reconnectAttempts = Backend.maxAttempts;
+        this.resetSessionState();
+        this.notifySocketConnectionChanged(BackendSocketState.CONNECTING);
         this.socketConnect();
     }
 
     disconnect(){
         this.allowReconnect = false;
+        this.resetSessionState();
         this.socketDisconnect();
     }
 
@@ -157,7 +222,7 @@ export class Backend {
 
     private socketDisconnect() {
         if (this.socket) {
-            if(this.socket.readyState == 1){ //open
+            if(this.socket.readyState === WebSocket.OPEN || this.socket.readyState === WebSocket.CONNECTING){
                 this.socket.close();
                 this.logInfo('Backend: Socket disconnected');
             }
@@ -175,12 +240,7 @@ export class Backend {
         }
     }
 
-    private notifyJsonMessageReceivedListeners(data: any) {
-        if (!this.isJsonString(data as string)) {
-            return
-        }
-
-        const json = JSON.parse(data);
+    private notifyJsonMessageReceivedListeners(json: object) {
         this.jsonMessageReceivedListeners.forEach(callback => {
             callback(json);
         });
@@ -256,9 +316,49 @@ export class Backend {
 
     getInfo() {
         const json = {
-            method: "GetDeckyInfo"
+            method: "GetActiveDeviceInfo"
         }
         this.sendToSocket(JSON.stringify(json))
+    }
+
+    getSettingsAll() {
+        const json = {
+            method: "GetSettingsAll"
+        };
+        this.sendToSocket(JSON.stringify(json));
+    }
+
+    getSettings(containerName: string) {
+        const json = {
+            method: "GetSettings",
+            arguments: {
+                container: containerName
+            }
+        };
+        this.sendToSocket(JSON.stringify(json));
+    }
+
+    getSetting(containerName: string, settingName: string) {
+        const json = {
+            method: "GetSetting",
+            arguments: {
+                container: containerName,
+                setting: settingName
+            }
+        };
+        this.sendToSocket(JSON.stringify(json));
+    }
+
+    setSetting(containerName: string, settingName: string, newValue: any) {
+        const json = {
+            method: "SetSetting",
+            arguments: {
+                container: containerName,
+                setting: settingName,
+                value: newValue
+            }
+        };
+        this.sendToSocket(JSON.stringify(json));
     }
 
     getDevices() {
