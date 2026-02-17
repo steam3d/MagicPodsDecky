@@ -2,6 +2,7 @@ import os
 import logging
 from logging.handlers import RotatingFileHandler
 from mp.core import CoreService
+from mp.extcore import ExtCoreService
 from mp.settings import Settings
 from mp.player import Player
 import decky
@@ -43,13 +44,23 @@ def bin_logging(msg):
 class Plugin:
 
     async def start_backed(self):
+        if self.extcore.isExists():
+            self.extcore.startReader()
+            logger.info("External backend exists. Skip start_backed.")
+            return
+
         self.core.loglevel = int(self.settings.load("log_level"))
         self.core.start()
 
     async def restart_backend(self):
         logger.info("Restarting")
-        self.core.loglevel = int(self.settings.load("log_level"))
-        self.core.restart()
+
+        if self.extcore.isExists():
+            logger.info("External backend exists. Restart external backend")
+            self.extcore.restart()
+        else:
+            self.core.loglevel = int(self.settings.load("log_level"))
+            self.core.restart()
 
     async def logger_react(self, lvl, msg):
         if lvl == 0:
@@ -95,6 +106,7 @@ class Plugin:
     async def debug_stop_backed(self):
         self.is_backend_allowed = False # do not forget to add this to debug methods
         self.core.stop()
+        self.extcore.stop()
 
     # Used to prevent reconnecting websocket when backend off
     async def backend_allowed(self):
@@ -113,6 +125,7 @@ class Plugin:
 
         logger.info("_main %s starting", decky.DECKY_PLUGIN_VERSION)
         self.core = CoreService(os.path.join(decky.DECKY_PLUGIN_DIR, "bin"), "magicpodscore", bin_logging)
+        self.extcore = ExtCoreService("magicpodscore.service", bin_logging)
         self.is_backend_allowed = True # Allow reconnecting socket when user using plugin
         self.player = Player(os.path.join(decky.DECKY_PLUGIN_DIR, "silence.mp3"),bin_logging)
 
@@ -123,6 +136,7 @@ class Plugin:
     async def _unload(self):
         self.is_backend_allowed = False # Does not allow reconnecting socket when user delete plugin
         self.core.stop()
+        self.extcore.stopReader()
         logger.info("_unload finished")
 
     # Migrations that should be performed before entering `_main()`.
