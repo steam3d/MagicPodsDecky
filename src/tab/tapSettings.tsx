@@ -21,6 +21,8 @@ import { Input } from "../input";
 
 let sliderTimeoutId: NodeJS.Timeout;
 
+export type settingProps = Record<string, Record<string, string | number | boolean>>;
+
 const buttonStyle = {
     height: "16px",
     width: "auto",
@@ -34,7 +36,7 @@ const iconModesStyle = {
     minWidth: "24px"
 }
 
-export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
+export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, setToggleAnimationOn: React.Dispatch<React.SetStateAction<boolean>>; }> = ({ toggleAnimationOn, setToggleAnimationOn, backend }) => {
     const [sliderLowBattery, setSliderLowBattery] = useState<number>(-1);
     const [sliderLogLevel, setSliderLogLevel] = useState<number>(-1);
     const [toggleSwitchAncHotkey, setToggleSwitchAncHotkey] = useState<boolean>(false);
@@ -60,7 +62,8 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
             setToggleAncTransparency(await backend.loadBooleanSetting("allow_anc_mode_transparency"));
             setToggleAncAdaptive(await backend.loadBooleanSetting("allow_anc_mode_adaptive"));
             setToggleAncWind(await backend.loadBooleanSetting("allow_anc_mode_wind"));
-            setToggleAncOn(await backend.loadBooleanSetting("allow_anc_mode_anc"));
+            setToggleAncOn(await backend.loadBooleanSetting("allow_anc_mode_anc"));            
+            backend.getSetting("magicpods", "animation");
         };
 
         getSetting();
@@ -111,7 +114,7 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                                     i18nKey="settings_hotkey_error"
                                     components={{ Key1: <WARNING style={{ height: "16px", width: "auto", marginBottom: "-3.5px", paddingRight: "0px" }} /> }}
                                 />
-                            </div>                            
+                            </div>
                         </PanelSectionRow>
                     }
 
@@ -135,6 +138,13 @@ export const TabSettings: FC<{ backend: Backend; }> = ({ backend }) => {
                             setToggleFixDisconnects(b);
                             await backend.saveSetting("fix_disconnects", b);
                             backend.player.updateSetting();
+                        }} />
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <ToggleField checked={toggleAnimationOn} label={t("settings_animation_label")} description={<Trans i18nKey="settings_animation_description" components={{ Key1: <WARNING style={{ height: "16px", width: "auto", marginBottom: "-3.5px", paddingRight: "0px" }} /> }} />} onChange={async (b) => {
+                            backend.setSetting("magicpods", "animation", b);
+                            setToggleAnimationOn(b);
                         }} />
                     </PanelSectionRow>
 

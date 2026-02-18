@@ -72,6 +72,8 @@
         "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
         "capabilities_cmn_bluetooth_codec_table_description": "Description",
         "settings_hotkey_error": "<Key1/> Hotkeys are broken in all plugins due to a SteamOS update. No solution yet, hotkeys remain disabled.",
-        "websocket_update_required": "Please update the plugin to continue."
+        "websocket_update_required": "Please update the plugin to continue.",
+        "settings_animation_label": "Headphones animation",
+        "settings_animation_description": "<Key1/> MagicPods desktop only. Shows the AirPods and Beats animation, similar to iPhone, when you open the headphones case."
     }
 }

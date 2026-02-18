@@ -18,7 +18,7 @@ import { BatteryDataProps, TabInfo, headphoneInfoProps } from "./tab/tabInfo";
 
 import { TabHeadphones, defaultBluetoothProps } from "./tab/tabHeadphones";
 import { headphonesListProps } from "./tab/tabHeadphones";
-import { TabSettings } from "./tab/tapSettings";
+import { settingProps, TabSettings } from "./tab/tapSettings";
 
 import { Backend, BackendSocketState } from "./backend";
 import { LogoIcon } from "./icons";
@@ -76,7 +76,7 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
       return;
     }
 
-    const typedJson = lastJsonMessage as { info?: headphoneInfoProps,  defaultbluetooth?: defaultBluetoothProps, headphones?: headphonesListProps[]};
+    const typedJson = lastJsonMessage as { info?: headphoneInfoProps,  defaultbluetooth?: defaultBluetoothProps, headphones?: headphonesListProps[], settings?: settingProps};
 
     if (typedJson?.info != null) {
       setInfoValue(Object.keys(typedJson.info).length === 0? undefined: typedJson.info as headphoneInfoProps);
@@ -90,6 +90,13 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
       setHeadphonesValue(typedJson.headphones.length === 0 ? [] : typedJson.headphones as headphonesListProps[]);
     }
 
+    if (typedJson?.settings != null){
+        const animation = typedJson?.settings?.["magicpods"]?.["animation"];
+        if (typeof animation === "boolean"){
+          setToggleAnimationOn(animation);
+        }
+    }
+
   };
 
   const [headphonesValue, setHeadphonesValue] = useState<headphonesListProps[]>([]);
@@ -99,6 +106,7 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
   const [updateRequiredValue, setUpdateRequiredValue] = useState<boolean>(false);
   const [isButtonDisabledValue, setIsButtonDisabledValue] = useState<boolean>(false);
   const [currentTabRoute, setCurrentTabRoute] = useState<string>("info");
+  const [toggleAnimationOn, setToggleAnimationOn] = useState<boolean>(false);
 
   return (
     <>
@@ -159,7 +167,7 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
           {
             // @ts-ignore
             title: <svg style={{ display: "block" }} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.7834 4.51686L11.4751 2.0252C10.6501 1.5502 9.3584 1.5502 8.5334 2.0252L4.1834 4.53353C2.4584 5.7002 2.3584 5.8752 2.3584 7.73353V12.2585C2.3584 14.1169 2.4584 14.3002 4.21673 15.4835L8.52506 17.9752C8.94173 18.2169 9.47507 18.3335 10.0001 18.3335C10.5251 18.3335 11.0584 18.2169 11.4667 17.9752L15.8167 15.4669C17.5417 14.3002 17.6417 14.1252 17.6417 12.2669V7.73353C17.6417 5.8752 17.5417 5.7002 15.7834 4.51686ZM10.0001 12.7085C8.5084 12.7085 7.29173 11.4919 7.29173 10.0002C7.29173 8.50853 8.5084 7.29186 10.0001 7.29186C11.4917 7.29186 12.7084 8.50853 12.7084 10.0002C12.7084 11.4919 11.4917 12.7085 10.0001 12.7085Z" fill="currentColor" /></svg>,
-            content: <TabSettings backend={backend} />,
+            content: <TabSettings backend={backend} toggleAnimationOn={toggleAnimationOn} setToggleAnimationOn={setToggleAnimationOn} />,
             id: "settings",
           }
 
