@@ -107,6 +107,7 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                             }} />
                     </PanelSectionRow>
 
+{/*
                     {!Input.isSupported() &&
                         <PanelSectionRow>
                             <div className={staticClasses.Label} style={{ paddingLeft: "0px", paddingRight: "0px" }}>
@@ -117,7 +118,8 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                             </div>
                         </PanelSectionRow>
                     }
-
+*/}
+                    {Input.isSupported() &&
                     <PanelSectionRow>
                         <ToggleField disabled={!Input.isSupported()} checked={toggleSwitchAncHotkey} label={t("settings_hotkey_anc_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ key1: <QUICK_ACCESS_MENU style={buttonStyle} />, key2: <L5 style={buttonStyle} /> }} />} onChange={async (b) => {
                             setToggleSwitchAncHotkey(b);
@@ -125,14 +127,17 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                             backend.bgAncSwitch.updateSetting();
                         }} />
                     </PanelSectionRow>
+                    }
 
+                    {Input.isSupported() &&
                     <PanelSectionRow>
                         <ToggleField disabled={!Input.isSupported()} checked={toggleMicHotkey} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ key1: <QUICK_ACCESS_MENU style={buttonStyle} />, key2: <L4 style={buttonStyle} /> }} />} onChange={async (b) => {
                             setToggleMicHotkey(b);
                             await backend.saveSetting("mic_qam_l5_toggle", b);
                         }} />
                     </PanelSectionRow>
-
+                    }
+                    
                     <PanelSectionRow>
                         <ToggleField checked={toggleFixDisconnects} label={t("settings_fix_disconnects_label")} description={t("settings_fix_disconnects_description")} onChange={async (b) => {
                             setToggleFixDisconnects(b);
