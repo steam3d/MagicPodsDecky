@@ -15,6 +15,7 @@ import siLK from "./locales/si-LK.json";
 import ukUA from "./locales/uk-UA.json";
 import itIT from "./locales/it-IT.json";
 import ptPT from "./locales/pt-PT.json";
+import plPL from "./locales/pl-PL.json";
 import zhHant from "./locales/zh-Hant.json";
 
 function initI18n(){
@@ -40,6 +41,7 @@ function initI18n(){
       "uk-UA": ukUA,      
       "it-IT": itIT,
       "pt-PT": ptPT,
+      "pl-PL": plPL,
       "zh-Hant": zhHant
     },
     //debug: true,
