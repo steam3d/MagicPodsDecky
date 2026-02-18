@@ -66,6 +66,11 @@
         "capabilities_aap_end_call_notchlabel_single": "按一下",
         "capabilities_aap_end_call_notchlabel_double": "按兩下",
         "capabilities_aap_mute_unmute_label": "麥克風靜音/取消靜音",
-        "settings_hotkey_error": "<Key1/> 快速鍵因 SteamOS 更新在所有外掛程式中失效。目前尚無解決方案，快速鍵仍停用中。"
+        "settings_hotkey_error": "<Key1/> 快速鍵因 SteamOS 更新在所有外掛程式中失效。目前尚無解決方案，快速鍵仍停用中。",
+        "capabilities_cmn_bluetooth_codec_label": "藍牙編解碼器",
+        "capabilities_cmn_bluetooth_codec_menu": "選擇編解碼器",
+        "capabilities_cmn_bluetooth_codec_button_secondary": "顯示說明",
+        "capabilities_cmn_bluetooth_codec_table_codec": "編解碼器",
+        "capabilities_cmn_bluetooth_codec_table_description": "說明"
     }
 }
