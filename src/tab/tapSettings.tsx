@@ -36,7 +36,7 @@ const iconModesStyle = {
     minWidth: "24px"
 }
 
-export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, setToggleAnimationOn: React.Dispatch<React.SetStateAction<boolean>>; }> = ({ toggleAnimationOn, setToggleAnimationOn, backend }) => {
+export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, setToggleAnimationOn: React.Dispatch<React.SetStateAction<boolean>>; coreLogLevel: number, setCoreLogLevel: React.Dispatch<React.SetStateAction<number>>; }> = ({ toggleAnimationOn, setToggleAnimationOn, coreLogLevel, setCoreLogLevel, backend }) => {
     const [sliderLowBattery, setSliderLowBattery] = useState<number>(-1);
     const [sliderLogLevel, setSliderLogLevel] = useState<number>(-1);
     const [toggleSwitchAncHotkey, setToggleSwitchAncHotkey] = useState<boolean>(false);
@@ -62,8 +62,9 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
             setToggleAncTransparency(await backend.loadBooleanSetting("allow_anc_mode_transparency"));
             setToggleAncAdaptive(await backend.loadBooleanSetting("allow_anc_mode_adaptive"));
             setToggleAncWind(await backend.loadBooleanSetting("allow_anc_mode_wind"));
-            setToggleAncOn(await backend.loadBooleanSetting("allow_anc_mode_anc"));            
+            setToggleAncOn(await backend.loadBooleanSetting("allow_anc_mode_anc"));
             backend.getSetting("magicpods", "animation");
+            backend.getSetting("magicpods", "logLevel");
         };
 
         getSetting();
@@ -137,7 +138,7 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                         }} />
                     </PanelSectionRow>
                     }
-                    
+
                     <PanelSectionRow>
                         <ToggleField checked={toggleFixDisconnects} label={t("settings_fix_disconnects_label")} description={t("settings_fix_disconnects_description")} onChange={async (b) => {
                             setToggleFixDisconnects(b);
@@ -256,7 +257,37 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                                     await backend.saveSetting("log_level", nn);
                                     await call<[], void>("update_log_level");
                                     await backend.updateReactLogLevel();
-                                    await backend.updateBinaryLogLevel();
+                                }, 350)
+                            }} />
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <SliderField
+                            value={50-coreLogLevel}
+                            max={50}
+                            min={0}
+                            step={10}
+                            label={t("settings_core_debug_level_label")}
+                            notchCount={6}
+                            notchTicksVisible={true}
+                            notchLabels={[
+                                { label: "Off", notchIndex: 0, value: 0 },
+                                { label: "Err", notchIndex: 1, value: 10 },
+                                { label: "Wrn", notchIndex: 2, value: 20 },
+                                { label: "Inf", notchIndex: 3, value: 30 },
+                                { label: "Dbg", notchIndex: 4, value: 40 },
+                                { label: "TRC", notchIndex: 5, value: 50 },
+                            ]}
+                            onChange={(n) => {
+                                const nn = 50-n;
+                                setCoreLogLevel(nn);
+                                if (sliderTimeoutId)
+                                    clearTimeout(sliderTimeoutId);
+
+                                let starttime = Date.now();
+                                sliderTimeoutId = setTimeout(async () => {
+                                    backend.logInfo("Settings: Elapsed", Date.now() - starttime, "Set core log level to", nn);
+                                    backend.setSetting("magicpods", "logLevel", nn);
                                 }, 350)
                             }} />
                     </PanelSectionRow>

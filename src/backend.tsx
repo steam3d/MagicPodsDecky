@@ -443,22 +443,6 @@ export class Backend {
         this.sendToSocket(JSON.stringify(json))
     }
 
-    SetLogLevel(value: number){
-        const json =
-        {
-            method: "SetLogLevel",
-            arguments: {
-                selected: value,
-            }
-          }
-        this.sendToSocket(JSON.stringify(json))
-    }
-
-    // Custom logger
-    public async updateBinaryLogLevel() {
-        let option = await this.loadNumberSetting("log_level") ?? 0
-        this.SetLogLevel(option);
-    }
     public async updateReactLogLevel(){
         let option = await this.loadNumberSetting("log_level") ?? 0
         this.logLevel = option;

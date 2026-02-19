@@ -45,11 +45,11 @@ class Plugin:
 
     async def start_backed(self):
         if self.extcore.isExists():
+            self.core.stop()
             self.extcore.startReader()
             logger.info("External backend exists. Skip start_backed.")
             return
 
-        self.core.loglevel = int(self.settings.load("log_level"))
         self.core.start()
 
     async def restart_backend(self):
@@ -57,9 +57,9 @@ class Plugin:
 
         if self.extcore.isExists():
             logger.info("External backend exists. Restart external backend")
+            self.core.stop()
             self.extcore.restart()
         else:
-            self.core.loglevel = int(self.settings.load("log_level"))
             self.core.restart()
 
     async def logger_react(self, lvl, msg):

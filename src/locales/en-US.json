@@ -32,6 +32,7 @@
         "settings_social_button_donate": "Donate",
         "settings_debug_header": "Debugging",
         "settings_debug_level_label": "Log level",
+        "settings_core_debug_level_label": "Core log level",
         "settings_debug_log_button": "Event Logs",
         "bluetooth": "Bluetooth",
         "headphones": "Headphones",
