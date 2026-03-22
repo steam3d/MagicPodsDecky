@@ -66,6 +66,15 @@
         "capabilities_aap_end_call_notchlabel_single": "Premi una volta",
         "capabilities_aap_end_call_notchlabel_double": "Premi due volte",
         "capabilities_aap_mute_unmute_label": "Attiva e disattiva audio",
-        "settings_hotkey_error": "<Key1/> Nessun plugin è in grado di utilizzare i tasti di scelta rapida a causa di un aggiornamento di SteamOS e per il momento rimangono disabilitati."
+        "settings_hotkey_error": "<Key1/> Nessun plugin è in grado di utilizzare i tasti di scelta rapida a causa di un aggiornamento di SteamOS e per il momento rimangono disabilitati.",
+        "settings_core_debug_level_label": "Livello di registrazione del sistema",
+        "capabilities_cmn_bluetooth_codec_label": "Codec Bluetooth",
+        "capabilities_cmn_bluetooth_codec_menu": "Scegli il codec",
+        "capabilities_cmn_bluetooth_codec_button_secondary": "Mostra descrizione",
+        "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
+        "capabilities_cmn_bluetooth_codec_table_description": "Descrizione",
+        "websocket_update_required": "Aggiorna il plugin per continuare.",
+        "settings_animation_label": "Animazione delle cuffie",
+        "settings_animation_description": "<Key1/>Solo per la versione desktop di MagicPods. Visualizza l'animazione di AirPods e Beats, simile all'animazione dell'iPhone, quando si apre la custodia delle cuffie."
     }
 }
