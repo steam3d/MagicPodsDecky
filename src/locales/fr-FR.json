@@ -66,6 +66,15 @@
         "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Moins de bruits",
         "capabilities_aap_volume_swipe_label": "Faites glisser pour changer le volume",
         "capabilities_aap_volume_swipe_length_label": "Longueur de la barre de volume",
-        "settings_hotkey_error": "Le raccourci clavier <Key1/> est cassée suite à une mise à jour SteamOS. Nous n'avons pas encore de solution, les raccourcis clavier restent désactivés."
+        "settings_hotkey_error": "Le raccourci clavier <Key1/> est cassée suite à une mise à jour SteamOS. Nous n'avons pas encore de solution, les raccourcis clavier restent désactivés.",
+        "settings_core_debug_level_label": "Niveau d'enregistrement du système",
+        "capabilities_cmn_bluetooth_codec_label": "Codec Bluetooth",
+        "capabilities_cmn_bluetooth_codec_menu": "Choisissez le codec",
+        "capabilities_cmn_bluetooth_codec_button_secondary": "Afficher la description",
+        "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
+        "capabilities_cmn_bluetooth_codec_table_description": "Description",
+        "websocket_update_required": "Veuillez mettre à jour le plugin pour continuer.",
+        "settings_animation_label": "Animations avec des écouteurs",
+        "settings_animation_description": "<Key1/>Pour la version de bureau de MagicPods uniquement. Affiche l'animation des AirPods et des Beats, similaire à celle de l'iPhone, lorsque vous ouvrez le boîtier des écouteurs."
     }
 }
