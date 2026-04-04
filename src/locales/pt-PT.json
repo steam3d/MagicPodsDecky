@@ -66,6 +66,15 @@
         "capabilities_aap_adaptive_audio_noise_notchlabel_more": "Mais ruído",
         "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Menos ruído",
         "capabilities_aap_volume_swipe_label": "Volume deslizante",
-        "capabilities_aap_volume_swipe_length_label": "Distância do deslize de volume"
+        "capabilities_aap_volume_swipe_length_label": "Distância do deslize de volume",
+        "settings_core_debug_level_label": "Nível de depuração do núcleo",
+        "capabilities_cmn_bluetooth_codec_label": "Bluetooth Codec",
+        "capabilities_cmn_bluetooth_codec_menu": "Escolher codec",
+        "capabilities_cmn_bluetooth_codec_button_secondary": "Mostrar descrição",
+        "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
+        "capabilities_cmn_bluetooth_codec_table_description": "Descrição",
+        "websocket_update_required": "Por favor, atualize o plugin para continuar.",
+        "settings_animation_label": "Animação dos auscultadores",
+        "settings_animation_description": "<Key1/> Apenas para MagicPods no ambiente de trabalho. Mostra a animação dos AirPods e Beats, semelhante ao iPhone, quando abres a caixa dos auscultadores."
     }
 }
