@@ -71,6 +71,10 @@
         "capabilities_cmn_bluetooth_codec_menu": "选择音频格式",
         "capabilities_cmn_bluetooth_codec_button_secondary": "查看详情",
         "capabilities_cmn_bluetooth_codec_table_codec": "格式名称",
-        "capabilities_cmn_bluetooth_codec_table_description": "详情"
+        "capabilities_cmn_bluetooth_codec_table_description": "详情",
+        "settings_core_debug_level_label": "内核日志级别",
+        "websocket_update_required": "请先更新插件以继续操作。",
+        "settings_animation_label": "耳机动画",
+        "settings_animation_description": "<Key1/>仅限 MagicPods 桌面版。当您打开耳机盒时，会显示类似于 iPhone 的 AirPods 和 Beats 动画。"
     }
 }
