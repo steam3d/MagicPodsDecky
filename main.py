@@ -1,7 +1,6 @@
 import os
 import logging
 from logging.handlers import RotatingFileHandler
-from mp.core import CoreService
 from mp.extcore import ExtCoreService
 from mp.settings import Settings
 from mp.player import Player
@@ -44,23 +43,13 @@ def bin_logging(msg):
 class Plugin:
 
     async def start_backed(self):
-        if self.extcore.isExists():
-            self.core.stop()
-            self.extcore.startReader()
-            logger.info("External backend exists. Skip start_backed.")
-            return
-
-        self.core.start()
+        if not self.extcore.start():
+            logger.error("Failed to start backend")
 
     async def restart_backend(self):
         logger.info("Restarting")
-
-        if self.extcore.isExists():
-            logger.info("External backend exists. Restart external backend")
-            self.core.stop()
-            self.extcore.restart()
-        else:
-            self.core.restart()
+        if not self.extcore.restart():
+            logger.error("Failed to restart backend")
 
     async def logger_react(self, lvl, msg):
         if lvl == 0:
@@ -105,7 +94,6 @@ class Plugin:
 
     async def debug_stop_backed(self):
         self.is_backend_allowed = False # do not forget to add this to debug methods
-        self.core.stop()
         self.extcore.stop()
 
     # Used to prevent reconnecting websocket when backend off
@@ -124,8 +112,7 @@ class Plugin:
         await self.update_log_level()
 
         logger.info("_main %s starting", decky.DECKY_PLUGIN_VERSION)
-        self.core = CoreService(os.path.join(decky.DECKY_PLUGIN_DIR, "bin"), "magicpodscore", bin_logging)
-        self.extcore = ExtCoreService("magicpodscore.service", bin_logging)
+        self.extcore = ExtCoreService(os.path.join(decky.DECKY_PLUGIN_DIR, "bin"), "magicpodscore", bin_logging)
         self.is_backend_allowed = True # Allow reconnecting socket when user using plugin
         self.player = Player(os.path.join(decky.DECKY_PLUGIN_DIR, "silence.mp3"),bin_logging)
 
@@ -135,8 +122,7 @@ class Plugin:
     # Function called first during the unload process, utilize this to handle your plugin being removed
     async def _unload(self):
         self.is_backend_allowed = False # Does not allow reconnecting socket when user delete plugin
-        self.core.stop()
-        self.extcore.stopReader()
+        self.extcore.stop()
         logger.info("_unload finished")
 
     # Migrations that should be performed before entering `_main()`.

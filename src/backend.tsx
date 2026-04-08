@@ -112,7 +112,7 @@ export class Backend {
                 this.logInfo("Backend: Trying reconnecting socket due socket closed. Left attempts", this.reconnectAttempts);
                 this.resetSessionState();
                 this.socketConnect();
-                }, 1000)
+                }, 4000) //To avoid a conflict with MagicPods desktop
         }
         else{
             this.notifySocketConnectionChanged(BackendSocketState.ERROR)
