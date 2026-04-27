@@ -37,10 +37,11 @@
 | AirPods Pro 3    | Beats Studio Pro       | Galaxy Buds 3     |
 | AirPods Max      | Beats Solo 3           | Galaxy Buds 3 Pro | 
 | AirPods Max 2024 | Beats Solo Pro         |                   |
-|                  | Beats Studio 3         |                   |
+| AirPods Max 2    | Beats Studio 3         |                   |
 |                  | Beats X                |                   |
 |                  | Beats Flex             |                   |
 |                  | Beats Solo Buds        |                   |
+|                  | Powerbeats Fit         |                   |
 
 ## 💾 Установка
 
