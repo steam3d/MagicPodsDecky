@@ -66,6 +66,15 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "Más largo",
         "capabilities_aap_end_call_notchlabel_single": "Presione una vez",
         "capabilities_aap_end_call_notchlabel_double": "Presione dos veces",
-        "settings_hotkey_error": "<Key1/> Los atajos no funcionan en todos los complementos debido a una actualización de SteamOS. Aún no hay solución, los atajos siguen deshabilitados."
+        "settings_hotkey_error": "<Key1/> Los atajos no funcionan en todos los complementos debido a una actualización de SteamOS. Aún no hay solución, los atajos siguen deshabilitados.",
+        "settings_core_debug_level_label": "Nivel de registro del sistema",
+        "capabilities_cmn_bluetooth_codec_label": "Códec Bluetooth",
+        "capabilities_cmn_bluetooth_codec_menu": "Elegir códec",
+        "capabilities_cmn_bluetooth_codec_button_secondary": "Mostrar descripción",
+        "capabilities_cmn_bluetooth_codec_table_codec": "Códec",
+        "capabilities_cmn_bluetooth_codec_table_description": "Descripción",
+        "websocket_update_required": "Por favor, actualice el plugin para continuar.",
+        "settings_animation_label": "Animación de auriculares",
+        "settings_animation_description": "<Key1/>Solo para la versión de escritorio de MagicPods. Muestra la animación de AirPods y Beats, similar a la del iPhone, cuando abres el estuche de los auriculares."
     }
 }
