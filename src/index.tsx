@@ -124,7 +124,12 @@ const Content: FC<{ backend: Backend }> = ({ backend }) => {
   box-shadow: none;
   backdrop-filter: none;
 }
-`}
+
+.magicpods-tabs [role="tabpanel"] {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+`} 
 </style>
 
     <div className="magicpods-tabs" style={{ height: "95%", width: "300px", position: "fixed", marginTop: "-12px", overflow: "hidden" }}>
