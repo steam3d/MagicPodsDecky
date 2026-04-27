@@ -31,6 +31,9 @@
         "settings_fix_disconnects_description": "Naprawia problemy z niekończące się podłączanie/odłączanie słuchawek",
         "settings_anc_modes_anc_label": "<icon/>Redukcja hałasu",
         "settings_anc_modes_wind_label": "<icon/>Redukcja szumów",
-        "settings_anc_modes_transparency_label": "<icon/>Tryb kontaktu"
+        "settings_anc_modes_transparency_label": "<icon/>Tryb kontaktu",
+        "settings_anc_modes_header": "Sposoby wyświetlania",
+        "settings_anc_modes_adaptive_label": "<icon/>Adaptywne",
+        "settings_social_button_start": "Pierwsze kroki"
     }
 }
