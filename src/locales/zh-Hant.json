@@ -71,6 +71,10 @@
         "capabilities_cmn_bluetooth_codec_menu": "選擇編解碼器",
         "capabilities_cmn_bluetooth_codec_button_secondary": "顯示說明",
         "capabilities_cmn_bluetooth_codec_table_codec": "編解碼器",
-        "capabilities_cmn_bluetooth_codec_table_description": "說明"
+        "capabilities_cmn_bluetooth_codec_table_description": "說明",
+        "websocket_update_required": "請更新插件後再進行此操作。",
+        "settings_core_debug_level_label": "日誌記錄級別",
+        "settings_animation_label": "耳機動畫",
+        "settings_animation_description": "⁠<Key1/>⁠ 此功能僅限桌面版。在打開耳機充電盒時，將顯示與 iPhone 類似的 AirPods 和 Beats 動畫。"
     }
 }
