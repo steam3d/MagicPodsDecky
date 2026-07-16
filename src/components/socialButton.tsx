@@ -47,7 +47,7 @@ const PanelSocialButton: FC<{
             spacingBetweenLabelAndChild="none"
             childrenContainerWidth="max"
         >
-            <Focusable style={{ display: 'flex' }}>
+            <Focusable style={{ display: 'flex', paddingBottom: '4px', paddingTop: '4px' }}>
                 <DialogButton
                     onClick={() => navLink(url)}
                     onSecondaryButton={() => showQrModal(url)}
