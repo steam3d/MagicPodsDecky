@@ -71,6 +71,10 @@
         "capabilities_cmn_bluetooth_codec_menu": "코덱 선택하기",
         "capabilities_cmn_bluetooth_codec_button_secondary": "설명 보기",
         "capabilities_cmn_bluetooth_codec_table_codec": "코덱",
-        "capabilities_cmn_bluetooth_codec_table_description": "설명"
+        "capabilities_cmn_bluetooth_codec_table_description": "설명",
+        "settings_core_debug_level_label": "코어 로그 레벨",
+        "websocket_update_required": "계속하려면 플러그인을 업데이트해 주세요.",
+        "settings_animation_label": "헤드폰 애니메이션",
+        "settings_animation_description": "<Key1/> MagicPods는 데스크톱 전용입니다. 헤드폰 케이스를 열면 iPhone과 마찬가지로 AirPods 및 Beats 애니메이션이 표시됩니다."
     }
 }

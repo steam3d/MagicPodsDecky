@@ -65,6 +65,15 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "am längsten",
         "capabilities_aap_end_call_notchlabel_double": "Drücke zweimal",
         "capabilities_aap_volume_swipe_label": "Lautstärkenregler",
-        "capabilities_aap_volume_swipe_length_label": "Lautstärkenregellänge"
+        "capabilities_aap_volume_swipe_length_label": "Lautstärkenregellänge",
+        "websocket_update_required": "Bitte aktualisiere das Plugin, um fortzufahren.",
+        "capabilities_cmn_bluetooth_codec_table_description": "Beschreibung",
+        "settings_animation_label": "Kopfhöreranimation",
+        "settings_animation_description": "<Key1/> Nur für MagicPods Desktop. Zeigt die AirPods und Beats Animation, ähnlich wie beim iPhone, wenn das Ladecase geöffnet wird.",
+        "capabilities_cmn_bluetooth_codec_button_secondary": "Beschreibung anzeigen",
+        "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
+        "capabilities_cmn_bluetooth_codec_menu": "Codec auswählen",
+        "capabilities_cmn_bluetooth_codec_label": "Bluetooth Codec",
+        "settings_hotkey_error": "<Key1/> Tastenkürzel sind aufgrund eines SteamOS-Updates in allen Plugins defekt. Derzeit gibt es keine Lösung, Tastenkürzel bleiben deaktiviert."
     }
 }
