@@ -74,6 +74,7 @@
         "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
         "capabilities_cmn_bluetooth_codec_menu": "Codec auswählen",
         "capabilities_cmn_bluetooth_codec_label": "Bluetooth Codec",
-        "settings_hotkey_error": "<Key1/> Tastenkürzel sind aufgrund eines SteamOS-Updates in allen Plugins defekt. Derzeit gibt es keine Lösung, Tastenkürzel bleiben deaktiviert."
+        "settings_hotkey_error": "<Key1/> Tastenkürzel sind aufgrund eines SteamOS-Updates in allen Plugins defekt. Derzeit gibt es keine Lösung, Tastenkürzel bleiben deaktiviert.",
+        "settings_core_debug_level_label": "Grundebene"
     }
 }
