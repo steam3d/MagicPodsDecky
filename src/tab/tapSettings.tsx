@@ -245,6 +245,10 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                         {t("settings_social_button_donate")}
                     </PanelSocialButton>
 
+                    <PanelSocialButton url="https://store.steampowered.com/app/4486410/MagicPods_for_Linux/">
+                        MagicPods For Linux
+                    </PanelSocialButton>
+
                     <PanelSocialButton url="https://magicpods.app/steamdeck/">
                         {t("settings_social_button_start")}
                     </PanelSocialButton>
