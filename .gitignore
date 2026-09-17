@@ -56,5 +56,5 @@ out/*
 cli/
 cli/*
 cli/decky
-
+dev/
 test.py

@@ -1,6 +1,6 @@
 {
   "name": "magicpods-decky",
-  "version": "2.0.17",
+  "version": "2.0.18",
   "description": "Monitor the battery level of your AirPods, Beats and Galaxy Buds. Easily switch between noise cancellation modes and enjoy the magic.",
   "type": "module",
   "scripts": {
@@ -28,7 +28,7 @@
   "homepage": "https://github.com/steam3d/MagicPodsDecky/#readme",
   "devDependencies": {
     "@decky/rollup": "^1.0.2",
-    "@decky/ui": "^4.12.0",
+    "@decky/ui": "^4.12.1",
     "@rollup/rollup-linux-x64-musl": "^4.53.3",
     "@types/react": "19.1.1",
     "@types/react-dom": "19.1.1",

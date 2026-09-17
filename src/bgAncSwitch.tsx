@@ -95,6 +95,13 @@ export class BackgroundAncSwitch {
     private onShortcutPressed = async () => {
         this.backend.logDebug("AncSwitch: Hotkey pressed");
 
+        await this.switchMode();
+    }
+
+    public switchMode = async () => {
+        if (!this.connected || this.options === 0)
+            return;
+
         let isOff = await this.backend.loadBooleanSetting("allow_anc_mode_off");
         let isTransparency = await this.backend.loadBooleanSetting("allow_anc_mode_transparency");
         let isAdaptive = await this.backend.loadBooleanSetting("allow_anc_mode_adaptive");
@@ -127,8 +134,10 @@ export class BackgroundAncSwitch {
 
         this.backend.logDebug("AncSwitch: UI modes:", modes);
 
-        if (modes.length <= 1)
+        if (modes.length <= 1) {
             this.backend.logError("AncSwitch: Nothing to do: fewer than two modes selected.");
+            return;
+        }
 
         let nextAnc = modes.find(x => x > this.selected);
         if (nextAnc === undefined){

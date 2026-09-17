@@ -18,6 +18,7 @@ import { ANC_MODE_ADAPTIVE, ANC_MODE_ANC, ANC_MODE_OFF, ANC_MODE_TRANSPARENCY, A
 import PanelSocialButton from "../components/socialButton";
 import { call } from "@decky/api";
 import { Input } from "../input";
+import { BackgroundBatteryIcon } from "../bgBatteryIcon";
 
 let sliderTimeoutId: NodeJS.Timeout;
 
@@ -36,7 +37,7 @@ const iconModesStyle = {
     minWidth: "24px"
 }
 
-export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, setToggleAnimationOn: React.Dispatch<React.SetStateAction<boolean>>; coreLogLevel: number, setCoreLogLevel: React.Dispatch<React.SetStateAction<number>>; }> = ({ toggleAnimationOn, setToggleAnimationOn, coreLogLevel, setCoreLogLevel, backend }) => {
+export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, setToggleAnimationOn: React.Dispatch<React.SetStateAction<boolean>>; coreLogLevel: number, setCoreLogLevel: React.Dispatch<React.SetStateAction<number>>; batteryIcon: BackgroundBatteryIcon; }> = ({ toggleAnimationOn, setToggleAnimationOn, coreLogLevel, setCoreLogLevel, batteryIcon, backend }) => {
     const [sliderLowBattery, setSliderLowBattery] = useState<number>(-1);
     const [sliderLogLevel, setSliderLogLevel] = useState<number>(-1);
     const [toggleSwitchAncHotkey, setToggleSwitchAncHotkey] = useState<boolean>(false);
@@ -47,6 +48,9 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
     const [toggleAncAdaptive, setToggleAncAdaptive] = useState<boolean>(false);
     const [toggleAncWind, setToggleAncWind] = useState<boolean>(false);
     const [toggleAncOn, setToggleAncOn] = useState<boolean>(false);
+    const [toggleHeaderBatteryIcon, setToggleHeaderBatteryIcon] = useState<boolean>(true);
+    const [toggleHeaderBatteryIconText, setToggleHeaderBatteryIconText] = useState<boolean>(false);
+    const [toggleHeaderBatteryIconSplit, setToggleHeaderBatteryIconSplit] = useState<boolean>(true);
 
     const [availableLanguages, setAvailableLanguages] = useState<{ tag: string; nativeName: string }[]>([])
     const { i18n } = useTranslation();
@@ -63,6 +67,9 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
             setToggleAncAdaptive(await backend.loadBooleanSetting("allow_anc_mode_adaptive"));
             setToggleAncWind(await backend.loadBooleanSetting("allow_anc_mode_wind"));
             setToggleAncOn(await backend.loadBooleanSetting("allow_anc_mode_anc"));
+            setToggleHeaderBatteryIcon(await backend.loadBooleanSetting("header_battery_icon"));
+            setToggleHeaderBatteryIconText(await backend.loadBooleanSetting("header_battery_icon_text"));
+            setToggleHeaderBatteryIconSplit(await backend.loadBooleanSetting("header_battery_icon_split"));
             backend.getSetting("magicpods", "animation");
             backend.getSetting("magicpods", "logLevel");
         };
@@ -171,6 +178,31 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                         >
                             {availableLanguages.find(lng => lng.tag == i18n.resolvedLanguage)?.nativeName || i18n.resolvedLanguage}
                         </ButtonItem>
+                    </PanelSectionRow>
+                </PanelSection>
+
+                <PanelSection title={t("settings_header_battery_icon_header")}>
+                    <PanelSectionRow>
+                        <ToggleField checked={toggleHeaderBatteryIcon} label={t("settings_header_battery_icon_label")} description={<Trans i18nKey="settings_header_battery_icon_description" components={{ Key1: <WARNING style={{ height: "16px", width: "auto", marginBottom: "-3.5px", paddingRight: "0px" }} /> }} />} onChange={async (b) => {
+                            setToggleHeaderBatteryIcon(b);
+                            await backend.saveSetting("header_battery_icon", b);
+                        }} />
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <ToggleField disabled={!toggleHeaderBatteryIcon} checked={toggleHeaderBatteryIconText} label={t("settings_header_battery_icon_text_label")} description={t("settings_header_battery_icon_text_description")} onChange={async (b) => {
+                            setToggleHeaderBatteryIconText(b);
+                            await backend.saveSetting("header_battery_icon_text", b);
+                            batteryIcon.updateTextSetting(b);
+                        }} />
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <ToggleField disabled={!toggleHeaderBatteryIcon} checked={toggleHeaderBatteryIconSplit} label={t("settings_header_battery_icon_split_label")} description={t("settings_header_battery_icon_split_description")} onChange={async (b) => {
+                            setToggleHeaderBatteryIconSplit(b);
+                            await backend.saveSetting("header_battery_icon_split", b);
+                            batteryIcon.updateSplitBatterySetting(b);
+                        }} />
                     </PanelSectionRow>
                 </PanelSection>
 

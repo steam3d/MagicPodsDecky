@@ -5,6 +5,7 @@
         "battery_case": "Case",
         "battery_single": "Charge",
         "capabilities_noise_control_label": "Noise control",
+        "header_battery_label": "Noise control",
         "websocket_connection_issue": "Something went wrong, try reloading",
         "headphones_disconnected": "Connect headphones to display their battery level and adjust settings",
         "settings_low_battery_label": "Low battery notification",
@@ -75,6 +76,13 @@
         "settings_hotkey_error": "<Key1/> Hotkeys are broken in all plugins due to a SteamOS update. No solution yet, hotkeys remain disabled.",
         "websocket_update_required": "Please update the plugin to continue.",
         "settings_animation_label": "Headphones animation",
-        "settings_animation_description": "<Key1/> MagicPods desktop only. Shows the AirPods and Beats animation, similar to iPhone, when you open the headphones case."
+        "settings_animation_description": "<Key1/> MagicPods desktop only. Shows the AirPods and Beats animation, similar to iPhone, when you open the headphones case.",
+        "settings_header_battery_icon_header": "Battery in header",
+        "settings_header_battery_icon_label": "Battery icon",
+        "settings_header_battery_icon_description": "<Key1/> Reload the plugin in Decky Loader settings to apply changes.",
+        "settings_header_battery_icon_text_label": "Battery percentage",
+        "settings_header_battery_icon_text_description": "Show the battery percentage next to the icon.",
+        "settings_header_battery_icon_split_label": "Split battery icon",
+        "settings_header_battery_icon_split_description": "Show left (top) and right (bottom) earbud battery levels separately."
     }
 }

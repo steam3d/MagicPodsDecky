@@ -30,6 +30,7 @@
         "battery_left": "Esquerdo",
         "battery_case": "Caixa",
         "capabilities_noise_control_label": "Controlo de ruído",
+        "header_battery_label": "Controlo de ruído",
         "settings_anc_modes_off_label": "<icon/>Desligado",
         "battery_right": "Direito",
         "websocket_connection_issue": "Algo de errado aconteceu, tente recarregar",

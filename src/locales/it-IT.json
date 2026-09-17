@@ -3,6 +3,7 @@
         "battery_right": "Destra",
         "battery_case": "Custodia",
         "capabilities_noise_control_label": "Controllo del rumore",
+        "header_battery_label": "Controllo del rumore",
         "headphones_disconnected": "Collega le cuffie per visualizzare il livello della batteria e regolare le impostazioni",
         "settings_low_battery_label": "Notifica batteria scarica",
         "settings_low_battery_label_notchlabel_off": "Disattivato",

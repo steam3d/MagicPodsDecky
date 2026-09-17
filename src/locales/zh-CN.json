@@ -5,6 +5,7 @@
         "battery_case": "充电仓",
         "battery_single": "电量",
         "capabilities_noise_control_label": "噪音控制",
+        "header_battery_label": "噪音控制",
         "websocket_connection_issue": "出错了，请尝试刷新",
         "headphones_disconnected": "连接耳机以查看电池电量和调整设置",
         "settings_low_battery_label": "低电量提醒",

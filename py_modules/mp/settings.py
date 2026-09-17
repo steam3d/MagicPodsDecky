@@ -53,5 +53,11 @@ class Settings():
             return branch.get(key, 50)
         elif key == "conversation_awareness_volume":
             return branch.get(key, 70)
+        elif key == "header_battery_icon":
+            return branch.get(key, True)
+        elif key == "header_battery_icon_text":
+            return branch.get(key, False)
+        elif key == "header_battery_icon_split":
+            return branch.get(key, True)
         else:
             return None

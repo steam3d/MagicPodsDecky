@@ -1,6 +1,7 @@
 {
     "translation": {
         "capabilities_noise_control_label": "التحكم في الضوضاء",
+        "header_battery_label": "التحكم في الضوضاء",
         "battery_right": "اليمين",
         "battery_case": "الحافظة",
         "battery_single": "الشحن",

@@ -5,6 +5,7 @@
         "battery_case": "Футляр",
         "battery_single": "Заряд",
         "capabilities_noise_control_label": "Управление шумом",
+        "header_battery_label": "Управление шумом",
         "websocket_connection_issue": "Что-то пошло не так, попробуйте перезагрузить",
         "headphones_disconnected": "Подключите наушники, чтобы отобразить уровень заряда батареи и настроить параметры",
         "settings_low_battery_label": "Уведомление о низком заряде",
@@ -75,6 +76,13 @@
         "settings_hotkey_error": "<Key1/> Обновление SteamOS сломало работу горячих клавиш во всех плагинах. Пока решение не найдено, горячие клавиши остаются отключены.",
         "websocket_update_required": "Пожалуйста, обновите плагин, чтобы продолжить.",
         "settings_animation_label": "Анимация наушников",
-        "settings_animation_description": "<Key1/> Только для MagicPods Desktop. Показывает анимацию AirPods и Beats, как на iPhone, когда вы открываете футляр наушников."
+        "settings_animation_description": "<Key1/> Только для MagicPods Desktop. Показывает анимацию AirPods и Beats, как на iPhone, когда вы открываете футляр наушников.",
+        "settings_header_battery_icon_header": "Батарея в верхней панели",
+        "settings_header_battery_icon_label": "Значок батареи",
+        "settings_header_battery_icon_description": "<Key1/> Перезагрузите плагин в настройках Decky Loader, чтобы применить изменения.",
+        "settings_header_battery_icon_text_label": "Процент заряда",
+        "settings_header_battery_icon_text_description": "Показывать процент заряда рядом со значком.",
+        "settings_header_battery_icon_split_label": "Раздельный индикатор заряда",
+        "settings_header_battery_icon_split_description": "Показывать заряд левого (сверху) и правого (снизу) наушников отдельно."
     }
 }

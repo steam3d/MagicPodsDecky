@@ -5,6 +5,7 @@
         "battery_case": "充電盒",
         "battery_single": "已充電",
         "capabilities_noise_control_label": "噪音控制",
+        "header_battery_label": "噪音控制",
         "websocket_connection_issue": "發生錯誤，請重新載入",
         "headphones_disconnected": "連接耳機以顯示電量並調整設定",
         "settings_low_battery_label": "電池低電量通知",
