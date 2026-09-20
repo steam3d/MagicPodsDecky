@@ -54,8 +54,10 @@ export interface HeaderIconController {
 const HOST_ATTRIBUTE = "data-magicpods-header-icon";
 const REACT_ELEMENT_KEY = "magicpods-header-icon";
 const ALL_SURFACES: readonly HeaderSurface[] = ["qam", "big-picture"];
-const BOOTSTRAP_INTERVAL_MS = 500;
-const BOOTSTRAP_TIMEOUT_MS = 10_000;
+const HEADER_CHECK_INTERVAL_MS = 1000;
+// React Fiber tags for FunctionComponent and SimpleMemoComponent.
+const FUNCTION_COMPONENT_TAG = 0;
+const SIMPLE_MEMO_COMPONENT_TAG = 15;
 const BATTERY_SOURCE_MARKERS = [
   "#Header_BatteryFull",
   "#Header_BatteryPercentage",
@@ -66,9 +68,27 @@ const BATTERY_SOURCE_MARKERS = [
 type ReactFiber = {
   alternate?: ReactFiber | null;
   return?: ReactFiber | null;
+  tag?: number;
   type?: unknown;
   elementType?: unknown;
   memoizedProps?: unknown;
+  memoizedState?: ReactHook | null;
+};
+
+type ReactHook = {
+  memoizedState?: unknown;
+  queue?: { dispatch?: (action: (value: unknown) => unknown) => void };
+  next?: ReactHook | null;
+};
+
+type DeckyPatchedFunction = Function & {
+  __deckyOrig?: unknown;
+  __deckyPatch?: { hasUnpatched?: boolean; original?: unknown };
+};
+
+type ReactFiberState = {
+  tag?: number;
+  type?: unknown;
 };
 
 type NavigationTree = {
@@ -143,6 +163,11 @@ function componentSource(value: unknown, depth = 0): string {
 
   try {
     if (typeof value === "function") {
+      const original = (value as DeckyPatchedFunction).__deckyOrig;
+      if (original && original !== value) {
+        const source = componentSource(original, depth + 1);
+        if (source) return source;
+      }
       return Function.prototype.toString.call(value);
     }
 
@@ -160,7 +185,34 @@ function componentSource(value: unknown, depth = 0): string {
   return "";
 }
 
-// Fiber access is needed only for Steam headers mounted before the plugin loads.
+// Decky may leave an inactive patch wrapper in a mounted Fiber after a reload.
+function unwrapInactivePatch(value: unknown): unknown {
+  let current = value;
+  const visited = new Set<unknown>();
+
+  while (typeof current === "function" && !visited.has(current)) {
+    visited.add(current);
+    const patched = current as DeckyPatchedFunction;
+    if (!patched.__deckyPatch?.hasUnpatched) break;
+    const original = patched.__deckyOrig ?? patched.__deckyPatch.original;
+    if (!original || original === current) break;
+    current = original;
+  }
+
+  return current;
+}
+
+// Steam's header owns a numeric refresh hook whose value is not rendered.
+function requestHeaderRender(fiber: ReactFiber): void {
+  const hook = fiber.memoizedState;
+  const dispatch = hook?.queue?.dispatch;
+  if (typeof hook?.memoizedState !== "number" || typeof dispatch !== "function")
+    return;
+
+  dispatch((value) => typeof value === "number" ? value + 1 : value);
+}
+
+// Fiber access lets an already mounted Steam header adopt the active patch.
 function getReactFiber(element: Element): ReactFiber | undefined {
   const fiberProperty = Object.getOwnPropertyNames(element).find(
     (name) =>
@@ -359,8 +411,7 @@ export function installHeaderIcon(
 ): HeaderIconController {
   let disposed = false;
   let patch: Patch | undefined;
-  let bootstrapInterval: number | undefined;
-  let bootstrapTimeout: number | undefined;
+  let headerCheckInterval: number | undefined;
   let didWarnAboutTree = false;
   let snapshot: HeaderIconState = {
     visible: options.visible ?? true,
@@ -372,8 +423,8 @@ export function installHeaderIcon(
   };
 
   const listeners = new Set<() => void>();
-  const liveFiberOriginalTypes = new Map<ReactFiber, unknown>();
-  const preparedDocuments = new WeakSet<Document>();
+  const liveFiberOriginalStates = new Map<ReactFiber, ReactFiberState>();
+  const mountedHeaderFibers = new Set<ReactFiber>();
 
   const getSnapshot = () => snapshot;
   const subscribe = (listener: () => void) => {
@@ -476,20 +527,39 @@ export function installHeaderIcon(
 
   // Already mounted headers keep the old function in Fiber, so replace it temporarily.
   const prepareMountedHeader = (doc: Document) => {
-    if (!patch || preparedDocuments.has(doc)) return;
+    if (!patch) return;
     const battery = findBatteryElement(doc);
     if (!battery) return;
 
     let fiber = getReactFiber(battery);
     for (let depth = 0; fiber && depth < 25; depth += 1) {
       if (isHeaderComponentSource(componentSource(fiber.type))) {
+        let changed = false;
         for (const target of [fiber, fiber.alternate]) {
-          if (target && target.type !== patch.patchedFunction) {
-            liveFiberOriginalTypes.set(target, target.type);
+          if (
+            target &&
+            (target.type !== patch.patchedFunction ||
+              target.tag === SIMPLE_MEMO_COMPONENT_TAG)
+          ) {
+            if (!liveFiberOriginalStates.has(target)) {
+              liveFiberOriginalStates.set(target, {
+                tag: target.tag,
+                type:
+                  target.type === patch.patchedFunction
+                    ? patch.original
+                    : unwrapInactivePatch(target.type),
+              });
+            }
             target.type = patch.patchedFunction;
+            if (target.tag === SIMPLE_MEMO_COMPONENT_TAG)
+              target.tag = FUNCTION_COMPONENT_TAG;
+            changed = true;
           }
         }
-        preparedDocuments.add(doc);
+        if (changed) {
+          mountedHeaderFibers.add(fiber);
+          requestHeaderRender(fiber);
+        }
         return;
       }
       fiber = fiber.return ?? undefined;
@@ -500,19 +570,25 @@ export function installHeaderIcon(
     getMountedHeaderDocuments().forEach(prepareMountedHeader);
   };
 
-  // Search briefly for asynchronously mounted QAM/header documents, then stop polling.
-  if (patch) {
+  const startHeaderCheck = () => {
+    if (!patch || disposed || headerCheckInterval !== undefined) return;
     prepareMountedHeaders();
-    bootstrapInterval = window.setInterval(
+    headerCheckInterval = window.setInterval(
       prepareMountedHeaders,
-      BOOTSTRAP_INTERVAL_MS,
+      HEADER_CHECK_INTERVAL_MS,
     );
-    bootstrapTimeout = window.setTimeout(() => {
-      if (bootstrapInterval !== undefined) {
-        window.clearInterval(bootstrapInterval);
-        bootstrapInterval = undefined;
-      }
-    }, BOOTSTRAP_TIMEOUT_MS);
+  };
+
+  const stopHeaderCheck = () => {
+    if (headerCheckInterval === undefined) return;
+    window.clearInterval(headerCheckInterval);
+    headerCheckInterval = undefined;
+  };
+
+  // Steam may replace a mounted header Fiber when an app or QAM is opened.
+  // Keep checking only while the battery icon is visible.
+  if (patch) {
+    if (snapshot.visible) startHeaderCheck();
   } else {
     console.warn(
       "[MagicPods] Compatible Steam header export was not found; no icon was inserted",
@@ -546,7 +622,13 @@ export function installHeaderIcon(
       return;
     }
 
+    const visibilityChanged = nextSnapshot.visible !== snapshot.visible;
     publish(nextSnapshot);
+
+    if (visibilityChanged) {
+      if (nextSnapshot.visible) startHeaderCheck();
+      else stopHeaderCheck();
+    }
   };
 
   // Hide the slot, restore modified Fibers and remove the Steam header patch.
@@ -555,19 +637,19 @@ export function installHeaderIcon(
     update({ visible: false });
     disposed = true;
 
-    if (bootstrapInterval !== undefined) {
-      window.clearInterval(bootstrapInterval);
-    }
-    if (bootstrapTimeout !== undefined) {
-      window.clearTimeout(bootstrapTimeout);
-    }
-
-    liveFiberOriginalTypes.forEach((originalType, fiber) => {
-      if (fiber.type === patch?.patchedFunction) fiber.type = originalType;
-    });
-    liveFiberOriginalTypes.clear();
+    stopHeaderCheck();
 
     if (patch && !patch.hasUnpatched) patch.unpatch();
+
+    liveFiberOriginalStates.forEach((originalState, fiber) => {
+      if (fiber.type === patch?.patchedFunction) {
+        fiber.type = originalState.type;
+        fiber.tag = originalState.tag;
+      }
+    });
+    mountedHeaderFibers.forEach(requestHeaderRender);
+    liveFiberOriginalStates.clear();
+    mountedHeaderFibers.clear();
     listeners.clear();
   };
 
