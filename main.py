@@ -122,6 +122,7 @@ class Plugin:
     # Function called first during the unload process, utilize this to handle your plugin being removed
     async def _unload(self):
         self.is_backend_allowed = False # Does not allow reconnecting socket when user delete plugin
+        self.player.stop()
         self.extcore.stop()
         logger.info("_unload finished")
 
