@@ -75,6 +75,8 @@
         "capabilities_cmn_bluetooth_codec_table_description": "الوصف",
         "settings_core_debug_level_label": "مستوى السجل الأساسي",
         "websocket_update_required": "يرجى تحديث الإضافة للمتابعة.",
+        "settings_auto_select_tab_label": "اختيار علامة التبويب تلقائيًا",
+        "settings_auto_select_tab_description": "عند فتح الإضافة، انتقل إلى علامة التبويب «سماعات الرأس» إذا لم تكن سماعات الرأس متصلة.",
         "settings_animation_label": "رسوم متحركة لسماعات الرأس",
         "settings_animation_description": "<Key1/> تطبيق MagicPods مخصص لأجهزة الكمبيوتر فقط. يعرض رسوم متحركة لسماعات AirPods و Beats، على غرار iPhone، عند فتح علبة سماعات الرأس."
     }

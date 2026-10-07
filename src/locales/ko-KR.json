@@ -75,6 +75,8 @@
         "capabilities_cmn_bluetooth_codec_table_description": "설명",
         "settings_core_debug_level_label": "코어 로그 레벨",
         "websocket_update_required": "계속하려면 플러그인을 업데이트해 주세요.",
+        "settings_auto_select_tab_label": "탭 자동 선택",
+        "settings_auto_select_tab_description": "플러그인을 열 때 헤드폰이 연결되어 있지 않으면 ‘헤드폰’ 탭으로 전환합니다.",
         "settings_animation_label": "헤드폰 애니메이션",
         "settings_animation_description": "<Key1/> MagicPods는 데스크톱 전용입니다. 헤드폰 케이스를 열면 iPhone과 마찬가지로 AirPods 및 Beats 애니메이션이 표시됩니다."
     }

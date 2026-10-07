@@ -75,6 +75,8 @@
         "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
         "capabilities_cmn_bluetooth_codec_table_description": "Descrizione",
         "websocket_update_required": "Aggiorna il plugin per continuare.",
+        "settings_auto_select_tab_label": "Selezione automatica della scheda",
+        "settings_auto_select_tab_description": "All'apertura del plugin, passa alla scheda «Cuffie» se le cuffie non sono connesse.",
         "settings_animation_label": "Animazione delle cuffie",
         "settings_animation_description": "<Key1/>Solo per la versione desktop di MagicPods. Visualizza l'animazione di AirPods e Beats, simile all'animazione dell'iPhone, quando si apre la custodia delle cuffie."
     }

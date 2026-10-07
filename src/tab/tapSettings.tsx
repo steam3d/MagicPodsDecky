@@ -43,6 +43,7 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
     const [toggleSwitchAncHotkey, setToggleSwitchAncHotkey] = useState<boolean>(false);
     const [toggleMicHotkey, setToggleMicHotkey] = useState<boolean>(false);
     const [toggleFixDisconnects, setToggleFixDisconnects] = useState<boolean>(false);
+    const [toggleAutoSelectTab, setToggleAutoSelectTab] = useState<boolean>(true);
     const [toggleAncOff, setToggleAncOff] = useState<boolean>(false);
     const [toggleAncTransparency, setToggleAncTransparency] = useState<boolean>(false);
     const [toggleAncAdaptive, setToggleAncAdaptive] = useState<boolean>(false);
@@ -62,6 +63,7 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
             setToggleSwitchAncHotkey(await backend.loadBooleanSetting("anc_l5_r5_switch"));
             setToggleFixDisconnects(await backend.loadBooleanSetting("fix_disconnects"));
             setToggleMicHotkey(await backend.loadBooleanSetting("mic_qam_l5_toggle"));
+            setToggleAutoSelectTab(await backend.loadBooleanSetting("auto_select_tab"));
             setToggleAncOff(await backend.loadBooleanSetting("allow_anc_mode_off"));
             setToggleAncTransparency(await backend.loadBooleanSetting("allow_anc_mode_transparency"));
             setToggleAncAdaptive(await backend.loadBooleanSetting("allow_anc_mode_adaptive"));
@@ -151,6 +153,13 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                             setToggleFixDisconnects(b);
                             await backend.saveSetting("fix_disconnects", b);
                             backend.player.updateSetting();
+                        }} />
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <ToggleField checked={toggleAutoSelectTab} label={t("settings_auto_select_tab_label")} description={t("settings_auto_select_tab_description")} onChange={async (b) => {
+                            setToggleAutoSelectTab(b);
+                            await backend.saveSetting("auto_select_tab", b);
                         }} />
                     </PanelSectionRow>
 

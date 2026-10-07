@@ -75,6 +75,8 @@
         "capabilities_cmn_bluetooth_codec_table_description": "详情",
         "settings_core_debug_level_label": "内核日志级别",
         "websocket_update_required": "请先更新插件以继续操作。",
+        "settings_auto_select_tab_label": "自动选择标签页",
+        "settings_auto_select_tab_description": "打开插件时，如果耳机未连接，则切换到“耳机”标签页。",
         "settings_animation_label": "耳机动画",
         "settings_animation_description": "<Key1/>仅限 MagicPods 桌面版。当您打开耳机盒时，会显示类似于 iPhone 的 AirPods 和 Beats 动画。"
     }

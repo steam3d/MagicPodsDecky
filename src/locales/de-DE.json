@@ -69,6 +69,8 @@
         "capabilities_aap_volume_swipe_length_label": "Lautstärkenregellänge",
         "websocket_update_required": "Bitte aktualisiere das Plugin, um fortzufahren.",
         "capabilities_cmn_bluetooth_codec_table_description": "Beschreibung",
+        "settings_auto_select_tab_label": "Registerkarte automatisch auswählen",
+        "settings_auto_select_tab_description": "Beim Öffnen des Plugins zum Tab „Kopfhörer“ wechseln, wenn keine Kopfhörer verbunden sind.",
         "settings_animation_label": "Kopfhöreranimation",
         "settings_animation_description": "<Key1/> Nur für MagicPods Desktop. Zeigt die AirPods und Beats Animation, ähnlich wie beim iPhone, wenn das Ladecase geöffnet wird.",
         "capabilities_cmn_bluetooth_codec_button_secondary": "Beschreibung anzeigen",

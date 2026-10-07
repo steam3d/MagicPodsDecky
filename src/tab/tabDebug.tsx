@@ -9,12 +9,22 @@ import {
     toaster
 } from "@decky/api";
 
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { t } from 'i18next';
 
 import { LogoIcon } from "../icons";
 import { Backend } from "../backend";
 import { AudioDeviceInfo } from "../bgMicMute";
+
+
+const setQamExpanded = (expanded: boolean): void => {
+    window.parent.postMessage(
+        {
+            message: expanded ? "QamFriendsExpanded" : "QamFriendsHidden",
+        },
+        window.location.origin,
+    );
+};
 
 export const data = {
     headphones: [
@@ -68,9 +78,17 @@ export const data = {
 }
 
 export const TabDebug: FC<{ backend: Backend; }> = ({ backend }) => {
+
+    useEffect(() => {
+        return () => {
+            setQamExpanded(false);
+        };
+    }, []);
+
     return (
         <>
             <div style={{ marginLeft: "-8px", marginRight: "-8px" }}>
+
                 <PanelSection>
                     <PanelSectionRow>
                         <ButtonItem
@@ -80,6 +98,26 @@ export const TabDebug: FC<{ backend: Backend; }> = ({ backend }) => {
                                 Navigation.Navigate("/magicpods-log");
                             }}>
                             Debug log
+                        </ButtonItem>
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <ButtonItem
+                            layout="below"
+                            onClick={() => {
+                                setQamExpanded(true);
+                            }}>
+                            Expand QAM
+                        </ButtonItem>
+                    </PanelSectionRow>
+
+                    <PanelSectionRow>
+                        <ButtonItem
+                            layout="below"
+                            onClick={() => {
+                                setQamExpanded(false);
+                            }}>
+                            Collapse QAM
                         </ButtonItem>
                     </PanelSectionRow>
 

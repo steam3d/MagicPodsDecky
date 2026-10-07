@@ -35,6 +35,8 @@
         "settings_anc_modes_transparency_label": "<icon/>Tryb kontaktu",
         "settings_anc_modes_header": "Sposoby wyświetlania",
         "settings_anc_modes_adaptive_label": "<icon/>Adaptywne",
-        "settings_social_button_start": "Pierwsze kroki"
+        "settings_social_button_start": "Pierwsze kroki",
+        "settings_auto_select_tab_label": "Automatyczny wybór karty",
+        "settings_auto_select_tab_description": "Po otwarciu wtyczki przejdź do karty „Słuchawki”, jeśli słuchawki nie są podłączone."
     }
 }

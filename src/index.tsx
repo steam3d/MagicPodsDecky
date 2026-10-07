@@ -70,7 +70,7 @@ const Content: FC<{ backend: Backend; batteryIcon: BackgroundBatteryIcon; }> = (
 
   };
 
-  const onJsonMessageReceived = (lastJsonMessage: object) => {
+  const onJsonMessageReceived = async (lastJsonMessage: object) => {
     backend.logDebug("Index: Json message received");
 
     if (lastJsonMessage === null) {
@@ -80,7 +80,13 @@ const Content: FC<{ backend: Backend; batteryIcon: BackgroundBatteryIcon; }> = (
     const typedJson = lastJsonMessage as { info?: headphoneInfoProps,  defaultbluetooth?: defaultBluetoothProps, headphones?: headphonesListProps[], settings?: settingProps};
 
     if (typedJson?.info != null) {
-      setInfoValue(Object.keys(typedJson.info).length === 0? undefined: typedJson.info as headphoneInfoProps);
+      const info = Object.keys(typedJson.info).length === 0 ? undefined : typedJson.info as headphoneInfoProps;
+      setInfoValue(info);
+
+      // GetAll contains both info and headphones, so select the initial tab only when the plugin opens.
+      if (typedJson.headphones != null && await backend.loadBooleanSetting("auto_select_tab")) {
+        setCurrentTabRoute(info == null ? "headphones" : "info");
+      }
     }
 
     if (typedJson?.defaultbluetooth != null) {

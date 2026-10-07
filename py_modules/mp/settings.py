@@ -37,6 +37,8 @@ class Settings():
             return branch.get(key, False)
         elif key == "fix_disconnects":
             return branch.get(key, False)
+        elif key == "auto_select_tab":
+            return branch.get(key, False)
         elif key == "mic_qam_l5_toggle":
             return branch.get(key, False)
         elif key == "allow_anc_mode_off":

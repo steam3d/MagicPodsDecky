@@ -75,6 +75,8 @@
         "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
         "capabilities_cmn_bluetooth_codec_table_description": "Descrição",
         "websocket_update_required": "Por favor, atualize o plugin para continuar.",
+        "settings_auto_select_tab_label": "Seleção automática de separador",
+        "settings_auto_select_tab_description": "Ao abrir o plugin, mudar para o separador «Auscultadores» se os auscultadores não estiverem ligados.",
         "settings_animation_label": "Animação dos auscultadores",
         "settings_animation_description": "<Key1/> Apenas para MagicPods no ambiente de trabalho. Mostra a animação dos AirPods e Beats, semelhante ao iPhone, quando abres a caixa dos auscultadores."
     }

@@ -75,6 +75,8 @@
         "capabilities_cmn_bluetooth_codec_table_description": "Περιγραφή",
         "settings_hotkey_error": "<Key1/> Τα πλήκτρα συντόμευσης δεν λειτουργούν σε κανένα plugin λόγω μιας SteamOS ενημέρωσης. Καμία λύση ακόμη, τα πλήκτρα συντόμευσης παραμένουν ανενεργά.",
         "websocket_update_required": "Παρακαλώ ενημερώστε το plugin για να συνεχίσετε.",
+        "settings_auto_select_tab_label": "Αυτόματη επιλογή καρτέλας",
+        "settings_auto_select_tab_description": "Κατά το άνοιγμα της προσθήκης, μετάβαση στην καρτέλα «Ακουστικά» εάν τα ακουστικά δεν είναι συνδεδεμένα.",
         "settings_animation_label": "Κινούμενη εικόνα ακουστικών",
         "settings_animation_description": "<Key1/> MagicPods desktop μόνο. Δείχνει την κινούμενη εικόνα των AirPods και Beats, παρόμοια με το iPhone, όταν ανοίγετε την θήκη των ακουστικών."
     }

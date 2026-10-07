@@ -75,6 +75,8 @@
         "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
         "capabilities_cmn_bluetooth_codec_table_description": "Descrição",
         "websocket_update_required": "Atualize o plugin para continuar.",
+        "settings_auto_select_tab_label": "Seleção automática de aba",
+        "settings_auto_select_tab_description": "Ao abrir o plugin, mudar para a aba “Fones de ouvido” se os fones não estiverem conectados.",
         "settings_animation_label": "Animação dos fones de ouvido",
         "settings_animation_description": "<Key1/> Somente no MagicPods para desktop. Mostra a animação dos AirPods e Beats, semelhante ao iPhone, ao abrir o estojo dos fones."
     }

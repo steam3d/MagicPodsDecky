@@ -75,6 +75,8 @@
         "capabilities_cmn_bluetooth_codec_table_description": "Опис",
         "settings_hotkey_error": "<Key1/> Оновлення SteamOS зламало роботу гарячих клавіш у всіх плагінах. Поки рішення не знайдено, гарячі клавіші залишаються вимкненими.",
         "websocket_update_required": "Будь ласка, оновіть плагін, щоб продовжити.",
+        "settings_auto_select_tab_label": "Автовибір вкладки",
+        "settings_auto_select_tab_description": "Під час відкриття плагіна переходити на вкладку «Навушники», якщо навушники не підключені.",
         "settings_animation_label": "Анімація навушників",
         "settings_animation_description": "<Key1/> Тільки для MagicPods Desktop. Показує анімацію AirPods та Beats, як на iPhone, коли ви відкриваєте футляр навушників."
     }

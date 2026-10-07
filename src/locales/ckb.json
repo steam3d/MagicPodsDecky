@@ -2,6 +2,8 @@
     "translation": {
         "battery_left": "چەپ",
         "battery_right": "ڕاست",
-        "battery_case": "کەیس"
+        "battery_case": "کەیس",
+        "settings_auto_select_tab_label": "هەڵبژاردنی خۆکارانەی تاب",
+        "settings_auto_select_tab_description": "لە کاتی کردنەوەی پڵەگینەکە، ئەگەر گوێگرەکان پەیوەست نەبن بڕۆ بۆ تابی «گوێگرەکان»."
     }
 }

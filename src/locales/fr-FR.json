@@ -75,6 +75,8 @@
         "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
         "capabilities_cmn_bluetooth_codec_table_description": "Description",
         "websocket_update_required": "Veuillez mettre à jour le plugin pour continuer.",
+        "settings_auto_select_tab_label": "Sélection automatique de l’onglet",
+        "settings_auto_select_tab_description": "À l’ouverture du plugin, accéder à l’onglet « Écouteurs » si les écouteurs ne sont pas connectés.",
         "settings_animation_label": "Animations avec des écouteurs",
         "settings_animation_description": "<Key1/>Pour la version de bureau de MagicPods uniquement. Affiche l'animation des AirPods et des Beats, similaire à celle de l'iPhone, lorsque vous ouvrez le boîtier des écouteurs."
     }

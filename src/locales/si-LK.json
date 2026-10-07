@@ -38,6 +38,8 @@
         "settings_anc_modes_header": "පෙන්වෙන ප්‍රකාර",
         "settings_misc_header": "ප්‍රයෝජනවත් සබැඳි",
         "settings_debug_level_label": "ලොග් මට්ටම",
-        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "අක්රියයි"
+        "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "අක්රියයි",
+        "settings_auto_select_tab_label": "ටැබය ස්වයංක්‍රීයව තෝරන්න",
+        "settings_auto_select_tab_description": "ප්ලගිනය විවෘත කරන විට හෙඩ්ෆෝන් සම්බන්ධ වී නොමැති නම් ‘හෙඩ්ෆෝන්’ ටැබයට මාරු වන්න."
     }
 }

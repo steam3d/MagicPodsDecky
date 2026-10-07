@@ -75,6 +75,8 @@
         "capabilities_cmn_bluetooth_codec_table_description": "說明",
         "websocket_update_required": "請更新插件後再進行此操作。",
         "settings_core_debug_level_label": "日誌記錄級別",
+        "settings_auto_select_tab_label": "自動選擇分頁",
+        "settings_auto_select_tab_description": "開啟外掛程式時，如果耳機未連接，則切換到「耳機」分頁。",
         "settings_animation_label": "耳機動畫",
         "settings_animation_description": "⁠<Key1/>⁠ 此功能僅限桌面版。在打開耳機充電盒時，將顯示與 iPhone 類似的 AirPods 和 Beats 動畫。"
     }
