@@ -74,6 +74,7 @@
         "capabilities_cmn_bluetooth_codec_button_secondary": "Show description",
         "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
         "capabilities_cmn_bluetooth_codec_table_description": "Description",
+        "capabilities_cmn_ear_detection_label": "Ear detection",
         "settings_hotkey_error": "<Key1/> Hotkeys are broken in all plugins due to a SteamOS update. No solution yet, hotkeys remain disabled.",
         "websocket_update_required": "Please update the plugin to continue.",
         "settings_auto_select_tab_label": "Auto-select tab",

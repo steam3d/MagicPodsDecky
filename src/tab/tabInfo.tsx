@@ -89,6 +89,7 @@ interface CapabilitiesProps {
   adaptiveAudioNoise?: NumberCapabilityProps;
   bluetoothCodec?: StringCapabilityProps;
   highResolutionMicrophone?: BooleanCapabilityProps;
+  earDetection?: BooleanCapabilityProps;
 }
 
 export interface headphoneInfoProps {
@@ -411,6 +412,13 @@ export const TabInfo: FC<{
                       disabled={info.capabilities.highResolutionMicrophone.readonly}
                       label={t("capabilities_aap_high_resolution_microphone_label")}
                       onChange={(b) => { handleBooleanCapabilityChange("highResolutionMicrophone", b); }} />
+                  </PanelSectionRow>
+                }
+
+                {info?.capabilities?.earDetection != null &&
+                  <PanelSectionRow>
+                    <ToggleField checked={info.capabilities.earDetection.selected} label={t("capabilities_cmn_ear_detection_label")}
+                      onChange={(b) => { handleBooleanCapabilityChange("earDetection", b); }} />
                   </PanelSectionRow>
                 }
 
