@@ -88,6 +88,7 @@ interface CapabilitiesProps {
   volumeSwipeLength?: NumberCapabilityProps;
   adaptiveAudioNoise?: NumberCapabilityProps;
   bluetoothCodec?: StringCapabilityProps;
+  highResolutionMicrophone?: BooleanCapabilityProps;
 }
 
 export interface headphoneInfoProps {
@@ -402,6 +403,16 @@ export const TabInfo: FC<{
                     </PanelSectionRow>
                   </>
                 )}
+
+                {info?.capabilities?.highResolutionMicrophone != null &&
+                  <PanelSectionRow>
+                    <ToggleField
+                      checked={info.capabilities.highResolutionMicrophone.selected}
+                      disabled={info.capabilities.highResolutionMicrophone.readonly}
+                      label={t("capabilities_aap_high_resolution_microphone_label")}
+                      onChange={(b) => { handleBooleanCapabilityChange("highResolutionMicrophone", b); }} />
+                  </PanelSectionRow>
+                }
 
                 {info?.capabilities?.conversationAwareness != null && (
                   <>
