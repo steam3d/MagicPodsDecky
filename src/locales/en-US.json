@@ -65,6 +65,7 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "Longer",
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "Longest",
         "capabilities_aap_high_resolution_microphone_label": "HD Microphone",
+        "capabilities_aap_high_resolution_microphone_description": "Allows you to use the microphone without reducing audio quality in your headphones.\n\nWhen enabled, the \"MagicPods Virtual Mic\" audio input device is automatically created and selected. When disabled, audio transmission stops and the device is removed.\n\nIf the microphone isn't working, make sure \"MagicPods Virtual Mic\" is selected as the audio input device.\n\nTurn off \"Conversation Awareness\" in your headphones' settings to prevent the volume from automatically decreasing while using the microphone.",
         "capabilities_aap_end_call_label": "End call",
         "capabilities_aap_end_call_notchlabel_single": "Press once",
         "capabilities_aap_end_call_notchlabel_double": "Press twice",

@@ -78,6 +78,16 @@
         "settings_auto_select_tab_label": "Αυτόματη επιλογή καρτέλας",
         "settings_auto_select_tab_description": "Κατά το άνοιγμα της προσθήκης, μετάβαση στην καρτέλα «Ακουστικά» εάν τα ακουστικά δεν είναι συνδεδεμένα.",
         "settings_animation_label": "Κινούμενη εικόνα ακουστικών",
-        "settings_animation_description": "<Key1/> MagicPods desktop μόνο. Δείχνει την κινούμενη εικόνα των AirPods και Beats, παρόμοια με το iPhone, όταν ανοίγετε την θήκη των ακουστικών."
+        "settings_animation_description": "<Key1/> MagicPods desktop μόνο. Δείχνει την κινούμενη εικόνα των AirPods και Beats, παρόμοια με το iPhone, όταν ανοίγετε την θήκη των ακουστικών.",
+        "capabilities_aap_high_resolution_microphone_label": "Μικρόφωνο HD",
+        "capabilities_aap_high_resolution_microphone_description": "Σας επιτρέπει να χρησιμοποιείτε το μικρόφωνο χωρίς να μειώνεται η ποιότητα ήχου στα ακουστικά σας.\n\nΌταν ενεργοποιείται, η συσκευή εισόδου ήχου «MagicPods Virtual Mic» δημιουργείται και επιλέγεται αυτόματα. Όταν απενεργοποιείται, η μετάδοση ήχου σταματά και η συσκευή αφαιρείται.\n\nΕάν το μικρόφωνο δεν λειτουργεί, βεβαιωθείτε ότι το «MagicPods Virtual Mic» είναι επιλεγμένο ως συσκευή εισόδου ήχου.\n\nΑπενεργοποιήστε την «Αναγνώριση συζητήσεων» στις ρυθμίσεις των ακουστικών σας, ώστε να μην μειώνεται αυτόματα η ένταση κατά τη χρήση του μικροφώνου.",
+        "capabilities_cmn_ear_detection_label": "Ανίχνευση αυτιού",
+        "settings_header_battery_icon_header": "Μπαταρία στην κεφαλίδα",
+        "settings_header_battery_icon_label": "Εικονίδιο μπαταρίας",
+        "settings_header_battery_icon_description": "<Key1/> Επαναφορτώστε την προσθήκη στις ρυθμίσεις του Decky Loader για να εφαρμοστούν οι αλλαγές.",
+        "settings_header_battery_icon_text_label": "Ποσοστό μπαταρίας",
+        "settings_header_battery_icon_text_description": "Εμφάνιση του ποσοστού μπαταρίας δίπλα στο εικονίδιο.",
+        "settings_header_battery_icon_split_label": "Διαχωρισμένο εικονίδιο μπαταρίας",
+        "settings_header_battery_icon_split_description": "Ξεχωριστή εμφάνιση της στάθμης μπαταρίας του αριστερού (επάνω) και του δεξιού (κάτω) ακουστικού."
     }
 }

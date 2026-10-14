@@ -78,6 +78,16 @@
         "settings_auto_select_tab_label": "Seleção automática de aba",
         "settings_auto_select_tab_description": "Ao abrir o plugin, mudar para a aba “Fones de ouvido” se os fones não estiverem conectados.",
         "settings_animation_label": "Animação dos fones de ouvido",
-        "settings_animation_description": "<Key1/> Somente no MagicPods para desktop. Mostra a animação dos AirPods e Beats, semelhante ao iPhone, ao abrir o estojo dos fones."
+        "settings_animation_description": "<Key1/> Somente no MagicPods para desktop. Mostra a animação dos AirPods e Beats, semelhante ao iPhone, ao abrir o estojo dos fones.",
+        "capabilities_aap_high_resolution_microphone_label": "Microfone HD",
+        "capabilities_aap_high_resolution_microphone_description": "Permite usar o microfone sem reduzir a qualidade do áudio nos fones de ouvido.\n\nQuando ativado, o dispositivo de entrada de áudio “MagicPods Virtual Mic” é criado e selecionado automaticamente. Quando desativado, a transmissão de áudio é interrompida e o dispositivo é removido.\n\nSe o microfone não estiver funcionando, verifique se “MagicPods Virtual Mic” está selecionado como dispositivo de entrada de áudio.\n\nDesative a “Detecção de conversa” nas configurações dos fones de ouvido para evitar que o volume diminua automaticamente durante o uso do microfone.",
+        "capabilities_cmn_ear_detection_label": "Detecção automática de ouvido",
+        "settings_header_battery_icon_header": "Bateria no cabeçalho",
+        "settings_header_battery_icon_label": "Ícone da bateria",
+        "settings_header_battery_icon_description": "<Key1/> Recarregue o plugin nas configurações do Decky Loader para aplicar as alterações.",
+        "settings_header_battery_icon_text_label": "Porcentagem da bateria",
+        "settings_header_battery_icon_text_description": "Mostrar a porcentagem da bateria ao lado do ícone.",
+        "settings_header_battery_icon_split_label": "Ícone da bateria dividido",
+        "settings_header_battery_icon_split_description": "Mostrar separadamente os níveis de bateria do fone esquerdo (em cima) e do direito (embaixo)."
     }
 }

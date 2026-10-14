@@ -78,6 +78,16 @@
         "settings_auto_select_tab_label": "Selección automática de pestaña",
         "settings_auto_select_tab_description": "Al abrir el complemento, cambiar a la pestaña «Auriculares» si los auriculares no están conectados.",
         "settings_animation_label": "Animación de auriculares",
-        "settings_animation_description": "<Key1/>Solo para la versión de escritorio de MagicPods. Muestra la animación de AirPods y Beats, similar a la del iPhone, cuando abres el estuche de los auriculares."
+        "settings_animation_description": "<Key1/>Solo para la versión de escritorio de MagicPods. Muestra la animación de AirPods y Beats, similar a la del iPhone, cuando abres el estuche de los auriculares.",
+        "capabilities_aap_high_resolution_microphone_label": "Micrófono HD",
+        "capabilities_aap_high_resolution_microphone_description": "Permite usar el micrófono sin reducir la calidad de audio de los auriculares.\n\nAl activarlo, el dispositivo de entrada de audio «MagicPods Virtual Mic» se crea y selecciona automáticamente. Al desactivarlo, la transmisión de audio se detiene y el dispositivo se elimina.\n\nSi el micrófono no funciona, asegúrate de que «MagicPods Virtual Mic» esté seleccionado como dispositivo de entrada de audio.\n\nDesactiva «Detección de conversación» en los ajustes de los auriculares para evitar que el volumen se reduzca automáticamente mientras usas el micrófono.",
+        "capabilities_cmn_ear_detection_label": "Detección automática de oreja",
+        "settings_header_battery_icon_header": "Batería en el encabezado",
+        "settings_header_battery_icon_label": "Icono de batería",
+        "settings_header_battery_icon_description": "<Key1/> Vuelve a cargar el plugin desde los ajustes de Decky Loader para aplicar los cambios.",
+        "settings_header_battery_icon_text_label": "Porcentaje de batería",
+        "settings_header_battery_icon_text_description": "Mostrar el porcentaje de batería junto al icono.",
+        "settings_header_battery_icon_split_label": "Icono de batería dividido",
+        "settings_header_battery_icon_split_description": "Mostrar por separado el nivel de batería del auricular izquierdo (arriba) y del derecho (abajo)."
     }
 }

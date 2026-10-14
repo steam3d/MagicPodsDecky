@@ -69,6 +69,7 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "Очень длинно",
         "capabilities_aap_end_call_notchlabel_double": "Двойное нажатие",
         "capabilities_aap_high_resolution_microphone_label": "HD микрофон",
+        "capabilities_aap_high_resolution_microphone_description": "Позволяет использовать микрофон без снижения качества звука в наушниках.\n\nПри включении создаётся и автоматически выбирается устройство ввода «MagicPods Virtual Mic». При выключении передача звука прекращается, а устройство удаляется.\n\nЕсли микрофон не работает, убедитесь, что «MagicPods Virtual Mic» выбран в качестве устройства ввода звука.\n\nОтключите «Распознавание разговора» в настройках наушников, чтобы громкость звука не снижалась автоматически во время использования микрофона.",
         "capabilities_cmn_bluetooth_codec_label": "Bluetooth кодек",
         "capabilities_cmn_bluetooth_codec_menu": "Выберите кодек",
         "capabilities_cmn_bluetooth_codec_button_secondary": "Показать описание",

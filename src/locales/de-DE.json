@@ -77,6 +77,17 @@
         "capabilities_cmn_bluetooth_codec_table_codec": "Codec",
         "capabilities_cmn_bluetooth_codec_menu": "Codec auswählen",
         "capabilities_cmn_bluetooth_codec_label": "Bluetooth Codec",
-        "settings_hotkey_error": "<Key1/> Tastenkürzel sind aufgrund eines SteamOS-Updates in allen Plugins defekt. Derzeit gibt es keine Lösung, Tastenkürzel bleiben deaktiviert."
+        "settings_hotkey_error": "<Key1/> Tastenkürzel sind aufgrund eines SteamOS-Updates in allen Plugins defekt. Derzeit gibt es keine Lösung, Tastenkürzel bleiben deaktiviert.",
+        "capabilities_aap_high_resolution_microphone_label": "HD-Mikrofon",
+        "capabilities_aap_high_resolution_microphone_description": "Ermöglicht die Verwendung des Mikrofons, ohne die Audioqualität der Kopfhörer zu beeinträchtigen.\n\nWenn diese Option aktiviert ist, wird das Audioeingabegerät „MagicPods Virtual Mic“ automatisch erstellt und ausgewählt. Wenn sie deaktiviert ist, wird die Audioübertragung beendet und das Gerät entfernt.\n\nWenn das Mikrofon nicht funktioniert, stellen Sie sicher, dass „MagicPods Virtual Mic“ als Audioeingabegerät ausgewählt ist.\n\nDeaktivieren Sie die „Konversationserkennung“ in den Einstellungen Ihrer Kopfhörer, damit die Lautstärke während der Verwendung des Mikrofons nicht automatisch verringert wird.",
+        "capabilities_cmn_ear_detection_label": "Ohrerkennung",
+        "settings_core_debug_level_label": "Protokollebene des Kerns",
+        "settings_header_battery_icon_header": "Akku in der Kopfzeile",
+        "settings_header_battery_icon_label": "Akkusymbol",
+        "settings_header_battery_icon_description": "<Key1/> Laden Sie das Plugin in den Einstellungen von Decky Loader neu, um die Änderungen zu übernehmen.",
+        "settings_header_battery_icon_text_label": "Akkustand in Prozent",
+        "settings_header_battery_icon_text_description": "Den Akkustand in Prozent neben dem Symbol anzeigen.",
+        "settings_header_battery_icon_split_label": "Geteiltes Akkusymbol",
+        "settings_header_battery_icon_split_description": "Den Akkustand des linken (oben) und rechten (unten) Ohrhörers getrennt anzeigen."
     }
 }

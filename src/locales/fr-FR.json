@@ -78,6 +78,16 @@
         "settings_auto_select_tab_label": "Sélection automatique de l’onglet",
         "settings_auto_select_tab_description": "À l’ouverture du plugin, accéder à l’onglet « Écouteurs » si les écouteurs ne sont pas connectés.",
         "settings_animation_label": "Animations avec des écouteurs",
-        "settings_animation_description": "<Key1/>Pour la version de bureau de MagicPods uniquement. Affiche l'animation des AirPods et des Beats, similaire à celle de l'iPhone, lorsque vous ouvrez le boîtier des écouteurs."
+        "settings_animation_description": "<Key1/>Pour la version de bureau de MagicPods uniquement. Affiche l'animation des AirPods et des Beats, similaire à celle de l'iPhone, lorsque vous ouvrez le boîtier des écouteurs.",
+        "capabilities_aap_high_resolution_microphone_label": "Microphone HD",
+        "capabilities_aap_high_resolution_microphone_description": "Permet d’utiliser le microphone sans réduire la qualité audio de vos écouteurs.\n\nLorsque cette option est activée, le périphérique d’entrée audio « MagicPods Virtual Mic » est automatiquement créé et sélectionné. Lorsqu’elle est désactivée, la transmission audio s’arrête et le périphérique est supprimé.\n\nSi le microphone ne fonctionne pas, vérifiez que « MagicPods Virtual Mic » est sélectionné comme périphérique d’entrée audio.\n\nDésactivez la « Détection de conversation » dans les réglages de vos écouteurs afin d’éviter que le volume ne diminue automatiquement pendant l’utilisation du microphone.",
+        "capabilities_cmn_ear_detection_label": "Détection automatique des oreilles",
+        "settings_header_battery_icon_header": "Batterie dans l’en-tête",
+        "settings_header_battery_icon_label": "Icône de batterie",
+        "settings_header_battery_icon_description": "<Key1/> Rechargez le plugin depuis les réglages de Decky Loader pour appliquer les modifications.",
+        "settings_header_battery_icon_text_label": "Pourcentage de batterie",
+        "settings_header_battery_icon_text_description": "Afficher le pourcentage de batterie à côté de l’icône.",
+        "settings_header_battery_icon_split_label": "Icône de batterie scindée",
+        "settings_header_battery_icon_split_description": "Afficher séparément le niveau de batterie de l’écouteur gauche (en haut) et de l’écouteur droit (en bas)."
     }
 }

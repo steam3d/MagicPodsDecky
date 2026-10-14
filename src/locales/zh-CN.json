@@ -78,6 +78,16 @@
         "settings_auto_select_tab_label": "自动选择标签页",
         "settings_auto_select_tab_description": "打开插件时，如果耳机未连接，则切换到“耳机”标签页。",
         "settings_animation_label": "耳机动画",
-        "settings_animation_description": "<Key1/>仅限 MagicPods 桌面版。当您打开耳机盒时，会显示类似于 iPhone 的 AirPods 和 Beats 动画。"
+        "settings_animation_description": "<Key1/>仅限 MagicPods 桌面版。当您打开耳机盒时，会显示类似于 iPhone 的 AirPods 和 Beats 动画。",
+        "capabilities_aap_high_resolution_microphone_label": "高清麦克风",
+        "capabilities_aap_high_resolution_microphone_description": "让您可以使用麦克风，同时不降低耳机的音质。\n\n启用后，系统会自动创建并选择“MagicPods Virtual Mic”音频输入设备。禁用后，音频传输将停止，该设备也会被移除。\n\n如果麦克风无法正常工作，请确保已选择“MagicPods Virtual Mic”作为音频输入设备。\n\n请在耳机设置中关闭“对话感知”，以防止使用麦克风时音量自动降低。",
+        "capabilities_cmn_ear_detection_label": "自动入耳检测",
+        "settings_header_battery_icon_header": "顶栏电量",
+        "settings_header_battery_icon_label": "电量图标",
+        "settings_header_battery_icon_description": "<Key1/> 请在 Decky Loader 设置中重新加载插件以应用更改。",
+        "settings_header_battery_icon_text_label": "电量百分比",
+        "settings_header_battery_icon_text_description": "在图标旁显示电量百分比。",
+        "settings_header_battery_icon_split_label": "分体电量图标",
+        "settings_header_battery_icon_split_description": "分别显示左耳机（上方）和右耳机（下方）的电量。"
     }
 }

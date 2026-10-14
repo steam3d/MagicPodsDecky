@@ -78,6 +78,16 @@
         "settings_auto_select_tab_label": "Автовибір вкладки",
         "settings_auto_select_tab_description": "Під час відкриття плагіна переходити на вкладку «Навушники», якщо навушники не підключені.",
         "settings_animation_label": "Анімація навушників",
-        "settings_animation_description": "<Key1/> Тільки для MagicPods Desktop. Показує анімацію AirPods та Beats, як на iPhone, коли ви відкриваєте футляр навушників."
+        "settings_animation_description": "<Key1/> Тільки для MagicPods Desktop. Показує анімацію AirPods та Beats, як на iPhone, коли ви відкриваєте футляр навушників.",
+        "capabilities_aap_high_resolution_microphone_label": "HD-мікрофон",
+        "capabilities_aap_high_resolution_microphone_description": "Дає змогу використовувати мікрофон без погіршення якості звуку в навушниках.\n\nКоли цю функцію ввімкнено, пристрій аудіовходу «MagicPods Virtual Mic» автоматично створюється та вибирається. Коли її вимкнено, передавання звуку припиняється, а пристрій видаляється.\n\nЯкщо мікрофон не працює, переконайтеся, що «MagicPods Virtual Mic» вибрано як пристрій аудіовходу.\n\nВимкніть «Розпізнавання розмови» в налаштуваннях навушників, щоб гучність не зменшувалася автоматично під час використання мікрофона.",
+        "capabilities_cmn_ear_detection_label": "Автовиявлення вуха",
+        "settings_header_battery_icon_header": "Заряд у верхній панелі",
+        "settings_header_battery_icon_label": "Значок батареї",
+        "settings_header_battery_icon_description": "<Key1/> Перезавантажте плагін у налаштуваннях Decky Loader, щоб застосувати зміни.",
+        "settings_header_battery_icon_text_label": "Відсоток заряду",
+        "settings_header_battery_icon_text_description": "Показувати відсоток заряду поруч зі значком.",
+        "settings_header_battery_icon_split_label": "Розділений індикатор заряду",
+        "settings_header_battery_icon_split_description": "Показувати окремо рівень заряду лівого (вгорі) та правого (внизу) навушників."
     }
 }
