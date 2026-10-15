@@ -1,5 +1,9 @@
 {
     "translation": {
+        "capabilities_aap_custom_eq_label": "Égaliseur",
+        "capabilities_aap_custom_eq_low_label": "Égaliseur : Graves",
+        "capabilities_aap_custom_eq_mid_label": "Égaliseur : Médiums",
+        "capabilities_aap_custom_eq_high_label": "Égaliseur : Aigus",
         "settings_hotkey_anc_label": "Touche de raccourci pour la réduction de bruit",
         "battery_case": "Boîtier",
         "battery_single": "Batterie",

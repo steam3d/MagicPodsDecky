@@ -1,5 +1,9 @@
 {
     "translation": {
+        "capabilities_aap_custom_eq_label": "Equalizzatore",
+        "capabilities_aap_custom_eq_low_label": "Equalizzatore: Bassi",
+        "capabilities_aap_custom_eq_mid_label": "Equalizzatore: Medi",
+        "capabilities_aap_custom_eq_high_label": "Equalizzatore: Alti",
         "battery_right": "Destra",
         "battery_case": "Custodia",
         "capabilities_noise_control_label": "Controllo del rumore",

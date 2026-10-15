@@ -1,5 +1,9 @@
 {
     "translation": {
+        "capabilities_aap_custom_eq_label": "Korektor",
+        "capabilities_aap_custom_eq_low_label": "Korektor: Niskie",
+        "capabilities_aap_custom_eq_mid_label": "Korektor: Średnie",
+        "capabilities_aap_custom_eq_high_label": "Korektor: Wysokie",
         "battery_left": "Lewa",
         "battery_right": "Prawa",
         "battery_case": "Obudowa",

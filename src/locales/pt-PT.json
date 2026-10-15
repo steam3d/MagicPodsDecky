@@ -1,5 +1,9 @@
 {
     "translation": {
+        "capabilities_aap_custom_eq_label": "Equalizador",
+        "capabilities_aap_custom_eq_low_label": "Equalizador: Graves",
+        "capabilities_aap_custom_eq_mid_label": "Equalizador: Médios",
+        "capabilities_aap_custom_eq_high_label": "Equalizador: Agudos",
         "battery_single": "Bateria",
         "headphones_disconnected": "Ligue os fones para mostrar o nível de bateria e ajustar as definições",
         "settings_low_battery_label": "Notificação de bateria fraca",

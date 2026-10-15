@@ -1,5 +1,9 @@
 {
     "translation": {
+        "capabilities_aap_custom_eq_label": "Equalizer",
+        "capabilities_aap_custom_eq_low_label": "Equalizer: Low",
+        "capabilities_aap_custom_eq_mid_label": "Equalizer: Mid",
+        "capabilities_aap_custom_eq_high_label": "Equalizer: High",
         "battery_left": "Left",
         "battery_right": "Right",
         "battery_case": "Case",

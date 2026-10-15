@@ -1,5 +1,9 @@
 {
     "translation": {
+        "capabilities_aap_custom_eq_label": "Equalizer",
+        "capabilities_aap_custom_eq_low_label": "Equalizer: Tiefen",
+        "capabilities_aap_custom_eq_mid_label": "Equalizer: Mitten",
+        "capabilities_aap_custom_eq_high_label": "Equalizer: Höhen",
         "settings_language_menu_canceltext": "Abbrechen",
         "settings_fix_disconnects_label": "Deaktiviere Kopfhörer Ruhemodus",
         "headphones": "Kopfhörer",

@@ -1,5 +1,9 @@
 {
     "translation": {
+        "capabilities_aap_custom_eq_label": "Ecualizador",
+        "capabilities_aap_custom_eq_low_label": "Ecualizador: Graves",
+        "capabilities_aap_custom_eq_mid_label": "Ecualizador: Medios",
+        "capabilities_aap_custom_eq_high_label": "Ecualizador: Agudos",
         "battery_right": "Derecha",
         "battery_single": "Carga",
         "battery_case": "Caja",

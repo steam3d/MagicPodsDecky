@@ -1,5 +1,9 @@
 {
     "translation": {
+        "capabilities_aap_custom_eq_label": "均衡器",
+        "capabilities_aap_custom_eq_low_label": "均衡器：低音",
+        "capabilities_aap_custom_eq_mid_label": "均衡器：中音",
+        "capabilities_aap_custom_eq_high_label": "均衡器：高音",
         "battery_left": "左",
         "battery_right": "右",
         "battery_case": "充电仓",

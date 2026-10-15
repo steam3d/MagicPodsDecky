@@ -1,5 +1,9 @@
 {
     "translation": {
+        "capabilities_aap_custom_eq_label": "Еквалайзер",
+        "capabilities_aap_custom_eq_low_label": "Еквалайзер: Низькі",
+        "capabilities_aap_custom_eq_mid_label": "Еквалайзер: Середні",
+        "capabilities_aap_custom_eq_high_label": "Еквалайзер: Високі",
         "battery_left": "Лівий",
         "headphones_disconnected": "Підключіть навушники, щоб побачити рівень заряду батареї та налаштувати параметри",
         "notif_low_battery": "Залишилось {{battery}}%. Зарядіть ваші навушники.",

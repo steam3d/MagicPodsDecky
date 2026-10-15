@@ -1,5 +1,9 @@
 {
     "translation": {
+        "capabilities_aap_custom_eq_label": "ئیکوالایزەر",
+        "capabilities_aap_custom_eq_low_label": "ئیکوالایزەر: نزم",
+        "capabilities_aap_custom_eq_mid_label": "ئیکوالایزەر: ناوەند",
+        "capabilities_aap_custom_eq_high_label": "ئیکوالایزەر: بەرز",
         "battery_left": "چەپ",
         "battery_right": "ڕاست",
         "battery_case": "کەیس",

@@ -80,6 +80,18 @@ interface StringCapabilityProps {
   readonly: boolean
 }
 
+interface CustomEqSelectedProps {
+  enabled: boolean,
+  low: number,
+  mid: number,
+  high: number
+}
+
+interface CustomEqCapabilityProps {
+  selected: CustomEqSelectedProps,
+  readonly: boolean
+}
+
 interface CapabilitiesProps {
   anc?: AncProps;
   battery?: BatteryProps;
@@ -97,6 +109,7 @@ interface CapabilitiesProps {
   bluetoothCodec?: StringCapabilityProps;
   highResolutionMicrophone?: BooleanCapabilityProps;
   earDetection?: BooleanCapabilityProps;
+  customEq?: CustomEqCapabilityProps;
 }
 
 export interface headphoneInfoProps {
@@ -297,6 +310,32 @@ export const TabInfo: FC<{
     }, 350);
   };
 
+  const handleCustomEqChange = (changes: Partial<CustomEqSelectedProps>, debounce: boolean = false) => {
+    const capability = info?.capabilities?.customEq;
+    if (capability == null) return;
+
+    const selected = { ...capability.selected, ...changes };
+    commonUpdateInfo("customEq", selected);
+
+    const address = info?.address;
+    if (address == null) return;
+
+    if (timeoutIds.current.customEq)
+      clearTimeout(timeoutIds.current.customEq);
+
+    const send = () => {
+      backend.setCapability("customEq", address, selected);
+      delete timeoutIds.current.customEq;
+    };
+
+    if (!debounce) {
+      send();
+      return;
+    }
+
+    timeoutIds.current.customEq = setTimeout(send, 350);
+  };
+
   useEffect(() => {
     const fetchConfig = async () => {
       //setLoaded(false);
@@ -320,6 +359,7 @@ export const TabInfo: FC<{
     }
     fetchSettings();
   }, [info?.capabilities?.conversationAwareness?.selected]);
+
   return (
     <>
       <div style={{ marginLeft: "-8px", marginRight: "-8px" }}>
@@ -655,6 +695,46 @@ export const TabInfo: FC<{
                         disabled={true}
                       />
                     </PanelSectionRow>
+                  </>
+                )}
+
+                {info?.capabilities?.customEq != null && (
+                  <>
+                    <PanelSectionRow>
+                      <ToggleField
+                        checked={info.capabilities.customEq.selected.enabled}
+                        disabled={info.capabilities.customEq.readonly}
+                        label={t("capabilities_aap_custom_eq_label")}
+                        onChange={(enabled) => {
+                          handleCustomEqChange({ enabled });
+                        }}
+                      />
+                    </PanelSectionRow>
+
+                    {(["low", "mid", "high"] as const).map((band) => (
+                      <PanelSectionRow key={band}>
+                        <SliderField
+                          value={info.capabilities.customEq?.selected[band] ?? 0}
+                          max={100}
+                          min={0}
+                          step={1}
+                          label={t(`capabilities_aap_custom_eq_${band}_label`)}
+                          notchCount={3}
+                          notchTicksVisible={false}
+                          notchLabels={[
+                            { label: "0", notchIndex: 0, value: 0 },
+                            { label: "50", notchIndex: 1, value: 50 },
+                            { label: "100", notchIndex: 2, value: 100 }
+                          ]}
+                          showValue={true}
+                          valueSuffix="%"
+                          disabled={!info.capabilities.customEq?.selected.enabled || info.capabilities.customEq?.readonly}
+                          onChange={(value) => {
+                            handleCustomEqChange({ [band]: value }, true);
+                          }}
+                        />
+                      </PanelSectionRow>
+                    ))}
                   </>
                 )}
               </>

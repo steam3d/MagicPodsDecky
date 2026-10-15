@@ -1,5 +1,9 @@
 {
     "translation": {
+        "capabilities_aap_custom_eq_label": "සමකරනය",
+        "capabilities_aap_custom_eq_low_label": "සමකරනය: අඩු",
+        "capabilities_aap_custom_eq_mid_label": "සමකරනය: මධ්‍ය",
+        "capabilities_aap_custom_eq_high_label": "සමකරනය: ඉහළ",
         "battery_right": "දකුණ",
         "battery_case": "කේස්",
         "battery_single": "ආ‍ර‍ෝපණය",
