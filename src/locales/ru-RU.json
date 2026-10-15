@@ -4,6 +4,7 @@
         "capabilities_aap_custom_eq_low_label": "Эквалайзер: Низкие",
         "capabilities_aap_custom_eq_mid_label": "Эквалайзер: Средние",
         "capabilities_aap_custom_eq_high_label": "Эквалайзер: Высокие",
+        "capabilities_aap_optimized_charge_label": "Оптимизированный лимит зарядки",
         "battery_left": "Левый",
         "battery_right": "Правый",
         "battery_case": "Футляр",

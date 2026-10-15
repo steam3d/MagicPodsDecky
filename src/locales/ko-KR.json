@@ -4,6 +4,7 @@
         "capabilities_aap_custom_eq_low_label": "이퀄라이저: 저음",
         "capabilities_aap_custom_eq_mid_label": "이퀄라이저: 중음",
         "capabilities_aap_custom_eq_high_label": "이퀄라이저: 고음",
+        "capabilities_aap_optimized_charge_label": "최적화된 충전 한도",
         "battery_right": "오른쪽",
         "battery_case": "케이스",
         "battery_left": "왼쪽",

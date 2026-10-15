@@ -4,6 +4,7 @@
         "capabilities_aap_custom_eq_low_label": "Ισοσταθμιστής: Χαμηλές",
         "capabilities_aap_custom_eq_mid_label": "Ισοσταθμιστής: Μεσαίες",
         "capabilities_aap_custom_eq_high_label": "Ισοσταθμιστής: Υψηλές",
+        "capabilities_aap_optimized_charge_label": "Βελτιστοποιημένο όριο φόρτισης",
         "capabilities_noise_control_label": "Έλεγχος θορύβου",
         "header_battery_label": "Έλεγχος θορύβου",
         "settings_language_menu_canceltext": "Άκυρο",

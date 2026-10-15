@@ -110,6 +110,7 @@ interface CapabilitiesProps {
   highResolutionMicrophone?: BooleanCapabilityProps;
   earDetection?: BooleanCapabilityProps;
   customEq?: CustomEqCapabilityProps;
+  optimizedCharge?: BooleanCapabilityProps;
 }
 
 export interface headphoneInfoProps {
@@ -737,6 +738,17 @@ export const TabInfo: FC<{
                     ))}
                   </>
                 )}
+
+                {info?.capabilities?.optimizedCharge != null &&
+                  <PanelSectionRow>
+                    <ToggleField
+                      checked={info.capabilities.optimizedCharge.selected}
+                      disabled={info.capabilities.optimizedCharge.readonly}
+                      label={t("capabilities_aap_optimized_charge_label")}
+                      onChange={(enabled) => { handleBooleanCapabilityChange("optimizedCharge", enabled); }}
+                    />
+                  </PanelSectionRow>
+                }
               </>
             )}
           </PanelSection>

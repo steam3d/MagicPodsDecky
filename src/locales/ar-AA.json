@@ -4,6 +4,7 @@
         "capabilities_aap_custom_eq_low_label": "معادل الصوت: منخفض",
         "capabilities_aap_custom_eq_mid_label": "معادل الصوت: متوسط",
         "capabilities_aap_custom_eq_high_label": "معادل الصوت: مرتفع",
+        "capabilities_aap_optimized_charge_label": "Optimized Charge Limit",
         "capabilities_noise_control_label": "التحكم في الضوضاء",
         "header_battery_label": "التحكم في الضوضاء",
         "battery_right": "اليمين",

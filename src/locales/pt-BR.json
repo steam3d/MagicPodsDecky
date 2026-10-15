@@ -4,6 +4,7 @@
         "capabilities_aap_custom_eq_low_label": "Equalizador: Graves",
         "capabilities_aap_custom_eq_mid_label": "Equalizador: Médios",
         "capabilities_aap_custom_eq_high_label": "Equalizador: Agudos",
+        "capabilities_aap_optimized_charge_label": "Limite de carregamento otimizado",
         "battery_case": "Estojo",
         "battery_single": "Carga",
         "websocket_connection_issue": "Algo deu errado, tente recarregar",

@@ -4,6 +4,7 @@
         "capabilities_aap_custom_eq_low_label": "等化器：低音",
         "capabilities_aap_custom_eq_mid_label": "等化器：中音",
         "capabilities_aap_custom_eq_high_label": "等化器：高音",
+        "capabilities_aap_optimized_charge_label": "最佳化充電上限",
         "battery_left": "左",
         "battery_right": "右",
         "battery_case": "充電盒",

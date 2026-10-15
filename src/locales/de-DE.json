@@ -4,6 +4,7 @@
         "capabilities_aap_custom_eq_low_label": "Equalizer: Tiefen",
         "capabilities_aap_custom_eq_mid_label": "Equalizer: Mitten",
         "capabilities_aap_custom_eq_high_label": "Equalizer: Höhen",
+        "capabilities_aap_optimized_charge_label": "Optimiertes Ladelimit",
         "settings_language_menu_canceltext": "Abbrechen",
         "settings_fix_disconnects_label": "Deaktiviere Kopfhörer Ruhemodus",
         "headphones": "Kopfhörer",

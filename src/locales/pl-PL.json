@@ -4,6 +4,7 @@
         "capabilities_aap_custom_eq_low_label": "Korektor: Niskie",
         "capabilities_aap_custom_eq_mid_label": "Korektor: Średnie",
         "capabilities_aap_custom_eq_high_label": "Korektor: Wysokie",
+        "capabilities_aap_optimized_charge_label": "Zoptymalizowany limit ładowania",
         "battery_left": "Lewa",
         "battery_right": "Prawa",
         "battery_case": "Obudowa",

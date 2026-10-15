@@ -4,6 +4,7 @@
         "capabilities_aap_custom_eq_low_label": "Ecualizador: Graves",
         "capabilities_aap_custom_eq_mid_label": "Ecualizador: Medios",
         "capabilities_aap_custom_eq_high_label": "Ecualizador: Agudos",
+        "capabilities_aap_optimized_charge_label": "Límite de carga optimizado",
         "battery_right": "Derecha",
         "battery_single": "Carga",
         "battery_case": "Caja",
