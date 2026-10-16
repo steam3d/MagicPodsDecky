@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Tryk og hold venstre",
+        "capabilities_aap_right_press_and_hold_label": "Tryk og hold højre",
+        "capabilities_aap_press_and_hold_voice_assistant": "Stemmeassistent",
+        "capabilities_aap_press_and_hold_volume_down": "Lydstyrke ned",
+        "capabilities_aap_press_and_hold_volume_up": "Lydstyrke op",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Bagfra og frem",
         "capabilities_aap_digital_crown_front_to_back": "Forfra og tilbage",

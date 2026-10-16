@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Appui prolongé à gauche",
+        "capabilities_aap_right_press_and_hold_label": "Appui prolongé à droite",
+        "capabilities_aap_press_and_hold_voice_assistant": "Assistant vocal",
+        "capabilities_aap_press_and_hold_volume_down": "Baisser le volume",
+        "capabilities_aap_press_and_hold_volume_up": "Augmenter le volume",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "De l’arrière vers l’avant",
         "capabilities_aap_digital_crown_front_to_back": "De l’avant vers l’arrière",

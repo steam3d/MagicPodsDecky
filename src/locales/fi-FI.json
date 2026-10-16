@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Vasemman pitkä painallus",
+        "capabilities_aap_right_press_and_hold_label": "Oikean pitkä painallus",
+        "capabilities_aap_press_and_hold_voice_assistant": "Ääniavustaja",
+        "capabilities_aap_press_and_hold_volume_down": "Vähennä äänenvoimakkuutta",
+        "capabilities_aap_press_and_hold_volume_up": "Lisää äänenvoimakkuutta",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Takaa eteen",
         "capabilities_aap_digital_crown_front_to_back": "Edestä taakse",

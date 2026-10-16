@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Links ingedrukt houden",
+        "capabilities_aap_right_press_and_hold_label": "Rechts ingedrukt houden",
+        "capabilities_aap_press_and_hold_voice_assistant": "Spraakassistent",
+        "capabilities_aap_press_and_hold_volume_down": "Volume lager",
+        "capabilities_aap_press_and_hold_volume_up": "Volume hoger",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Van achteren naar voren",
         "capabilities_aap_digital_crown_front_to_back": "Van voren naar achteren",

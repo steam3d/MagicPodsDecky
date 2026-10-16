@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Apăsare lungă stânga",
+        "capabilities_aap_right_press_and_hold_label": "Apăsare lungă dreapta",
+        "capabilities_aap_press_and_hold_voice_assistant": "Asistent vocal",
+        "capabilities_aap_press_and_hold_volume_down": "Volum mai mic",
+        "capabilities_aap_press_and_hold_volume_up": "Volum mai mare",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Din spate în față",
         "capabilities_aap_digital_crown_front_to_back": "Din față în spate",

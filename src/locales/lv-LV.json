@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Kreisās puses turēšana nospiestā stāvoklī",
+        "capabilities_aap_right_press_and_hold_label": "Labās puses turēšana nospiestā stāvoklī",
+        "capabilities_aap_press_and_hold_voice_assistant": "Balss asistents",
+        "capabilities_aap_press_and_hold_volume_down": "Samazināt skaļumu",
+        "capabilities_aap_press_and_hold_volume_up": "Palielināt skaļumu",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "No aizmugures uz priekšu",
         "capabilities_aap_digital_crown_front_to_back": "No priekšpuses uz aizmuguri",

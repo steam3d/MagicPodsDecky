@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Нажатие и удерживание слева",
+        "capabilities_aap_right_press_and_hold_label": "Нажатие и удерживание справа",
+        "capabilities_aap_press_and_hold_voice_assistant": "Голосовой помощник",
+        "capabilities_aap_press_and_hold_volume_down": "Уменьшить громкость",
+        "capabilities_aap_press_and_hold_volume_up": "Увеличить громкость",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Сзади вперёд",
         "capabilities_aap_digital_crown_front_to_back": "Спереди назад",

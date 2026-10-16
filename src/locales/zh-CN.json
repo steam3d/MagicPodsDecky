@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "按住左侧",
+        "capabilities_aap_right_press_and_hold_label": "按住右侧",
+        "capabilities_aap_press_and_hold_voice_assistant": "语音助理",
+        "capabilities_aap_press_and_hold_volume_down": "降低音量",
+        "capabilities_aap_press_and_hold_volume_up": "调高音量",
         "capabilities_aap_digital_crown_label": "数码旋钮",
         "capabilities_aap_digital_crown_back_to_front": "从后向前",
         "capabilities_aap_digital_crown_front_to_back": "从前向后",

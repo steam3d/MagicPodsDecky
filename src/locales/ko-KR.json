@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "왼쪽 길게 누르기",
+        "capabilities_aap_right_press_and_hold_label": "오른쪽 길게 누르기",
+        "capabilities_aap_press_and_hold_voice_assistant": "음성 어시스턴트",
+        "capabilities_aap_press_and_hold_volume_down": "음량 낮추기",
+        "capabilities_aap_press_and_hold_volume_up": "음량 높이기",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "뒤에서 앞으로",
         "capabilities_aap_digital_crown_front_to_back": "앞에서 뒤로",

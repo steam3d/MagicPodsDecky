@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Håll vänster intryckt",
+        "capabilities_aap_right_press_and_hold_label": "Håll höger intryckt",
+        "capabilities_aap_press_and_hold_voice_assistant": "Röstassistent",
+        "capabilities_aap_press_and_hold_volume_down": "Sänk volymen",
+        "capabilities_aap_press_and_hold_volume_up": "Höj volymen",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Bakifrån och fram",
         "capabilities_aap_digital_crown_front_to_back": "Framifrån och bak",

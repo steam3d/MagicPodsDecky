@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Παρατεταμένο πάτημα αριστερά",
+        "capabilities_aap_right_press_and_hold_label": "Παρατεταμένο πάτημα δεξιά",
+        "capabilities_aap_press_and_hold_voice_assistant": "Φωνητικός βοηθός",
+        "capabilities_aap_press_and_hold_volume_down": "Μείωση έντασης",
+        "capabilities_aap_press_and_hold_volume_up": "Αύξηση έντασης",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Από πίσω προς τα εμπρός",
         "capabilities_aap_digital_crown_front_to_back": "Από μπροστά προς τα πίσω",

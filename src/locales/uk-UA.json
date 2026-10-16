@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Натискання й утримання зліва",
+        "capabilities_aap_right_press_and_hold_label": "Натискання й утримання справа",
+        "capabilities_aap_press_and_hold_voice_assistant": "Голосовий помічник",
+        "capabilities_aap_press_and_hold_volume_down": "Зменшити гучність",
+        "capabilities_aap_press_and_hold_volume_up": "Збільшити гучність",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Ззаду вперед",
         "capabilities_aap_digital_crown_front_to_back": "Спереду назад",

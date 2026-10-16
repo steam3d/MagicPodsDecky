@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Nhấn và giữ bên trái",
+        "capabilities_aap_right_press_and_hold_label": "Nhấn và giữ bên phải",
+        "capabilities_aap_press_and_hold_voice_assistant": "Trợ lý giọng nói",
+        "capabilities_aap_press_and_hold_volume_down": "Giảm âm lượng",
+        "capabilities_aap_press_and_hold_volume_up": "Tăng âm lượng",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Từ sau ra trước",
         "capabilities_aap_digital_crown_front_to_back": "Từ trước ra sau",

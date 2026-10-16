@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "Bal oldali nyomva tartás",
+        "capabilities_aap_right_press_and_hold_label": "Jobb oldali nyomva tartás",
+        "capabilities_aap_press_and_hold_voice_assistant": "Hangasszisztens",
+        "capabilities_aap_press_and_hold_volume_down": "Hangerő csökkentése",
+        "capabilities_aap_press_and_hold_volume_up": "Hangerő növelése",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Hátulról előre",
         "capabilities_aap_digital_crown_front_to_back": "Elölről hátra",

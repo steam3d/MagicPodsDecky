@@ -1,5 +1,10 @@
 {
     "translation": {
+        "capabilities_aap_left_press_and_hold_label": "වම් පස ඔබාගෙන සිටීම",
+        "capabilities_aap_right_press_and_hold_label": "දකුණු පස ඔබාගෙන සිටීම",
+        "capabilities_aap_press_and_hold_voice_assistant": "හඬ සහායක",
+        "capabilities_aap_press_and_hold_volume_down": "හඬ අඩු කරන්න",
+        "capabilities_aap_press_and_hold_volume_up": "හඬ වැඩි කරන්න",
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "පසුපස සිට ඉදිරියට",
         "capabilities_aap_digital_crown_front_to_back": "ඉදිරිපස සිට පසුපසට",

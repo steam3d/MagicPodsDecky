@@ -80,6 +80,17 @@ interface BitmaskCapabilityProps extends NumberCapabilityProps {
   options: number
 }
 
+interface PressAndHoldAirPodModeSelectedProps {
+  right: number,
+  left: number
+}
+
+interface PressAndHoldAirPodModeCapabilityProps {
+  selected: PressAndHoldAirPodModeSelectedProps,
+  options: number[],
+  readonly: boolean
+}
+
 interface StringCapabilityProps {
   selected: string,
   options: Array<[string, string]>,
@@ -108,6 +119,7 @@ interface CapabilitiesProps {
   volumeSwipe?: BooleanCapabilityProps;
   endCall?: NumberCapabilityProps;
   pressAndHoldDuration?: NumberCapabilityProps;
+  pressAndHoldAirPodMode?: PressAndHoldAirPodModeCapabilityProps;
   pressAndHoldAirPodModeAnc?: BitmaskCapabilityProps;
   pressSpeed?: NumberCapabilityProps;
   digitalCrown?: NumberCapabilityProps;
@@ -145,6 +157,13 @@ const PressAndHoldAncModes = {
   ADAPTIVE: 0x08,
 };
 
+const PressAndHoldAirPodModes = {
+  SIRI: 0x01,
+  NOISE_CONTROL: 0x05,
+  VOLUME_UP: 0x06,
+  VOLUME_DOWN: 0x07,
+};
+
 const DigitalCrownModes = {
   DO_NOT_CHANGE: -1,
   BACK_TO_FRONT: 0x01,
@@ -159,6 +178,13 @@ const getPressAndHoldAncOptions = (availableModes: number): MultiSelectOption[] 
   { label: translatedAncModeLabel("settings_anc_modes_adaptive_label"), icon: <ANC_MODE_ADAPTIVE style={iconModesStyle} />, value: PressAndHoldAncModes.ADAPTIVE },
   { label: translatedAncModeLabel("settings_anc_modes_anc_label"), icon: <ANC_MODE_ANC style={iconModesStyle} />, value: PressAndHoldAncModes.ANC },
 ].filter((option) => (availableModes & option.value) !== 0);
+
+const getPressAndHoldAirPodModeOptions = (availableModes: number[]) => [
+  { label: t("capabilities_aap_press_and_hold_voice_assistant"), data: PressAndHoldAirPodModes.SIRI },
+  { label: t("capabilities_noise_control_label"), data: PressAndHoldAirPodModes.NOISE_CONTROL },
+  { label: t("capabilities_aap_press_and_hold_volume_down"), data: PressAndHoldAirPodModes.VOLUME_DOWN },
+  { label: t("capabilities_aap_press_and_hold_volume_up"), data: PressAndHoldAirPodModes.VOLUME_UP },
+].filter((option) => availableModes.includes(option.data));
 
 const getDigitalCrownOptions = () => [
   { label: t("capabilities_aap_cycle_modes_do_not_change"), data: DigitalCrownModes.DO_NOT_CHANGE },
@@ -362,6 +388,15 @@ export const TabInfo: FC<{
     if (address) {
       backend.logInfo("Send set digitalCrown to", value);
       backend.setCapability("digitalCrown", address, value);
+    }
+  };
+
+  const handlePressAndHoldAirPodModeChange = (side: "left" | "right", value: number) => {
+    const address = info?.address;
+    if (address) {
+      const selected = { [side]: value };
+      backend.logInfo("Send set pressAndHoldAirPodMode to", selected);
+      backend.setCapability("pressAndHoldAirPodMode", address, selected);
     }
   };
 
@@ -629,6 +664,33 @@ export const TabInfo: FC<{
                     <ToggleField checked={info?.capabilities?.ancOneAirPod.selected} label={t("capabilities_aap_anc_one_airpod_label")}
                       onChange={(b) => { handleBooleanCapabilityChange("ancOneAirPod", b); }} />
                   </PanelSectionRow>
+                }
+
+                {info?.capabilities?.pressAndHoldAirPodMode != null &&
+                  <>
+                    <PanelSectionRow>
+                      <DropdownItem
+                        layout="below"
+                        label={t("capabilities_aap_left_press_and_hold_label")}
+                        menuLabel={t("capabilities_aap_left_press_and_hold_label")}
+                        rgOptions={getPressAndHoldAirPodModeOptions(info.capabilities.pressAndHoldAirPodMode.options)}
+                        selectedOption={info.capabilities.pressAndHoldAirPodMode.selected.left}
+                        disabled={info.capabilities.pressAndHoldAirPodMode.readonly}
+                        onChange={(option) => { handlePressAndHoldAirPodModeChange("left", option.data as number); }}
+                      />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                      <DropdownItem
+                        layout="below"
+                        label={t("capabilities_aap_right_press_and_hold_label")}
+                        menuLabel={t("capabilities_aap_right_press_and_hold_label")}
+                        rgOptions={getPressAndHoldAirPodModeOptions(info.capabilities.pressAndHoldAirPodMode.options)}
+                        selectedOption={info.capabilities.pressAndHoldAirPodMode.selected.right}
+                        disabled={info.capabilities.pressAndHoldAirPodMode.readonly}
+                        onChange={(option) => { handlePressAndHoldAirPodModeChange("right", option.data as number); }}
+                      />
+                    </PanelSectionRow>
+                  </>
                 }
 
                 {info?.capabilities?.pressAndHoldAirPodModeAnc != null &&
