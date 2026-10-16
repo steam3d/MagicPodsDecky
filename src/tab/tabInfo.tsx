@@ -116,6 +116,7 @@ interface CapabilitiesProps {
   conversationAwarenessSpeaking?: BooleanCapabilityProps;
   personalizedVolume?: BooleanCapabilityProps;
   ancOneAirPod?: BooleanCapabilityProps;
+  ancOffMode?: NumberCapabilityProps;
   volumeSwipe?: BooleanCapabilityProps;
   endCall?: NumberCapabilityProps;
   pressAndHoldDuration?: NumberCapabilityProps;
@@ -170,6 +171,12 @@ const getDigitalCrownOptions = () => [
   { label: t("capabilities_aap_cycle_modes_do_not_change"), data: -1 },
   { label: t("capabilities_aap_digital_crown_back_to_front"), data: 0x01 },
   { label: t("capabilities_aap_digital_crown_front_to_back"), data: 0x02 },
+];
+
+const getAncOffModeOptions = () => [
+  { label: t("capabilities_aap_cycle_modes_do_not_change"), data: -1 },
+  { label: t("capabilities_aap_anc_off_mode_enabled"), data: 0x01 },
+  { label: t("capabilities_aap_anc_off_mode_disabled"), data: 0x02 },
 ];
 
 const getAncSliderConfig = async (backend: Backend, options: number, selected: number) => {
@@ -368,6 +375,14 @@ export const TabInfo: FC<{
     if (address) {
       backend.logInfo("Send set digitalCrown to", value);
       backend.setCapability("digitalCrown", address, value);
+    }
+  };
+
+  const handleAncOffModeChange = (value: number) => {
+    const address = info?.address;
+    if (address) {
+      backend.logInfo("Send set ancOffMode to", value);
+      backend.setCapability("ancOffMode", address, value);
     }
   };
 
@@ -643,6 +658,20 @@ export const TabInfo: FC<{
                   <PanelSectionRow>
                     <ToggleField checked={info?.capabilities?.ancOneAirPod.selected} label={t("capabilities_aap_anc_one_airpod_label")}
                       onChange={(b) => { handleBooleanCapabilityChange("ancOneAirPod", b); }} />
+                  </PanelSectionRow>
+                }
+
+                {info?.capabilities?.ancOffMode != null &&
+                  <PanelSectionRow>
+                    <DropdownItem
+                      layout="below"
+                      label={t("capabilities_aap_anc_off_mode_label")}
+                      menuLabel={t("capabilities_aap_anc_off_mode_label")}
+                      rgOptions={getAncOffModeOptions()}
+                      selectedOption={info.capabilities.ancOffMode.selected}
+                      disabled={info.capabilities.ancOffMode.readonly}
+                      onChange={(option) => { handleAncOffModeChange(option.data as number); }}
+                    />
                   </PanelSectionRow>
                 }
 
