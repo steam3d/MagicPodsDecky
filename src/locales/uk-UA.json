@@ -83,7 +83,7 @@
         "capabilities_aap_adaptive_audio_noise_label": "Адаптивний режим",
         "capabilities_aap_adaptive_audio_noise_notchlabel_more": "Більше шуму",
         "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Менше шуму",
-        "capabilities_aap_volume_swipe_label": "Зміна гучності змахуванням",
+        "capabilities_aap_volume_swipe_label": "Регулювання гучності змахуванням",
         "capabilities_aap_volume_swipe_length_label": "Довжина змахування",
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "Дуже довго",
         "capabilities_aap_end_call_notchlabel_single": "Поодиноке натискання",

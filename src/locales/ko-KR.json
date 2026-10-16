@@ -83,7 +83,7 @@
         "capabilities_aap_adaptive_audio_noise_notchlabel_more": "더 큰 노이즈",
         "capabilities_aap_adaptive_audio_noise_notchlabel_less": "적은 노이즈",
         "capabilities_aap_volume_swipe_label": "볼륨 스와이프",
-        "capabilities_aap_volume_swipe_length_label": "볼륨 스와이프 길이",
+        "capabilities_aap_volume_swipe_length_label": "스와이프 길이",
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "최대",
         "capabilities_aap_end_call_notchlabel_single": "1회 누르기",
         "capabilities_aap_end_call_notchlabel_double": "2회 누르기",

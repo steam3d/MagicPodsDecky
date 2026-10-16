@@ -77,7 +77,7 @@
         "capabilities_aap_press_speed_notchlabel_slowest": "Najwolniej",
         "capabilities_aap_tone_volume_label": "Głośność sygnałów",
         "capabilities_aap_volume_swipe_label": "Regulacja głośności przesunięciem",
-        "capabilities_aap_volume_swipe_length_label": "Długość gestu regulacji głośności",
+        "capabilities_aap_volume_swipe_length_label": "Długość przesunięcia",
         "capabilities_aap_volume_swipe_length_notchlabel_default": "Domyślnie",
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "Dłużej",
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "Najdłużej",

@@ -80,7 +80,7 @@
         "capabilities_aap_press_speed_notchlabel_slowest": "Slowest",
         "capabilities_aap_tone_volume_label": "Tone volume",
         "capabilities_aap_volume_swipe_label": "Volume swipe",
-        "capabilities_aap_volume_swipe_length_label": "Volume swipe length",
+        "capabilities_aap_volume_swipe_length_label": "Swipe length",
         "capabilities_aap_volume_swipe_length_notchlabel_default": "Default",
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "Longer",
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "Longest",
