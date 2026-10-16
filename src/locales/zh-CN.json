@@ -100,7 +100,7 @@
         "settings_animation_label": "耳机动画",
         "settings_animation_description": "<Key1/>仅限 MagicPods 桌面版。当您打开耳机盒时，会显示类似于 iPhone 的 AirPods 和 Beats 动画。",
         "capabilities_aap_high_resolution_microphone_label": "高清麦克风",
-        "capabilities_aap_high_resolution_microphone_description": "让您可以使用麦克风，同时不降低耳机的音质。\n\n启用后，系统会自动创建并选择“MagicPods Virtual Mic”音频输入设备。禁用后，音频传输将停止，该设备也会被移除。\n\n如果麦克风无法正常工作，请确保已选择“MagicPods Virtual Mic”作为音频输入设备。\n\n请在耳机设置中关闭“对话感知”，以防止使用麦克风时音量自动降低。",
+        "capabilities_aap_high_resolution_microphone_description": "与 Bluetooth Hands-Free（耳麦）模式相比，可提供明显更好的音频和麦克风质量。不过，音频播放质量仍明显低于普通耳机模式。\n\n启用后，系统会自动创建并选择“MagicPods Virtual Mic”音频输入设备。禁用后，音频传输将停止，该设备也会被移除。\n\n如果麦克风无法正常工作，请确保已选择“MagicPods Virtual Mic”作为音频输入设备。\n\n请在耳机设置中关闭“对话感知”，以防止使用麦克风时音量自动降低。",
         "capabilities_cmn_ear_detection_label": "自动入耳检测",
         "settings_header_battery_icon_header": "顶栏电量",
         "settings_header_battery_icon_label": "电量图标",

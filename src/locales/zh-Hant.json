@@ -100,7 +100,7 @@
         "settings_animation_label": "耳機動畫",
         "settings_animation_description": "⁠<Key1/>⁠ 此功能僅限桌面版。在打開耳機充電盒時，將顯示與 iPhone 類似的 AirPods 和 Beats 動畫。",
         "capabilities_aap_high_resolution_microphone_label": "高解析度麥克風",
-        "capabilities_aap_high_resolution_microphone_description": "讓您可以使用麥克風，同時不降低耳機的音訊品質。\n\n啟用後，系統會自動建立並選取「MagicPods Virtual Mic」音訊輸入裝置。停用後，音訊傳輸將停止，該裝置也會被移除。\n\n如果麥克風無法正常運作，請確認已選取「MagicPods Virtual Mic」作為音訊輸入裝置。\n\n請在耳機設定中關閉「對話感應」，以防止使用麥克風時音量自動降低。",
+        "capabilities_aap_high_resolution_microphone_description": "與 Bluetooth Hands-Free（耳麥）模式相比，可提供明顯更好的音訊和麥克風品質。不過，音訊播放品質仍明顯低於一般耳機模式。\n\n啟用後，系統會自動建立並選取「MagicPods Virtual Mic」音訊輸入裝置。停用後，音訊傳輸將停止，該裝置也會被移除。\n\n如果麥克風無法正常運作，請確認已選取「MagicPods Virtual Mic」作為音訊輸入裝置。\n\n請在耳機設定中關閉「對話感應」，以防止使用麥克風時音量自動降低。",
         "capabilities_cmn_ear_detection_label": "自動入耳偵測",
         "settings_header_battery_icon_header": "頂端列電量",
         "settings_header_battery_icon_label": "電池圖示",

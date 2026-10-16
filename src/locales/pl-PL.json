@@ -82,7 +82,7 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "Dłużej",
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "Najdłużej",
         "capabilities_aap_high_resolution_microphone_label": "Mikrofon HD",
-        "capabilities_aap_high_resolution_microphone_description": "Umożliwia korzystanie z mikrofonu bez obniżania jakości dźwięku w słuchawkach.\n\nPo włączeniu urządzenie wejściowe audio „MagicPods Virtual Mic” jest automatycznie tworzone i wybierane. Po wyłączeniu przesyłanie dźwięku zostaje zatrzymane, a urządzenie usunięte.\n\nJeśli mikrofon nie działa, upewnij się, że „MagicPods Virtual Mic” jest wybrane jako urządzenie wejściowe audio.\n\nWyłącz opcję „Wykrywanie rozmów” w ustawieniach słuchawek, aby zapobiec automatycznemu zmniejszaniu głośności podczas korzystania z mikrofonu.",
+        "capabilities_aap_high_resolution_microphone_description": "Zapewnia znacznie lepszą jakość dźwięku i mikrofonu niż tryb Bluetooth Hands-Free (zestawu słuchawkowego). Jakość odtwarzania dźwięku jest jednak nadal zauważalnie niższa niż w zwykłym trybie słuchawek.\n\nPo włączeniu urządzenie wejściowe audio „MagicPods Virtual Mic” jest automatycznie tworzone i wybierane. Po wyłączeniu przesyłanie dźwięku zostaje zatrzymane, a urządzenie usunięte.\n\nJeśli mikrofon nie działa, upewnij się, że „MagicPods Virtual Mic” jest wybrane jako urządzenie wejściowe audio.\n\nWyłącz opcję „Wykrywanie rozmów” w ustawieniach słuchawek, aby zapobiec automatycznemu zmniejszaniu głośności podczas korzystania z mikrofonu.",
         "capabilities_aap_end_call_label": "Zakończ połączenie",
         "capabilities_aap_end_call_notchlabel_single": "Naciśnij raz",
         "capabilities_aap_end_call_notchlabel_double": "Naciśnij dwa razy",

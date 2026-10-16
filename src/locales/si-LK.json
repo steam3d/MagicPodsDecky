@@ -86,7 +86,7 @@
         "capabilities_aap_volume_swipe_length_notchlabel_longer": "වඩා දිගු",
         "capabilities_aap_volume_swipe_length_notchlabel_longest": "දිගම",
         "capabilities_aap_high_resolution_microphone_label": "HD මයික්‍රෆෝනය",
-        "capabilities_aap_high_resolution_microphone_description": "හෙඩ්ෆෝන්වල ශ්‍රව්‍ය ගුණාත්මකභාවය අඩු නොකර මයික්‍රෆෝනය භාවිත කිරීමට ඉඩ සලසයි.\n\nසබල කළ විට, “MagicPods Virtual Mic” ශ්‍රව්‍ය ආදාන උපාංගය ස්වයංක්‍රීයව සාදා තෝරනු ලැබේ. අක්‍රිය කළ විට, ශ්‍රව්‍ය සම්ප්‍රේෂණය නවතා උපාංගය ඉවත් කරනු ලැබේ.\n\nමයික්‍රෆෝනය ක්‍රියා නොකරන්නේ නම්, “MagicPods Virtual Mic” ශ්‍රව්‍ය ආදාන උපාංගය ලෙස තෝරා ඇති බව තහවුරු කර ගන්න.\n\nමයික්‍රෆෝනය භාවිත කරන අතරතුර හඬ මට්ටම ස්වයංක්‍රීයව අඩු වීම වැළැක්වීමට හෙඩ්ෆෝන් සැකසුම් තුළ “සංවාද හඳුනාගැනීම” අක්‍රිය කරන්න.",
+        "capabilities_aap_high_resolution_microphone_description": "Bluetooth Hands-Free (හෙඩ්සෙට්) ප්‍රකාරයට වඩා සැලකිය යුතු ලෙස හොඳ ශ්‍රව්‍ය සහ මයික්‍රෆෝන ගුණාත්මකභාවයක් සපයයි. කෙසේ වෙතත්, ශ්‍රව්‍ය ධාවන ගුණාත්මකභාවය සාමාන්‍ය හෙඩ්ෆෝන් ප්‍රකාරයට වඩා තවමත් සැලකිය යුතු ලෙස අඩුය.\n\nසබල කළ විට, “MagicPods Virtual Mic” ශ්‍රව්‍ය ආදාන උපාංගය ස්වයංක්‍රීයව සාදා තෝරනු ලැබේ. අක්‍රිය කළ විට, ශ්‍රව්‍ය සම්ප්‍රේෂණය නවතා උපාංගය ඉවත් කරනු ලැබේ.\n\nමයික්‍රෆෝනය ක්‍රියා නොකරන්නේ නම්, “MagicPods Virtual Mic” ශ්‍රව්‍ය ආදාන උපාංගය ලෙස තෝරා ඇති බව තහවුරු කර ගන්න.\n\nමයික්‍රෆෝනය භාවිත කරන අතරතුර හඬ මට්ටම ස්වයංක්‍රීයව අඩු වීම වැළැක්වීමට හෙඩ්ෆෝන් සැකසුම් තුළ “සංවාද හඳුනාගැනීම” අක්‍රිය කරන්න.",
         "capabilities_aap_end_call_label": "ඇමතුම අවසන් කරන්න",
         "capabilities_aap_end_call_notchlabel_single": "එක් වරක් ඔබන්න",
         "capabilities_aap_end_call_notchlabel_double": "දෙවරක් ඔබන්න",

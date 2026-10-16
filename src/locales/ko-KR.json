@@ -100,7 +100,7 @@
         "settings_animation_label": "헤드폰 애니메이션",
         "settings_animation_description": "<Key1/> MagicPods는 데스크톱 전용입니다. 헤드폰 케이스를 열면 iPhone과 마찬가지로 AirPods 및 Beats 애니메이션이 표시됩니다.",
         "capabilities_aap_high_resolution_microphone_label": "HD 마이크",
-        "capabilities_aap_high_resolution_microphone_description": "헤드폰의 오디오 품질을 저하시키지 않고 마이크를 사용할 수 있습니다.\n\n활성화하면 ‘MagicPods Virtual Mic’ 오디오 입력 장치가 자동으로 생성되고 선택됩니다. 비활성화하면 오디오 전송이 중지되고 장치가 제거됩니다.\n\n마이크가 작동하지 않으면 ‘MagicPods Virtual Mic’가 오디오 입력 장치로 선택되어 있는지 확인하세요.\n\n마이크를 사용하는 동안 볼륨이 자동으로 줄어들지 않도록 헤드폰 설정에서 ‘대화 인지’를 끄세요.",
+        "capabilities_aap_high_resolution_microphone_description": "Bluetooth Hands-Free(헤드셋) 모드보다 오디오 및 마이크 품질이 크게 향상됩니다. 하지만 오디오 재생 품질은 일반 헤드폰 모드보다 여전히 눈에 띄게 낮습니다.\n\n활성화하면 ‘MagicPods Virtual Mic’ 오디오 입력 장치가 자동으로 생성되고 선택됩니다. 비활성화하면 오디오 전송이 중지되고 장치가 제거됩니다.\n\n마이크가 작동하지 않으면 ‘MagicPods Virtual Mic’가 오디오 입력 장치로 선택되어 있는지 확인하세요.\n\n마이크를 사용하는 동안 볼륨이 자동으로 줄어들지 않도록 헤드폰 설정에서 ‘대화 인지’를 끄세요.",
         "capabilities_cmn_ear_detection_label": "자동 귀 감지",
         "settings_header_battery_icon_header": "상단 표시줄의 배터리",
         "settings_header_battery_icon_label": "배터리 아이콘",
