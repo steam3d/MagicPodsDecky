@@ -28,7 +28,7 @@
   "homepage": "https://github.com/steam3d/MagicPodsDecky/#readme",
   "devDependencies": {
     "@decky/rollup": "^1.0.2",
-    "@decky/ui": "^4.12.1",
+    "@decky/ui": "^4.13.0",
     "@rollup/rollup-linux-x64-musl": "^4.53.3",
     "@types/react": "19.1.1",
     "@types/react-dom": "19.1.1",
