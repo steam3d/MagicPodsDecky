@@ -11,7 +11,7 @@
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "De l’arrière vers l’avant",
         "capabilities_aap_digital_crown_front_to_back": "De l’avant vers l’arrière",
-        "capabilities_aap_cycle_modes_label": "Contrôle du bruit du casque",
+        "capabilities_aap_cycle_modes_label": "Contrôle du bruit depuis le casque",
         "capabilities_aap_cycle_modes_do_not_change": "Ne pas modifier",
         "capabilities_aap_cycle_modes_hint": "Sélectionnez au moins deux modes, ou désélectionnez-les tous pour ne pas modifier le réglage.",
         "capabilities_aap_optimized_charge_label": "Limite de charge optimale",

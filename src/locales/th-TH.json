@@ -11,7 +11,7 @@
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "จากด้านหลังไปด้านหน้า",
         "capabilities_aap_digital_crown_front_to_back": "จากด้านหน้าไปด้านหลัง",
-        "capabilities_aap_cycle_modes_label": "การควบคุมเสียงรบกวนของหูฟัง",
+        "capabilities_aap_cycle_modes_label": "การควบคุมเสียงรบกวนจากหูฟัง",
         "capabilities_aap_cycle_modes_do_not_change": "ไม่เปลี่ยนแปลง",
         "capabilities_aap_cycle_modes_hint": "เลือกอย่างน้อยสองโหมด หรือยกเลิกการเลือกทั้งหมดเพื่อไม่เปลี่ยนการตั้งค่า",
         "capabilities_aap_optimized_charge_label": "ขีดจำกัดการชาร์จที่ปรับให้เหมาะสม",

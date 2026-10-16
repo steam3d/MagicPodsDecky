@@ -11,7 +11,7 @@
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "De atrás hacia delante",
         "capabilities_aap_digital_crown_front_to_back": "De delante hacia atrás",
-        "capabilities_aap_cycle_modes_label": "Control de ruido de los auriculares",
+        "capabilities_aap_cycle_modes_label": "Control de ruido desde los auriculares",
         "capabilities_aap_cycle_modes_do_not_change": "No cambiar",
         "capabilities_aap_cycle_modes_hint": "Selecciona al menos dos modos o desmárcalos todos para no cambiar el ajuste.",
         "capabilities_aap_custom_eq_label": "Ecualizador",

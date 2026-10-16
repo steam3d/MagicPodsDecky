@@ -11,7 +11,7 @@
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Bagfra og frem",
         "capabilities_aap_digital_crown_front_to_back": "Forfra og tilbage",
-        "capabilities_aap_cycle_modes_label": "Støjkontrol på hovedtelefoner",
+        "capabilities_aap_cycle_modes_label": "Støjkontrol fra hovedtelefonerne",
         "capabilities_aap_cycle_modes_do_not_change": "Skift ikke",
         "capabilities_aap_cycle_modes_hint": "Vælg mindst to tilstande, eller fjern alle markeringer for at lade indstillingen være uændret.",
         "capabilities_aap_optimized_charge_label": "Optimeret opladningsgrænse",

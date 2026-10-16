@@ -11,7 +11,7 @@
         "capabilities_aap_digital_crown_label": "數碼旋鈕",
         "capabilities_aap_digital_crown_back_to_front": "從後向前",
         "capabilities_aap_digital_crown_front_to_back": "從前向後",
-        "capabilities_aap_cycle_modes_label": "耳機噪音控制",
+        "capabilities_aap_cycle_modes_label": "透過耳機控制噪音",
         "capabilities_aap_cycle_modes_do_not_change": "不變更",
         "capabilities_aap_cycle_modes_hint": "請至少選擇兩種模式，或清除所有選取以保持設定不變。",
         "capabilities_aap_custom_eq_label": "等化器",

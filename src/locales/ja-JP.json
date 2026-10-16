@@ -11,7 +11,7 @@
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "後ろから前",
         "capabilities_aap_digital_crown_front_to_back": "前から後ろ",
-        "capabilities_aap_cycle_modes_label": "ヘッドフォンのノイズコントロール",
+        "capabilities_aap_cycle_modes_label": "ヘッドフォンからのノイズコントロール",
         "capabilities_aap_cycle_modes_do_not_change": "変更しない",
         "capabilities_aap_cycle_modes_hint": "2つ以上のモードを選択するか、設定を変更しない場合はすべての選択を解除してください。",
         "capabilities_aap_optimized_charge_label": "充電上限の最適化",

@@ -11,7 +11,7 @@
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "Z tyłu do przodu",
         "capabilities_aap_digital_crown_front_to_back": "Z przodu do tyłu",
-        "capabilities_aap_cycle_modes_label": "Sterowanie hałasem w słuchawkach",
+        "capabilities_aap_cycle_modes_label": "Sterowanie hałasem ze słuchawek",
         "capabilities_aap_cycle_modes_do_not_change": "Nie zmieniaj",
         "capabilities_aap_cycle_modes_hint": "Wybierz co najmniej dwa tryby lub odznacz wszystkie, aby pozostawić ustawienie bez zmian.",
         "capabilities_aap_custom_eq_label": "Korektor",

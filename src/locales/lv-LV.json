@@ -11,7 +11,7 @@
         "capabilities_aap_digital_crown_label": "Digital Crown",
         "capabilities_aap_digital_crown_back_to_front": "No aizmugures uz priekšu",
         "capabilities_aap_digital_crown_front_to_back": "No priekšpuses uz aizmuguri",
-        "capabilities_aap_cycle_modes_label": "Austiņu trokšņu kontrole",
+        "capabilities_aap_cycle_modes_label": "Trokšņu kontrole no austiņām",
         "capabilities_aap_cycle_modes_do_not_change": "Nemainīt",
         "capabilities_aap_cycle_modes_hint": "Atlasiet vismaz divus režīmus vai noņemiet visas atzīmes, lai iestatījums netiktu mainīts.",
         "capabilities_aap_optimized_charge_label": "Optimizēts uzlādes ierobežojums",

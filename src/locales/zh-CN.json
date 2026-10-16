@@ -11,7 +11,7 @@
         "capabilities_aap_digital_crown_label": "数码旋钮",
         "capabilities_aap_digital_crown_back_to_front": "从后向前",
         "capabilities_aap_digital_crown_front_to_back": "从前向后",
-        "capabilities_aap_cycle_modes_label": "耳机噪声控制",
+        "capabilities_aap_cycle_modes_label": "通过耳机控制噪声",
         "capabilities_aap_cycle_modes_do_not_change": "不更改",
         "capabilities_aap_cycle_modes_hint": "请至少选择两种模式，或清除所有选择以保持设置不变。",
         "capabilities_aap_custom_eq_label": "均衡器",
