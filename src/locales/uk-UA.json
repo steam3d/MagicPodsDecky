@@ -5,6 +5,7 @@
         "capabilities_aap_custom_eq_mid_label": "Еквалайзер: Середні",
         "capabilities_aap_custom_eq_high_label": "Еквалайзер: Високі",
         "capabilities_aap_optimized_charge_label": "Оптимізований ліміт заряджання",
+        "capabilities_aap_sleep_detection_label": "Пауза під час засинання",
         "battery_left": "Лівий",
         "headphones_disconnected": "Підключіть навушники, щоб побачити рівень заряду батареї та налаштувати параметри",
         "notif_low_battery": "Залишилось {{battery}}%. Зарядіть ваші навушники.",

@@ -5,6 +5,7 @@
         "capabilities_aap_custom_eq_mid_label": "Equalizer: Mid",
         "capabilities_aap_custom_eq_high_label": "Equalizer: High",
         "capabilities_aap_optimized_charge_label": "Optimized Charge Limit",
+        "capabilities_aap_sleep_detection_label": "Pause When Asleep",
         "battery_left": "Left",
         "battery_right": "Right",
         "battery_case": "Case",

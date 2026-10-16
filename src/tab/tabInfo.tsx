@@ -111,6 +111,7 @@ interface CapabilitiesProps {
   earDetection?: BooleanCapabilityProps;
   customEq?: CustomEqCapabilityProps;
   optimizedCharge?: BooleanCapabilityProps;
+  sleepDetection?: BooleanCapabilityProps;
 }
 
 export interface headphoneInfoProps {
@@ -746,6 +747,17 @@ export const TabInfo: FC<{
                       disabled={info.capabilities.optimizedCharge.readonly}
                       label={t("capabilities_aap_optimized_charge_label")}
                       onChange={(enabled) => { handleBooleanCapabilityChange("optimizedCharge", enabled); }}
+                    />
+                  </PanelSectionRow>
+                }
+
+                {info?.capabilities?.sleepDetection != null &&
+                  <PanelSectionRow>
+                    <ToggleField
+                      checked={info.capabilities.sleepDetection.selected}
+                      disabled={info.capabilities.sleepDetection.readonly}
+                      label={t("capabilities_aap_sleep_detection_label")}
+                      onChange={(enabled) => { handleBooleanCapabilityChange("sleepDetection", enabled); }}
                     />
                   </PanelSectionRow>
                 }

@@ -1,5 +1,6 @@
 {
     "translation": {
-        "capabilities_aap_optimized_charge_label": "Limită de încărcare optimizată"
+        "capabilities_aap_optimized_charge_label": "Limită de încărcare optimizată",
+        "capabilities_aap_sleep_detection_label": "Pauză la adormire"
     }
 }

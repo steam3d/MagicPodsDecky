@@ -1,5 +1,6 @@
 {
     "translation": {
-        "capabilities_aap_optimized_charge_label": "充電上限の最適化"
+        "capabilities_aap_optimized_charge_label": "充電上限の最適化",
+        "capabilities_aap_sleep_detection_label": "入眠時に一時停止"
     }
 }

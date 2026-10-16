@@ -1,5 +1,6 @@
 {
     "translation": {
-        "capabilities_aap_optimized_charge_label": "Giới hạn sạc được tối ưu hóa"
+        "capabilities_aap_optimized_charge_label": "Giới hạn sạc được tối ưu hóa",
+        "capabilities_aap_sleep_detection_label": "Tạm dừng khi ngủ"
     }
 }

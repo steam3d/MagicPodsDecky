@@ -5,6 +5,7 @@
         "capabilities_aap_custom_eq_mid_label": "均衡器：中音",
         "capabilities_aap_custom_eq_high_label": "均衡器：高音",
         "capabilities_aap_optimized_charge_label": "优化充电上限",
+        "capabilities_aap_sleep_detection_label": "入睡时暂停",
         "battery_left": "左",
         "battery_right": "右",
         "battery_case": "充电仓",

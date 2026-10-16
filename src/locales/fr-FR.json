@@ -5,6 +5,7 @@
         "capabilities_aap_custom_eq_mid_label": "Égaliseur : Médiums",
         "capabilities_aap_custom_eq_high_label": "Égaliseur : Aigus",
         "capabilities_aap_optimized_charge_label": "Limite de recharge optimisée",
+        "capabilities_aap_sleep_detection_label": "Pause à l’endormissement",
         "settings_hotkey_anc_label": "Touche de raccourci pour la réduction de bruit",
         "battery_case": "Boîtier",
         "battery_single": "Batterie",

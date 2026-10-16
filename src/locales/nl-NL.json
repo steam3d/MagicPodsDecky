@@ -1,5 +1,6 @@
 {
     "translation": {
-        "capabilities_aap_optimized_charge_label": "Geoptimaliseerde oplaadlimiet"
+        "capabilities_aap_optimized_charge_label": "Geoptimaliseerde oplaadlimiet",
+        "capabilities_aap_sleep_detection_label": "Pauzeren bij inslapen"
     }
 }

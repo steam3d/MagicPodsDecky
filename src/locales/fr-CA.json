@@ -1,5 +1,6 @@
 {
     "translation": {
-        "capabilities_aap_optimized_charge_label": "Limite de charge optimale"
+        "capabilities_aap_optimized_charge_label": "Limite de charge optimale",
+        "capabilities_aap_sleep_detection_label": "Pause à l’endormissement"
     }
 }

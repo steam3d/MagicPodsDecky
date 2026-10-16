@@ -1,5 +1,6 @@
 {
     "translation": {
-        "capabilities_aap_optimized_charge_label": "İyileştirilmiş Şarj Sınırı"
+        "capabilities_aap_optimized_charge_label": "İyileştirilmiş Şarj Sınırı",
+        "capabilities_aap_sleep_detection_label": "Uykuya Dalınca Duraklat"
     }
 }

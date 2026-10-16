@@ -5,6 +5,7 @@
         "capabilities_aap_custom_eq_mid_label": "Ecualizador: Medios",
         "capabilities_aap_custom_eq_high_label": "Ecualizador: Agudos",
         "capabilities_aap_optimized_charge_label": "Límite de carga optimizado",
+        "capabilities_aap_sleep_detection_label": "Pausa al dormirse",
         "battery_right": "Derecha",
         "battery_single": "Carga",
         "battery_case": "Caja",
