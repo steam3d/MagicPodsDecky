@@ -150,46 +150,26 @@ export const AncModes = {
   ANC: 16,
 };
 
-const PressAndHoldAncModes = {
-  OFF: 0x01,
-  ANC: 0x02,
-  TRANSPARENCY: 0x04,
-  ADAPTIVE: 0x08,
-};
-
-const PressAndHoldAirPodModes = {
-  SIRI: 0x01,
-  NOISE_CONTROL: 0x05,
-  VOLUME_UP: 0x06,
-  VOLUME_DOWN: 0x07,
-};
-
-const DigitalCrownModes = {
-  DO_NOT_CHANGE: -1,
-  BACK_TO_FRONT: 0x01,
-  FRONT_TO_BACK: 0x02,
-};
-
 const translatedAncModeLabel = (key: string) => t(key).replace("<icon/>", "");
 
 const getPressAndHoldAncOptions = (availableModes: number): MultiSelectOption[] => [
-  { label: translatedAncModeLabel("settings_anc_modes_off_label"), icon: <ANC_MODE_OFF style={iconModesStyle} />, value: PressAndHoldAncModes.OFF },
-  { label: translatedAncModeLabel("settings_anc_modes_transparency_label"), icon: <ANC_MODE_TRANSPARENCY style={iconModesStyle} />, value: PressAndHoldAncModes.TRANSPARENCY },
-  { label: translatedAncModeLabel("settings_anc_modes_adaptive_label"), icon: <ANC_MODE_ADAPTIVE style={iconModesStyle} />, value: PressAndHoldAncModes.ADAPTIVE },
-  { label: translatedAncModeLabel("settings_anc_modes_anc_label"), icon: <ANC_MODE_ANC style={iconModesStyle} />, value: PressAndHoldAncModes.ANC },
+  { label: translatedAncModeLabel("settings_anc_modes_off_label"), icon: <ANC_MODE_OFF style={iconModesStyle} />, value: 0x01 },
+  { label: translatedAncModeLabel("settings_anc_modes_transparency_label"), icon: <ANC_MODE_TRANSPARENCY style={iconModesStyle} />, value: 0x04 },
+  { label: translatedAncModeLabel("settings_anc_modes_adaptive_label"), icon: <ANC_MODE_ADAPTIVE style={iconModesStyle} />, value: 0x08 },
+  { label: translatedAncModeLabel("settings_anc_modes_anc_label"), icon: <ANC_MODE_ANC style={iconModesStyle} />, value: 0x02 },
 ].filter((option) => (availableModes & option.value) !== 0);
 
 const getPressAndHoldAirPodModeOptions = (availableModes: number[]) => [
-  { label: t("capabilities_aap_press_and_hold_voice_assistant"), data: PressAndHoldAirPodModes.SIRI },
-  { label: t("capabilities_noise_control_label"), data: PressAndHoldAirPodModes.NOISE_CONTROL },
-  { label: t("capabilities_aap_press_and_hold_volume_down"), data: PressAndHoldAirPodModes.VOLUME_DOWN },
-  { label: t("capabilities_aap_press_and_hold_volume_up"), data: PressAndHoldAirPodModes.VOLUME_UP },
+  { label: t("capabilities_aap_press_and_hold_voice_assistant"), data: 0x01 },
+  { label: t("capabilities_noise_control_label"), data: 0x05 },
+  { label: t("capabilities_aap_press_and_hold_volume_down"), data: 0x07 },
+  { label: t("capabilities_aap_press_and_hold_volume_up"), data: 0x06 },
 ].filter((option) => availableModes.includes(option.data));
 
 const getDigitalCrownOptions = () => [
-  { label: t("capabilities_aap_cycle_modes_do_not_change"), data: DigitalCrownModes.DO_NOT_CHANGE },
-  { label: t("capabilities_aap_digital_crown_back_to_front"), data: DigitalCrownModes.BACK_TO_FRONT },
-  { label: t("capabilities_aap_digital_crown_front_to_back"), data: DigitalCrownModes.FRONT_TO_BACK },
+  { label: t("capabilities_aap_cycle_modes_do_not_change"), data: -1 },
+  { label: t("capabilities_aap_digital_crown_back_to_front"), data: 0x01 },
+  { label: t("capabilities_aap_digital_crown_front_to_back"), data: 0x02 },
 ];
 
 const getAncSliderConfig = async (backend: Backend, options: number, selected: number) => {
