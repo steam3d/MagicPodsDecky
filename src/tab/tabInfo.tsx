@@ -635,42 +635,16 @@ export const TabInfo: FC<{
                   </PanelSectionRow>
                 }
 
-                {info?.capabilities?.adaptiveAudioNoise != null &&
-                  <PanelSectionRow>
-                    <SliderField
-                      value={info?.capabilities?.adaptiveAudioNoise.selected}
-                      max={100}
-                      min={0}
-                      step={50}
-                      label={t("capabilities_aap_adaptive_audio_noise_label")}
-                      notchCount={3}
-                      notchTicksVisible={false}
-                      notchLabels={[
-                        { label: t("capabilities_aap_adaptive_audio_noise_notchlabel_more"), notchIndex: 0, value: 0 },
-                        { label: t("capabilities_aap_adaptive_audio_noise_notchlabel_default"), notchIndex: 1, value: 50 },
-                        { label: t("capabilities_aap_adaptive_audio_noise_notchlabel_less"), notchIndex: 2, value: 100 }
-                      ]}
-                      onChange={(n) => { handleNumberCapabilityChange("adaptiveAudioNoise", n); }} />
-                  </PanelSectionRow>
-                }
-
-                {info?.capabilities?.ancOneAirPod != null &&
-                  <PanelSectionRow>
-                    <ToggleField checked={info?.capabilities?.ancOneAirPod.selected} label={t("capabilities_aap_anc_one_airpod_label")}
-                      onChange={(b) => { handleBooleanCapabilityChange("ancOneAirPod", b); }} />
-                  </PanelSectionRow>
-                }
-
-                {info?.capabilities?.ancOffMode != null &&
+                {info?.capabilities?.digitalCrown != null &&
                   <PanelSectionRow>
                     <DropdownItem
                       layout="below"
-                      label={t("capabilities_aap_anc_off_mode_label")}
-                      menuLabel={t("capabilities_aap_anc_off_mode_label")}
-                      rgOptions={getAncOffModeOptions()}
-                      selectedOption={info.capabilities.ancOffMode.selected}
-                      disabled={info.capabilities.ancOffMode.readonly}
-                      onChange={(option) => { handleAncOffModeChange(option.data as number); }}
+                      label={t("capabilities_aap_digital_crown_label")}
+                      menuLabel={t("capabilities_aap_digital_crown_label")}
+                      rgOptions={getDigitalCrownOptions()}
+                      selectedOption={info.capabilities.digitalCrown.selected}
+                      disabled={info.capabilities.digitalCrown.readonly}
+                      onChange={(option) => { handleDigitalCrownChange(option.data as number); }}
                     />
                   </PanelSectionRow>
                 }
@@ -716,25 +690,85 @@ export const TabInfo: FC<{
                   </PanelSectionRow>
                 }
 
-                {info?.capabilities?.pressAndHoldDuration != null &&
+                {info?.capabilities?.adaptiveAudioNoise != null &&
                   <PanelSectionRow>
                     <SliderField
-                      value={info?.capabilities?.pressAndHoldDuration.selected}
-                      max={2}
+                      value={info?.capabilities?.adaptiveAudioNoise.selected}
+                      max={100}
                       min={0}
-                      step={1}
-                      label={t("capabilities_aap_press_and_hold_duration_label")}
+                      step={50}
+                      label={t("capabilities_aap_adaptive_audio_noise_label")}
                       notchCount={3}
                       notchTicksVisible={false}
                       notchLabels={[
-                        { label: t("capabilities_aap_press_and_hold_duration_notchlabel_default"), notchIndex: 0, value: 0 },
-                        { label: t("capabilities_aap_press_and_hold_duration_notchlabel_shorter"), notchIndex: 1, value: 1 },
-                        { label: t("capabilities_aap_press_and_hold_duration_notchlabel_shortest"), notchIndex: 2, value: 2 }
+                        { label: t("capabilities_aap_adaptive_audio_noise_notchlabel_more"), notchIndex: 0, value: 0 },
+                        { label: t("capabilities_aap_adaptive_audio_noise_notchlabel_default"), notchIndex: 1, value: 50 },
+                        { label: t("capabilities_aap_adaptive_audio_noise_notchlabel_less"), notchIndex: 2, value: 100 }
                       ]}
-                      onChange={(n) => { handleNumberCapabilityChange("pressAndHoldDuration", n); }} />
+                      onChange={(n) => { handleNumberCapabilityChange("adaptiveAudioNoise", n); }} />
                   </PanelSectionRow>
                 }
 
+                {info?.capabilities?.ancOneAirPod != null &&
+                  <PanelSectionRow>
+                    <ToggleField checked={info?.capabilities?.ancOneAirPod.selected} label={t("capabilities_aap_anc_one_airpod_label")}
+                      onChange={(b) => { handleBooleanCapabilityChange("ancOneAirPod", b); }} />
+                  </PanelSectionRow>
+                }
+
+                {info?.capabilities?.ancOffMode != null &&
+                  <PanelSectionRow>
+                    <DropdownItem
+                      layout="below"
+                      label={t("capabilities_aap_anc_off_mode_label")}
+                      menuLabel={t("capabilities_aap_anc_off_mode_label")}
+                      rgOptions={getAncOffModeOptions()}
+                      selectedOption={info.capabilities.ancOffMode.selected}
+                      disabled={info.capabilities.ancOffMode.readonly}
+                      onChange={(option) => { handleAncOffModeChange(option.data as number); }}
+                    />
+                  </PanelSectionRow>
+                }
+
+                {info?.capabilities?.customEq != null && (
+                  <>
+                    <PanelSectionRow>
+                      <ToggleField
+                        checked={info.capabilities.customEq.selected.enabled}
+                        disabled={info.capabilities.customEq.readonly}
+                        label={t("capabilities_aap_custom_eq_label")}
+                        onChange={(enabled) => {
+                          handleCustomEqChange({ enabled });
+                        }}
+                      />
+                    </PanelSectionRow>
+
+                    {(["low", "mid", "high"] as const).map((band) => (
+                      <PanelSectionRow key={band}>
+                        <SliderField
+                          value={info.capabilities.customEq?.selected[band] ?? 0}
+                          max={100}
+                          min={0}
+                          step={1}
+                          label={t(`capabilities_aap_custom_eq_${band}_label`)}
+                          notchCount={3}
+                          notchTicksVisible={false}
+                          notchLabels={[
+                            { label: "0", notchIndex: 0, value: 0 },
+                            { label: "50", notchIndex: 1, value: 50 },
+                            { label: "100", notchIndex: 2, value: 100 }
+                          ]}
+                          showValue={true}
+                          valueSuffix="%"
+                          disabled={!info.capabilities.customEq?.selected.enabled || info.capabilities.customEq?.readonly}
+                          onChange={(value) => {
+                            handleCustomEqChange({ [band]: value }, true);
+                          }}
+                        />
+                      </PanelSectionRow>
+                    ))}
+                  </>
+                )}
 
                 {info?.capabilities?.pressSpeed != null &&
                   <PanelSectionRow>
@@ -755,37 +789,22 @@ export const TabInfo: FC<{
                   </PanelSectionRow>
                 }
 
-                {info?.capabilities?.digitalCrown != null &&
-                  <PanelSectionRow>
-                    <DropdownItem
-                      layout="below"
-                      label={t("capabilities_aap_digital_crown_label")}
-                      menuLabel={t("capabilities_aap_digital_crown_label")}
-                      rgOptions={getDigitalCrownOptions()}
-                      selectedOption={info.capabilities.digitalCrown.selected}
-                      disabled={info.capabilities.digitalCrown.readonly}
-                      onChange={(option) => { handleDigitalCrownChange(option.data as number); }}
-                    />
-                  </PanelSectionRow>
-                }
-
-                {info?.capabilities?.toneVolume != null &&
+                {info?.capabilities?.pressAndHoldDuration != null &&
                   <PanelSectionRow>
                     <SliderField
-                      value={info?.capabilities?.toneVolume.selected}
-                      max={125}
-                      min={15}
+                      value={info?.capabilities?.pressAndHoldDuration.selected}
+                      max={2}
+                      min={0}
                       step={1}
-                      label={t("capabilities_aap_tone_volume_label")}
-                      notchCount={2}
+                      label={t("capabilities_aap_press_and_hold_duration_label")}
+                      notchCount={3}
                       notchTicksVisible={false}
-                      showValue={true}
-                      valueSuffix="%"
                       notchLabels={[
-                        { label: "15", notchIndex: 0, value: 15 },
-                        { label: "125", notchIndex: 1, value: 100 }
+                        { label: t("capabilities_aap_press_and_hold_duration_notchlabel_default"), notchIndex: 0, value: 0 },
+                        { label: t("capabilities_aap_press_and_hold_duration_notchlabel_shorter"), notchIndex: 1, value: 1 },
+                        { label: t("capabilities_aap_press_and_hold_duration_notchlabel_shortest"), notchIndex: 2, value: 2 }
                       ]}
-                      onChange={(n) => { handleNumberCapabilityChange("toneVolume", n); }} />
+                      onChange={(n) => { handleNumberCapabilityChange("pressAndHoldDuration", n); }} />
                   </PanelSectionRow>
                 }
 
@@ -852,54 +871,23 @@ export const TabInfo: FC<{
                   </>
                 )}
 
-                {info?.capabilities?.customEq != null && (
-                  <>
-                    <PanelSectionRow>
-                      <ToggleField
-                        checked={info.capabilities.customEq.selected.enabled}
-                        disabled={info.capabilities.customEq.readonly}
-                        label={t("capabilities_aap_custom_eq_label")}
-                        onChange={(enabled) => {
-                          handleCustomEqChange({ enabled });
-                        }}
-                      />
-                    </PanelSectionRow>
-
-                    {(["low", "mid", "high"] as const).map((band) => (
-                      <PanelSectionRow key={band}>
-                        <SliderField
-                          value={info.capabilities.customEq?.selected[band] ?? 0}
-                          max={100}
-                          min={0}
-                          step={1}
-                          label={t(`capabilities_aap_custom_eq_${band}_label`)}
-                          notchCount={3}
-                          notchTicksVisible={false}
-                          notchLabels={[
-                            { label: "0", notchIndex: 0, value: 0 },
-                            { label: "50", notchIndex: 1, value: 50 },
-                            { label: "100", notchIndex: 2, value: 100 }
-                          ]}
-                          showValue={true}
-                          valueSuffix="%"
-                          disabled={!info.capabilities.customEq?.selected.enabled || info.capabilities.customEq?.readonly}
-                          onChange={(value) => {
-                            handleCustomEqChange({ [band]: value }, true);
-                          }}
-                        />
-                      </PanelSectionRow>
-                    ))}
-                  </>
-                )}
-
-                {info?.capabilities?.optimizedCharge != null &&
+                {info?.capabilities?.toneVolume != null &&
                   <PanelSectionRow>
-                    <ToggleField
-                      checked={info.capabilities.optimizedCharge.selected}
-                      disabled={info.capabilities.optimizedCharge.readonly}
-                      label={t("capabilities_aap_optimized_charge_label")}
-                      onChange={(enabled) => { handleBooleanCapabilityChange("optimizedCharge", enabled); }}
-                    />
+                    <SliderField
+                      value={info?.capabilities?.toneVolume.selected}
+                      max={125}
+                      min={15}
+                      step={1}
+                      label={t("capabilities_aap_tone_volume_label")}
+                      notchCount={2}
+                      notchTicksVisible={false}
+                      showValue={true}
+                      valueSuffix="%"
+                      notchLabels={[
+                        { label: "15", notchIndex: 0, value: 15 },
+                        { label: "125", notchIndex: 1, value: 100 }
+                      ]}
+                      onChange={(n) => { handleNumberCapabilityChange("toneVolume", n); }} />
                   </PanelSectionRow>
                 }
 
@@ -910,6 +898,17 @@ export const TabInfo: FC<{
                       disabled={info.capabilities.sleepDetection.readonly}
                       label={t("capabilities_aap_sleep_detection_label")}
                       onChange={(enabled) => { handleBooleanCapabilityChange("sleepDetection", enabled); }}
+                    />
+                  </PanelSectionRow>
+                }
+
+                {info?.capabilities?.optimizedCharge != null &&
+                  <PanelSectionRow>
+                    <ToggleField
+                      checked={info.capabilities.optimizedCharge.selected}
+                      disabled={info.capabilities.optimizedCharge.readonly}
+                      label={t("capabilities_aap_optimized_charge_label")}
+                      onChange={(enabled) => { handleBooleanCapabilityChange("optimizedCharge", enabled); }}
                     />
                   </PanelSectionRow>
                 }
