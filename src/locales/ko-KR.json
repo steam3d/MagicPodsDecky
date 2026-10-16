@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "모드 전환",
+        "capabilities_aap_cycle_modes_do_not_change": "변경하지 않음",
+        "capabilities_aap_cycle_modes_hint": "두 개 이상의 모드를 선택하거나 설정을 변경하지 않으려면 모두 선택 해제하세요.",
         "capabilities_aap_custom_eq_label": "이퀄라이저",
         "capabilities_aap_custom_eq_low_label": "이퀄라이저: 저음",
         "capabilities_aap_custom_eq_mid_label": "이퀄라이저: 중음",

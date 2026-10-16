@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Alternar modos",
+        "capabilities_aap_cycle_modes_do_not_change": "No cambiar",
+        "capabilities_aap_cycle_modes_hint": "Selecciona al menos dos modos o desmárcalos todos para no cambiar el ajuste.",
         "capabilities_aap_custom_eq_label": "Ecualizador",
         "capabilities_aap_custom_eq_low_label": "Ecualizador: Graves",
         "capabilities_aap_custom_eq_mid_label": "Ecualizador: Medios",

@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "گۆڕینی دۆخەکان",
+        "capabilities_aap_cycle_modes_do_not_change": "گۆڕانکاری مەکە",
+        "capabilities_aap_cycle_modes_hint": "لانیکەم دوو دۆخ هەڵبژێرە، یان هەموویان لاببە بۆ ئەوەی ڕێکخستنەکە نەگۆڕدرێت.",
         "capabilities_aap_custom_eq_label": "ئیکوالایزەر",
         "capabilities_aap_custom_eq_low_label": "ئیکوالایزەر: نزم",
         "capabilities_aap_custom_eq_mid_label": "ئیکوالایزەر: ناوەند",

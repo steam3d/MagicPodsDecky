@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Modi wechseln",
+        "capabilities_aap_cycle_modes_do_not_change": "Nicht ändern",
+        "capabilities_aap_cycle_modes_hint": "Wähle mindestens zwei Modi aus oder entferne alle Auswahlen, um die Einstellung unverändert zu lassen.",
         "capabilities_aap_custom_eq_label": "Equalizer",
         "capabilities_aap_custom_eq_low_label": "Equalizer: Tiefen",
         "capabilities_aap_custom_eq_mid_label": "Equalizer: Mitten",

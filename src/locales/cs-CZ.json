@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Procházet režimy",
+        "capabilities_aap_cycle_modes_do_not_change": "Neměnit",
+        "capabilities_aap_cycle_modes_hint": "Vyberte alespoň dva režimy nebo zrušte výběr všech, aby nastavení zůstalo beze změny.",
         "capabilities_aap_optimized_charge_label": "Optimalizovaný limit nabíjení",
         "capabilities_aap_sleep_detection_label": "Pozastavit při usínání"
     }

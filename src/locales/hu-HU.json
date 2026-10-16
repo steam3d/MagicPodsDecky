@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Módok váltogatása",
+        "capabilities_aap_cycle_modes_do_not_change": "Ne módosítsa",
+        "capabilities_aap_cycle_modes_hint": "Válasszon legalább két módot, vagy törölje az összes kijelölést, hogy a beállítás változatlan maradjon.",
         "capabilities_aap_optimized_charge_label": "Optimalizált töltési korlát",
         "capabilities_aap_sleep_detection_label": "Szüneteltetés elalváskor"
     }

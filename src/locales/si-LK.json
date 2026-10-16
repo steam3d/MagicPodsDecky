@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "ප්‍රකාර මාරු කරන්න",
+        "capabilities_aap_cycle_modes_do_not_change": "වෙනස් නොකරන්න",
+        "capabilities_aap_cycle_modes_hint": "අවම වශයෙන් ප්‍රකාර දෙකක් තෝරන්න, නැතහොත් සැකසුම වෙනස් නොකිරීමට සියල්ල ඉවත් කරන්න.",
         "capabilities_aap_custom_eq_label": "සමකරනය",
         "capabilities_aap_custom_eq_low_label": "සමකරනය: අඩු",
         "capabilities_aap_custom_eq_mid_label": "සමකරනය: මධ්‍ය",

@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "التبديل بين الأوضاع",
+        "capabilities_aap_cycle_modes_do_not_change": "عدم التغيير",
+        "capabilities_aap_cycle_modes_hint": "حدد وضعين على الأقل، أو ألغِ تحديد الكل لترك الإعداد دون تغيير.",
         "capabilities_aap_custom_eq_label": "معادل الصوت",
         "capabilities_aap_custom_eq_low_label": "معادل الصوت: منخفض",
         "capabilities_aap_custom_eq_mid_label": "معادل الصوت: متوسط",

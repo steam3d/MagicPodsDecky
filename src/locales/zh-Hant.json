@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "循環切換模式",
+        "capabilities_aap_cycle_modes_do_not_change": "不變更",
+        "capabilities_aap_cycle_modes_hint": "請至少選擇兩種模式，或清除所有選取以保持設定不變。",
         "capabilities_aap_custom_eq_label": "等化器",
         "capabilities_aap_custom_eq_low_label": "等化器：低音",
         "capabilities_aap_custom_eq_mid_label": "等化器：中音",

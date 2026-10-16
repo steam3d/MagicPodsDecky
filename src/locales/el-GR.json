@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Εναλλαγή λειτουργιών",
+        "capabilities_aap_cycle_modes_do_not_change": "Να μην αλλάξει",
+        "capabilities_aap_cycle_modes_hint": "Επιλέξτε τουλάχιστον δύο λειτουργίες ή αποεπιλέξτε τις όλες για να μην αλλάξει η ρύθμιση.",
         "capabilities_aap_custom_eq_label": "Ισοσταθμιστής",
         "capabilities_aap_custom_eq_low_label": "Ισοσταθμιστής: Χαμηλές",
         "capabilities_aap_custom_eq_mid_label": "Ισοσταθμιστής: Μεσαίες",

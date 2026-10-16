@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Modi doorlopen",
+        "capabilities_aap_cycle_modes_do_not_change": "Niet wijzigen",
+        "capabilities_aap_cycle_modes_hint": "Selecteer ten minste twee modi of wis alle selecties om de instelling ongewijzigd te laten.",
         "capabilities_aap_optimized_charge_label": "Geoptimaliseerde oplaadlimiet",
         "capabilities_aap_sleep_detection_label": "Pauzeren bij inslapen"
     }

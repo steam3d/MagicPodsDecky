@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Modlar arasında geçiş",
+        "capabilities_aap_cycle_modes_do_not_change": "Değiştirme",
+        "capabilities_aap_cycle_modes_hint": "En az iki mod seçin veya ayarı değiştirmeden bırakmak için tüm seçimleri kaldırın.",
         "capabilities_aap_optimized_charge_label": "İyileştirilmiş Şarj Sınırı",
         "capabilities_aap_sleep_detection_label": "Uykuya Dalınca Duraklat"
     }

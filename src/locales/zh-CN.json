@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "循环切换模式",
+        "capabilities_aap_cycle_modes_do_not_change": "不更改",
+        "capabilities_aap_cycle_modes_hint": "请至少选择两种模式，或清除所有选择以保持设置不变。",
         "capabilities_aap_custom_eq_label": "均衡器",
         "capabilities_aap_custom_eq_low_label": "均衡器：低音",
         "capabilities_aap_custom_eq_mid_label": "均衡器：中音",

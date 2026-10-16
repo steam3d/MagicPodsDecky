@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Chuyển đổi chế độ",
+        "capabilities_aap_cycle_modes_do_not_change": "Không thay đổi",
+        "capabilities_aap_cycle_modes_hint": "Chọn ít nhất hai chế độ hoặc bỏ chọn tất cả để giữ nguyên cài đặt.",
         "capabilities_aap_optimized_charge_label": "Giới hạn sạc được tối ưu hóa",
         "capabilities_aap_sleep_detection_label": "Tạm dừng khi ngủ"
     }

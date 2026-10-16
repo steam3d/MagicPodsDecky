@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Comutare moduri",
+        "capabilities_aap_cycle_modes_do_not_change": "Nu modifica",
+        "capabilities_aap_cycle_modes_hint": "Selectați cel puțin două moduri sau deselectați-le pe toate pentru a păstra setarea neschimbată.",
         "capabilities_aap_optimized_charge_label": "Limită de încărcare optimizată",
         "capabilities_aap_sleep_detection_label": "Pauză la adormire"
     }

@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Cycle modes",
+        "capabilities_aap_cycle_modes_do_not_change": "Don't Change",
+        "capabilities_aap_cycle_modes_hint": "Select at least two modes, or clear all to leave the setting unchanged.",
         "capabilities_aap_custom_eq_label": "Equalizer",
         "capabilities_aap_custom_eq_low_label": "Equalizer: Low",
         "capabilities_aap_custom_eq_mid_label": "Equalizer: Mid",

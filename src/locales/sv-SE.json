@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Växla mellan lägen",
+        "capabilities_aap_cycle_modes_do_not_change": "Ändra inte",
+        "capabilities_aap_cycle_modes_hint": "Välj minst två lägen eller avmarkera alla för att lämna inställningen oförändrad.",
         "capabilities_aap_optimized_charge_label": "Optimerad laddningsgräns",
         "capabilities_aap_sleep_detection_label": "Pausa vid insomning"
     }

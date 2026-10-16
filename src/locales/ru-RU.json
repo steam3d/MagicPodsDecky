@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Переключать режимы",
+        "capabilities_aap_cycle_modes_do_not_change": "Не изменять",
+        "capabilities_aap_cycle_modes_hint": "Выберите минимум два режима или снимите все, чтобы не изменять настройку.",
         "capabilities_aap_custom_eq_label": "Эквалайзер",
         "capabilities_aap_custom_eq_low_label": "Эквалайзер: Низкие",
         "capabilities_aap_custom_eq_mid_label": "Эквалайзер: Средние",

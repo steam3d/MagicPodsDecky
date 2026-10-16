@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Pārslēgt režīmus",
+        "capabilities_aap_cycle_modes_do_not_change": "Nemainīt",
+        "capabilities_aap_cycle_modes_hint": "Atlasiet vismaz divus režīmus vai noņemiet visas atzīmes, lai iestatījums netiktu mainīts.",
         "capabilities_aap_optimized_charge_label": "Optimizēts uzlādes ierobežojums",
         "capabilities_aap_sleep_detection_label": "Pause When Asleep"
     }

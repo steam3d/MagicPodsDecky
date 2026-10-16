@@ -22,6 +22,7 @@ import { useEffect, useState, FC, useRef } from 'react';
 import { Battery } from "../components/battery";
 import { Backend } from "../backend";
 import { ANC_MODE_ADAPTIVE, ANC_MODE_ANC, ANC_MODE_OFF, ANC_MODE_TRANSPARENCY, ANC_MODE_WIND } from "../ButtonIcons";
+import { MultiSelect, MultiSelectOption } from "../components/multiSelect";
 
 const FieldWithSeparator = joinClassNames(
   gamepadDialogClasses.Field,
@@ -74,6 +75,10 @@ interface NumberCapabilityProps {
   readonly: boolean
 }
 
+interface BitmaskCapabilityProps extends NumberCapabilityProps {
+  options: number
+}
+
 interface StringCapabilityProps {
   selected: string,
   options: Array<[string, string]>,
@@ -102,6 +107,7 @@ interface CapabilitiesProps {
   volumeSwipe?: BooleanCapabilityProps;
   endCall?: NumberCapabilityProps;
   pressAndHoldDuration?: NumberCapabilityProps;
+  pressAndHoldAirPodModeAnc?: BitmaskCapabilityProps;
   pressSpeed?: NumberCapabilityProps;
   toneVolume?: NumberCapabilityProps;
   volumeSwipeLength?: NumberCapabilityProps;
@@ -129,6 +135,22 @@ export const AncModes = {
   WIND: 8,
   ANC: 16,
 };
+
+const PressAndHoldAncModes = {
+  OFF: 0x01,
+  ANC: 0x02,
+  TRANSPARENCY: 0x04,
+  ADAPTIVE: 0x08,
+};
+
+const translatedAncModeLabel = (key: string) => t(key).replace("<icon/>", "");
+
+const getPressAndHoldAncOptions = (availableModes: number): MultiSelectOption[] => [
+  { label: translatedAncModeLabel("settings_anc_modes_off_label"), icon: <ANC_MODE_OFF style={iconModesStyle} />, value: PressAndHoldAncModes.OFF },
+  { label: translatedAncModeLabel("settings_anc_modes_transparency_label"), icon: <ANC_MODE_TRANSPARENCY style={iconModesStyle} />, value: PressAndHoldAncModes.TRANSPARENCY },
+  { label: translatedAncModeLabel("settings_anc_modes_adaptive_label"), icon: <ANC_MODE_ADAPTIVE style={iconModesStyle} />, value: PressAndHoldAncModes.ADAPTIVE },
+  { label: translatedAncModeLabel("settings_anc_modes_anc_label"), icon: <ANC_MODE_ANC style={iconModesStyle} />, value: PressAndHoldAncModes.ANC },
+].filter((option) => (availableModes & option.value) !== 0);
 
 const getAncSliderConfig = async (backend: Backend, options: number, selected: number) => {
   backend.logDebug("Info: Options:", options, "Selected:", selected);
@@ -310,6 +332,15 @@ export const TabInfo: FC<{
       }
       delete timeoutIds.current[key];
     }, 350);
+  };
+
+  const handleNumberCapabilityCommit = (key: CapabilityKey, value: number) => {
+    commonUpdateInfo(key, value);
+    const address = info?.address;
+    if (address) {
+      backend.logInfo(`Send set ${key} to`, value);
+      backend.setCapability(key, address, value);
+    }
   };
 
   const handleCustomEqChange = (changes: Partial<CustomEqSelectedProps>, debounce: boolean = false) => {
@@ -575,6 +606,20 @@ export const TabInfo: FC<{
                   <PanelSectionRow>
                     <ToggleField checked={info?.capabilities?.ancOneAirPod.selected} label={t("capabilities_aap_anc_one_airpod_label")}
                       onChange={(b) => { handleBooleanCapabilityChange("ancOneAirPod", b); }} />
+                  </PanelSectionRow>
+                }
+
+                {info?.capabilities?.pressAndHoldAirPodModeAnc != null &&
+                  <PanelSectionRow>
+                    <MultiSelect
+                      label={t("capabilities_aap_cycle_modes_label")}
+                      hint={t("capabilities_aap_cycle_modes_hint")}
+                      doNotApplyLabel={t("capabilities_aap_cycle_modes_do_not_change")}
+                      value={info.capabilities.pressAndHoldAirPodModeAnc.selected}
+                      options={getPressAndHoldAncOptions(info.capabilities.pressAndHoldAirPodModeAnc.options)}
+                      disabled={info.capabilities.pressAndHoldAirPodModeAnc.readonly}
+                      onChange={(value) => { handleNumberCapabilityCommit("pressAndHoldAirPodModeAnc", value); }}
+                    />
                   </PanelSectionRow>
                 }
 

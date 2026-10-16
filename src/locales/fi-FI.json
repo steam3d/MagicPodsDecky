@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Vaihda tiloja",
+        "capabilities_aap_cycle_modes_do_not_change": "Älä muuta",
+        "capabilities_aap_cycle_modes_hint": "Valitse vähintään kaksi tilaa tai poista kaikki valinnat, jotta asetus säilyy ennallaan.",
         "capabilities_aap_optimized_charge_label": "Optimoitu latausraja",
         "capabilities_aap_sleep_detection_label": "Tauko nukahtaessa"
     }

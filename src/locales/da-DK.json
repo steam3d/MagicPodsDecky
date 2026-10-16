@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Skift mellem tilstande",
+        "capabilities_aap_cycle_modes_do_not_change": "Skift ikke",
+        "capabilities_aap_cycle_modes_hint": "Vælg mindst to tilstande, eller fjern alle markeringer for at lade indstillingen være uændret.",
         "capabilities_aap_optimized_charge_label": "Optimeret opladningsgrænse",
         "capabilities_aap_sleep_detection_label": "Pause ved indsovning"
     }

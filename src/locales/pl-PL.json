@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Przełączanie trybów",
+        "capabilities_aap_cycle_modes_do_not_change": "Nie zmieniaj",
+        "capabilities_aap_cycle_modes_hint": "Wybierz co najmniej dwa tryby lub odznacz wszystkie, aby pozostawić ustawienie bez zmian.",
         "capabilities_aap_custom_eq_label": "Korektor",
         "capabilities_aap_custom_eq_low_label": "Korektor: Niskie",
         "capabilities_aap_custom_eq_mid_label": "Korektor: Średnie",

@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "วนโหมด",
+        "capabilities_aap_cycle_modes_do_not_change": "ไม่เปลี่ยนแปลง",
+        "capabilities_aap_cycle_modes_hint": "เลือกอย่างน้อยสองโหมด หรือยกเลิกการเลือกทั้งหมดเพื่อไม่เปลี่ยนการตั้งค่า",
         "capabilities_aap_optimized_charge_label": "ขีดจำกัดการชาร์จที่ปรับให้เหมาะสม",
         "capabilities_aap_sleep_detection_label": "หยุดชั่วคราวเมื่อหลับ"
     }

@@ -1,5 +1,8 @@
 {
     "translation": {
+        "capabilities_aap_cycle_modes_label": "Faire défiler les modes",
+        "capabilities_aap_cycle_modes_do_not_change": "Ne pas modifier",
+        "capabilities_aap_cycle_modes_hint": "Sélectionnez au moins deux modes, ou désélectionnez-les tous pour ne pas modifier le réglage.",
         "capabilities_aap_optimized_charge_label": "Limite de charge optimale",
         "capabilities_aap_sleep_detection_label": "Pause à l’endormissement"
     }
