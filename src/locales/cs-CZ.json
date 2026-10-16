@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "Procházet režimy",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "Zezadu dopředu",
+        "capabilities_aap_digital_crown_front_to_back": "Zepředu dozadu",
+        "capabilities_aap_cycle_modes_label": "Ovládání hluku sluchátek",
         "capabilities_aap_cycle_modes_do_not_change": "Neměnit",
         "capabilities_aap_cycle_modes_hint": "Vyberte alespoň dva režimy nebo zrušte výběr všech, aby nastavení zůstalo beze změny.",
         "capabilities_aap_optimized_charge_label": "Optimalizovaný limit nabíjení",

@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "Alternar modos",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "De trás para frente",
+        "capabilities_aap_digital_crown_front_to_back": "Da frente para trás",
+        "capabilities_aap_cycle_modes_label": "Controle de ruído dos fones de ouvido",
         "capabilities_aap_cycle_modes_do_not_change": "Não alterar",
         "capabilities_aap_cycle_modes_hint": "Selecione pelo menos dois modos ou desmarque todos para manter a configuração inalterada.",
         "capabilities_aap_custom_eq_label": "Equalizador",

@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "Vaihda tiloja",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "Takaa eteen",
+        "capabilities_aap_digital_crown_front_to_back": "Edestä taakse",
+        "capabilities_aap_cycle_modes_label": "Kuulokkeiden melunhallinta",
         "capabilities_aap_cycle_modes_do_not_change": "Älä muuta",
         "capabilities_aap_cycle_modes_hint": "Valitse vähintään kaksi tilaa tai poista kaikki valinnat, jotta asetus säilyy ennallaan.",
         "capabilities_aap_optimized_charge_label": "Optimoitu latausraja",

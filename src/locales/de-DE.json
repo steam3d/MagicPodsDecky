@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "Modi wechseln",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "Von hinten nach vorne",
+        "capabilities_aap_digital_crown_front_to_back": "Von vorne nach hinten",
+        "capabilities_aap_cycle_modes_label": "Geräuschkontrolle am Kopfhörer",
         "capabilities_aap_cycle_modes_do_not_change": "Nicht ändern",
         "capabilities_aap_cycle_modes_hint": "Wähle mindestens zwei Modi aus oder entferne alle Auswahlen, um die Einstellung unverändert zu lassen.",
         "capabilities_aap_custom_eq_label": "Equalizer",

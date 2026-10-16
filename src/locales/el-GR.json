@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "Εναλλαγή λειτουργιών",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "Από πίσω προς τα εμπρός",
+        "capabilities_aap_digital_crown_front_to_back": "Από μπροστά προς τα πίσω",
+        "capabilities_aap_cycle_modes_label": "Έλεγχος θορύβου ακουστικών",
         "capabilities_aap_cycle_modes_do_not_change": "Να μην αλλάξει",
         "capabilities_aap_cycle_modes_hint": "Επιλέξτε τουλάχιστον δύο λειτουργίες ή αποεπιλέξτε τις όλες για να μην αλλάξει η ρύθμιση.",
         "capabilities_aap_custom_eq_label": "Ισοσταθμιστής",

@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "Перемикання режимів",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "Ззаду вперед",
+        "capabilities_aap_digital_crown_front_to_back": "Спереду назад",
+        "capabilities_aap_cycle_modes_label": "Керування шумом із навушників",
         "capabilities_aap_cycle_modes_do_not_change": "Не змінювати",
         "capabilities_aap_cycle_modes_hint": "Виберіть щонайменше два режими або зніміть усі позначки, щоб не змінювати налаштування.",
         "capabilities_aap_custom_eq_label": "Еквалайзер",

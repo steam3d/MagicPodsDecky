@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "Modi doorlopen",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "Van achteren naar voren",
+        "capabilities_aap_digital_crown_front_to_back": "Van voren naar achteren",
+        "capabilities_aap_cycle_modes_label": "Ruisbeheersing via koptelefoon",
         "capabilities_aap_cycle_modes_do_not_change": "Niet wijzigen",
         "capabilities_aap_cycle_modes_hint": "Selecteer ten minste twee modi of wis alle selecties om de instelling ongewijzigd te laten.",
         "capabilities_aap_optimized_charge_label": "Geoptimaliseerde oplaadlimiet",

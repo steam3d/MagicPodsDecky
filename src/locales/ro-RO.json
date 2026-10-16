@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "Comutare moduri",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "Din spate în față",
+        "capabilities_aap_digital_crown_front_to_back": "Din față în spate",
+        "capabilities_aap_cycle_modes_label": "Controlul zgomotului căștilor",
         "capabilities_aap_cycle_modes_do_not_change": "Nu modifica",
         "capabilities_aap_cycle_modes_hint": "Selectați cel puțin două moduri sau deselectați-le pe toate pentru a păstra setarea neschimbată.",
         "capabilities_aap_optimized_charge_label": "Limită de încărcare optimizată",

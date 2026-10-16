@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "التبديل بين الأوضاع",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "من الخلف إلى الأمام",
+        "capabilities_aap_digital_crown_front_to_back": "من الأمام إلى الخلف",
+        "capabilities_aap_cycle_modes_label": "التحكم في ضوضاء سماعات الرأس",
         "capabilities_aap_cycle_modes_do_not_change": "عدم التغيير",
         "capabilities_aap_cycle_modes_hint": "حدد وضعين على الأقل، أو ألغِ تحديد الكل لترك الإعداد دون تغيير.",
         "capabilities_aap_custom_eq_label": "معادل الصوت",

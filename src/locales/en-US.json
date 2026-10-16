@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "Cycle modes",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "Back to front",
+        "capabilities_aap_digital_crown_front_to_back": "Front to back",
+        "capabilities_aap_cycle_modes_label": "Headphone noise control",
         "capabilities_aap_cycle_modes_do_not_change": "Don't Change",
         "capabilities_aap_cycle_modes_hint": "Select at least two modes, or clear all to leave the setting unchanged.",
         "capabilities_aap_custom_eq_label": "Equalizer",

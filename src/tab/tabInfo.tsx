@@ -14,6 +14,7 @@ import {
   showContextMenu,
   Menu,
   MenuItem,
+  DropdownItem,
   Field,
   DialogButton
 } from "@decky/ui";
@@ -109,6 +110,7 @@ interface CapabilitiesProps {
   pressAndHoldDuration?: NumberCapabilityProps;
   pressAndHoldAirPodModeAnc?: BitmaskCapabilityProps;
   pressSpeed?: NumberCapabilityProps;
+  digitalCrown?: NumberCapabilityProps;
   toneVolume?: NumberCapabilityProps;
   volumeSwipeLength?: NumberCapabilityProps;
   adaptiveAudioNoise?: NumberCapabilityProps;
@@ -143,6 +145,12 @@ const PressAndHoldAncModes = {
   ADAPTIVE: 0x08,
 };
 
+const DigitalCrownModes = {
+  DO_NOT_CHANGE: -1,
+  BACK_TO_FRONT: 0x01,
+  FRONT_TO_BACK: 0x02,
+};
+
 const translatedAncModeLabel = (key: string) => t(key).replace("<icon/>", "");
 
 const getPressAndHoldAncOptions = (availableModes: number): MultiSelectOption[] => [
@@ -151,6 +159,12 @@ const getPressAndHoldAncOptions = (availableModes: number): MultiSelectOption[] 
   { label: translatedAncModeLabel("settings_anc_modes_adaptive_label"), icon: <ANC_MODE_ADAPTIVE style={iconModesStyle} />, value: PressAndHoldAncModes.ADAPTIVE },
   { label: translatedAncModeLabel("settings_anc_modes_anc_label"), icon: <ANC_MODE_ANC style={iconModesStyle} />, value: PressAndHoldAncModes.ANC },
 ].filter((option) => (availableModes & option.value) !== 0);
+
+const getDigitalCrownOptions = () => [
+  { label: t("capabilities_aap_cycle_modes_do_not_change"), data: DigitalCrownModes.DO_NOT_CHANGE },
+  { label: t("capabilities_aap_digital_crown_back_to_front"), data: DigitalCrownModes.BACK_TO_FRONT },
+  { label: t("capabilities_aap_digital_crown_front_to_back"), data: DigitalCrownModes.FRONT_TO_BACK },
+];
 
 const getAncSliderConfig = async (backend: Backend, options: number, selected: number) => {
   backend.logDebug("Info: Options:", options, "Selected:", selected);
@@ -340,6 +354,14 @@ export const TabInfo: FC<{
     if (address) {
       backend.logInfo(`Send set ${key} to`, value);
       backend.setCapability(key, address, value);
+    }
+  };
+
+  const handleDigitalCrownChange = (value: number) => {
+    const address = info?.address;
+    if (address) {
+      backend.logInfo("Send set digitalCrown to", value);
+      backend.setCapability("digitalCrown", address, value);
     }
   };
 
@@ -659,6 +681,20 @@ export const TabInfo: FC<{
                         { label: t("capabilities_aap_press_speed_notchlabel_slowest"), notchIndex: 2, value: 2 }
                       ]}
                       onChange={(n) => { handleNumberCapabilityChange("pressSpeed", n); }} />
+                  </PanelSectionRow>
+                }
+
+                {info?.capabilities?.digitalCrown != null &&
+                  <PanelSectionRow>
+                    <DropdownItem
+                      layout="below"
+                      label={t("capabilities_aap_digital_crown_label")}
+                      menuLabel={t("capabilities_aap_digital_crown_label")}
+                      rgOptions={getDigitalCrownOptions()}
+                      selectedOption={info.capabilities.digitalCrown.selected}
+                      disabled={info.capabilities.digitalCrown.readonly}
+                      onChange={(option) => { handleDigitalCrownChange(option.data as number); }}
+                    />
                   </PanelSectionRow>
                 }
 

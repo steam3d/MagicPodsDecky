@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "گۆڕینی دۆخەکان",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "لە دواوە بۆ پێشەوە",
+        "capabilities_aap_digital_crown_front_to_back": "لە پێشەوە بۆ دواوە",
+        "capabilities_aap_cycle_modes_label": "کۆنترۆڵی دەنگی سەرگۆشە",
         "capabilities_aap_cycle_modes_do_not_change": "گۆڕانکاری مەکە",
         "capabilities_aap_cycle_modes_hint": "لانیکەم دوو دۆخ هەڵبژێرە، یان هەموویان لاببە بۆ ئەوەی ڕێکخستنەکە نەگۆڕدرێت.",
         "capabilities_aap_custom_eq_label": "ئیکوالایزەر",

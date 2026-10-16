@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "Scorri modalità",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "Da dietro in avanti",
+        "capabilities_aap_digital_crown_front_to_back": "Da davanti indietro",
+        "capabilities_aap_cycle_modes_label": "Controllo rumore cuffie",
         "capabilities_aap_cycle_modes_do_not_change": "Non modificare",
         "capabilities_aap_cycle_modes_hint": "Seleziona almeno due modalità oppure deselezionale tutte per lasciare invariata l'impostazione.",
         "capabilities_aap_custom_eq_label": "Equalizzatore",

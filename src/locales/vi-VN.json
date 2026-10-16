@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "Chuyển đổi chế độ",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "Từ sau ra trước",
+        "capabilities_aap_digital_crown_front_to_back": "Từ trước ra sau",
+        "capabilities_aap_cycle_modes_label": "Điều khiển tiếng ồn tai nghe",
         "capabilities_aap_cycle_modes_do_not_change": "Không thay đổi",
         "capabilities_aap_cycle_modes_hint": "Chọn ít nhất hai chế độ hoặc bỏ chọn tất cả để giữ nguyên cài đặt.",
         "capabilities_aap_optimized_charge_label": "Giới hạn sạc được tối ưu hóa",

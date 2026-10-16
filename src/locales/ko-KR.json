@@ -1,6 +1,9 @@
 {
     "translation": {
-        "capabilities_aap_cycle_modes_label": "모드 전환",
+        "capabilities_aap_digital_crown_label": "Digital Crown",
+        "capabilities_aap_digital_crown_back_to_front": "뒤에서 앞으로",
+        "capabilities_aap_digital_crown_front_to_back": "앞에서 뒤로",
+        "capabilities_aap_cycle_modes_label": "헤드폰 소음 제어",
         "capabilities_aap_cycle_modes_do_not_change": "변경하지 않음",
         "capabilities_aap_cycle_modes_hint": "두 개 이상의 모드를 선택하거나 설정을 변경하지 않으려면 모두 선택 해제하세요.",
         "capabilities_aap_custom_eq_label": "이퀄라이저",
