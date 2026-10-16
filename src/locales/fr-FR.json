@@ -75,7 +75,7 @@
         "capabilities_aap_press_and_hold_duration_label": "Durée de pression et maintien",
         "capabilities_aap_mute_unmute_label": "Mettre en sourdine et rétablir le son",
         "capabilities_aap_end_call_label": "Terminer l'appel",
-        "capabilities_aap_anc_one_airpod_label": "Annulation du bruit avec un seul AirPod",
+        "capabilities_aap_anc_one_airpod_label": "Réduction du bruit avec un seul écouteur",
         "capabilities_aap_end_call_notchlabel_single": "Appuyez une fois",
         "capabilities_aap_end_call_notchlabel_double": "Appuyez deux fois",
         "capabilities_header": "Options",

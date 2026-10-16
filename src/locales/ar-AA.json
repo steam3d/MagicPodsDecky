@@ -56,7 +56,7 @@
         "capabilities_aap_adaptive_audio_noise_notchlabel_default": "الافتراضي",
         "capabilities_aap_adaptive_audio_noise_notchlabel_less": "ضوضاء أقل",
         "capabilities_aap_adaptive_audio_noise_notchlabel_more": "ضوضاء اكثر",
-        "capabilities_aap_anc_one_airpod_label": "إلغاء الضوضاء النشط لسماعة واحدة",
+        "capabilities_aap_anc_one_airpod_label": "إلغاء الضوضاء بسماعة أذن واحدة",
         "capabilities_aap_press_and_hold_duration_label": "مدة الضغط مع الاستمرار",
         "capabilities_aap_conversation_awareness_label": "تنبيه المحادثة",
         "capabilities_aap_press_and_hold_duration_notchlabel_default": "الافتراضي",

@@ -69,7 +69,7 @@
         "capabilities_aap_adaptive_audio_noise_notchlabel_more": "More noise",
         "capabilities_aap_adaptive_audio_noise_notchlabel_default": "Default",
         "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Less noise",
-        "capabilities_aap_anc_one_airpod_label": "ANC with one AirPod",
+        "capabilities_aap_anc_one_airpod_label": "Noise cancellation with one earbud",
         "capabilities_aap_press_and_hold_duration_label": "Press and hold duration",
         "capabilities_aap_press_and_hold_duration_notchlabel_default": "Default",
         "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Shorter",

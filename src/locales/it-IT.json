@@ -68,7 +68,7 @@
         "capabilities_aap_adaptive_audio_noise_notchlabel_more": "Più rumore",
         "capabilities_aap_adaptive_audio_noise_notchlabel_default": "Predefinito",
         "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Meno rumore",
-        "capabilities_aap_anc_one_airpod_label": "ANC con singola AirPod",
+        "capabilities_aap_anc_one_airpod_label": "Cancellazione del rumore con un solo auricolare",
         "capabilities_aap_press_and_hold_duration_label": "Durata premi e mantieni",
         "capabilities_aap_press_and_hold_duration_notchlabel_default": "Predefinito",
         "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "Più breve",

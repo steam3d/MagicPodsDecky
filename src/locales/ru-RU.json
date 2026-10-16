@@ -80,7 +80,7 @@
         "capabilities_aap_adaptive_audio_noise_label": "Адаптивный режим",
         "capabilities_aap_adaptive_audio_noise_notchlabel_more": "Больше шума",
         "capabilities_aap_adaptive_audio_noise_notchlabel_less": "Меньше шума",
-        "capabilities_aap_anc_one_airpod_label": "Шумопод. с одним AirPod",
+        "capabilities_aap_anc_one_airpod_label": "Шумоподавление с одним наушником",
         "capabilities_aap_volume_swipe_label": "Изменение громкости смахиванием",
         "capabilities_aap_volume_swipe_length_label": "Длина смахивания",
         "capabilities_aap_end_call_label": "Завершить вызов",

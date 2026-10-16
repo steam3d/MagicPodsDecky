@@ -68,7 +68,7 @@
         "capabilities_aap_adaptive_audio_noise_notchlabel_more": "更多噪音",
         "capabilities_aap_adaptive_audio_noise_notchlabel_default": "預設",
         "capabilities_aap_adaptive_audio_noise_notchlabel_less": "減少噪音",
-        "capabilities_aap_anc_one_airpod_label": "使用單耳 AirPod 的降噪",
+        "capabilities_aap_anc_one_airpod_label": "使用單只耳塞時的降噪",
         "capabilities_aap_press_and_hold_duration_label": "按住持續時間",
         "capabilities_aap_press_and_hold_duration_notchlabel_default": "預設",
         "capabilities_aap_press_and_hold_duration_notchlabel_shorter": "較短",

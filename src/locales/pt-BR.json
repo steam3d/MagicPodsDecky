@@ -74,7 +74,7 @@
         "capabilities_aap_conversation_awareness_volume_label_notchlabel_off": "Desl.",
         "capabilities_aap_press_speed_notchlabel_default": "Padrão",
         "capabilities_aap_mute_unmute_label": "Ativar e desativar microfone",
-        "capabilities_aap_anc_one_airpod_label": "Cancelamento de ruído com um AirPod",
+        "capabilities_aap_anc_one_airpod_label": "Cancelamento de ruído com um fone de ouvido",
         "capabilities_aap_end_call_label": "Encerrar chamada",
         "capabilities_header": "Opções",
         "capabilities_modal": "Certos recursos podem aparecer na interface mesmo que não sejam compatíveis com seus fones de ouvido ou com o Steam Deck.",
