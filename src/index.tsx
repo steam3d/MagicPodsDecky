@@ -27,6 +27,7 @@ import { BackgroundMicrophoneMute } from "./bgMicMute";
 import { ConversationAwarenessVolume } from "./bgCA";
 import { BackgroundBatteryIcon } from "./bgBatteryIcon";
 import { TabDebug } from "./tab/tabDebug";
+import { Input } from "./input";
 
 const Content: FC<{ backend: Backend; batteryIcon: BackgroundBatteryIcon; }> = ({ backend, batteryIcon }) => {
   useEffect(() => {
@@ -285,10 +286,13 @@ export default definePlugin(() => {
 
   const backend = new Backend();
   const batteryIcon = new BackgroundBatteryIcon(backend);
+  const inputSupported = Input.isSupported();
   backend.onSocketConnectionChanged(onConnectionChanged);
   backend.onJsonMessageReceived(onJsonMessageReceived);
   routerHook.addRoute("/magicpods-log", () => (<LogRouter backend={backend} />));
-  routerHook.addGlobalComponent("BackgroundMicrophoneMute", () => (<BackgroundMicrophoneMute backend={backend} />));
+  if (inputSupported) {
+    routerHook.addGlobalComponent("BackgroundMicrophoneMute", () => (<BackgroundMicrophoneMute backend={backend} />));
+  }
 
   backend.logInfo("Plugin: Loaded");
 
@@ -300,7 +304,9 @@ export default definePlugin(() => {
       backend.logInfo("Plugin: Dismounting");
       batteryIcon.disable();
       routerHook.removeRoute("/magicpods-log");
-      routerHook.removeGlobalComponent("BackgroundMicrophoneMute");
+      if (inputSupported) {
+        routerHook.removeGlobalComponent("BackgroundMicrophoneMute");
+      }
       backend.offSocketConnectionChanged(onConnectionChanged);
       backend.offJsonMessageReceived(onJsonMessageReceived);
       backend.bgAncSwitch.disable();
