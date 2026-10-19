@@ -95,7 +95,7 @@ export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) 
         );
 
         return () => {
-            volumeRegister.unregister();
+            volumeRegister?.unregister?.();
             input.offShortcutPressed(onShortcutPressed);
             input.unregister();
         };
