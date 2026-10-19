@@ -303,6 +303,7 @@ export const TabInfo: FC<{
   const [config, setConfig] = useState<Awaited<ReturnType<typeof getAncSliderConfig>> | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [volume, setVolume] = useState<number>(0);
+  const [lowBatteryThreshold, setLowBatteryThreshold] = useState<number>(0);
 
 
   const timeoutIds = useRef<Record<string, NodeJS.Timeout>>({});
@@ -445,6 +446,13 @@ export const TabInfo: FC<{
     fetchSettings();
   }, [info?.capabilities?.conversationAwareness?.selected]);
 
+  useEffect(() => {
+    const fetchLowBatteryThreshold = async () => {
+      setLowBatteryThreshold(await backend.loadNumberSetting("notif_low_battery") ?? 0);
+    }
+    fetchLowBatteryThreshold();
+  }, [info]);
+
   return (
     <>
       <div style={{ marginLeft: "-8px", marginRight: "-8px" }}>
@@ -456,10 +464,10 @@ export const TabInfo: FC<{
               <PanelSectionRow>
                 <div className={FieldWithSeparator}>
                   <div style={{ display: "flex", padding: "0px 0px 0px 0px" }}>
-                    <Battery title={t("battery_single")} battery={info.capabilities.battery.single.battery} isCharging={info.capabilities.battery.single.charging} status={info.capabilities.battery.single.status} />
-                    <Battery title={t("battery_left")} battery={info.capabilities.battery.left.battery} isCharging={info.capabilities.battery.left.charging} status={info.capabilities.battery.left.status} />
-                    <Battery title={t("battery_right")} battery={info.capabilities.battery.right.battery} isCharging={info.capabilities.battery.right.charging} status={info.capabilities.battery.right.status} />
-                    <Battery title={t("battery_case")} battery={info.capabilities.battery.case.battery} isCharging={info.capabilities.battery.case.charging} status={info.capabilities.battery.case.status} />
+                    <Battery title={t("battery_single")} battery={info.capabilities.battery.single.battery} isCharging={info.capabilities.battery.single.charging} status={info.capabilities.battery.single.status} lowBatteryThreshold={lowBatteryThreshold} />
+                    <Battery title={t("battery_left")} battery={info.capabilities.battery.left.battery} isCharging={info.capabilities.battery.left.charging} status={info.capabilities.battery.left.status} lowBatteryThreshold={lowBatteryThreshold} />
+                    <Battery title={t("battery_right")} battery={info.capabilities.battery.right.battery} isCharging={info.capabilities.battery.right.charging} status={info.capabilities.battery.right.status} lowBatteryThreshold={lowBatteryThreshold} />
+                    <Battery title={t("battery_case")} battery={info.capabilities.battery.case.battery} isCharging={info.capabilities.battery.case.charging} status={info.capabilities.battery.case.status} lowBatteryThreshold={lowBatteryThreshold} />
                   </div>
                 </div>
               </PanelSectionRow>

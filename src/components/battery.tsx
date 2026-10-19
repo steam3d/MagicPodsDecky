@@ -5,7 +5,9 @@ import {
 
 import { FC } from 'react';
 
-export const Battery: FC<{ title: string; battery: number; isCharging: boolean, status: number, }> = ({ title, battery, isCharging, status  }) => {
+export const Battery: FC<{ title: string; battery: number; isCharging: boolean, status: number, lowBatteryThreshold: number, }> = ({ title, battery, isCharging, status, lowBatteryThreshold }) => {
+    const isLowBattery = lowBatteryThreshold > 0 && status === 2 && !isCharging && battery !== 0 && battery <= lowBatteryThreshold;
+
     return (
       <>
       {status !== 0 && status !== 1 &&
@@ -14,7 +16,7 @@ export const Battery: FC<{ title: string; battery: number; isCharging: boolean, 
                     <svg width="16" height="28" viewBox="0 0 16 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11 0H5V2H0V28H16V2H11V0ZM1.5 3.5H14.5V26.5H1.5V3.5Z" fill="white"/>
                         <svg x="3" y="5" width="10" height="20">
-                            <rect height="100%" width="100%" fill="#59BF40" transform={"translate(0,"+(20-Math.round(battery * 0.2))+")"}></rect>
+                            <rect height="100%" width="100%" fill={isLowBattery ? "#ED18BF" : "#1B9EFA"} transform={"translate(0,"+(20-Math.round(battery * 0.2))+")"}></rect>
                         </svg>
                         <svg x="4.5" y="10" width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 6.25L3.5 0V3.75H7L3.5 10V6.25H0Z" fill={isCharging ? 'white' : 'transparency'}/>
