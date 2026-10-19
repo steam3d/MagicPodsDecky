@@ -25,7 +25,8 @@ export const TabHeadphones: FC<{
   headphones: headphonesListProps[],
   setHeadphones: (value: headphonesListProps[] | ((prevVar: headphonesListProps[]) => headphonesListProps[])) => void,
   backend: Backend;
-}> = ({ defaultBluetooth, setDefaultBluetooth, headphones, setHeadphones, backend }) => {
+  // setHeadphones is temporarily unused.
+}> = ({ defaultBluetooth, setDefaultBluetooth, headphones, backend }) => {
 
   const [disabledHeadphones, setDisabledHeadphones] = useState<Record<string, boolean>>({});
   const [checkedHeadphones, setCheckedHeadphones] = useState<Record<string, boolean>>({});
@@ -102,8 +103,9 @@ export const TabHeadphones: FC<{
             {headphones
               .slice()
               .sort((a, b) => a.name.localeCompare(b.name))
-              .map((headphone, index) => (
-                <PanelSectionRow>
+              // index is temporarily unused.
+              .map((headphone) => (
+                <PanelSectionRow key={headphone.address}>
                   <ToggleField checked={checkedHeadphones[headphone.address]} label={headphone.name} disabled={disabledHeadphones[headphone.address]} onChange={(b) => {
                     backend.logInfo("Headphones: Change connection to", b, "for", headphone.name, "(", headphone.address, ")");
                     handleToggleFieldChange(headphone.address, b);

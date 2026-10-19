@@ -1,8 +1,8 @@
-import { VFC, useEffect, useState, useRef  } from 'react';
+import { FC, useEffect, useState, useRef  } from 'react';
 import { Backend } from "../backend";
 import { call } from '@decky/api';
 
-export const LogRouter: VFC<{ backend: Backend }> = ({ backend }) => {
+export const LogRouter: FC<{ backend: Backend }> = ({ backend }) => {
 
     const [logValue, setLogValue] = useState<string>()
 

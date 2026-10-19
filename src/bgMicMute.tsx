@@ -73,7 +73,6 @@ export const MicrophoneMute: FC = () => {
 
 let micId = -1;
 let micSavedVolume = -1;
-let volume_register: any;
 
 export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) => {
     const [visible, setVisible] = useState(false);
@@ -84,7 +83,7 @@ export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) 
 
         backend.logDebug("MicMute: RegisterForDeviceVolumeChanged");
         // Mic changes
-        volume_register = SteamClient.System.Audio.RegisterForDeviceVolumeChanged(
+        const volumeRegister = SteamClient.System.Audio.RegisterForDeviceVolumeChanged(
             (audioDeviceId: number, audioType: number, volume: number) => {
                 if (audioDeviceId === micId && audioType === 0 && volume !== 0) {
                     micId = -1;
@@ -96,6 +95,7 @@ export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) 
         );
 
         return () => {
+            volumeRegister.unregister();
             input.offShortcutPressed(onShortcutPressed);
             input.unregister();
         };

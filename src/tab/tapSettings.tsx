@@ -7,8 +7,7 @@ import {
     Menu,
     MenuItem,
     showContextMenu,
-    ToggleField,
-    staticClasses
+    ToggleField
 } from "@decky/ui";
 import { FC, useEffect, useState } from 'react';
 import i18next, { t } from 'i18next';
