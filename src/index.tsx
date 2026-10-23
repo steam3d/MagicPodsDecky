@@ -2,7 +2,8 @@ import {
   definePlugin,
   staticClasses,
   Tabs,
-  DialogButton
+  DialogButton,
+  Focusable
 } from "@decky/ui";
 import {
   call,
@@ -28,6 +29,25 @@ import { ConversationAwarenessVolume } from "./bgCA";
 import { BackgroundBatteryIcon } from "./bgBatteryIcon";
 import { TabDebug } from "./tab/tabDebug";
 import { Input } from "./input";
+import { MagicPodsAppButton } from "./components/steamAppButton";
+
+const MagicPodsTitle: FC = () => (
+  <Focusable style={{ flex: "auto" }}>
+    <Focusable
+      className={staticClasses.Title}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        flex: "auto",
+        padding: 0,
+        boxShadow: "none",
+      }}
+    >
+      <div style={{ marginRight: "auto" }}>MagicPods</div>
+      <MagicPodsAppButton />
+    </Focusable>
+  </Focusable>
+);
 
 const Content: FC<{ backend: Backend; batteryIcon: BackgroundBatteryIcon; }> = ({ backend, batteryIcon }) => {
   useEffect(() => {
@@ -297,7 +317,9 @@ export default definePlugin(() => {
   backend.logInfo("Plugin: Loaded");
 
   return {
-    title: <div className={staticClasses.Title}>MagicPods</div>,
+    name: "MagicPods",
+    title: <></>,
+    titleView: <MagicPodsTitle />,
     content: <Content backend={backend} batteryIcon={batteryIcon} />,
     icon: <LogoIcon />,
     onDismount() {
