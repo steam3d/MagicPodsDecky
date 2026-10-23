@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "Niet wijzigen",
         "capabilities_aap_cycle_modes_hint": "Selecteer ten minste twee modi of wis alle selecties om de instelling ongewijzigd te laten.",
         "capabilities_aap_optimized_charge_label": "Geoptimaliseerde oplaadlimiet",
+        "capabilities_aap_conversation_awareness_volume_label": "Volume verlagen tijdens het praten",
+        "capabilities_cmn_ear_detection_pause_media_label": "Pauzeren bij afnemen van één oor",
+        "capabilities_cmn_ear_detection_lower_volume_label": "Volume verlagen bij afnemen van één oor",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "Overschakelen naar luidspreker bij volledig afnemen",
+        "capabilities_cmn_volume_reduction_off_label": "Uit",
         "capabilities_aap_sleep_detection_label": "Pauzeren bij inslapen"
     }
 }

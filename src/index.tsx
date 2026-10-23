@@ -25,7 +25,6 @@ import { Backend, BackendSocketState } from "./backend";
 import { LogoIcon } from "./icons";
 import { LogRouter } from "./pages/log";
 import { BackgroundMicrophoneMute } from "./bgMicMute";
-import { ConversationAwarenessVolume } from "./bgCA";
 import { BackgroundBatteryIcon } from "./bgBatteryIcon";
 import { TabDebug } from "./tab/tabDebug";
 import { Input } from "./input";
@@ -232,7 +231,6 @@ export default definePlugin(() => {
 
   let AllowLowBatteryNotification = true;
   let latestBatteryMessage = 0;
-  const volumeCA = new ConversationAwarenessVolume();
 
   const onConnectionChanged = (state: BackendSocketState) => {
     if (state === BackendSocketState.ERROR) {
@@ -262,8 +260,6 @@ export default definePlugin(() => {
       const lowBatterySettingValue = await backend.loadNumberSetting("notif_low_battery") ?? 0;
       if (batteryMessage === latestBatteryMessage)
         batteryIcon.process(info, lowBatterySettingValue);
-
-      await volumeCA.process(typedJson.info, backend);
 
       if (lowBatterySettingValue <= 0)
         return;
@@ -300,7 +296,6 @@ export default definePlugin(() => {
       backend.logInfo("LowBattNotif: Empty info allow low battery notification");
       AllowLowBatteryNotification = true;
       batteryIcon.reset();
-      volumeCA.reset();
     }
   }
 

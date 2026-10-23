@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "Ne módosítsa",
         "capabilities_aap_cycle_modes_hint": "Válasszon legalább két módot, vagy törölje az összes kijelölést, hogy a beállítás változatlan maradjon.",
         "capabilities_aap_optimized_charge_label": "Optimalizált töltési korlát",
+        "capabilities_aap_conversation_awareness_volume_label": "Hangerő csökkentése beszéd közben",
+        "capabilities_cmn_ear_detection_pause_media_label": "Szüneteltetés az egyik fülről levételkor",
+        "capabilities_cmn_ear_detection_lower_volume_label": "Hangerő csökkentése az egyik fülről levételkor",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "Váltás hangszóróra teljes levételkor",
+        "capabilities_cmn_volume_reduction_off_label": "Ki",
         "capabilities_aap_sleep_detection_label": "Szüneteltetés elalváskor"
     }
 }

@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "Älä muuta",
         "capabilities_aap_cycle_modes_hint": "Valitse vähintään kaksi tilaa tai poista kaikki valinnat, jotta asetus säilyy ennallaan.",
         "capabilities_aap_optimized_charge_label": "Optimoitu latausraja",
+        "capabilities_aap_conversation_awareness_volume_label": "Laske äänenvoimakkuutta puhuessa",
+        "capabilities_cmn_ear_detection_pause_media_label": "Keskeytä, kun kuuloke poistetaan korvalta",
+        "capabilities_cmn_ear_detection_lower_volume_label": "Laske äänenvoimakkuutta, kun kuuloke poistetaan korvalta",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "Vaihda kaiuttimeen, kun kuulokkeet poistetaan kokonaan",
+        "capabilities_cmn_volume_reduction_off_label": "Pois",
         "capabilities_aap_sleep_detection_label": "Tauko nukahtaessa"
     }
 }

@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "Skift ikke",
         "capabilities_aap_cycle_modes_hint": "Vælg mindst to tilstande, eller fjern alle markeringer for at lade indstillingen være uændret.",
         "capabilities_aap_optimized_charge_label": "Optimeret opladningsgrænse",
+        "capabilities_aap_conversation_awareness_volume_label": "Sænk lydstyrken, når du taler",
+        "capabilities_cmn_ear_detection_pause_media_label": "Sæt på pause, når de tages af det ene øre",
+        "capabilities_cmn_ear_detection_lower_volume_label": "Sænk lydstyrken, når de tages af det ene øre",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "Skift til højttaler, når de tages helt af",
+        "capabilities_cmn_volume_reduction_off_label": "Fra",
         "capabilities_aap_sleep_detection_label": "Pause ved indsovning"
     }
 }

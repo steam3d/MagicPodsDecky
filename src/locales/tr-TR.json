@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "Değiştirme",
         "capabilities_aap_cycle_modes_hint": "En az iki mod seçin veya ayarı değiştirmeden bırakmak için tüm seçimleri kaldırın.",
         "capabilities_aap_optimized_charge_label": "İyileştirilmiş Şarj Sınırı",
+        "capabilities_aap_conversation_awareness_volume_label": "Konuşurken sesi azalt",
+        "capabilities_cmn_ear_detection_pause_media_label": "Bir kulaktan çıkarıldığında duraklat",
+        "capabilities_cmn_ear_detection_lower_volume_label": "Bir kulaktan çıkarıldığında sesi azalt",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "Tamamen çıkarıldığında hoparlöre geç",
+        "capabilities_cmn_volume_reduction_off_label": "Kapalı",
         "capabilities_aap_sleep_detection_label": "Uykuya Dalınca Duraklat"
     }
 }

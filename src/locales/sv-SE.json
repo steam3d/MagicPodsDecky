@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "Ändra inte",
         "capabilities_aap_cycle_modes_hint": "Välj minst två lägen eller avmarkera alla för att lämna inställningen oförändrad.",
         "capabilities_aap_optimized_charge_label": "Optimerad laddningsgräns",
+        "capabilities_aap_conversation_awareness_volume_label": "Sänk volymen när du pratar",
+        "capabilities_cmn_ear_detection_pause_media_label": "Pausa när de tas bort från ena örat",
+        "capabilities_cmn_ear_detection_lower_volume_label": "Sänk volymen när de tas bort från ena örat",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "Växla till högtalaren när de tas bort helt",
+        "capabilities_cmn_volume_reduction_off_label": "Av",
         "capabilities_aap_sleep_detection_label": "Pausa vid insomning"
     }
 }

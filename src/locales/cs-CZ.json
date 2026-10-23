@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "Neměnit",
         "capabilities_aap_cycle_modes_hint": "Vyberte alespoň dva režimy nebo zrušte výběr všech, aby nastavení zůstalo beze změny.",
         "capabilities_aap_optimized_charge_label": "Optimalizovaný limit nabíjení",
+        "capabilities_aap_conversation_awareness_volume_label": "Snížit hlasitost při mluvení",
+        "capabilities_cmn_ear_detection_pause_media_label": "Pozastavit při sejmutí z jednoho ucha",
+        "capabilities_cmn_ear_detection_lower_volume_label": "Snížit hlasitost při sejmutí z jednoho ucha",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "Přepnout na reproduktor při úplném sejmutí",
+        "capabilities_cmn_volume_reduction_off_label": "Vyp.",
         "capabilities_aap_sleep_detection_label": "Pozastavit při usínání"
     }
 }

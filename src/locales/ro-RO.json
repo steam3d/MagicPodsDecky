@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "Nu modifica",
         "capabilities_aap_cycle_modes_hint": "Selectați cel puțin două moduri sau deselectați-le pe toate pentru a păstra setarea neschimbată.",
         "capabilities_aap_optimized_charge_label": "Limită de încărcare optimizată",
+        "capabilities_aap_conversation_awareness_volume_label": "Redu volumul când vorbești",
+        "capabilities_cmn_ear_detection_pause_media_label": "Pauză la îndepărtarea de pe o ureche",
+        "capabilities_cmn_ear_detection_lower_volume_label": "Reducerea volumului la îndepărtarea de pe o ureche",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "Comutare la difuzor la îndepărtarea completă",
+        "capabilities_cmn_volume_reduction_off_label": "Oprit",
         "capabilities_aap_sleep_detection_label": "Pauză la adormire"
     }
 }

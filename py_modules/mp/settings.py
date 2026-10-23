@@ -54,6 +54,7 @@ class Settings():
         elif key == "log_level":
             return branch.get(key, 50)
         elif key == "conversation_awareness_volume":
+            # Deprecated: conversation awareness volume is now managed by MagicPodsCore.
             return branch.get(key, 70)
         elif key == "header_battery_icon":
             return branch.get(key, True)

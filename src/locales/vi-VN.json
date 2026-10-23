@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "Không thay đổi",
         "capabilities_aap_cycle_modes_hint": "Chọn ít nhất hai chế độ hoặc bỏ chọn tất cả để giữ nguyên cài đặt.",
         "capabilities_aap_optimized_charge_label": "Giới hạn sạc được tối ưu hóa",
+        "capabilities_aap_conversation_awareness_volume_label": "Giảm âm lượng khi nói",
+        "capabilities_cmn_ear_detection_pause_media_label": "Tạm dừng khi tháo khỏi một bên tai",
+        "capabilities_cmn_ear_detection_lower_volume_label": "Giảm âm lượng khi tháo khỏi một bên tai",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "Chuyển sang loa khi tháo hoàn toàn",
+        "capabilities_cmn_volume_reduction_off_label": "Tắt",
         "capabilities_aap_sleep_detection_label": "Tạm dừng khi ngủ"
     }
 }

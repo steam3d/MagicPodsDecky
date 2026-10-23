@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "ไม่เปลี่ยนแปลง",
         "capabilities_aap_cycle_modes_hint": "เลือกอย่างน้อยสองโหมด หรือยกเลิกการเลือกทั้งหมดเพื่อไม่เปลี่ยนการตั้งค่า",
         "capabilities_aap_optimized_charge_label": "ขีดจำกัดการชาร์จที่ปรับให้เหมาะสม",
+        "capabilities_aap_conversation_awareness_volume_label": "ลดระดับเสียงขณะพูด",
+        "capabilities_cmn_ear_detection_pause_media_label": "หยุดชั่วคราวเมื่อถอดออกจากหูข้างหนึ่ง",
+        "capabilities_cmn_ear_detection_lower_volume_label": "ลดระดับเสียงเมื่อถอดออกจากหูข้างหนึ่ง",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "สลับไปใช้ลำโพงเมื่อถอดออกทั้งหมด",
+        "capabilities_cmn_volume_reduction_off_label": "ปิด",
         "capabilities_aap_sleep_detection_label": "หยุดชั่วคราวเมื่อหลับ"
     }
 }

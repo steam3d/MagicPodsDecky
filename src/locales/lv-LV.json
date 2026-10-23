@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "Nemainīt",
         "capabilities_aap_cycle_modes_hint": "Atlasiet vismaz divus režīmus vai noņemiet visas atzīmes, lai iestatījums netiktu mainīts.",
         "capabilities_aap_optimized_charge_label": "Optimizēts uzlādes ierobežojums",
+        "capabilities_aap_conversation_awareness_volume_label": "Samazināt skaļumu runāšanas laikā",
+        "capabilities_cmn_ear_detection_pause_media_label": "Pauzēt, noņemot no vienas auss",
+        "capabilities_cmn_ear_detection_lower_volume_label": "Samazināt skaļumu, noņemot no vienas auss",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "Pilnībā noņemot, pārslēgt uz skaļruni",
+        "capabilities_cmn_volume_reduction_off_label": "Izsl.",
         "capabilities_aap_sleep_detection_label": "Pause When Asleep"
     }
 }

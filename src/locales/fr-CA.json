@@ -15,6 +15,11 @@
         "capabilities_aap_cycle_modes_do_not_change": "Ne pas modifier",
         "capabilities_aap_cycle_modes_hint": "Sélectionnez au moins deux modes, ou désélectionnez-les tous pour ne pas modifier le réglage.",
         "capabilities_aap_optimized_charge_label": "Limite de charge optimale",
+        "capabilities_aap_conversation_awareness_volume_label": "Baisser le volume lorsque vous parlez",
+        "capabilities_cmn_ear_detection_pause_media_label": "Mettre en pause en retirant d’une oreille",
+        "capabilities_cmn_ear_detection_lower_volume_label": "Baisser le volume en retirant d’une oreille",
+        "capabilities_cmn_ear_detection_switch_to_speaker_label": "Passer au haut-parleur après retrait complet",
+        "capabilities_cmn_volume_reduction_off_label": "Désact.",
         "capabilities_aap_sleep_detection_label": "Pause à l’endormissement"
     }
 }
