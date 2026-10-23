@@ -109,6 +109,15 @@ interface CustomEqCapabilityProps {
   readonly: boolean
 }
 
+interface EarDetectionSelectedProps {
+  pauseMedia: boolean
+}
+
+interface EarDetectionCapabilityProps {
+  selected: EarDetectionSelectedProps,
+  readonly: boolean
+}
+
 interface CapabilitiesProps {
   anc?: AncProps;
   battery?: BatteryProps;
@@ -129,7 +138,7 @@ interface CapabilitiesProps {
   adaptiveAudioNoise?: NumberCapabilityProps;
   bluetoothCodec?: StringCapabilityProps;
   highResolutionMicrophone?: BooleanCapabilityProps;
-  earDetection?: BooleanCapabilityProps;
+  earDetection?: EarDetectionCapabilityProps;
   customEq?: CustomEqCapabilityProps;
   optimizedCharge?: BooleanCapabilityProps;
   sleepDetection?: BooleanCapabilityProps;
@@ -330,6 +339,20 @@ export const TabInfo: FC<{
     if (address) {
       backend.logInfo(`Send set ${key} to`, value);
       backend.setCapability(key, address, value);
+    }
+  }
+
+  const handleEarDetectionChange = (pauseMedia: boolean) => {
+    const capability = info?.capabilities?.earDetection;
+    if (capability == null) return;
+
+    const selected = { ...capability.selected, pauseMedia };
+    commonUpdateInfo("earDetection", selected);
+
+    const address = info?.address;
+    if (address) {
+      backend.logInfo("Send set earDetection to", selected);
+      backend.setCapability("earDetection", address, selected);
     }
   }
 
@@ -591,8 +614,11 @@ export const TabInfo: FC<{
 
                 {info?.capabilities?.earDetection != null &&
                   <PanelSectionRow>
-                    <ToggleField checked={info.capabilities.earDetection.selected} label={t("capabilities_cmn_ear_detection_label")}
-                      onChange={(b) => { handleBooleanCapabilityChange("earDetection", b); }} />
+                    <ToggleField
+                      checked={info.capabilities.earDetection.selected.pauseMedia}
+                      disabled={info.capabilities.earDetection.readonly}
+                      label={t("capabilities_cmn_ear_detection_label")}
+                      onChange={(b) => { handleEarDetectionChange(b); }} />
                   </PanelSectionRow>
                 }
 
