@@ -50,14 +50,14 @@ Customize your AirPods and Beats without ever needing an iPhone.
 
 - Conversation Awareness - Automatically lower audio volume when you start speaking.
 - Personalized Volume - Enable or disable personalized volume adjustments.
-- Ear Detection - Automatically pause and resume playback when removing or wearing your earbuds.
+- Ear Detection - Automatically pause playback, lower volume when you remove your earbuds.
 - Audio Output Switching - Automatically switch between headphones and Steam Deck speakers when supported.
 
 ### Noise Control
 
 - Adaptive Audio - Adjust how much outside noise you hear.
 - Noise Cancellation with One AirPod - Enable noise cancellation while wearing a single AirPod.
-- Custom Noise Control Modes - Choose which modes are available when switching directly from your headphones.
+- Earbud Noise Control Modes - Choose which modes are available when switching directly from your headphones.
 - Off Listening Mode - Enable or disable the Off listening mode on compatible AirPods.
 
 ### Controls & Gestures
