@@ -15,7 +15,7 @@ export const enum BackendSocketState {
 
 export class Backend {
     static readonly maxAttempts = -1;
-    static readonly supportedApiVersion = 0;
+    static readonly supportedApiVersion = 1;
     private logLevel = 0;
 
     bgAncSwitch: BackgroundAncSwitch;
