@@ -70,12 +70,12 @@ const normalizeBatteryLevel = (battery: number): number => {
     return Number.isFinite(battery) ? Math.max(0, Math.min(100, battery)) / 100 : 0;
 };
 
-// Native Battery applies style props to its SVG, so size its outer wrapper here.
 const batteryStyles = `
 [data-magicpods-header-battery-icon] .magicpods-header-battery-indicator {
     width: 20px;
     min-width: unset;
 }
+
 [data-magicpods-header-battery-icon] .magicpods-header-battery-indicator-right {
     left: 19.5px;
 }
@@ -84,6 +84,10 @@ const batteryStyles = `
     transform-box: fill-box;
     transform-origin: center;
     rotate: 90deg;
+}
+
+[data-magicpods-header-battery-icon] .magicpods-header-battery-indicator-normal > svg > g > svg > rect {
+    fill: #1B9EFA;
 }
 `;
 
@@ -104,7 +108,7 @@ export const HeaderBatteryIcon = ({ readings, fallback }: HeaderBatteryIconProps
             {readings.map((reading, index) => (
                 <Battery
                     key={index}
-                    className={`${classes.ControllerBatteryIndicator} magicpods-header-battery-indicator${index === 1 ? " magicpods-header-battery-indicator-right" : ""}`}
+                    className={`${classes.ControllerBatteryIndicator} magicpods-header-battery-indicator${index === 1 ? " magicpods-header-battery-indicator-right" : ""}${!reading.low ? " magicpods-header-battery-indicator-normal" : ""}${reading.charging ? " magicpods-header-battery-indicator-charging" : ""}`}
                     acState={reading.charging ? 2 : 1}
                     batteryLevel={normalizeBatteryLevel(reading.battery)}
                     batteryCriticalThreshold={reading.low ? 1 : -1}
