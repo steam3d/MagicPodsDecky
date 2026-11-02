@@ -79,6 +79,12 @@ const batteryStyles = `
 [data-magicpods-header-battery-icon] .magicpods-header-battery-indicator-right {
     left: 19.5px;
 }
+
+[data-magicpods-header-battery-icon] .magicpods-header-battery-indicator-charging > svg > g > path:last-child {
+    transform-box: fill-box;
+    transform-origin: center;
+    rotate: 90deg;
+}
 `;
 
 export const HeaderBatteryIcon = ({ readings, fallback }: HeaderBatteryIconProps) => {
