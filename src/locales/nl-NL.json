@@ -25,6 +25,6 @@
         "autoswitch_enable_label": "Automatisch schakelen inschakelen",
         "autoswitch_takeover_label": "Audio terugnemen wanneer deze Deck begint met afspelen",
         "autoswitch_lock_label": "Audiofocus vergrendelen tijdens het gamen",
-        "autoswitch_idle_label": "Back-out-wachttijd bij inactiviteit voordat audio terugkeert"
+        "autoswitch_idle_label": "Back-upwachttijd bij inactiviteit voordat audio wordt teruggegeven"
     }
 }

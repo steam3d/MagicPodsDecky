@@ -24,7 +24,7 @@
         "autoswitch_header": "Automaattinen vaihto",
         "autoswitch_enable_label": "Ota automaattinen vaihto käyttöön",
         "autoswitch_takeover_label": "Ota ääni takaisin, kun Deck alkaa toistaa",
-        "autoswitch_lock_label": "Lukitse äänen keskitys pelattaessa",
-        "autoswitch_idle_label": "Varama odotus hiljaisuudesta ennen äänen palauttamista"
+        "autoswitch_lock_label": "Lukitse äänen hallinta pelatessa",
+        "autoswitch_idle_label": "Turvaviive äänettömyydelle ennen äänen palauttamista"
     }
 }

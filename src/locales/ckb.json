@@ -32,8 +32,8 @@
         "settings_auto_select_tab_description": "لە کاتی کردنەوەی پڵەگینەکە، ئەگەر گوێگرەکان پەیوەست نەبن بڕۆ بۆ تابی «گوێگرەکان».",
         "autoswitch_header": "گۆڕانکاری خۆکار",
         "autoswitch_enable_label": "چالاککردنی گۆڕانکاری خۆکار",
-        "autoswitch_takeover_label": "وەرگرتنەوەی دەنگ کاتێک ئەم Deck دەست بە لێدان دەکات",
-        "autoswitch_lock_label": "قوفڵکردنی تیشکی دەنگ لەکاتی یاریکردندا",
-        "autoswitch_idle_label": "چاوەڕوانی یەدەگی بێچوونە پێش گەڕاندنەوەی دەنگ"
+        "autoswitch_takeover_label": "وەرگرتنەوەی دەنگ کاتێک ئەم Deck دەست بە لێدانی دەنگ دەکات",
+        "autoswitch_lock_label": "دەنگ لەکاتی یاریکردندا بەم Deckـە قوفڵ بکە",
+        "autoswitch_idle_label": "ماوەی چاوەڕوانی بێکاری پێش گەڕاندنەوەی دەنگ (یەدەگ)"
     }
 }
