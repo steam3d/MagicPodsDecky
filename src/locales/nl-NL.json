@@ -22,9 +22,9 @@
         "capabilities_cmn_volume_reduction_off_label": "Uit",
         "capabilities_aap_sleep_detection_label": "Pauzeren bij inslapen",
         "autoswitch_header": "Automatisch schakelen",
-        "autoswitch_enable_label": "Automatisch schakelen inschakelen",
+        "autoswitch_enable_label": "Automatische schakelfunctie inschakelen",
         "autoswitch_takeover_label": "Audio terugnemen wanneer deze Deck begint met afspelen",
         "autoswitch_lock_label": "Audiofocus vergrendelen tijdens het gamen",
-        "autoswitch_idle_label": "Back-upwachttijd bij inactiviteit voordat audio wordt teruggegeven"
+        "autoswitch_idle_label": "Reserve-wachttijd bij inactiviteit voordat audio wordt teruggegeven"
     }
 }

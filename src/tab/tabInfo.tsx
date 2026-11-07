@@ -710,7 +710,6 @@ export const TabInfo: FC<{
                   </div>
                 </Focusable>
 
-
                 {info?.capabilities?.bluetoothCodec != null && (
                   <>
                     <PanelSectionRow>
