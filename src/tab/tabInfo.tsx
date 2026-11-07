@@ -161,6 +161,9 @@ export interface headphoneInfoProps {
   name: string;
   address: string;
   connected: boolean;
+  // The core reports the model family per device (vendor 117 = Samsung = Galaxy Buds).
+  model?: number;
+  vendor?: number;
 
   capabilities: CapabilitiesProps;
 }
@@ -325,6 +328,37 @@ export const TabInfo: FC<{
   const [config, setConfig] = useState<Awaited<ReturnType<typeof getAncSliderConfig>> | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [lowBatteryThreshold, setLowBatteryThreshold] = useState<number>(0);
+  // Auto Switch (Samsung's multipoint handover feature; the core's "auto_switch" TOML
+  // container). Shown only
+  // for Galaxy Buds (vendor 117): the SMEP multipoint machinery behind it is a Galaxy
+  // firmware feature, and the policy only runs on the GalaxyBuds device in the core.
+  const [autoSwitchOn, setAutoSwitchOn] = useState<boolean | null>(null);
+  const [autoSwitchTakeover, setAutoSwitchTakeover] = useState<boolean>(true);
+  const [autoSwitchLock, setAutoSwitchLock] = useState<boolean>(false);
+  const [autoSwitchIdle, setAutoSwitchIdle] = useState<number>(5);
+
+  useEffect(() => {
+    if (info?.vendor !== 117)
+      return;
+    const onCoreSettings = (json: any) => {
+      const autoSwitch = json?.settings?.auto_switch;
+      if (!autoSwitch)
+        return;
+      if (typeof autoSwitch.enabled === "boolean")
+        setAutoSwitchOn(autoSwitch.enabled);
+      if (typeof autoSwitch.takeover === "boolean")
+        setAutoSwitchTakeover(autoSwitch.takeover);
+      if (typeof autoSwitch.focus_lock === "boolean")
+        setAutoSwitchLock(autoSwitch.focus_lock);
+      if (typeof autoSwitch.idle_timeout_sec === "number")
+        setAutoSwitchIdle(autoSwitch.idle_timeout_sec);
+    };
+    backend.onJsonMessageReceived(onCoreSettings);
+    backend.getSettings("auto_switch");
+    return () => {
+      backend.offJsonMessageReceived(onCoreSettings);
+    };
+  }, [backend, info?.vendor]);
 
 
   const timeoutIds = useRef<Record<string, NodeJS.Timeout>>({});
@@ -604,6 +638,60 @@ export const TabInfo: FC<{
                     <InformationIcon />
                   </div>
                 </Focusable>
+
+                {info?.vendor === 117 && autoSwitchOn !== null && (
+                  <>
+                    <div className={staticClasses.PanelSectionTitle} style={{ paddingTop: "16px" }}>
+                      {t("autoswitch_header")}
+                    </div>
+                    <PanelSectionRow>
+                      <ToggleField
+                        checked={autoSwitchOn}
+                        label={t("autoswitch_enable_label")}
+                        onChange={(b) => {
+                          setAutoSwitchOn(b);
+                          backend.setSetting("auto_switch", "enabled", b);
+                        }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                      <ToggleField
+                        checked={autoSwitchTakeover}
+                        label={t("autoswitch_takeover_label")}
+                        onChange={(b) => {
+                          setAutoSwitchTakeover(b);
+                          backend.setSetting("auto_switch", "takeover", b);
+                        }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                      <ToggleField
+                        checked={autoSwitchLock}
+                        label={t("autoswitch_lock_label")}
+                        onChange={(b) => {
+                          setAutoSwitchLock(b);
+                          backend.setSetting("auto_switch", "focus_lock", b);
+                        }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                      <SliderField
+                        value={autoSwitchIdle}
+                        max={30}
+                        min={3}
+                        step={1}
+                        label={t("autoswitch_idle_label")}
+                        notchTicksVisible={false}
+                        showValue={true}
+                        valueSuffix="s"
+                        onChange={(n) => {
+                          setAutoSwitchIdle(n);
+                          if (timeoutIds.current.autoSwitchIdle)
+                            clearTimeout(timeoutIds.current.autoSwitchIdle);
+                          timeoutIds.current.autoSwitchIdle = setTimeout(() => {
+                            backend.setSetting("auto_switch", "idle_timeout_sec", n);
+                          }, 350);
+                        }} />
+                    </PanelSectionRow>
+                  </>
+                )}
 
                 {info?.capabilities?.bluetoothCodec != null && (
                   <>

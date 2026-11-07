@@ -20,6 +20,11 @@
         "capabilities_cmn_ear_detection_lower_volume_label": "Bir kulaktan çıkarıldığında sesi azalt",
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "Tamamen çıkarıldığında hoparlöre geç",
         "capabilities_cmn_volume_reduction_off_label": "Kapalı",
-        "capabilities_aap_sleep_detection_label": "Uykuya Dalınca Duraklat"
+        "capabilities_aap_sleep_detection_label": "Uykuya Dalınca Duraklat",
+        "autoswitch_header": "Otomatik geçiş",
+        "autoswitch_enable_label": "Otomatik geçişi etkinleştir",
+        "autoswitch_takeover_label": "Bu Deck oynatmaya başladığında sesi geri al",
+        "autoswitch_lock_label": "Oyun sırasında ses odağını kilitle",
+        "autoswitch_idle_label": "Ses geri gelmeden önceki yedek boşta bekleme süresi"
     }
 }

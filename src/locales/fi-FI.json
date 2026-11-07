@@ -20,6 +20,11 @@
         "capabilities_cmn_ear_detection_lower_volume_label": "Laske äänenvoimakkuutta, kun kuuloke poistetaan korvalta",
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "Vaihda kaiuttimeen, kun kuulokkeet poistetaan kokonaan",
         "capabilities_cmn_volume_reduction_off_label": "Pois",
-        "capabilities_aap_sleep_detection_label": "Tauko nukahtaessa"
+        "capabilities_aap_sleep_detection_label": "Tauko nukahtaessa",
+        "autoswitch_header": "Automaattinen vaihto",
+        "autoswitch_enable_label": "Ota automaattinen vaihto käyttöön",
+        "autoswitch_takeover_label": "Ota ääni takaisin, kun Deck alkaa toistaa",
+        "autoswitch_lock_label": "Lukitse äänen keskitys pelattaessa",
+        "autoswitch_idle_label": "Varama odotus hiljaisuudesta ennen äänen palauttamista"
     }
 }
