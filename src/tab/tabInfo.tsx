@@ -157,15 +157,17 @@ interface CapabilitiesProps {
   sleepDetection?: BooleanCapabilityProps;
 }
 
-const VENDOR_SAMSUNG = 117;
-
 export interface headphoneInfoProps {
   name: string;
   address: string;
   connected: boolean;
-  // The core reports the model family per device (vendor 117 = Samsung = Galaxy Buds).
+  // The core reports the model family per device.
   model?: number;
   vendor?: number;
+  // True only for the Galaxy Buds models whose firmware carries the SMEP
+  // simultaneous-multipoint plane Auto Switch needs (Buds2 Pro and later on the
+  // vendor's multipoint line). The core gates its own policy on the same capability.
+  smepMultipoint?: boolean;
 
   capabilities: CapabilitiesProps;
 }
@@ -330,17 +332,16 @@ export const TabInfo: FC<{
   const [config, setConfig] = useState<Awaited<ReturnType<typeof getAncSliderConfig>> | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [lowBatteryThreshold, setLowBatteryThreshold] = useState<number>(0);
-  // Auto Switch (Samsung's multipoint handover feature; the core's "auto_switch" TOML
-  // container). Shown only for Galaxy Buds (VENDOR_SAMSUNG): the SMEP multipoint
-  // machinery behind it is a Galaxy firmware feature, and the policy only runs on the
-  // GalaxyBuds device in the core.
+  // Auto Switch (the core's "auto_switch" TOML container). Shown only on devices whose
+  // model carries the SMEP simultaneous-multipoint plane (core-reported smepMultipoint):
+  // not every Samsung earbud has it - the Buds2/Buds FE generation hardware does not.
   const [autoSwitchOn, setAutoSwitchOn] = useState<boolean | null>(null);
   const [autoSwitchTakeover, setAutoSwitchTakeover] = useState<boolean>(true);
   const [autoSwitchLock, setAutoSwitchLock] = useState<boolean>(false);
   const [autoSwitchIdle, setAutoSwitchIdle] = useState<number>(5);
 
   useEffect(() => {
-    if (info?.vendor !== VENDOR_SAMSUNG)
+    if (info?.smepMultipoint !== true)
       return;
     const onCoreSettings = (json: any) => {
       const autoSwitch = json?.settings?.auto_switch;
@@ -360,7 +361,7 @@ export const TabInfo: FC<{
     return () => {
       backend.offJsonMessageReceived(onCoreSettings);
     };
-  }, [backend, info?.vendor]);
+  }, [backend, info?.smepMultipoint]);
 
 
   const timeoutIds = useRef<Record<string, NodeJS.Timeout>>({});
@@ -635,7 +636,7 @@ export const TabInfo: FC<{
             {/* Auto Switch owns its section: the SMEP link is not a GMA capability, and
                 a Galaxy Buds model without the extra capabilities must not lose these
                 controls (that is why this does not live inside the capabilities block). */}
-            {loaded == true && info?.vendor === VENDOR_SAMSUNG && autoSwitchOn !== null && (
+            {loaded == true && info?.smepMultipoint === true && autoSwitchOn !== null && (
               <>
                 <div className={staticClasses.PanelSectionTitle} style={{ paddingTop: "16px" }}>
                   {t("autoswitch_header")}
