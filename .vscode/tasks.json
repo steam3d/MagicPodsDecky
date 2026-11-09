@@ -52,9 +52,14 @@
         //BUILD TASKS
         {
             "label": "cli-build",
+            "type": "process",
             "group": "build",
             "detail": "Build plugin with CLI",
             "command": "${workspaceFolder}/.vscode/build.sh",
+            "args": [
+                "${config:pluginname}",
+                "${config:pluginzipname}"
+            ],
             // // placeholder for windows logic, not currently planned
             // "windows": {
             //     "command": "call ${workspaceFolder}\\.vscode\\build.bat",
@@ -104,7 +109,7 @@
             "detail": "",
             "type": "shell",
             "group": "none",
-            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginname}.zip' && ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S mkdir -m 755 -p \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" && echo ${config:deckpass} | sudo -S chown ${config:deckuser}:${config:deckuser} \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" && echo ${config:deckpass} | sudo -S bsdtar -xzpf \"${config:deckdir}/homebrew/plugins/${config:pluginname}.zip\" -C \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" --strip-components=1 --fflags '",
+            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginzipname}.zip' && ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S mkdir -m 755 -p \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" && echo ${config:deckpass} | sudo -S chown ${config:deckuser}:${config:deckuser} \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" && echo ${config:deckpass} | sudo -S bsdtar -xzpf \"${config:deckdir}/homebrew/plugins/${config:pluginzipname}.zip\" -C \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" --strip-components=1 --fflags '",
             "problemMatcher": []
         },
         {
@@ -112,7 +117,7 @@
             "detail": "Remove plugin zip from deck",
             "type": "shell",
             "group": "none",
-            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginname}.zip' && ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S rm -f \"${config:deckdir}/homebrew/plugins/${config:pluginname}.zip\"'",
+            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginzipname}.zip' && ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S rm -f \"${config:deckdir}/homebrew/plugins/${config:pluginzipname}.zip\"'",
             "problemMatcher": []
         },
         {
@@ -140,6 +145,7 @@
                 "copyzip",
                 "movetoplugins",
                 "extractzip",
+                "removezip",
                 "restoreperms"
             ],
             "problemMatcher": []

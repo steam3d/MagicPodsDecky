@@ -6,6 +6,7 @@
     "deckkey"   : "-i ${env:HOME}/.ssh/id_rsa",
     "deckdir"   : "/home/deck",
     "pluginname": "Example Plugin",
+    "pluginzipname": "Example Plugin",
     "python.analysis.extraPaths": [
         "./py_modules"
     ]
