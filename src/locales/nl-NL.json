@@ -20,6 +20,11 @@
         "capabilities_cmn_ear_detection_lower_volume_label": "Volume verlagen bij afnemen van één oor",
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "Overschakelen naar luidspreker bij volledig afnemen",
         "capabilities_cmn_volume_reduction_off_label": "Uit",
-        "capabilities_aap_sleep_detection_label": "Pauzeren bij inslapen"
+        "capabilities_aap_sleep_detection_label": "Pauzeren bij inslapen",
+        "capabilities_sgb_auto_switch_label": "Automatisch schakelen",
+        "capabilities_sgb_auto_switch_enable_label": "Automatische schakelfunctie inschakelen",
+        "capabilities_sgb_auto_switch_takeover_label": "Audio terugnemen wanneer deze Deck begint met afspelen",
+        "capabilities_sgb_auto_switch_focus_lock_label": "Audiofocus vergrendelen tijdens het gamen",
+        "capabilities_sgb_auto_switch_idle_timeout_label": "Reserve-wachttijd bij inactiviteit voordat audio wordt teruggegeven"
     }
 }

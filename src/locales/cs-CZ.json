@@ -20,6 +20,11 @@
         "capabilities_cmn_ear_detection_lower_volume_label": "Snížit hlasitost při sejmutí z jednoho ucha",
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "Přepnout na reproduktor při úplném sejmutí",
         "capabilities_cmn_volume_reduction_off_label": "Vyp.",
-        "capabilities_aap_sleep_detection_label": "Pozastavit při usínání"
+        "capabilities_aap_sleep_detection_label": "Pozastavit při usínání",
+        "capabilities_sgb_auto_switch_label": "Automatické přepínání",
+        "capabilities_sgb_auto_switch_enable_label": "Povolit automatické přepínání",
+        "capabilities_sgb_auto_switch_takeover_label": "Převzít audio zpět, když Deck začne přehrávat",
+        "capabilities_sgb_auto_switch_focus_lock_label": "Při hraní uzamknout audio focus",
+        "capabilities_sgb_auto_switch_idle_timeout_label": "Pojistná doba nečinnosti před návratem audia"
     }
 }

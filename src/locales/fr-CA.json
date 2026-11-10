@@ -20,6 +20,11 @@
         "capabilities_cmn_ear_detection_lower_volume_label": "Baisser le volume en retirant d’une oreille",
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "Passer au haut-parleur après retrait complet",
         "capabilities_cmn_volume_reduction_off_label": "Désact.",
-        "capabilities_aap_sleep_detection_label": "Pause à l’endormissement"
+        "capabilities_aap_sleep_detection_label": "Pause à l’endormissement",
+        "capabilities_sgb_auto_switch_label": "Commutation automatique",
+        "capabilities_sgb_auto_switch_enable_label": "Activer la commutation automatique",
+        "capabilities_sgb_auto_switch_takeover_label": "Récupérer l’audio quand ce Deck commence la lecture",
+        "capabilities_sgb_auto_switch_focus_lock_label": "Verrouiller le focus audio en jeu",
+        "capabilities_sgb_auto_switch_idle_timeout_label": "Délai d’inactivité de repli avant le retour de l’audio"
     }
 }

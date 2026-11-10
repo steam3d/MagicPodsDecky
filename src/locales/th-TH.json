@@ -20,6 +20,11 @@
         "capabilities_cmn_ear_detection_lower_volume_label": "ลดระดับเสียงเมื่อถอดออกจากหูข้างหนึ่ง",
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "สลับไปใช้ลำโพงเมื่อถอดออกทั้งหมด",
         "capabilities_cmn_volume_reduction_off_label": "ปิด",
-        "capabilities_aap_sleep_detection_label": "หยุดชั่วคราวเมื่อหลับ"
+        "capabilities_aap_sleep_detection_label": "หยุดชั่วคราวเมื่อหลับ",
+        "capabilities_sgb_auto_switch_label": "สลับอัตโนมัติ",
+        "capabilities_sgb_auto_switch_enable_label": "เปิดใช้การสลับอัตโนมัติ",
+        "capabilities_sgb_auto_switch_takeover_label": "ดึงเสียงกลับมาเมื่อ Deck นี้เริ่มเล่น",
+        "capabilities_sgb_auto_switch_focus_lock_label": "ล็อกโฟกัสเสียงขณะเล่นเกม",
+        "capabilities_sgb_auto_switch_idle_timeout_label": "เวลารอสำรองก่อนคืนเสียงเมื่อเงียบ"
     }
 }

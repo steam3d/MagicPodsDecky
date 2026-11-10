@@ -29,6 +29,11 @@
         "battery_right": "ڕاست",
         "battery_case": "کەیس",
         "settings_auto_select_tab_label": "هەڵبژاردنی خۆکارانەی تاب",
-        "settings_auto_select_tab_description": "لە کاتی کردنەوەی پڵەگینەکە، ئەگەر گوێگرەکان پەیوەست نەبن بڕۆ بۆ تابی «گوێگرەکان»."
+        "settings_auto_select_tab_description": "لە کاتی کردنەوەی پڵەگینەکە، ئەگەر گوێگرەکان پەیوەست نەبن بڕۆ بۆ تابی «گوێگرەکان».",
+        "capabilities_sgb_auto_switch_label": "گۆڕانکاری خۆکار",
+        "capabilities_sgb_auto_switch_enable_label": "چالاککردنی گۆڕانکاری خۆکار",
+        "capabilities_sgb_auto_switch_takeover_label": "وەرگرتنەوەی دەنگ کاتێک ئەم Deck دەست بە لێدانی دەنگ دەکات",
+        "capabilities_sgb_auto_switch_focus_lock_label": "دەنگ لەکاتی یاریکردندا بەم Deckـە قوفڵ بکە",
+        "capabilities_sgb_auto_switch_idle_timeout_label": "ماوەی چاوەڕوانی بێکاری پێش گەڕاندنەوەی دەنگ (یەدەگ)"
     }
 }

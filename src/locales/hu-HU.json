@@ -20,6 +20,11 @@
         "capabilities_cmn_ear_detection_lower_volume_label": "Hangerő csökkentése az egyik fülről levételkor",
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "Váltás hangszóróra teljes levételkor",
         "capabilities_cmn_volume_reduction_off_label": "Ki",
-        "capabilities_aap_sleep_detection_label": "Szüneteltetés elalváskor"
+        "capabilities_aap_sleep_detection_label": "Szüneteltetés elalváskor",
+        "capabilities_sgb_auto_switch_label": "Automatikus váltás",
+        "capabilities_sgb_auto_switch_enable_label": "Automatikus váltás bekapcsolása",
+        "capabilities_sgb_auto_switch_takeover_label": "Vezessük vissza a hangot, amikor ez a Deck lejátszani kezd",
+        "capabilities_sgb_auto_switch_focus_lock_label": "Hangfókusz rögzítése játék közben",
+        "capabilities_sgb_auto_switch_idle_timeout_label": "Tartalék tétlenségi várakozás a hang visszaadása előtt"
     }
 }

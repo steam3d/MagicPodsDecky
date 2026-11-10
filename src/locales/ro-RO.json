@@ -20,6 +20,11 @@
         "capabilities_cmn_ear_detection_lower_volume_label": "Reducerea volumului la îndepărtarea de pe o ureche",
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "Comutare la difuzor la îndepărtarea completă",
         "capabilities_cmn_volume_reduction_off_label": "Oprit",
-        "capabilities_aap_sleep_detection_label": "Pauză la adormire"
+        "capabilities_aap_sleep_detection_label": "Pauză la adormire",
+        "capabilities_sgb_auto_switch_label": "Comutare automată",
+        "capabilities_sgb_auto_switch_enable_label": "Activare comutare automată",
+        "capabilities_sgb_auto_switch_takeover_label": "Preluă înapoi audio-ul când acest Deck începe redarea",
+        "capabilities_sgb_auto_switch_focus_lock_label": "Blocare focus audio în timpul jocului",
+        "capabilities_sgb_auto_switch_idle_timeout_label": "Așteptare de rezervă la inactivitate înainte de returnarea audio"
     }
 }

@@ -26,6 +26,7 @@ import { LogoIcon } from "./icons";
 import { LogRouter } from "./pages/log";
 import { BackgroundMicrophoneMute } from "./bgMicMute";
 import { BackgroundBatteryIcon } from "./bgBatteryIcon";
+import { BackgroundGamingMode } from "./bgGamingMode";
 //import { TabDebug } from "./tab/tabDebug";
 import { Input } from "./input";
 import { MagicPodsAppButton } from "./components/steamAppButton";
@@ -260,6 +261,7 @@ export default definePlugin(() => {
       const lowBatterySettingValue = await backend.loadNumberSetting("notif_low_battery") ?? 0;
       if (batteryMessage === latestBatteryMessage)
         batteryIcon.process(info, lowBatterySettingValue);
+      gamingMode.process(info);
 
       if (lowBatterySettingValue <= 0)
         return;
@@ -296,11 +298,13 @@ export default definePlugin(() => {
       backend.logInfo("LowBattNotif: Empty info allow low battery notification");
       AllowLowBatteryNotification = true;
       batteryIcon.reset();
+      gamingMode.reset();
     }
   }
 
   const backend = new Backend();
   const batteryIcon = new BackgroundBatteryIcon(backend);
+  const gamingMode = new BackgroundGamingMode(backend);
   const inputSupported = Input.isSupported();
   backend.onSocketConnectionChanged(onConnectionChanged);
   backend.onJsonMessageReceived(onJsonMessageReceived);
@@ -320,6 +324,7 @@ export default definePlugin(() => {
     onDismount() {
       backend.logInfo("Plugin: Dismounting");
       batteryIcon.disable();
+      gamingMode.disable();
       routerHook.removeRoute("/magicpods-log");
       if (inputSupported) {
         routerHook.removeGlobalComponent("BackgroundMicrophoneMute");

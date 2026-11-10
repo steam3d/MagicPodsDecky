@@ -130,9 +130,24 @@ interface ConversationAwarenessCapabilityProps {
   readonly: boolean
 }
 
+interface AutoSwitchSelectedProps {
+  enabled: boolean,
+  takeover: boolean,
+  focusLock: boolean,
+  idleTimeoutSec: number,
+  // Runtime state owned by the plugin-side gaming mode; older Core builds do not report it.
+  focusLockActive: boolean | undefined
+}
+
+interface AutoSwitchCapabilityProps {
+  selected: AutoSwitchSelectedProps,
+  readonly: boolean
+}
+
 interface CapabilitiesProps {
   anc?: AncProps;
   battery?: BatteryProps;
+  autoSwitch?: AutoSwitchCapabilityProps;
   conversationAwareness?: ConversationAwarenessCapabilityProps;
   conversationAwarenessSpeaking?: BooleanCapabilityProps;
   personalizedVolume?: BooleanCapabilityProps;
@@ -326,7 +341,6 @@ export const TabInfo: FC<{
   const [loaded, setLoaded] = useState(false);
   const [lowBatteryThreshold, setLowBatteryThreshold] = useState<number>(0);
 
-
   const timeoutIds = useRef<Record<string, NodeJS.Timeout>>({});
   type CapabilityKey = keyof CapabilitiesProps;
 
@@ -375,6 +389,33 @@ export const TabInfo: FC<{
 
     if (debounce)
       timeoutIds.current.earDetection = setTimeout(send, 350);
+    else
+      send();
+  }
+
+  const handleAutoSwitchChange = (changes: Partial<AutoSwitchSelectedProps>, debounce: boolean = false) => {
+    const capability = info?.capabilities?.autoSwitch;
+    if (capability == null) return;
+
+    const selected = { ...capability.selected, ...changes };
+    commonUpdateInfo("autoSwitch", selected);
+
+    const address = info?.address;
+    if (address == null) return;
+
+    if (timeoutIds.current.autoSwitch)
+      clearTimeout(timeoutIds.current.autoSwitch);
+
+    const send = () => {
+      // focusLockActive is runtime state owned by the gaming mode; the settings UI never writes it.
+      const { focusLockActive, ...persisted } = selected;
+      backend.logInfo("Send set autoSwitch to", persisted);
+      backend.setCapability("autoSwitch", address, persisted);
+      delete timeoutIds.current.autoSwitch;
+    };
+
+    if (debounce)
+      timeoutIds.current.autoSwitch = setTimeout(send, 350);
     else
       send();
   }
@@ -689,6 +730,48 @@ export const TabInfo: FC<{
                     </PanelSectionRow>
                   </>
                 }
+
+                {info?.capabilities?.autoSwitch != null && (
+                  <>
+                    <div className={staticClasses.PanelSectionTitle} style={{ paddingTop: "16px" }}>
+                      {t("capabilities_sgb_auto_switch_label")}
+                    </div>
+                    <PanelSectionRow>
+                      <ToggleField
+                        checked={info.capabilities.autoSwitch.selected.enabled}
+                        disabled={info.capabilities.autoSwitch.readonly}
+                        label={t("capabilities_sgb_auto_switch_enable_label")}
+                        onChange={(b) => { handleAutoSwitchChange({ enabled: b }); }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                      <ToggleField
+                        checked={info.capabilities.autoSwitch.selected.takeover}
+                        disabled={info.capabilities.autoSwitch.readonly}
+                        label={t("capabilities_sgb_auto_switch_takeover_label")}
+                        onChange={(b) => { handleAutoSwitchChange({ takeover: b }); }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                      <ToggleField
+                        checked={info.capabilities.autoSwitch.selected.focusLock}
+                        disabled={info.capabilities.autoSwitch.readonly}
+                        label={t("capabilities_sgb_auto_switch_focus_lock_label")}
+                        onChange={(b) => { handleAutoSwitchChange({ focusLock: b }); }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                      <SliderField
+                        value={info.capabilities.autoSwitch.selected.idleTimeoutSec}
+                        max={30}
+                        min={3}
+                        step={1}
+                        label={t("capabilities_sgb_auto_switch_idle_timeout_label")}
+                        notchTicksVisible={false}
+                        showValue={true}
+                        valueSuffix="s"
+                        disabled={info.capabilities.autoSwitch.readonly}
+                        onChange={(n) => { handleAutoSwitchChange({ idleTimeoutSec: n }, true); }} />
+                    </PanelSectionRow>
+                  </>
+                )}
 
                 {info?.capabilities?.conversationAwareness != null && (
                   <>
