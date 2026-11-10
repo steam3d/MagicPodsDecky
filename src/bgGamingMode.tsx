@@ -10,7 +10,7 @@ export class BackgroundGamingMode {
     private pollTimer: ReturnType<typeof setInterval>;
     private gameRunning = false;
     // The last device info seen on the socket pump; a send needs its address and preference.
-    private lastInfo: { address: string, focusLock: boolean, focusLockActive: boolean } | undefined;
+    private lastInfo: { address: string, focusLock: boolean, focusLockActive: boolean | undefined } | undefined;
     private lastSent: { address: string, value: boolean, at: number } | undefined;
 
     constructor(backend: Backend) {
@@ -34,14 +34,23 @@ export class BackgroundGamingMode {
     }
 
     public reset() {
+        // No active device: nothing to reconcile or send to.
         this.lastInfo = undefined;
         this.lastSent = undefined;
     }
 
     public disable() {
         clearInterval(this.pollTimer);
+        this.releaseIfArmed();
         this.lastInfo = undefined;
         this.lastSent = undefined;
+    }
+
+    // Best-effort release so a plugin that goes away mid-session does not leave the
+    // core-side flag armed with nobody managing it.
+    private releaseIfArmed() {
+        if (this.lastInfo && this.lastInfo.focusLockActive === true)
+            this.backend.setCapability("autoSwitch", this.lastInfo.address, { focusLockActive: false });
     }
 
     private onPoll() {
@@ -58,7 +67,7 @@ export class BackgroundGamingMode {
     // is still in flight, and lets the state resync after a core restart resets the flag.
     private reconcile() {
         const info = this.lastInfo;
-        if (!info)
+        if (!info || info.focusLockActive === undefined)
             return;
         const desired = this.gameRunning && info.focusLock;
         if (desired === info.focusLockActive) {

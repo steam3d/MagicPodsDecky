@@ -135,7 +135,8 @@ interface AutoSwitchSelectedProps {
   takeover: boolean,
   focusLock: boolean,
   idleTimeoutSec: number,
-  focusLockActive: boolean
+  // Runtime state owned by the plugin-side gaming mode; older Core builds do not report it.
+  focusLockActive: boolean | undefined
 }
 
 interface AutoSwitchCapabilityProps {
@@ -406,8 +407,10 @@ export const TabInfo: FC<{
       clearTimeout(timeoutIds.current.autoSwitch);
 
     const send = () => {
-      backend.logInfo("Send set autoSwitch to", selected);
-      backend.setCapability("autoSwitch", address, selected);
+      // focusLockActive is runtime state owned by the gaming mode; the settings UI never writes it.
+      const { focusLockActive, ...persisted } = selected;
+      backend.logInfo("Send set autoSwitch to", persisted);
+      backend.setCapability("autoSwitch", address, persisted);
       delete timeoutIds.current.autoSwitch;
     };
 
