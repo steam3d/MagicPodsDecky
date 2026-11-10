@@ -177,7 +177,7 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                                 showContextMenu(
                                     <Menu label={t("settings_language_menu_label")} cancelText={t("settings_language_menu_canceltext")} onCancel={() => { }}>
                                         {availableLanguages.map((lng) => (
-                                            <MenuItem key={lng.tag} disabled={i18n.resolvedLanguage === lng.tag} onSelected={() => { i18n.changeLanguage(lng.tag); backend.logDebug(i18n.resolvedLanguage); }}>{lng.nativeName}</MenuItem>
+                                            <MenuItem key={lng.tag} disabled={i18n.resolvedLanguage === lng.tag} onSelected={() => { i18n.changeLanguage(lng.tag); backend.saveSetting("language", lng.tag); backend.logDebug(i18n.resolvedLanguage); }}>{lng.nativeName}</MenuItem>
                                         ))}
                                     </Menu>,
                                     e.currentTarget ?? window
