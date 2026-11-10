@@ -130,9 +130,22 @@ interface ConversationAwarenessCapabilityProps {
   readonly: boolean
 }
 
+interface AutoSwitchSelectedProps {
+  enabled: boolean,
+  takeover: boolean,
+  focusLock: boolean,
+  idleTimeoutSec: number
+}
+
+interface AutoSwitchCapabilityProps {
+  selected: AutoSwitchSelectedProps,
+  readonly: boolean
+}
+
 interface CapabilitiesProps {
   anc?: AncProps;
   battery?: BatteryProps;
+  autoSwitch?: AutoSwitchCapabilityProps;
   conversationAwareness?: ConversationAwarenessCapabilityProps;
   conversationAwarenessSpeaking?: BooleanCapabilityProps;
   personalizedVolume?: BooleanCapabilityProps;
@@ -161,13 +174,6 @@ export interface headphoneInfoProps {
   name: string;
   address: string;
   connected: boolean;
-  // The core reports the model family per device.
-  model?: number;
-  vendor?: number;
-  // True only for the Galaxy Buds models whose firmware carries the SMEP
-  // simultaneous-multipoint plane Auto Switch needs (Buds2 Pro and later on the
-  // vendor's multipoint line). The core gates its own policy on the same capability.
-  smepMultipoint?: boolean;
 
   capabilities: CapabilitiesProps;
 }
@@ -332,46 +338,8 @@ export const TabInfo: FC<{
   const [config, setConfig] = useState<Awaited<ReturnType<typeof getAncSliderConfig>> | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [lowBatteryThreshold, setLowBatteryThreshold] = useState<number>(0);
-  // Auto Switch (the core's "auto_switch" TOML container). Shown only on devices whose
-  // model carries the SMEP simultaneous-multipoint plane (core-reported smepMultipoint):
-  // not every Samsung earbud has it - the Buds2/Buds FE generation hardware does not.
-  const [autoSwitchOn, setAutoSwitchOn] = useState<boolean | null>(null);
-  const [autoSwitchTakeover, setAutoSwitchTakeover] = useState<boolean>(true);
-  const [autoSwitchLock, setAutoSwitchLock] = useState<boolean>(false);
-  const [autoSwitchIdle, setAutoSwitchIdle] = useState<number>(5);
-
-  useEffect(() => {
-    if (info?.smepMultipoint !== true)
-      return;
-    const onCoreSettings = (json: any) => {
-      const autoSwitch = json?.settings?.auto_switch;
-      if (!autoSwitch)
-        return;
-      if (typeof autoSwitch.enabled === "boolean")
-        setAutoSwitchOn(autoSwitch.enabled);
-      if (typeof autoSwitch.takeover === "boolean")
-        setAutoSwitchTakeover(autoSwitch.takeover);
-      if (typeof autoSwitch.focus_lock === "boolean")
-        setAutoSwitchLock(autoSwitch.focus_lock);
-      if (typeof autoSwitch.idle_timeout_sec === "number")
-        setAutoSwitchIdle(autoSwitch.idle_timeout_sec);
-    };
-    backend.onJsonMessageReceived(onCoreSettings);
-    backend.getSettings("auto_switch");
-    return () => {
-      backend.offJsonMessageReceived(onCoreSettings);
-    };
-  }, [backend, info?.smepMultipoint]);
-
 
   const timeoutIds = useRef<Record<string, NodeJS.Timeout>>({});
-  useEffect(() => {
-    const ids = timeoutIds.current;
-    return () => {
-      if (ids.autoSwitchIdle)
-        clearTimeout(ids.autoSwitchIdle);
-    };
-  }, []);
   type CapabilityKey = keyof CapabilitiesProps;
 
   const commonUpdateInfo = (key: CapabilityKey, value: any) => {
@@ -419,6 +387,31 @@ export const TabInfo: FC<{
 
     if (debounce)
       timeoutIds.current.earDetection = setTimeout(send, 350);
+    else
+      send();
+  }
+
+  const handleAutoSwitchChange = (changes: Partial<AutoSwitchSelectedProps>, debounce: boolean = false) => {
+    const capability = info?.capabilities?.autoSwitch;
+    if (capability == null) return;
+
+    const selected = { ...capability.selected, ...changes };
+    commonUpdateInfo("autoSwitch", selected);
+
+    const address = info?.address;
+    if (address == null) return;
+
+    if (timeoutIds.current.autoSwitch)
+      clearTimeout(timeoutIds.current.autoSwitch);
+
+    const send = () => {
+      backend.logInfo("Send set autoSwitch to", selected);
+      backend.setCapability("autoSwitch", address, selected);
+      delete timeoutIds.current.autoSwitch;
+    };
+
+    if (debounce)
+      timeoutIds.current.autoSwitch = setTimeout(send, 350);
     else
       send();
   }
@@ -633,68 +626,6 @@ export const TabInfo: FC<{
                 </Field>
               </PanelSectionRow>
             }
-            {/* Auto Switch owns its section: the SMEP link is not a GMA capability, and
-                a Galaxy Buds model without the extra capabilities must not lose these
-                controls (that is why this does not live inside the capabilities block). */}
-            {loaded == true && info?.smepMultipoint === true && autoSwitchOn !== null && (
-              <>
-                <div className={staticClasses.PanelSectionTitle} style={{ paddingTop: "16px" }}>
-                  {t("capabilities_sgb_auto_switch_label")}
-                </div>
-                <PanelSectionRow>
-                  <ToggleField
-                    checked={autoSwitchOn}
-                    label={t("capabilities_sgb_auto_switch_enable_label")}
-                    onChange={(b) => {
-                      setAutoSwitchOn(b);
-                      backend.logInfo("Send set auto_switch.enabled to", b);
-                      backend.setSetting("auto_switch", "enabled", b);
-                    }} />
-                </PanelSectionRow>
-                <PanelSectionRow>
-                  <ToggleField
-                    checked={autoSwitchTakeover}
-                    label={t("capabilities_sgb_auto_switch_takeover_label")}
-                    onChange={(b) => {
-                      setAutoSwitchTakeover(b);
-                      backend.logInfo("Send set auto_switch.takeover to", b);
-                      backend.setSetting("auto_switch", "takeover", b);
-                    }} />
-                </PanelSectionRow>
-                <PanelSectionRow>
-                  <ToggleField
-                    checked={autoSwitchLock}
-                    label={t("capabilities_sgb_auto_switch_focus_lock_label")}
-                    onChange={(b) => {
-                      setAutoSwitchLock(b);
-                      backend.logInfo("Send set auto_switch.focus_lock to", b);
-                      backend.setSetting("auto_switch", "focus_lock", b);
-                    }} />
-                </PanelSectionRow>
-                <PanelSectionRow>
-                  <SliderField
-                    value={autoSwitchIdle}
-                    max={30}
-                    min={3}
-                    step={1}
-                    label={t("capabilities_sgb_auto_switch_idle_timeout_label")}
-                    notchTicksVisible={false}
-                    showValue={true}
-                    valueSuffix="s"
-                    onChange={(n) => {
-                      setAutoSwitchIdle(n);
-                      if (timeoutIds.current.autoSwitchIdle)
-                        clearTimeout(timeoutIds.current.autoSwitchIdle);
-                      timeoutIds.current.autoSwitchIdle = setTimeout(() => {
-                        backend.logInfo("Send set auto_switch.idle_timeout_sec to", n);
-                        backend.setSetting("auto_switch", "idle_timeout_sec", n);
-                        delete timeoutIds.current.autoSwitchIdle;
-                      }, 350);
-                    }} />
-                </PanelSectionRow>
-              </>
-            )}
-
             {/* Fix jumping selection issue */}
             {loaded == true && info?.capabilities != null && hasOtherCapabilities(info.capabilities) && (
               <>
@@ -795,6 +726,48 @@ export const TabInfo: FC<{
                     </PanelSectionRow>
                   </>
                 }
+
+                {info?.capabilities?.autoSwitch != null && (
+                  <>
+                    <div className={staticClasses.PanelSectionTitle} style={{ paddingTop: "16px" }}>
+                      {t("capabilities_sgb_auto_switch_label")}
+                    </div>
+                    <PanelSectionRow>
+                      <ToggleField
+                        checked={info.capabilities.autoSwitch.selected.enabled}
+                        disabled={info.capabilities.autoSwitch.readonly}
+                        label={t("capabilities_sgb_auto_switch_enable_label")}
+                        onChange={(b) => { handleAutoSwitchChange({ enabled: b }); }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                      <ToggleField
+                        checked={info.capabilities.autoSwitch.selected.takeover}
+                        disabled={info.capabilities.autoSwitch.readonly}
+                        label={t("capabilities_sgb_auto_switch_takeover_label")}
+                        onChange={(b) => { handleAutoSwitchChange({ takeover: b }); }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                      <ToggleField
+                        checked={info.capabilities.autoSwitch.selected.focusLock}
+                        disabled={info.capabilities.autoSwitch.readonly}
+                        label={t("capabilities_sgb_auto_switch_focus_lock_label")}
+                        onChange={(b) => { handleAutoSwitchChange({ focusLock: b }); }} />
+                    </PanelSectionRow>
+                    <PanelSectionRow>
+                      <SliderField
+                        value={info.capabilities.autoSwitch.selected.idleTimeoutSec}
+                        max={30}
+                        min={3}
+                        step={1}
+                        label={t("capabilities_sgb_auto_switch_idle_timeout_label")}
+                        notchTicksVisible={false}
+                        showValue={true}
+                        valueSuffix="s"
+                        disabled={info.capabilities.autoSwitch.readonly}
+                        onChange={(n) => { handleAutoSwitchChange({ idleTimeoutSec: n }, true); }} />
+                    </PanelSectionRow>
+                  </>
+                )}
 
                 {info?.capabilities?.conversationAwareness != null && (
                   <>
