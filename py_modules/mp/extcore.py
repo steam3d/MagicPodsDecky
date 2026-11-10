@@ -24,14 +24,6 @@ class ExtCoreService:
         env.pop("LD_LIBRARY_PATH", None)
         env.pop("LD_PRELOAD", None)
         env["XDG_RUNTIME_DIR"] = "/run/user/1000"
-        # The plugin_loader service does not carry a session bus address, and the core's
-        # sdbus session connection (MPRIS: ear-detection media pause, Auto Switch pause/
-        # resume) only opens lazily on the first call - it would fail there, invisibly until
-        # then. On SteamOS the desktop session bus is exactly the user bus, so hand it over.
-        if "DBUS_SESSION_BUS_ADDRESS" not in env:
-            user_bus = os.path.join(env["XDG_RUNTIME_DIR"], "bus")
-            if os.path.exists(user_bus):
-                env["DBUS_SESSION_BUS_ADDRESS"] = "unix:path=" + user_bus
         self.env = env
 
     def _owned_running(self):
