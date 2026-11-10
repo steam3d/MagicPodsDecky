@@ -21,10 +21,10 @@
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "Pilnībā noņemot, pārslēgt uz skaļruni",
         "capabilities_cmn_volume_reduction_off_label": "Izsl.",
         "capabilities_aap_sleep_detection_label": "Pause When Asleep",
-        "autoswitch_header": "Automātiska pārslēgšana",
-        "autoswitch_enable_label": "Ieslēgt automātisko pārslēgšanu",
-        "autoswitch_takeover_label": "Atgūt audio, kad šis Deck sāk atskaņot",
-        "autoswitch_lock_label": "Bloķēt audio fokusu spēlējot",
-        "autoswitch_idle_label": "Rezerves gaidīšana pirms audio atgriešanas"
+        "capabilities_sgb_auto_switch_label": "Automātiska pārslēgšana",
+        "capabilities_sgb_auto_switch_enable_label": "Ieslēgt automātisko pārslēgšanu",
+        "capabilities_sgb_auto_switch_takeover_label": "Atgūt audio, kad šis Deck sāk atskaņot",
+        "capabilities_sgb_auto_switch_focus_lock_label": "Bloķēt audio fokusu spēlējot",
+        "capabilities_sgb_auto_switch_idle_timeout_label": "Rezerves gaidīšana pirms audio atgriešanas"
     }
 }

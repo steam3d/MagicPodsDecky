@@ -21,10 +21,10 @@
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "Vaihda kaiuttimeen, kun kuulokkeet poistetaan kokonaan",
         "capabilities_cmn_volume_reduction_off_label": "Pois",
         "capabilities_aap_sleep_detection_label": "Tauko nukahtaessa",
-        "autoswitch_header": "Automaattinen vaihto",
-        "autoswitch_enable_label": "Ota automaattinen vaihto käyttöön",
-        "autoswitch_takeover_label": "Ota ääni takaisin, kun Deck alkaa toistaa",
-        "autoswitch_lock_label": "Lukitse äänen hallinta pelatessa",
-        "autoswitch_idle_label": "Turvaviive äänettömyydelle ennen äänen palauttamista"
+        "capabilities_sgb_auto_switch_label": "Automaattinen vaihto",
+        "capabilities_sgb_auto_switch_enable_label": "Ota automaattinen vaihto käyttöön",
+        "capabilities_sgb_auto_switch_takeover_label": "Ota ääni takaisin, kun Deck alkaa toistaa",
+        "capabilities_sgb_auto_switch_focus_lock_label": "Lukitse äänen hallinta pelatessa",
+        "capabilities_sgb_auto_switch_idle_timeout_label": "Turvaviive äänettömyydelle ennen äänen palauttamista"
     }
 }

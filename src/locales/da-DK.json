@@ -21,10 +21,10 @@
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "Skift til højttaler, når de tages helt af",
         "capabilities_cmn_volume_reduction_off_label": "Fra",
         "capabilities_aap_sleep_detection_label": "Pause ved indsovning",
-        "autoswitch_header": "Automatisk skift",
-        "autoswitch_enable_label": "Aktiver automatisk skift",
-        "autoswitch_takeover_label": "Genvind lyden, når denne Deck begynder at afspille",
-        "autoswitch_lock_label": "Lås lyd-fokus under spil",
-        "autoswitch_idle_label": "Reserveventetid ved inaktivitet, før lyden returneres"
+        "capabilities_sgb_auto_switch_label": "Automatisk skift",
+        "capabilities_sgb_auto_switch_enable_label": "Aktiver automatisk skift",
+        "capabilities_sgb_auto_switch_takeover_label": "Genvind lyden, når denne Deck begynder at afspille",
+        "capabilities_sgb_auto_switch_focus_lock_label": "Lås lyd-fokus under spil",
+        "capabilities_sgb_auto_switch_idle_timeout_label": "Reserveventetid ved inaktivitet, før lyden returneres"
     }
 }

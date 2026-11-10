@@ -639,12 +639,12 @@ export const TabInfo: FC<{
             {loaded == true && info?.smepMultipoint === true && autoSwitchOn !== null && (
               <>
                 <div className={staticClasses.PanelSectionTitle} style={{ paddingTop: "16px" }}>
-                  {t("autoswitch_header")}
+                  {t("capabilities_sgb_auto_switch_label")}
                 </div>
                 <PanelSectionRow>
                   <ToggleField
                     checked={autoSwitchOn}
-                    label={t("autoswitch_enable_label")}
+                    label={t("capabilities_sgb_auto_switch_enable_label")}
                     onChange={(b) => {
                       setAutoSwitchOn(b);
                       backend.logInfo("Send set auto_switch.enabled to", b);
@@ -654,7 +654,7 @@ export const TabInfo: FC<{
                 <PanelSectionRow>
                   <ToggleField
                     checked={autoSwitchTakeover}
-                    label={t("autoswitch_takeover_label")}
+                    label={t("capabilities_sgb_auto_switch_takeover_label")}
                     onChange={(b) => {
                       setAutoSwitchTakeover(b);
                       backend.logInfo("Send set auto_switch.takeover to", b);
@@ -664,7 +664,7 @@ export const TabInfo: FC<{
                 <PanelSectionRow>
                   <ToggleField
                     checked={autoSwitchLock}
-                    label={t("autoswitch_lock_label")}
+                    label={t("capabilities_sgb_auto_switch_focus_lock_label")}
                     onChange={(b) => {
                       setAutoSwitchLock(b);
                       backend.logInfo("Send set auto_switch.focus_lock to", b);
@@ -677,7 +677,7 @@ export const TabInfo: FC<{
                     max={30}
                     min={3}
                     step={1}
-                    label={t("autoswitch_idle_label")}
+                    label={t("capabilities_sgb_auto_switch_idle_timeout_label")}
                     notchTicksVisible={false}
                     showValue={true}
                     valueSuffix="s"

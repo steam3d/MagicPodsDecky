@@ -21,10 +21,10 @@
         "capabilities_cmn_ear_detection_switch_to_speaker_label": "Chuyển sang loa khi tháo hoàn toàn",
         "capabilities_cmn_volume_reduction_off_label": "Tắt",
         "capabilities_aap_sleep_detection_label": "Tạm dừng khi ngủ",
-        "autoswitch_header": "Tự động chuyển",
-        "autoswitch_enable_label": "Bật tự động chuyển",
-        "autoswitch_takeover_label": "Lấy lại âm thanh khi Deck này bắt đầu phát",
-        "autoswitch_lock_label": "Khóa tiêu điểm âm thanh khi chơi game",
-        "autoswitch_idle_label": "Thời gian chờ dự phòng trước khi trả âm thanh"
+        "capabilities_sgb_auto_switch_label": "Tự động chuyển",
+        "capabilities_sgb_auto_switch_enable_label": "Bật tự động chuyển",
+        "capabilities_sgb_auto_switch_takeover_label": "Lấy lại âm thanh khi Deck này bắt đầu phát",
+        "capabilities_sgb_auto_switch_focus_lock_label": "Khóa tiêu điểm âm thanh khi chơi game",
+        "capabilities_sgb_auto_switch_idle_timeout_label": "Thời gian chờ dự phòng trước khi trả âm thanh"
     }
 }
