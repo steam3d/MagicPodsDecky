@@ -11,8 +11,8 @@ import {
   toaster
  } from "@decky/api";
 
-import initI18n from "./i18n";
-import { t } from 'i18next';
+import initI18n, { canonicalizeLanguage } from "./i18n";
+import i18n, { t } from 'i18next';
 
 import { FC, useState, useEffect } from 'react';
 import { BatteryDataProps, TabInfo, headphoneInfoProps } from "./tab/tabInfo";
@@ -228,6 +228,10 @@ const Content: FC<{ backend: Backend; batteryIcon: BackgroundBatteryIcon; }> = (
 
 export default definePlugin(() => {
   initI18n();
+  call<[key: string], string>("load_setting", "language").then((lng) => {
+    if (lng)
+      i18n.changeLanguage(canonicalizeLanguage(lng));
+  }).catch(() => {});
 
   let AllowLowBatteryNotification = true;
   let latestBatteryMessage = 0;
