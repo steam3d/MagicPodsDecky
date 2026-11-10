@@ -134,7 +134,8 @@ interface AutoSwitchSelectedProps {
   enabled: boolean,
   takeover: boolean,
   focusLock: boolean,
-  idleTimeoutSec: number
+  idleTimeoutSec: number,
+  focusLockActive: boolean
 }
 
 interface AutoSwitchCapabilityProps {
