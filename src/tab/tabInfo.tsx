@@ -4,10 +4,9 @@ import {
   gamepadDialogClasses,
   joinClassNames,
   SliderField,
-  staticClasses,
   Toggle,
   ToggleField,
-  quickAccessMenuClasses,
+  quickAccessControlsClasses,
   Focusable,
   showModal,
   ModalRoot,
@@ -33,7 +32,7 @@ const FieldWithSeparator = joinClassNames(
 const OptionsPanelSection = joinClassNames(
   gamepadDialogClasses.HighlightOnFocus,
   gamepadDialogClasses.Field,
-  quickAccessMenuClasses.PanelSectionRow,
+  quickAccessControlsClasses.PanelSectionRow,
 )
 
 const iconModesStyle = {
@@ -520,7 +519,7 @@ export const TabInfo: FC<{
   return (
     <>
       <div style={{ marginLeft: "-8px", marginRight: "-8px" }}>
-        {info == null && <div className={staticClasses.Text} style={{ paddingLeft: "16px", paddingRight: "16px" }}>{t("headphones_disconnected")}</div>}
+        {info == null && <div className={quickAccessControlsClasses.Text} style={{ paddingLeft: "16px", paddingRight: "16px" }}>{t("headphones_disconnected")}</div>}
 
         {info?.name != null &&
           <PanelSection title={info.name}>
@@ -597,7 +596,7 @@ export const TabInfo: FC<{
                   className={OptionsPanelSection}
                   style={{ marginLeft: "-16px", marginRight: "-16px", marginTop: "24px" }}
                   onOKButton={() => showQrModal()}>
-                  <div className={staticClasses.PanelSectionTitle}
+                  <div className={quickAccessControlsClasses.PanelSectionTitle}
                     style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingLeft: "16px", paddingRight: "16px", width: "100%" }}
                     onClick={() => showQrModal()}>
                     {t("capabilities_header")}

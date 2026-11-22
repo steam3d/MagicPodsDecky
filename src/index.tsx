@@ -1,5 +1,6 @@
 import {
   definePlugin,
+  quickAccessControlsClasses,
   staticClasses,
   Tabs,
   DialogButton,
@@ -165,7 +166,7 @@ const Content: FC<{ backend: Backend; batteryIcon: BackgroundBatteryIcon; }> = (
     <div className="magicpods-tabs" style={{ width: "300px", position: "absolute", top: "38px", bottom: "0", overflow: "hidden" }}>
       {connectionErrorValue &&
         <div style={{ display: "flex", paddingTop: "12px", paddingLeft: "16px", paddingRight: "16px", alignItems: "center" }}>
-          <div className={staticClasses.Text} style={{ paddingRight: "8px", width: "100%" }}>
+          <div className={quickAccessControlsClasses.Text} style={{ paddingRight: "8px", width: "100%" }}>
             {t("websocket_connection_issue")}
           </div>
           <DialogButton disabled={isButtonDisabledValue} style={{ height: "28px", width: "40px", minWidth: "40px", padding: "10px 12px" }}
@@ -181,7 +182,7 @@ const Content: FC<{ backend: Backend; batteryIcon: BackgroundBatteryIcon; }> = (
         </div>}
       {updateRequiredValue &&
         <div style={{ display: "flex", paddingTop: "12px", paddingLeft: "16px", paddingRight: "16px", alignItems: "center" }}>
-          <div className={staticClasses.Text} style={{ paddingRight: "8px", width: "100%" }}>
+          <div className={quickAccessControlsClasses.Text} style={{ paddingRight: "8px", width: "100%" }}>
             {t("websocket_update_required")}
           </div>
         </div>}
