@@ -1,9 +1,7 @@
 import {
   afterPatch,
-  findClassModule,
-  findModuleDetailsByExport,
   findSP,
-  Focusable,
+  findVar,
   getGamepadNavigationTrees,
   type Patch,
 } from "@decky/ui";
@@ -104,27 +102,24 @@ type TreeInjectionResult = {
   inserted: boolean;
 };
 
-type HeaderClasses = {
-  HeaderItem: string;
-  Clickable: string;
-  Clock: string;
+type HeaderComponentExport = {
+  type: (...args: unknown[]) => ReactNode;
 };
 
-// Reuse Steam's header classes to get the native spacing, focus and text styles.
-const headerClasses = findClassModule(
-  (module) =>
-    Boolean(
-      module.Header &&
-        module.HeaderItem &&
-        module.Clickable &&
-        module.Clock &&
-        module.BatteryIconVerticalStack,
-    ),
-) as HeaderClasses | undefined;
+type SteamHeaderItemProps = {
+  description: string;
+  vrTooltip?: string;
+  onActivate?: (event: CustomEvent) => void;
+  style?: CSSProperties;
+  children?: ReactNode;
+} & Record<string, unknown>;
 
-const headerItemClassName = headerClasses
-  ? `${headerClasses.HeaderItem} ${headerClasses.Clickable} ${headerClasses.Clock}`
-  : undefined;
+type SteamHeaderItemComponent = (props: SteamHeaderItemProps) => ReactNode;
+
+type MountedHeaderComponents = {
+  headerExport?: HeaderComponentExport;
+  headerItem?: SteamHeaderItemComponent;
+};
 
 const iconContainerStyle: CSSProperties = {
   alignItems: "center",
@@ -330,9 +325,7 @@ function injectIconAfterBattery(
 }
 
 // Locate the memoized Steam header export using stable source markers.
-function isHeaderComponentExport(value: unknown): value is {
-  type: (...args: unknown[]) => ReactNode;
-} {
+function isHeaderComponentExport(value: unknown): value is HeaderComponentExport {
   if (!value || typeof value !== "object") return false;
   const source = componentSource(
     (value as { type?: unknown; render?: unknown }).type ??
@@ -346,6 +339,21 @@ function isHeaderComponentSource(source: string): boolean {
     source.includes("quickAccessHeader") &&
     source.includes("BShowHeader") &&
     source.includes("forcedAppID")
+  );
+}
+
+// Steam's header item wrapper owns the hover, gamepad-focus and region-specific
+// behavior used by the built-in battery button.
+function isSteamHeaderItemComponent(
+  value: unknown,
+): value is SteamHeaderItemComponent {
+  if (typeof value !== "function") return false;
+  const source = componentSource(value);
+  return (
+    source.includes("description") &&
+    source.includes("vrTooltip") &&
+    source.includes("onActivate") &&
+    source.includes("onOKActionDescription")
   );
 }
 
@@ -392,6 +400,39 @@ function getMountedHeaderDocuments(): Set<Document> {
   return documents;
 }
 
+// Recover both components from an already mounted battery when module discovery
+// is unavailable or Steam stops exposing either of them to Decky.
+function findMountedHeaderComponents(): MountedHeaderComponents {
+  const result: MountedHeaderComponents = {};
+
+  for (const doc of getMountedHeaderDocuments()) {
+    const battery = findBatteryElement(doc);
+    let fiber = battery ? getReactFiber(battery) : undefined;
+
+    for (let depth = 0; fiber && depth < 25; depth += 1) {
+      if (!result.headerItem && isSteamHeaderItemComponent(fiber.type)) {
+        result.headerItem = fiber.type;
+      }
+
+      if (isHeaderComponentSource(componentSource(fiber.type))) {
+        const headerExport = fiber.elementType;
+        if (isHeaderComponentExport(headerExport)) {
+          const descriptor = Object.getOwnPropertyDescriptor(
+            headerExport,
+            "type",
+          );
+          if (descriptor?.writable) result.headerExport = headerExport;
+        }
+      }
+
+      if (result.headerExport && result.headerItem) return result;
+      fiber = fiber.return ?? undefined;
+    }
+  }
+
+  return result;
+}
+
 function equalSurfaces(
   left: ReadonlySet<HeaderSurface>,
   right: ReadonlySet<HeaderSurface>,
@@ -425,6 +466,17 @@ export function installHeaderIcon(
   const listeners = new Set<() => void>();
   const liveFiberOriginalStates = new Map<ReactFiber, ReactFiberState>();
   const mountedHeaderFibers = new Set<ReactFiber>();
+  const mountedHeaderComponents = findMountedHeaderComponents();
+  const steamHeaderItem =
+    (findVar(isSteamHeaderItemComponent) as
+      | SteamHeaderItemComponent
+      | undefined) ??
+    mountedHeaderComponents.headerItem;
+  if (!steamHeaderItem) {
+    console.warn(
+      "[MagicPods] Compatible Steam header item was not found; no icon will be rendered",
+    );
+  }
 
   const getSnapshot = () => snapshot;
   const subscribe = (listener: () => void) => {
@@ -461,20 +513,22 @@ export function installHeaderIcon(
       );
     }
 
-    return createElement(Focusable, {
+    if (!steamHeaderItem) return null;
+
+    const onActivate = (event: CustomEvent) => {
+      event.stopPropagation();
+      try {
+        getSnapshot().onActivate(surface);
+      } catch (error) {
+        console.error("[MagicPods] Header action failed", error);
+      }
+    };
+    return createElement(steamHeaderItem, {
       ...({ [HOST_ATTRIBUTE]: "" } as Record<string, string>),
-      "aria-label": state.ariaLabel,
-      className: headerItemClassName,
+      description: state.ariaLabel,
+      vrTooltip: state.ariaLabel,
       title: state.ariaLabel,
-      onActivate: (event: CustomEvent) => {
-        event.stopPropagation();
-        try {
-          getSnapshot().onActivate(surface);
-        } catch (error) {
-          console.error("[MagicPods] Header action failed", error);
-        }
-      },
-      onOKActionDescription: state.ariaLabel,
+      onActivate,
       style: iconContainerStyle,
       children,
     });
@@ -482,10 +536,11 @@ export function installHeaderIcon(
 
   // Patch future header renders and insert the slot into their returned React trees.
   try {
-    const [, headerExport] =
-      findModuleDetailsByExport(isHeaderComponentExport);
+    const headerExport =
+      (findVar(isHeaderComponentExport) as HeaderComponentExport | undefined) ??
+      mountedHeaderComponents.headerExport;
 
-    if (headerExport && isHeaderComponentExport(headerExport)) {
+    if (headerExport) {
       const descriptor = Object.getOwnPropertyDescriptor(headerExport, "type");
       if (descriptor?.writable) {
         patch = afterPatch(
