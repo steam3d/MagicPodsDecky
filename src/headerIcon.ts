@@ -16,7 +16,7 @@ import {
 } from "react";
 
 // The icon is inserted in three steps:
-// find Steam's header, patch its React output, then add a reactive slot after the battery.
+// find Steam's header, patch its React output, then add a reactive slot before the clock.
 
 export type HeaderSurface = "qam" | "big-picture";
 
@@ -56,12 +56,6 @@ const HEADER_CHECK_INTERVAL_MS = 1000;
 // React Fiber tags for FunctionComponent and SimpleMemoComponent.
 const FUNCTION_COMPONENT_TAG = 0;
 const SIMPLE_MEMO_COMPONENT_TAG = 15;
-const BATTERY_SOURCE_MARKERS = [
-  "#Header_BatteryFull",
-  "#Header_BatteryPercentage",
-  "#HeaderActions_PowerSettings",
-  "BatteryIconVerticalStack",
-];
 
 type ReactFiber = {
   alternate?: ReactFiber | null;
@@ -69,14 +63,12 @@ type ReactFiber = {
   tag?: number;
   type?: unknown;
   elementType?: unknown;
-  memoizedProps?: unknown;
   memoizedState?: ReactHook | null;
 };
 
 type ReactHook = {
   memoizedState?: unknown;
   queue?: { dispatch?: (action: (value: unknown) => unknown) => void };
-  next?: ReactHook | null;
 };
 
 type DeckyPatchedFunction = Function & {
@@ -99,6 +91,7 @@ type NavigationTree = {
 
 type TreeInjectionResult = {
   node: ReactNode;
+  containsClock: boolean;
   inserted: boolean;
 };
 
@@ -115,10 +108,13 @@ type SteamHeaderItemProps = {
 } & Record<string, unknown>;
 
 type SteamHeaderItemComponent = (props: SteamHeaderItemProps) => ReactNode;
+type SteamClockComponent = ReactElement["type"];
 
 type MountedHeaderComponents = {
+  headerFiber?: ReactFiber;
   headerExport?: HeaderComponentExport;
   headerItem?: SteamHeaderItemComponent;
+  clock?: SteamClockComponent;
 };
 
 const iconContainerStyle: CSSProperties = {
@@ -220,47 +216,19 @@ function getReactFiber(element: Element): ReactFiber | undefined {
     : undefined;
 }
 
-// Find Steam's real battery element without relying on hashed class names.
-function isBatteryElement(element: Element): boolean {
-  let fiber = getReactFiber(element);
-  let hasBatteryProps = false;
-  let hasBatterySourceMarker = false;
+// The clock is the only direct header link with text, no accessible label and
+// no graphical content.
+// This avoids depending on its localized value or hashed CSS class.
+function findClockElement(doc: Document): Element | undefined {
+  const header = doc.getElementById("header");
+  if (!header) return undefined;
 
-  for (let depth = 0; fiber && depth < 10; depth += 1) {
-    const props = fiber.memoizedProps;
-    if (props && typeof props === "object") {
-      hasBatteryProps ||= "neverShowBatteryPercent" in props;
-    }
-
-    for (const component of [fiber.type, fiber.elementType]) {
-      const source = componentSource(component);
-      hasBatteryProps ||= source.includes("neverShowBatteryPercent");
-      hasBatterySourceMarker ||= BATTERY_SOURCE_MARKERS.some((marker) =>
-        source.includes(marker),
-      );
-    }
-
-    if (hasBatteryProps && hasBatterySourceMarker) return true;
-    fiber = fiber.return ?? undefined;
-  }
-
-  return false;
-}
-
-function findBatteryElement(doc: Document): HTMLElement | undefined {
-  return Array.from(doc.querySelectorAll<HTMLElement>('[role="link"]')).find(
-    isBatteryElement,
-  );
-}
-
-// Recognize the battery wrapper inside the React tree returned by Steam's header.
-function isBatteryWrapperElement(value: ReactNode): value is ReactElement {
-  if (!isValidElement(value)) return false;
-  const source = componentSource(value.type);
-  return (
-    source.includes("neverShowBatteryPercent") &&
-    source.includes("sayFull") &&
-    source.includes("IN_VR")
+  return Array.from(header.children).find(
+    (element) =>
+      element.getAttribute("role") === "link" &&
+      !element.hasAttribute("aria-label") &&
+      !element.querySelector("svg, img") &&
+      Boolean(element.textContent?.trim()),
   );
 }
 
@@ -274,54 +242,60 @@ function reactTreeContainsIcon(node: ReactNode): boolean {
   );
 }
 
-// Walk the returned React tree and immutably insert the slot after the battery.
-function injectIconAfterBattery(
+// Walk the returned React tree and immutably insert the slot before the clock.
+function injectIconBeforeClock(
   node: ReactNode,
   icon: ReactElement,
+  clockComponents: ReadonlySet<SteamClockComponent>,
 ): TreeInjectionResult {
-  if (Array.isArray(node)) {
-    const batteryIndex = node.findIndex(isBatteryWrapperElement);
-    if (batteryIndex >= 0) {
-      return {
-        node: [
-          ...node.slice(0, batteryIndex + 1),
-          icon,
-          ...node.slice(batteryIndex + 1),
-        ],
-        inserted: true,
-      };
-    }
+  if (isValidElement(node) && clockComponents.has(node.type)) {
+    return { node, containsClock: true, inserted: false };
+  }
 
+  if (Array.isArray(node)) {
     for (let index = 0; index < node.length; index += 1) {
-      const result = injectIconAfterBattery(node[index], icon);
+      const result = injectIconBeforeClock(
+        node[index],
+        icon,
+        clockComponents,
+      );
       if (result.inserted) {
         const children = [...node];
         children[index] = result.node;
-        return { node: children, inserted: true };
+        return { node: children, containsClock: true, inserted: true };
+      }
+      if (result.containsClock) {
+        return {
+          node: [...node.slice(0, index), icon, ...node.slice(index)],
+          containsClock: true,
+          inserted: true,
+        };
       }
     }
 
-    return { node, inserted: false };
+    return { node, containsClock: false, inserted: false };
   }
 
-  if (!isValidElement(node)) return { node, inserted: false };
+  if (!isValidElement(node)) {
+    return { node, containsClock: false, inserted: false };
+  }
   const props = node.props as { children?: ReactNode };
-  if (props.children === undefined) return { node, inserted: false };
-
-  if (isBatteryWrapperElement(props.children)) {
-    return {
-      node: cloneElement(node, undefined, [props.children, icon]),
-      inserted: true,
-    };
+  if (props.children === undefined) {
+    return { node, containsClock: false, inserted: false };
   }
 
-  const result = injectIconAfterBattery(props.children, icon);
+  const result = injectIconBeforeClock(
+    props.children,
+    icon,
+    clockComponents,
+  );
   return result.inserted
     ? {
         node: cloneElement(node, undefined, result.node),
+        containsClock: true,
         inserted: true,
       }
-    : { node, inserted: false };
+    : { node, containsClock: result.containsClock, inserted: false };
 }
 
 // Locate the memoized Steam header export using stable source markers.
@@ -343,7 +317,7 @@ function isHeaderComponentSource(source: string): boolean {
 }
 
 // Steam's header item wrapper owns the hover, gamepad-focus and region-specific
-// behavior used by the built-in battery button.
+// behavior used by the built-in interactive header buttons.
 function isSteamHeaderItemComponent(
   value: unknown,
 ): value is SteamHeaderItemComponent {
@@ -400,34 +374,56 @@ function getMountedHeaderDocuments(): Set<Document> {
   return documents;
 }
 
-// Recover both components from an already mounted battery when module discovery
-// is unavailable or Steam stops exposing either of them to Decky.
+function inspectMountedHeader(doc: Document): MountedHeaderComponents {
+  const result: MountedHeaderComponents = {};
+  const header = doc.getElementById("header");
+
+  let fiber = header ? getReactFiber(header) : undefined;
+  for (let depth = 0; fiber && depth < 15; depth += 1) {
+    if (isHeaderComponentSource(componentSource(fiber.type))) {
+      result.headerFiber = fiber;
+      const headerExport = fiber.elementType;
+      if (isHeaderComponentExport(headerExport)) {
+        const descriptor = Object.getOwnPropertyDescriptor(
+          headerExport,
+          "type",
+        );
+        if (descriptor?.writable) result.headerExport = headerExport;
+      }
+      break;
+    }
+    fiber = fiber.return ?? undefined;
+  }
+
+  const clock = findClockElement(doc);
+  fiber = clock ? getReactFiber(clock) : undefined;
+  for (let depth = 0; fiber && depth < 10; depth += 1) {
+    if (isSteamHeaderItemComponent(fiber.type)) {
+      result.headerItem = fiber.type;
+      const clockFiber = fiber.return;
+      const clockComponent = clockFiber?.elementType ?? clockFiber?.type;
+      if (clockComponent) {
+        result.clock = clockComponent as SteamClockComponent;
+      }
+      break;
+    }
+    fiber = fiber.return ?? undefined;
+  }
+
+  return result;
+}
+
+// Recover the same components from the mounted header when findVar is
+// unavailable, and capture the clock's exact React type for tree insertion.
 function findMountedHeaderComponents(): MountedHeaderComponents {
   const result: MountedHeaderComponents = {};
 
   for (const doc of getMountedHeaderDocuments()) {
-    const battery = findBatteryElement(doc);
-    let fiber = battery ? getReactFiber(battery) : undefined;
-
-    for (let depth = 0; fiber && depth < 25; depth += 1) {
-      if (!result.headerItem && isSteamHeaderItemComponent(fiber.type)) {
-        result.headerItem = fiber.type;
-      }
-
-      if (isHeaderComponentSource(componentSource(fiber.type))) {
-        const headerExport = fiber.elementType;
-        if (isHeaderComponentExport(headerExport)) {
-          const descriptor = Object.getOwnPropertyDescriptor(
-            headerExport,
-            "type",
-          );
-          if (descriptor?.writable) result.headerExport = headerExport;
-        }
-      }
-
-      if (result.headerExport && result.headerItem) return result;
-      fiber = fiber.return ?? undefined;
-    }
+    const mounted = inspectMountedHeader(doc);
+    result.headerExport ??= mounted.headerExport;
+    result.headerItem ??= mounted.headerItem;
+    result.clock ??= mounted.clock;
+    if (result.headerExport && result.headerItem && result.clock) return result;
   }
 
   return result;
@@ -467,14 +463,18 @@ export function installHeaderIcon(
   const liveFiberOriginalStates = new Map<ReactFiber, ReactFiberState>();
   const mountedHeaderFibers = new Set<ReactFiber>();
   const mountedHeaderComponents = findMountedHeaderComponents();
-  const steamHeaderItem =
+  const clockComponents = new Set<SteamClockComponent>();
+  if (mountedHeaderComponents.clock) {
+    clockComponents.add(mountedHeaderComponents.clock);
+  }
+  let steamHeaderItem =
     (findVar(isSteamHeaderItemComponent) as
       | SteamHeaderItemComponent
       | undefined) ??
     mountedHeaderComponents.headerItem;
   if (!steamHeaderItem) {
     console.warn(
-      "[MagicPods] Compatible Steam header item was not found; no icon will be rendered",
+      "[MagicPods] Compatible Steam header item was not found; waiting for a mounted header",
     );
   }
 
@@ -557,11 +557,19 @@ export function installHeaderIcon(
                 key: REACT_ELEMENT_KEY,
                 surface,
               });
-              const injection = injectIconAfterBattery(result, icon);
-              if (!injection.inserted && !didWarnAboutTree) {
+              const injection = injectIconBeforeClock(
+                result,
+                icon,
+                clockComponents,
+              );
+              if (
+                !injection.inserted &&
+                clockComponents.size > 0 &&
+                !didWarnAboutTree
+              ) {
                 didWarnAboutTree = true;
                 console.warn(
-                  "[MagicPods] Steam header was found, but its battery subtree changed",
+                  "[MagicPods] Steam header was found, but its clock subtree changed",
                 );
               }
               return injection.node;
@@ -583,41 +591,43 @@ export function installHeaderIcon(
   // Already mounted headers keep the old function in Fiber, so replace it temporarily.
   const prepareMountedHeader = (doc: Document) => {
     if (!patch) return;
-    const battery = findBatteryElement(doc);
-    if (!battery) return;
+    const mounted = inspectMountedHeader(doc);
+    const fiber = mounted.headerFiber;
+    if (!fiber) return;
 
-    let fiber = getReactFiber(battery);
-    for (let depth = 0; fiber && depth < 25; depth += 1) {
-      if (isHeaderComponentSource(componentSource(fiber.type))) {
-        let changed = false;
-        for (const target of [fiber, fiber.alternate]) {
-          if (
-            target &&
-            (target.type !== patch.patchedFunction ||
-              target.tag === SIMPLE_MEMO_COMPONENT_TAG)
-          ) {
-            if (!liveFiberOriginalStates.has(target)) {
-              liveFiberOriginalStates.set(target, {
-                tag: target.tag,
-                type:
-                  target.type === patch.patchedFunction
-                    ? patch.original
-                    : unwrapInactivePatch(target.type),
-              });
-            }
-            target.type = patch.patchedFunction;
-            if (target.tag === SIMPLE_MEMO_COMPONENT_TAG)
-              target.tag = FUNCTION_COMPONENT_TAG;
-            changed = true;
-          }
+    const clockAdded = Boolean(
+      mounted.clock && !clockComponents.has(mounted.clock),
+    );
+    if (mounted.clock) clockComponents.add(mounted.clock);
+    const headerItemAdded = Boolean(mounted.headerItem && !steamHeaderItem);
+    steamHeaderItem ??= mounted.headerItem;
+
+    let changed = false;
+    for (const target of [fiber, fiber.alternate]) {
+      if (
+        target &&
+        (target.type !== patch.patchedFunction ||
+          target.tag === SIMPLE_MEMO_COMPONENT_TAG)
+      ) {
+        if (!liveFiberOriginalStates.has(target)) {
+          liveFiberOriginalStates.set(target, {
+            tag: target.tag,
+            type:
+              target.type === patch.patchedFunction
+                ? patch.original
+                : unwrapInactivePatch(target.type),
+          });
         }
-        if (changed) {
-          mountedHeaderFibers.add(fiber);
-          requestHeaderRender(fiber);
+        target.type = patch.patchedFunction;
+        if (target.tag === SIMPLE_MEMO_COMPONENT_TAG) {
+          target.tag = FUNCTION_COMPONENT_TAG;
         }
-        return;
+        changed = true;
       }
-      fiber = fiber.return ?? undefined;
+    }
+    if (changed || clockAdded || headerItemAdded) {
+      mountedHeaderFibers.add(fiber);
+      requestHeaderRender(fiber);
     }
   };
 
@@ -641,7 +651,7 @@ export function installHeaderIcon(
   };
 
   // Steam may replace a mounted header Fiber when an app or QAM is opened.
-  // Keep checking only while the battery icon is visible.
+  // Keep checking only while the custom header icon is visible.
   if (patch) {
     if (snapshot.visible) startHeaderCheck();
   } else {
