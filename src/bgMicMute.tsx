@@ -1,4 +1,4 @@
-import { findModuleChild } from "@decky/ui";
+import { findModuleExport } from "@decky/ui";
 import { FC, useEffect, useState } from "react";
 import { Backend } from "./backend";
 import { Button, Input } from "./input";
@@ -23,33 +23,26 @@ export interface AudioDeviceInfo {
     vecDevices: Device[];
 }
 
-enum UIComposition {
-    Hidden = 0,
-    Notification = 1,
-    Overlay = 2,
-    Opaque = 3,
-    OverlayKeyboard = 4,
+enum EUIComposition {
+    Hidden,
+    Notification,
+    Overlay,
+    Opaque,
+    OverlayKeyboard,
 }
 
-const useUIComposition: (composition: UIComposition) => void = findModuleChild(
-    (m) => {
-        if (typeof m !== "object") return undefined;
-        for (let prop in m) {
-            if (
-                typeof m[prop] === "function" &&
-                m[prop].toString().includes("AddMinimumCompositionStateRequest") &&
-                m[prop].toString().includes("ChangeMinimumCompositionStateRequest") &&
-                m[prop].toString().includes("RemoveMinimumCompositionStateRequest") &&
-                !m[prop].toString().includes("m_mapCompositionStateRequests")
-            ) {
-                return m[prop];
-            }
-        }
-    }
-);
+export const useUIComposition: (composition: EUIComposition) => void =
+    findModuleExport(
+        (m) =>
+            typeof m === "function" &&
+            m.toString().includes("AddMinimumCompositionStateRequest") &&
+            m.toString().includes("ChangeMinimumCompositionStateRequest") &&
+            m.toString().includes("RemoveMinimumCompositionStateRequest") &&
+            !m.toString().includes("m_mapCompositionStateRequests"),
+    );
 
 export const MicrophoneMute: FC = () => {
-    useUIComposition(UIComposition.Notification);
+    useUIComposition(EUIComposition.Notification);
     return (
         <div style={{
             height: "16px",
