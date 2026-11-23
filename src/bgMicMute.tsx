@@ -1,4 +1,4 @@
-import { findModuleChild } from "@decky/ui";
+import { findModuleExport, findVar } from "@decky/ui";
 import { FC, useEffect, useState } from "react";
 import { Backend } from "./backend";
 import { Button, Input } from "./input";
@@ -31,22 +31,38 @@ enum UIComposition {
     OverlayKeyboard = 4,
 }
 
-const useUIComposition: (composition: UIComposition) => void = findModuleChild(
-    (m) => {
-        if (typeof m !== "object") return undefined;
-        for (let prop in m) {
-            if (
-                typeof m[prop] === "function" &&
-                m[prop].toString().includes("AddMinimumCompositionStateRequest") &&
-                m[prop].toString().includes("ChangeMinimumCompositionStateRequest") &&
-                m[prop].toString().includes("RemoveMinimumCompositionStateRequest") &&
-                !m[prop].toString().includes("m_mapCompositionStateRequests")
-            ) {
-                return m[prop];
-            }
+type UICompositionHook = (
+    composition: UIComposition,
+    requestName?: string,
+) => { releaseComposition: () => void };
+
+const isUICompositionHook = (candidate: unknown): candidate is UICompositionHook => {
+    if (typeof candidate !== "function") return false;
+
+    const source = candidate.toString();
+    return (
+        source.includes("AddMinimumCompositionStateRequest") &&
+        source.includes("ChangeMinimumCompositionStateRequest") &&
+        source.includes("RemoveMinimumCompositionStateRequest") &&
+        !source.includes("m_mapCompositionStateRequests")
+    );
+};
+
+const resolvedUICompositionHook =
+    findVar(isUICompositionHook) ?? findModuleExport(isUICompositionHook);
+let didWarnAboutMissingCompositionHook = false;
+
+const useUIComposition = (composition: UIComposition): void => {
+    if (!isUICompositionHook(resolvedUICompositionHook)) {
+        if (!didWarnAboutMissingCompositionHook) {
+            didWarnAboutMissingCompositionHook = true;
+            console.error("[MagicPods] Steam UI composition hook was not found");
         }
+        return;
     }
-);
+
+    resolvedUICompositionHook(composition, "MagicPods");
+};
 
 export const MicrophoneMute: FC = () => {
     useUIComposition(UIComposition.Notification);
