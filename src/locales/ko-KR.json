@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "시스템 기본값",
         "capabilities_aap_left_press_and_hold_label": "왼쪽 길게 누르기",
         "capabilities_aap_right_press_and_hold_label": "오른쪽 길게 누르기",
         "capabilities_aap_press_and_hold_voice_assistant": "음성 어시스턴트",

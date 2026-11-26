@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "Системна",
         "capabilities_aap_left_press_and_hold_label": "Натискання й утримання зліва",
         "capabilities_aap_right_press_and_hold_label": "Натискання й утримання справа",
         "capabilities_aap_press_and_hold_voice_assistant": "Голосовий помічник",

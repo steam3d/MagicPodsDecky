@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "Systemstandard",
         "capabilities_aap_left_press_and_hold_label": "Tryk og hold venstre",
         "capabilities_aap_right_press_and_hold_label": "Tryk og hold højre",
         "capabilities_aap_press_and_hold_voice_assistant": "Stemmeassistent",

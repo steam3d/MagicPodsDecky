@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "Valeur par défaut du système",
         "capabilities_aap_left_press_and_hold_label": "Appui prolongé à gauche",
         "capabilities_aap_right_press_and_hold_label": "Appui prolongé à droite",
         "capabilities_aap_press_and_hold_voice_assistant": "Assistant vocal",

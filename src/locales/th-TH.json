@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "ค่าเริ่มต้นของระบบ",
         "capabilities_aap_left_press_and_hold_label": "กดด้านซ้ายค้างไว้",
         "capabilities_aap_right_press_and_hold_label": "กดด้านขวาค้างไว้",
         "capabilities_aap_press_and_hold_voice_assistant": "ผู้ช่วยเสียง",

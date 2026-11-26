@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "システムの既定値",
         "capabilities_aap_left_press_and_hold_label": "左を長押し",
         "capabilities_aap_right_press_and_hold_label": "右を長押し",
         "capabilities_aap_press_and_hold_voice_assistant": "音声アシスタント",

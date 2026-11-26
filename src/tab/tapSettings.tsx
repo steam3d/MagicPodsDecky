@@ -189,6 +189,12 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                             onClick={(e) =>
                                 showContextMenu(
                                     <Menu label={t("settings_language_menu_label")} cancelText={t("settings_language_menu_canceltext")} onCancel={() => { }}>
+                                        <MenuItem onSelected={async () => {
+                                            if (await backend.saveSetting("language", "") !== false)
+                                                await i18n.changeLanguage(navigator.language);
+                                        }}>
+                                            {t("settings.language.system", { keySeparator: false })}
+                                        </MenuItem>
                                         {availableLanguages.map((lng) => (
                                             <MenuItem key={lng.tag} disabled={canonicalizeLanguage(i18n.resolvedLanguage || i18n.language) === lng.tag} onSelected={() => { i18n.changeLanguage(lng.tag); backend.saveSetting("language", lng.tag); backend.logDebug(i18n.resolvedLanguage); }}>{lng.nativeName}</MenuItem>
                                         ))}

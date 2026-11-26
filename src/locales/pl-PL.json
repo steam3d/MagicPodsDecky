@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "Domyślne ustawienie systemu",
         "capabilities_aap_left_press_and_hold_label": "Naciśnięcie i przytrzymanie po lewej",
         "capabilities_aap_right_press_and_hold_label": "Naciśnięcie i przytrzymanie po prawej",
         "capabilities_aap_press_and_hold_voice_assistant": "Asystent głosowy",

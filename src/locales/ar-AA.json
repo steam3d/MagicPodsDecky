@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "الإعداد الافتراضي للنظام",
         "capabilities_aap_left_press_and_hold_label": "الضغط المطول على اليسار",
         "capabilities_aap_right_press_and_hold_label": "الضغط المطول على اليمين",
         "capabilities_aap_press_and_hold_voice_assistant": "المساعد الصوتي",

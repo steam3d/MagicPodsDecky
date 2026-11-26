@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "Προεπιλογή συστήματος",
         "capabilities_aap_left_press_and_hold_label": "Παρατεταμένο πάτημα αριστερά",
         "capabilities_aap_right_press_and_hold_label": "Παρατεταμένο πάτημα δεξιά",
         "capabilities_aap_press_and_hold_voice_assistant": "Φωνητικός βοηθός",

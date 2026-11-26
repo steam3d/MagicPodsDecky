@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "系統預設",
         "capabilities_aap_left_press_and_hold_label": "按住左側",
         "capabilities_aap_right_press_and_hold_label": "按住右側",
         "capabilities_aap_press_and_hold_voice_assistant": "語音助理",

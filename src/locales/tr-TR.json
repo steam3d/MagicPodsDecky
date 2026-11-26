@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "Sistem varsayılanı",
         "capabilities_aap_left_press_and_hold_label": "Sola basılı tut",
         "capabilities_aap_right_press_and_hold_label": "Sağa basılı tut",
         "capabilities_aap_press_and_hold_voice_assistant": "Sesli asistan",

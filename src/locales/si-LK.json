@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "පද්ධති පෙරනිමිය",
         "capabilities_aap_left_press_and_hold_label": "වම් පස ඔබාගෙන සිටීම",
         "capabilities_aap_right_press_and_hold_label": "දකුණු පස ඔබාගෙන සිටීම",
         "capabilities_aap_press_and_hold_voice_assistant": "හඬ සහායක",

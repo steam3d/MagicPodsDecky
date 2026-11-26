@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "Sistēmas noklusējums",
         "capabilities_aap_left_press_and_hold_label": "Kreisās puses turēšana nospiestā stāvoklī",
         "capabilities_aap_right_press_and_hold_label": "Labās puses turēšana nospiestā stāvoklī",
         "capabilities_aap_press_and_hold_voice_assistant": "Balss asistents",

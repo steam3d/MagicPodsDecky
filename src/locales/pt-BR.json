@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "Padrão do sistema",
         "capabilities_aap_left_press_and_hold_label": "Manter pressionado o esquerdo",
         "capabilities_aap_right_press_and_hold_label": "Manter pressionado o direito",
         "capabilities_aap_press_and_hold_voice_assistant": "Assistente de voz",

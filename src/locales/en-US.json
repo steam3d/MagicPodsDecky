@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "System default",
         "capabilities_aap_left_press_and_hold_label": "Left press and hold",
         "capabilities_aap_right_press_and_hold_label": "Right press and hold",
         "capabilities_aap_press_and_hold_voice_assistant": "Voice assistant",

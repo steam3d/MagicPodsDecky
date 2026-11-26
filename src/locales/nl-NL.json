@@ -1,5 +1,6 @@
 {
     "translation": {
+        "settings.language.system": "Systeemstandaard",
         "capabilities_aap_left_press_and_hold_label": "Links ingedrukt houden",
         "capabilities_aap_right_press_and_hold_label": "Rechts ingedrukt houden",
         "capabilities_aap_press_and_hold_voice_assistant": "Spraakassistent",
