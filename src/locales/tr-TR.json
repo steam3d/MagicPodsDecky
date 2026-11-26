@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "Kısayollar",
+        "settings_hotkey_anc_label": "Gürültü kontrol modunu değiştir",
+        "settings_hotkey_mic_label": "Mikrofonu aç/kapat",
+        "settings_hotkey_description": "<key1/> tuşuna basıp bırakın, ardından hemen <key2/> tuşuna basın.",
         "settings_low_battery_label": "Düşük pil",
         "settings_low_battery_description": "Pil seviyesi bu değere düştüğünde bildirim alın.",
         "settings.language.system": "Sistem varsayılanı",

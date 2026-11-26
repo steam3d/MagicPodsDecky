@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "Genveje",
+        "settings_hotkey_anc_label": "Skift støjkontroltilstand",
+        "settings_hotkey_mic_label": "Slå mikrofon til/fra",
+        "settings_hotkey_description": "Tryk på og slip <key1/>, og tryk derefter straks på <key2/>.",
         "settings_low_battery_label": "Lavt batteriniveau",
         "settings_low_battery_description": "Få en notifikation, når batteriniveauet falder til denne værdi.",
         "settings.language.system": "Systemstandard",

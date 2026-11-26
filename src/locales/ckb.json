@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "میانبرەکان",
+        "settings_hotkey_anc_label": "گۆڕینی دۆخی کۆنترۆڵی ژاوەژاو",
+        "settings_hotkey_mic_label": "بێدەنگکردن/لابردنی بێدەنگی مایکرۆفۆن",
+        "settings_hotkey_description": "<key1/> دابگرە و بەری بدە، پاشان دەستبەجێ <key2/> دابگرە.",
         "settings_low_battery_label": "شەحنی کەم",
         "settings_low_battery_description": "کاتێک ئاستی شەحنی باتری دادەبەزێت بۆ ئەم بەهایە، ئاگادارکردنەوەیەک وەربگرە.",
         "settings.language.system": "بنەڕەتیی سیستەم",

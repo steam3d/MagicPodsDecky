@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "Kortkommandon",
+        "settings_hotkey_anc_label": "Växla bruskontrolläge",
+        "settings_hotkey_mic_label": "Slå på/av mikrofonen",
+        "settings_hotkey_description": "Tryck på och släpp <key1/> och tryck sedan direkt på <key2/>.",
         "settings_low_battery_label": "Låg batterinivå",
         "settings_low_battery_description": "Få en avisering när batterinivån sjunker till detta värde.",
         "settings.language.system": "Systemstandard",

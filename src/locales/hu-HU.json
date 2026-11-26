@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "Billentyűparancsok",
+        "settings_hotkey_anc_label": "Zajszabályozási mód váltása",
+        "settings_hotkey_mic_label": "Mikrofon némítása/feloldása",
+        "settings_hotkey_description": "Nyomja le, majd engedje fel a(z) <key1/> gombot, és azonnal nyomja meg a(z) <key2/> gombot.",
         "settings_low_battery_label": "Alacsony töltöttség",
         "settings_low_battery_description": "Értesítést kap, amikor az akkumulátor töltöttsége erre az értékre csökken.",
         "settings.language.system": "Rendszer alapértelmezése",

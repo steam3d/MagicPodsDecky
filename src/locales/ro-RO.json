@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "Comenzi rapide",
+        "settings_hotkey_anc_label": "Schimbă modul de control al zgomotului",
+        "settings_hotkey_mic_label": "Activează/dezactivează microfonul",
+        "settings_hotkey_description": "Apasă și eliberează <key1/>, apoi apasă imediat <key2/>.",
         "settings_low_battery_label": "Baterie descărcată",
         "settings_low_battery_description": "Primește o notificare când nivelul bateriei scade la această valoare.",
         "settings.language.system": "Implicit al sistemului",

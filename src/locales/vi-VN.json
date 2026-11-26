@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "Phím tắt",
+        "settings_hotkey_anc_label": "Chuyển chế độ kiểm soát tiếng ồn",
+        "settings_hotkey_mic_label": "Bật/tắt micrô",
+        "settings_hotkey_description": "Nhấn và thả <key1/>, sau đó nhấn ngay <key2/>.",
         "settings_low_battery_label": "Pin yếu",
         "settings_low_battery_description": "Nhận thông báo khi mức pin giảm xuống giá trị này.",
         "settings.language.system": "Mặc định hệ thống",

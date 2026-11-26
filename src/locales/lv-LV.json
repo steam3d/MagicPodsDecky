@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "Taustiņu kombinācijas",
+        "settings_hotkey_anc_label": "Trokšņu kontroles režīmu maiņa",
+        "settings_hotkey_mic_label": "Ieslēgt/izslēgt mikrofonu",
+        "settings_hotkey_description": "Nospiediet un atlaidiet <key1/>, pēc tam uzreiz nospiediet <key2/>.",
         "settings_low_battery_label": "Zems uzlādes līmenis",
         "settings_low_battery_description": "Saņemiet paziņojumu, kad akumulatora uzlādes līmenis samazinās līdz šai vērtībai.",
         "settings.language.system": "Sistēmas noklusējums",

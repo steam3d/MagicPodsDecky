@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "Raccourcis",
+        "settings_hotkey_anc_label": "Changer de mode de contrôle du bruit",
+        "settings_hotkey_mic_label": "Couper/rétablir le micro",
+        "settings_hotkey_description": "Appuyez sur <key1/>, relâchez la touche, puis appuyez aussitôt sur <key2/>.",
         "settings_low_battery_label": "Batterie faible",
         "settings_low_battery_description": "Recevez une notification lorsque le niveau de la batterie descend à cette valeur.",
         "settings.language.system": "Valeur par défaut du système",

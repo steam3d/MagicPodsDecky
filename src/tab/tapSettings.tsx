@@ -144,37 +144,6 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                             }} />
                     </PanelSectionRow>
 
-{/*
-                    {!Input.isSupported() &&
-                        <PanelSectionRow>
-                            <div className={staticClasses.Label} style={{ paddingLeft: "0px", paddingRight: "0px" }}>
-                                <Trans
-                                    i18nKey="settings_hotkey_error"
-                                    components={{ Key1: <WARNING style={{ height: "16px", width: "auto", marginBottom: "-3.5px", paddingRight: "0px" }} /> }}
-                                />
-                            </div>
-                        </PanelSectionRow>
-                    }
-*/}
-                    {Input.isSupported() &&
-                    <PanelSectionRow>
-                        <ToggleField disabled={!Input.isSupported()} checked={toggleSwitchAncHotkey} label={t("settings_hotkey_anc_label")} description={<Trans i18nKey="settings_hotkey_anc_description" components={{ key1: <QUICK_ACCESS_MENU style={buttonStyle} />, key2: <L5 style={buttonStyle} /> }} />} onChange={async (b) => {
-                            setToggleSwitchAncHotkey(b);
-                            await backend.saveSetting("anc_l5_r5_switch", b);
-                            backend.bgAncSwitch.updateSetting();
-                        }} />
-                    </PanelSectionRow>
-                    }
-
-                    {Input.isSupported() &&
-                    <PanelSectionRow>
-                        <ToggleField disabled={!Input.isSupported()} checked={toggleMicHotkey} label={t("settings_hotkey_mic_label")} description={<Trans i18nKey="settings_hotkey_mic_description" components={{ key1: <QUICK_ACCESS_MENU style={buttonStyle} />, key2: <L4 style={buttonStyle} /> }} />} onChange={async (b) => {
-                            setToggleMicHotkey(b);
-                            await backend.saveSetting("mic_qam_l5_toggle", b);
-                        }} />
-                    </PanelSectionRow>
-                    }
-
                     <PanelSectionRow>
                         <ToggleField checked={toggleFixDisconnects} label={t("settings_fix_disconnects_label")} description={t("settings_fix_disconnects_description")} onChange={async (b) => {
                             setToggleFixDisconnects(b);
@@ -244,6 +213,50 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                         }} />
                     </PanelSectionRow>
                 </PanelSection>
+
+                {Input.isSupported() &&
+                    <PanelSection title={t("settings_hotkey_header")}>
+                        <PanelSectionRow>
+                            <ToggleField
+                                checked={toggleSwitchAncHotkey}
+                                label={t("settings_hotkey_anc_label")}
+                                description={
+                                    <Trans
+                                        i18nKey="settings_hotkey_description"
+                                        components={{
+                                            key1: <QUICK_ACCESS_MENU style={buttonStyle} />,
+                                            key2: <L5 style={buttonStyle} />,
+                                        }}
+                                    />
+                                }
+                                onChange={async (b) => {
+                                    setToggleSwitchAncHotkey(b);
+                                    await backend.saveSetting("anc_l5_r5_switch", b);
+                                    backend.bgAncSwitch.updateSetting();
+                                }}
+                            />
+                        </PanelSectionRow>
+                        <PanelSectionRow>
+                            <ToggleField
+                                checked={toggleMicHotkey}
+                                label={t("settings_hotkey_mic_label")}
+                                description={
+                                    <Trans
+                                        i18nKey="settings_hotkey_description"
+                                        components={{
+                                            key1: <QUICK_ACCESS_MENU style={buttonStyle} />,
+                                            key2: <L4 style={buttonStyle} />,
+                                        }}
+                                    />
+                                }
+                                onChange={async (b) => {
+                                    setToggleMicHotkey(b);
+                                    await backend.saveSetting("mic_qam_l5_toggle", b);
+                                }}
+                            />
+                        </PanelSectionRow>
+                    </PanelSection>
+                }
 
                 <PanelSection title={t("settings_anc_modes_header")}>
                     <PanelSectionRow>

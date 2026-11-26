@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "Klávesové zkratky",
+        "settings_hotkey_anc_label": "Přepínání režimů regulace hluku",
+        "settings_hotkey_mic_label": "Zapnutí/vypnutí mikrofonu",
+        "settings_hotkey_description": "Stiskněte a uvolněte <key1/> a poté ihned stiskněte <key2/>.",
         "settings_low_battery_label": "Slabá baterie",
         "settings_low_battery_description": "Dostanete oznámení, když úroveň nabití baterie klesne na tuto hodnotu.",
         "settings.language.system": "Výchozí nastavení systému",

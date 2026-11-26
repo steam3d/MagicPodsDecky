@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "Sneltoetsen",
+        "settings_hotkey_anc_label": "Wisselen van ruisregelingsmodus",
+        "settings_hotkey_mic_label": "Microfoon dempen/inschakelen",
+        "settings_hotkey_description": "Druk op <key1/> en laat los. Druk daarna direct op <key2/>.",
         "settings_low_battery_label": "Lage batterijstand",
         "settings_low_battery_description": "Ontvang een melding wanneer het batterijniveau tot deze waarde daalt.",
         "settings.language.system": "Systeemstandaard",

@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "Näppäinkomennot",
+        "settings_hotkey_anc_label": "Melunhallintatilan vaihto",
+        "settings_hotkey_mic_label": "Mikrofonin mykistys/mykistyksen poisto",
+        "settings_hotkey_description": "Paina <key1/> ja vapauta se. Paina sitten heti <key2/>.",
         "settings_low_battery_label": "Akun varaus vähissä",
         "settings_low_battery_description": "Saat ilmoituksen, kun akun varaustaso laskee tähän arvoon.",
         "settings.language.system": "Järjestelmän oletus",

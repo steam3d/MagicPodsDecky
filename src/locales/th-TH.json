@@ -1,5 +1,9 @@
 {
     "translation": {
+        "settings_hotkey_header": "ปุ่มลัด",
+        "settings_hotkey_anc_label": "สลับโหมดควบคุมเสียงรบกวน",
+        "settings_hotkey_mic_label": "เปิด/ปิดเสียงไมโครโฟน",
+        "settings_hotkey_description": "กดแล้วปล่อย <key1/> จากนั้นกด <key2/> ทันที",
         "settings_low_battery_label": "แบตเตอรี่ต่ำ",
         "settings_low_battery_description": "รับการแจ้งเตือนเมื่อระดับแบตเตอรี่ลดลงถึงค่านี้",
         "settings.language.system": "ค่าเริ่มต้นของระบบ",
