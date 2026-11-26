@@ -1,5 +1,7 @@
 {
     "translation": {
+        "settings_low_battery_label": "Düşük pil",
+        "settings_low_battery_description": "Pil seviyesi bu değere düştüğünde bildirim alın.",
         "settings.language.system": "Sistem varsayılanı",
         "capabilities_aap_left_press_and_hold_label": "Sola basılı tut",
         "capabilities_aap_right_press_and_hold_label": "Sağa basılı tut",

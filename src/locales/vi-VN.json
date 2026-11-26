@@ -1,5 +1,7 @@
 {
     "translation": {
+        "settings_low_battery_label": "Pin yếu",
+        "settings_low_battery_description": "Nhận thông báo khi mức pin giảm xuống giá trị này.",
         "settings.language.system": "Mặc định hệ thống",
         "capabilities_aap_left_press_and_hold_label": "Nhấn và giữ bên trái",
         "capabilities_aap_right_press_and_hold_label": "Nhấn và giữ bên phải",

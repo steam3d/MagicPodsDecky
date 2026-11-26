@@ -1,5 +1,7 @@
 {
     "translation": {
+        "settings_low_battery_label": "Alacsony töltöttség",
+        "settings_low_battery_description": "Értesítést kap, amikor az akkumulátor töltöttsége erre az értékre csökken.",
         "settings.language.system": "Rendszer alapértelmezése",
         "capabilities_aap_left_press_and_hold_label": "Bal oldali nyomva tartás",
         "capabilities_aap_right_press_and_hold_label": "Jobb oldali nyomva tartás",

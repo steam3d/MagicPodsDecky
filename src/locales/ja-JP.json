@@ -1,5 +1,7 @@
 {
     "translation": {
+        "settings_low_battery_label": "バッテリー残量低下",
+        "settings_low_battery_description": "バッテリー残量がこの値まで低下すると通知を受け取ります。",
         "settings.language.system": "システムの既定値",
         "capabilities_aap_left_press_and_hold_label": "左を長押し",
         "capabilities_aap_right_press_and_hold_label": "右を長押し",

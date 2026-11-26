@@ -1,5 +1,7 @@
 {
     "translation": {
+        "settings_low_battery_label": "Lavt batteriniveau",
+        "settings_low_battery_description": "Få en notifikation, når batteriniveauet falder til denne værdi.",
         "settings.language.system": "Systemstandard",
         "capabilities_aap_left_press_and_hold_label": "Tryk og hold venstre",
         "capabilities_aap_right_press_and_hold_label": "Tryk og hold højre",

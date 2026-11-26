@@ -122,6 +122,7 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                             min={0}
                             step={1}
                             label={t("settings_low_battery_label")}
+                            description={t("settings_low_battery_description")}
                             notchCount={2}
                             showValue={true}
                             valueSuffix="%"

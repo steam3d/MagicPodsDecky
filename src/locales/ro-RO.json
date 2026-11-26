@@ -1,5 +1,7 @@
 {
     "translation": {
+        "settings_low_battery_label": "Baterie descărcată",
+        "settings_low_battery_description": "Primește o notificare când nivelul bateriei scade la această valoare.",
         "settings.language.system": "Implicit al sistemului",
         "capabilities_aap_left_press_and_hold_label": "Apăsare lungă stânga",
         "capabilities_aap_right_press_and_hold_label": "Apăsare lungă dreapta",

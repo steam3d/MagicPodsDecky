@@ -1,5 +1,7 @@
 {
     "translation": {
+        "settings_low_battery_label": "Akun varaus vähissä",
+        "settings_low_battery_description": "Saat ilmoituksen, kun akun varaustaso laskee tähän arvoon.",
         "settings.language.system": "Järjestelmän oletus",
         "capabilities_aap_left_press_and_hold_label": "Vasemman pitkä painallus",
         "capabilities_aap_right_press_and_hold_label": "Oikean pitkä painallus",

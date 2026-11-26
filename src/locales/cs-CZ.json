@@ -1,5 +1,7 @@
 {
     "translation": {
+        "settings_low_battery_label": "Slabá baterie",
+        "settings_low_battery_description": "Dostanete oznámení, když úroveň nabití baterie klesne na tuto hodnotu.",
         "settings.language.system": "Výchozí nastavení systému",
         "capabilities_aap_left_press_and_hold_label": "Stisknutí a podržení vlevo",
         "capabilities_aap_right_press_and_hold_label": "Stisknutí a podržení vpravo",

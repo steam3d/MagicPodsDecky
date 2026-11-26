@@ -1,5 +1,7 @@
 {
     "translation": {
+        "settings_low_battery_label": "Lage batterijstand",
+        "settings_low_battery_description": "Ontvang een melding wanneer het batterijniveau tot deze waarde daalt.",
         "settings.language.system": "Systeemstandaard",
         "capabilities_aap_left_press_and_hold_label": "Links ingedrukt houden",
         "capabilities_aap_right_press_and_hold_label": "Rechts ingedrukt houden",

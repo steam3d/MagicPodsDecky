@@ -1,5 +1,7 @@
 {
     "translation": {
+        "settings_low_battery_label": "แบตเตอรี่ต่ำ",
+        "settings_low_battery_description": "รับการแจ้งเตือนเมื่อระดับแบตเตอรี่ลดลงถึงค่านี้",
         "settings.language.system": "ค่าเริ่มต้นของระบบ",
         "capabilities_aap_left_press_and_hold_label": "กดด้านซ้ายค้างไว้",
         "capabilities_aap_right_press_and_hold_label": "กดด้านขวาค้างไว้",
