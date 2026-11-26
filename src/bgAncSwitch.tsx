@@ -1,3 +1,4 @@
+import { Navigation } from "@decky/ui";
 import { Backend } from "./backend";
 import { Button, Input } from "./input";
 import { AncModes, headphoneInfoProps } from "./tab/tabInfo";
@@ -77,15 +78,13 @@ export class BackgroundAncSwitch {
 
     private register() {
         if (this.enabled && this.input == null) {
-            this.input = new Input([Button.QUICK_ACCESS_MENU, Button.L5]);
-            this.input.onShortcutPressed(this.onShortcutPressed);
+            this.input = new Input(Button.L5, this.onShortcutPressed);
             this.backend.logDebug("AncSwitch: Hotkey registered");
         }
     }
 
     private unregister() {
         if (this.input != null) {
-            this.input.offShortcutPressed(this.onShortcutPressed);
             this.input.unregister();
             this.input = undefined;
             this.backend.logDebug("AncSwitch: Hotkey unregistered");
@@ -95,12 +94,12 @@ export class BackgroundAncSwitch {
     private onShortcutPressed = async () => {
         this.backend.logDebug("AncSwitch: Hotkey pressed");
 
-        await this.switchMode();
+        if (await this.switchMode()) Navigation.CloseSideMenus();
     }
 
-    public switchMode = async () => {
+    public switchMode = async (): Promise<boolean> => {
         if (!this.connected || this.options === 0)
-            return;
+            return false;
 
         let isOff = await this.backend.loadBooleanSetting("allow_anc_mode_off");
         let isTransparency = await this.backend.loadBooleanSetting("allow_anc_mode_transparency");
@@ -136,7 +135,7 @@ export class BackgroundAncSwitch {
 
         if (modes.length <= 1) {
             this.backend.logError("AncSwitch: Nothing to do: fewer than two modes selected.");
-            return;
+            return false;
         }
 
         let nextAnc = modes.find(x => x > this.selected);
@@ -148,6 +147,9 @@ export class BackgroundAncSwitch {
 
         if (nextAnc !== 0) {
             this.backend.setAnc(this.address, nextAnc);
+            return true;
         }
+
+        return false;
     }
 }

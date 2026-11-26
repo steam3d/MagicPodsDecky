@@ -1,4 +1,4 @@
-import { findModuleExport, findVar } from "@decky/ui";
+import { findModuleExport, findVar, Navigation } from "@decky/ui";
 import { FC, useEffect, useState } from "react";
 import { Backend } from "./backend";
 import { Button, Input } from "./input";
@@ -94,8 +94,7 @@ export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) 
     const [visible, setVisible] = useState(false);
     useEffect(() => {
         backend.logDebug("MicMute: RegisterForInputChanged");
-        const input = new Input([Button.QUICK_ACCESS_MENU, Button.L4]);
-        input.onShortcutPressed(onShortcutPressed);
+        const input = new Input(Button.L4, onShortcutPressed);
 
         backend.logDebug("MicMute: RegisterForDeviceVolumeChanged");
         // Mic changes
@@ -112,7 +111,6 @@ export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) 
 
         return () => {
             volumeRegister?.unregister?.();
-            input.offShortcutPressed(onShortcutPressed);
             input.unregister();
         };
     }, []);
@@ -144,6 +142,8 @@ export const BackgroundMicrophoneMute: FC<{ backend: Backend }> = ({ backend }) 
         else {
             await SteamClient.System.Audio.SetDeviceVolume(micId, 0, micSavedVolume);
         }
+
+        Navigation.CloseSideMenus();
     }
 
 

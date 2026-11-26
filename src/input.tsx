@@ -1,130 +1,127 @@
-import { Router} from "@decky/ui";
-
 export const enum Button {
-    R2 = 0,
-    L2 = 1,
-    R1 = 2,
-    L1 = 3,
-    Y = 4,
-    B = 5,
-    X = 6,
-    A = 7,
-    DPAD_UP = 8,
-    DPAD_RIGHT = 9,
-    DPAD_LEFT = 10,
-    DPAD_DOWN = 11,
-    SELECT = 12,
-    STEAM = 13,
-    HOME = 13,
-    START = 14,
-    L5 = 15,
-    R5 = 16,
-    LEFT_TOUCHPAD_CLICK = 17,
-    RIGHT_TOUCHPAD_CLICK = 18,
-    LEFT_TOUCHPAD_TOUCH = 19,
-    RIGHT_TOUCHPAD_TOUCH = 20,
-    L3 = 22,
-    R3 = 26,
-    MUTE_DUALSENSE = 29,
-
-    L4 = 9 + 32,
-    R4 = 10 + 32,
-    LEFT_JOYSTICK_TOUCH = 14 + 32,
-    RIGHT_JOYSTICK_TOUCH = 15 + 32,
-    QUICK_ACCESS_MENU = 18 + 32,
+    A = 0,
+    B = 1,
+    X = 2,
+    Y = 3,
+    DPAD_UP = 4,
+    DPAD_RIGHT = 5,
+    DPAD_DOWN = 6,
+    DPAD_LEFT = 7,
+    MENU = 8,
+    VIEW = 9,
+    LEFT_TOUCHPAD_UP = 10,
+    LEFT_TOUCHPAD_DOWN = 11,
+    LEFT_TOUCHPAD_LEFT = 12,
+    LEFT_TOUCHPAD_RIGHT = 13,
+    LEFT_TOUCHPAD_ANALOG = 14,
+    RIGHT_TOUCHPAD_UP = 15,
+    RIGHT_TOUCHPAD_DOWN = 16,
+    RIGHT_TOUCHPAD_LEFT = 17,
+    RIGHT_TOUCHPAD_RIGHT = 18,
+    RIGHT_TOUCHPAD_ANALOG = 19,
+    LEFT_JOYSTICK_UP = 20,
+    LEFT_JOYSTICK_DOWN = 21,
+    LEFT_JOYSTICK_LEFT = 22,
+    LEFT_JOYSTICK_RIGHT = 23,
+    LEFT_JOYSTICK_ANALOG = 24,
+    L3 = 25,
+    L2_ANALOG = 26,
+    R2_ANALOG = 27,
+    L2 = 28,
+    R2 = 29,
+    L1 = 30,
+    R1 = 31,
+    L5 = 32,
+    R5 = 33,
+    STEAM = 34,
+    SELECT = 35,
+    START = 36,
+    LEFT_TOUCHPAD_CLICK = 37,
+    LEFT_TOUCHPAD_TOUCH = 38,
+    RIGHT_TOUCHPAD_CLICK = 39,
+    RIGHT_TOUCHPAD_TOUCH = 40,
+    R3 = 41,
+    RIGHT_JOYSTICK_TOUCH = 42,
+    LEFT_JOYSTICK_TOUCH = 43,
+    L4 = 44,
+    R4 = 45,
+    BUTTON_LAST = 46,
+    ANALOG_SCROLL = 47,
+    ANALOG_LEFT_KEYBOARD_CURSOR = 48,
+    ANALOG_RIGHT_KEYBOARD_CURSOR = 49,
+    ANALOG_LAST = 50,
 }
 
+export const enum SystemButton {
+    STEAM = 0,
+    QUICK_ACCESS_MENU = 1,
+}
+
+type InputRegistration = {
+    unregister: () => void;
+};
+
+type SystemKeyEvent = {
+    eKey: number;
+    nControllerIndex: number;
+};
+
+const shortcutTimeoutMs = 1500;
+
 export class Input {
+    private readonly button: Button;
+    private readonly onPressed: () => void;
+    private readonly registrations: InputRegistration[] = [];
+    private controllerIndex?: number;
+    private timeoutId?: ReturnType<typeof setTimeout>;
 
-    private onButtonsPressedListeners: Array<() => void> = [];
-    private keyPressingTime = Date.now();
-    private shortcutPressed = false;
-    private qamAndSteamDisabled = false;
-    private input_register: any;
-    private shortcut: Button[];
-    private ignoreButtons: Button[] = [Button.LEFT_TOUCHPAD_TOUCH, Button.RIGHT_TOUCHPAD_TOUCH, Button.LEFT_JOYSTICK_TOUCH, Button.RIGHT_JOYSTICK_TOUCH] //Ignore touch
+    constructor(button: Button, onPressed: () => void) {
+        this.button = button;
+        this.onPressed = onPressed;
 
-    constructor(shortcut: Button[]) {
-        this.shortcut = shortcut;
-        
-        if (!Input.isSupported()){
-            return;
-        }
+        if (!Input.isSupported()) return;
 
-        this.input_register = SteamClient.Input.RegisterForControllerStateChanges((changes: any[]) => {
-            const buttons: Button[] = [];
-            for (const change of changes) {
-                const lower_buttons = change.ulButtons.toString(2).padStart(32, "0").split('');
-                for (const [index, value] of lower_buttons.entries()) {
-                    if (value === '1') {
-                        buttons.push(31 - index as Button)
-                        //console.log("l:", lower_buttons);
-                    }
-                }
-                const upper_buttons = change.ulUpperButtons.toString(2).padStart(32, "0").split('');
-                for (const [index, value] of upper_buttons.entries()) {
-                    if (value === '1') {
-                        buttons.push(63 - index as Button)
-                        //console.log("u:", upper_buttons);
-                    }
-                }
-            }
-            this.OnButtonsPressed(buttons);
-        });
+        // Steam only sends controller button events while its UI has focus.
+        // During a game, focus must be returned by minimizing it or opening Steam/QAM.
+        this.registrations.push(
+            SteamClient.Input.RegisterForControllerInputMessages(
+                (controllerIndex: number, rawButton: number, pressed: boolean) => {
+                    if (
+                        !pressed ||
+                        rawButton !== this.button ||
+                        controllerIndex !== this.controllerIndex
+                    ) return;
+
+                    this.reset();
+                    this.onPressed();
+                },
+            ),
+            SteamClient.System.UI.RegisterForSystemKeyEvents((event: SystemKeyEvent) => {
+                if (event.eKey !== SystemButton.QUICK_ACCESS_MENU) return;
+
+                this.reset();
+                this.controllerIndex = event.nControllerIndex;
+                this.timeoutId = setTimeout(() => this.reset(), shortcutTimeoutMs);
+            }),
+        );
     }
 
-    unregister(){
-        this.input_register?.unregister();
+    unregister(): void {
+        this.registrations.forEach((registration) => registration.unregister());
+        this.registrations.length = 0;
+        this.reset();
     }
 
-    private OnButtonsPressed(buttons: Button[]) {
-        buttons = buttons.filter(item => !this.ignoreButtons.includes(item))
-
-        if (this.shortcut.length === buttons.length && this.shortcut.every((value) => buttons.includes(value))) {
-            if (this.shortcutPressed != true && Date.now() - this.keyPressingTime > 350) {
-
-                if (buttons.includes(Button.QUICK_ACCESS_MENU) || buttons.includes(Button.STEAM)) {
-                    (Router as any).DisableHomeAndQuickAccessButtons();
-                    this.qamAndSteamDisabled = true;
-                }
-
-                this.keyPressingTime = Date.now();
-                this.shortcutPressed = true;
-                //console.log("Shortcut pressed");
-
-                this.onButtonsPressedListeners.forEach(callback => {
-                    callback();
-                });
-            }
-        }
-        else {
-            if (this.qamAndSteamDisabled != false &&
-                (!buttons.includes(Button.QUICK_ACCESS_MENU) || !buttons.includes(Button.STEAM))) {
-                this.qamAndSteamDisabled = false;
-                setTimeout(() => {
-                    (Router as any).EnableHomeAndQuickAccessButtons();
-                    //console.log("enable qam")
-                }, 350);
-            }
-            if (this.shortcutPressed != false){
-                //console.log("Shortcut released")
-                this.shortcutPressed = false;
-            }
-        }
-    }
-
-    onShortcutPressed(callback: () => void) {
-        this.onButtonsPressedListeners.push(callback);
-    }
-
-    offShortcutPressed(callback: () => void) {
-        const index = this.onButtonsPressedListeners.indexOf(callback);
-        if (index !== -1) {
-            this.onButtonsPressedListeners.splice(index, 1);
-        }
+    private reset(): void {
+        if (this.timeoutId !== undefined) clearTimeout(this.timeoutId);
+        this.timeoutId = undefined;
+        this.controllerIndex = undefined;
     }
 
     static isSupported(): boolean {
-         return SteamClient?.Input?.RegisterForControllerStateChanges != null;
+        return (
+            typeof SteamClient?.Input?.RegisterForControllerInputMessages === "function" &&
+            typeof SteamClient?.System?.UI?.RegisterForSystemKeyEvents === "function"
+        );
     }
 }
