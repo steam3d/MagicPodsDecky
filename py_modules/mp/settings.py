@@ -62,5 +62,7 @@ class Settings():
             return branch.get(key, False)
         elif key == "header_battery_icon_split":
             return branch.get(key, True)
+        elif key == "language":
+            return branch.get(key, "")
         else:
             return None

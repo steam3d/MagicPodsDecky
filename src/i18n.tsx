@@ -42,13 +42,32 @@ function initI18n(){
       "it-IT": itIT,
       "pt-PT": ptPT,
       "pl-PL": plPL,
-      "zh-Hant": zhHant
+      "zh-Hant": zhHant,
+      // Tags browsers/Steam actually report for Chinese, mapped to the two files we ship.
+      "zh": zhHant,
+      "zh-Hans": zhCN,
+      "zh-TW": zhHant,
+      "zh-HK": zhHant,
+      "zh-MO": zhHant,
+      "zh-SG": zhCN,
+      "zh-Hant-TW": zhHant,
+      "zh-Hant-HK": zhHant,
+      "zh-Hans-CN": zhCN,
     },
     //debug: true,
     lng: navigator.language,
     //lng: "zh-CN",
     fallbackLng: "en-US",
   });
+}
+
+// Map a registered tag (including the zh-* aliases) back to the canonical tag owning its file.
+export function canonicalizeLanguage(tag: string): string {
+  const data = i18n.services.resourceStore.data;
+  const file = data[tag];
+  if (!file)
+    return tag;
+  return Object.keys(data).find((k) => data[k] === file) ?? tag;
 }
 
 export default initI18n;

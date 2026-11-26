@@ -13,6 +13,7 @@ import { FC, useEffect, useState } from 'react';
 import i18next, { t } from 'i18next';
 import { Trans, useTranslation } from 'react-i18next'
 import { Backend } from "../backend";
+import { canonicalizeLanguage } from "../i18n";
 import { ANC_MODE_ADAPTIVE, ANC_MODE_ANC, ANC_MODE_OFF, ANC_MODE_TRANSPARENCY, ANC_MODE_WIND, L4, L5, QUICK_ACCESS_MENU, WARNING } from "../ButtonIcons";
 import PanelSocialButton from "../components/socialButton";
 import { call } from "@decky/api";
@@ -76,7 +77,19 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
         };
 
         getSetting();
-        const availableLocales = Object.keys(i18next.services.resourceStore.data);
+        // List one entry per language FILE, not per registered tag: the zh-*/aliases registered
+        // in i18n.tsx (so Chinese Steam/browser tags stop falling back to English) share the
+        // same resource object, and would otherwise flood the menu with several
+        // near-identical labels for the same file. Registration order puts the canonical
+        // upstream tag first, which is the one kept.
+        const resourceData = i18next.services.resourceStore.data;
+        const seenFiles = new Set<object>();
+        const availableLocales = Object.keys(resourceData).filter((locale) => {
+            if (seenFiles.has(resourceData[locale]))
+                return false;
+            seenFiles.add(resourceData[locale]);
+            return true;
+        });
         const updatedLanguageValue = availableLocales.map(locale => ({
             tag: locale,
             nativeName: new Intl.DisplayNames([locale], { type: 'language' }).of(locale) || locale
@@ -177,14 +190,14 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                                 showContextMenu(
                                     <Menu label={t("settings_language_menu_label")} cancelText={t("settings_language_menu_canceltext")} onCancel={() => { }}>
                                         {availableLanguages.map((lng) => (
-                                            <MenuItem key={lng.tag} disabled={i18n.resolvedLanguage === lng.tag} onSelected={() => { i18n.changeLanguage(lng.tag); backend.logDebug(i18n.resolvedLanguage); }}>{lng.nativeName}</MenuItem>
+                                            <MenuItem key={lng.tag} disabled={canonicalizeLanguage(i18n.resolvedLanguage || i18n.language) === lng.tag} onSelected={() => { i18n.changeLanguage(lng.tag); backend.saveSetting("language", lng.tag); backend.logDebug(i18n.resolvedLanguage); }}>{lng.nativeName}</MenuItem>
                                         ))}
                                     </Menu>,
                                     e.currentTarget ?? window
                                 )
                             }
                         >
-                            {availableLanguages.find(lng => lng.tag == i18n.resolvedLanguage)?.nativeName || i18n.resolvedLanguage}
+                            {availableLanguages.find(lng => lng.tag == canonicalizeLanguage(i18n.resolvedLanguage || i18n.language))?.nativeName || i18n.resolvedLanguage}
                         </ButtonItem>
                     </PanelSectionRow>
                 </PanelSection>
