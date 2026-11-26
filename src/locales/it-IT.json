@@ -52,7 +52,7 @@
         "settings_social_button_start": "Inizia qui",
         "settings_social_button_translate": "Traduci",
         "settings_social_button_donate": "Fai una donazione",
-        "settings_debug_header": "Debugging",
+        "settings_debug_header": "Diagnostica",
         "settings_debug_level_label": "Livello registro",
         "settings_debug_log_button": "Registri eventi",
         "bluetooth": "Bluetooth",
