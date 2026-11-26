@@ -35,7 +35,7 @@
         "settings_hotkey_mic_label": "මයික්‍රෆෝනය සක්‍රිය/අක්‍රිය කිරීම",
         "settings_hotkey_description": "<key1/> ඔබා මුදා හරින්න, ඉන්පසු වහාම <key2/> ඔබන්න.",
         "settings_fix_disconnects_label": "හෙඩ්ෆෝන් ස්ටෝන් ප්රකාරය අක්රීය කරන්න",
-        "settings_fix_disconnects_description": "නිමක් නැති සම්බන්ධක / විසන්ධි කිරීමේ හෙඩ්ෆෝන් වල ගැටළුව විසඳයි",
+        "settings_fix_disconnects_description": "නිමක් නැති සම්බන්ධක / විසන්ධි කිරීමේ හෙඩ්ෆෝන් වල ගැටළුව විසඳයි.",
         "bluetooth": "බ්ලූටූත්",
         "headphones": "හෙඩ්ෆෝන්",
         "notif_low_battery": "{{battery}}% ඉතිරිව ඇත. ඔබේ හෙඩ්ෆෝන් ආරෝපණය කරන්න.",

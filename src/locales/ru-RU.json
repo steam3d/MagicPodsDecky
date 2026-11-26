@@ -40,7 +40,7 @@
         "settings_hotkey_mic_label": "Включение/выключение микрофона",
         "settings_hotkey_description": "Нажмите и отпустите <key1/>, затем сразу нажмите <key2/>.",
         "settings_fix_disconnects_label": "Отключить режим ожидания наушников",
-        "settings_fix_disconnects_description": "Решает проблему бесконечного подключения/отключения наушников",
+        "settings_fix_disconnects_description": "Решает проблему бесконечного подключения/отключения наушников.",
         "bluetooth": "Bluetooth",
         "headphones": "Наушники",
         "notif_error_websocket_connection_issue": "Ошибка! Откройте плагин для подробностей",

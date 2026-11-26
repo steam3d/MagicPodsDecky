@@ -24,7 +24,7 @@
         "battery_left": "Лівий",
         "headphones_disconnected": "Підключіть навушники, щоб побачити рівень заряду батареї та налаштувати параметри",
         "notif_low_battery": "Залишилось {{battery}}%. Зарядіть ваші навушники.",
-        "settings_fix_disconnects_description": "Вирішує проблему нескінченного підключення/відключення навушників",
+        "settings_fix_disconnects_description": "Вирішує проблему нескінченного підключення/відключення навушників.",
         "capabilities_noise_control_label": "Керування шумом",
         "header_battery_label": "Керування шумом",
         "settings_hotkey_header": "Комбінації клавіш",

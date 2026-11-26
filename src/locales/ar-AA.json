@@ -38,7 +38,7 @@
         "settings_hotkey_mic_label": "كتم/إلغاء كتم الميكروفون",
         "settings_hotkey_description": "اضغط على <key1/> ثم حرره، واضغط فورًا على <key2/>.",
         "settings_fix_disconnects_label": "تعطيل وضع الاستعداد للسماعات",
-        "settings_fix_disconnects_description": "إصلاح مشكلة التوصيل/الفصل السماعات المتكرر",
+        "settings_fix_disconnects_description": "إصلاح مشكلة التوصيل/الفصل السماعات المتكرر.",
         "settings_header": "الإعدادات",
         "settings_misc_header": "روابط مفيدة",
         "settings_anc_modes_off_label": "<icon/>إيقاف",

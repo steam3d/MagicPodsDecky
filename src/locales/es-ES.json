@@ -34,7 +34,7 @@
         "settings_hotkey_anc_label": "Cambiar modo de control de ruido",
         "settings_hotkey_mic_label": "Silenciar/activar micrófono",
         "settings_hotkey_description": "Pulsa y suelta <key1/> y, justo después, pulsa <key2/>.",
-        "settings_fix_disconnects_description": "Soluciona el problema interminablementede conectar/desconectar los auriculares",
+        "settings_fix_disconnects_description": "Soluciona el problema interminablementede conectar/desconectar los auriculares.",
         "headphones": "Auriculares",
         "battery_left": "Izquierda",
         "headphones_disconnected": "Conecte auriculares para mostrar el nivel de batería y ajustar la configuración",

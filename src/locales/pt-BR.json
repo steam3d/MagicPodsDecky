@@ -38,7 +38,7 @@
         "settings_hotkey_mic_label": "Ativar/desativar microfone",
         "settings_hotkey_description": "Pressione e solte <key1/> e, logo depois, pressione <key2/>.",
         "settings_fix_disconnects_label": "Desabilitar modo de standby do fone",
-        "settings_fix_disconnects_description": "Corrige o problema do fone conectar/desconectar infinitamente",
+        "settings_fix_disconnects_description": "Corrige o problema do fone conectar/desconectar infinitamente.",
         "bluetooth": "Bluetooth",
         "headphones": "Fones de ouvido",
         "notif_error_websocket_connection_issue": "Erro! Abra o plugin para mais informações",

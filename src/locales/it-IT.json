@@ -40,7 +40,7 @@
         "battery_single": "Carica",
         "websocket_connection_issue": "Qualcosa è andato storto, prova a ricaricare",
         "settings_fix_disconnects_label": "Disattiva modalità standby cuffie",
-        "settings_fix_disconnects_description": "Risolve il problema di connessione/disconnessione infinita delle cuffie",
+        "settings_fix_disconnects_description": "Risolve il problema di connessione/disconnessione infinita delle cuffie.",
         "settings_header": "Impostazioni",
         "settings_misc_header": "Link utili",
         "settings_anc_modes_header": "Modalità visualizzate",

@@ -39,7 +39,7 @@
         "websocket_connection_issue": "Quelque chose s'est mal déroulé, réessayez",
         "headphones_disconnected": "Connectez des écouteurs pour afficher leurs niveaux de batteries et ajuster leurs paramètres",
         "settings_language_menu_label": "Choisissez la langue",
-        "settings_fix_disconnects_description": "Résout le problème de connexion/déconnexion sans fin des écouteurs",
+        "settings_fix_disconnects_description": "Résout le problème de connexion/déconnexion sans fin des écouteurs.",
         "bluetooth": "Bluetooth",
         "battery_left": "Gauche",
         "battery_right": "Droit",

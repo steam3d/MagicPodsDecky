@@ -40,7 +40,7 @@
         "settings_hotkey_mic_label": "Mute/unmute mic",
         "settings_hotkey_description": "Press and release <key1/>, then immediately press <key2/>.",
         "settings_fix_disconnects_label": "Disable headphone standby mode",
-        "settings_fix_disconnects_description": "Fixes the problem of endless connect/disconnect headphones",
+        "settings_fix_disconnects_description": "Fixes the problem of endless connect/disconnect headphones.",
         "settings_header": "Settings",
         "settings_misc_header": "Useful links",
         "settings_anc_modes_header": "Displayed modes",

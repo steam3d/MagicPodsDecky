@@ -44,7 +44,7 @@
         "settings_hotkey_mic_label": "Mikrofon stumm-/lautschalten",
         "settings_hotkey_description": "Drücke <key1/> und lasse die Taste los. Drücke dann sofort <key2/>.",
         "headphones_disconnected": "Verbinde Kopfhörer um ihren Akkustand anzuzeigen und Einstellungen anzupassen",
-        "settings_fix_disconnects_description": "Löst das Problem der konstanten Verbindung/Trennung der Kopfhörer",
+        "settings_fix_disconnects_description": "Löst das Problem der konstanten Verbindung/Trennung der Kopfhörer.",
         "settings_anc_modes_off_label": "<icon/>Aus",
         "settings_anc_modes_transparency_label": "<icon/>Transparenzmodus",
         "settings_anc_modes_adaptive_label": "<icon/>Adaptiv",

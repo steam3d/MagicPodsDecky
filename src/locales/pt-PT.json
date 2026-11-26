@@ -33,7 +33,7 @@
         "settings_hotkey_mic_label": "Ativar/desativar microfone",
         "settings_hotkey_description": "Prima e solte <key1/> e, logo de seguida, prima <key2/>.",
         "settings_fix_disconnects_label": "Desligue o modo standby dos fones",
-        "settings_fix_disconnects_description": "Arranja o problema de conectar/desconectar infinitamente os fones",
+        "settings_fix_disconnects_description": "Arranja o problema de conectar/desconectar infinitamente os fones.",
         "settings_header": "Configurações",
         "settings_misc_header": "Links úteis",
         "settings_anc_modes_header": "Modo de exibição",
