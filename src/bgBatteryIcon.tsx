@@ -3,6 +3,7 @@ import i18next, { t } from "i18next";
 import { Backend } from "./backend";
 import { BatteryDataProps, headphoneInfoProps } from "./tab/tabInfo";
 import { formatHeaderPercentage, installHeaderIcon, type HeaderIconController } from "./headerIcon";
+import { HeaderBatteryIcon } from "./components/headerBatteryIcon";
 
 const batteryColor = "#1B9EFA";
 const lowBatteryColor = "#ED18BF";
@@ -42,7 +43,7 @@ const SingleBatteryIcon: FC<{ battery: number; low: boolean; }> = ({ battery, lo
     );
 }
 
-type BatteryIconData = { type: "single"; battery: number; low: boolean; } | { type: "leftRight"; left: number; right: number; leftLow: boolean; rightLow: boolean; } | undefined;
+type BatteryIconData = { type: "single"; battery: number; low: boolean; charging: boolean; } | { type: "leftRight"; left: number; right: number; leftLow: boolean; rightLow: boolean; leftCharging: boolean; rightCharging: boolean; } | undefined;
 
 export class BackgroundBatteryIcon {
     private backend;
@@ -100,16 +101,16 @@ export class BackgroundBatteryIcon {
         const isSingleAvailable = battery.single.status === 2 || battery.single.status === 3;
 
         if (isLeftAvailable && isRightAvailable) {
-            this.setBatteryIconData({ type: "leftRight", left: battery.left.battery, right: battery.right.battery, leftLow: isLowBattery(battery.left, lowBatteryThreshold), rightLow: isLowBattery(battery.right, lowBatteryThreshold) });
+            this.setBatteryIconData({ type: "leftRight", left: battery.left.battery, right: battery.right.battery, leftLow: isLowBattery(battery.left, lowBatteryThreshold), rightLow: isLowBattery(battery.right, lowBatteryThreshold), leftCharging: battery.left.charging, rightCharging: battery.right.charging });
         }
         else if (isLeftAvailable) {
-            this.setBatteryIconData({ type: "single", battery: battery.left.battery, low: isLowBattery(battery.left, lowBatteryThreshold) });
+            this.setBatteryIconData({ type: "single", battery: battery.left.battery, low: isLowBattery(battery.left, lowBatteryThreshold), charging: battery.left.charging });
         }
         else if (isRightAvailable) {
-            this.setBatteryIconData({ type: "single", battery: battery.right.battery, low: isLowBattery(battery.right, lowBatteryThreshold) });
+            this.setBatteryIconData({ type: "single", battery: battery.right.battery, low: isLowBattery(battery.right, lowBatteryThreshold), charging: battery.right.charging });
         }
         else if (isSingleAvailable) {
-            this.setBatteryIconData({ type: "single", battery: battery.single.battery, low: isLowBattery(battery.single, lowBatteryThreshold) });
+            this.setBatteryIconData({ type: "single", battery: battery.single.battery, low: isLowBattery(battery.single, lowBatteryThreshold), charging: battery.single.charging });
         }
         else {
             this.setBatteryIconData(undefined);
@@ -142,10 +143,10 @@ export class BackgroundBatteryIcon {
         if (data == null && this.batteryIconData == null)
             return;
 
-        if (data?.type === "single" && this.batteryIconData?.type === "single" && data.battery === this.batteryIconData.battery && data.low === this.batteryIconData.low)
+        if (data?.type === "single" && this.batteryIconData?.type === "single" && data.battery === this.batteryIconData.battery && data.low === this.batteryIconData.low && data.charging === this.batteryIconData.charging)
             return;
 
-        if (data?.type === "leftRight" && this.batteryIconData?.type === "leftRight" && data.left === this.batteryIconData.left && data.right === this.batteryIconData.right && data.leftLow === this.batteryIconData.leftLow && data.rightLow === this.batteryIconData.rightLow)
+        if (data?.type === "leftRight" && this.batteryIconData?.type === "leftRight" && data.left === this.batteryIconData.left && data.right === this.batteryIconData.right && data.leftLow === this.batteryIconData.leftLow && data.rightLow === this.batteryIconData.rightLow && data.leftCharging === this.batteryIconData.leftCharging && data.rightCharging === this.batteryIconData.rightCharging)
             return;
 
         this.batteryIconData = data;
@@ -163,16 +164,35 @@ export class BackgroundBatteryIcon {
 
         if (this.batteryIconData.type === "leftRight") {
             const battery = (this.batteryIconData.left + this.batteryIconData.right) / 2;
+            const low = this.batteryIconData.leftLow || this.batteryIconData.rightLow;
             this.batteryIcon.update({
                 visible: true,
-                icon: this.splitBattery ? <BatteryIcon left={this.batteryIconData.left} right={this.batteryIconData.right} leftLow={this.batteryIconData.leftLow} rightLow={this.batteryIconData.rightLow} /> : <SingleBatteryIcon battery={battery} low={this.batteryIconData.leftLow || this.batteryIconData.rightLow} />,
+                icon: this.splitBattery ? (
+                    <HeaderBatteryIcon
+                        readings={[
+                            { battery: this.batteryIconData.left, low: this.batteryIconData.leftLow, charging: this.batteryIconData.leftCharging },
+                            { battery: this.batteryIconData.right, low: this.batteryIconData.rightLow, charging: this.batteryIconData.rightCharging },
+                        ]}
+                        fallback={<BatteryIcon left={this.batteryIconData.left} right={this.batteryIconData.right} leftLow={this.batteryIconData.leftLow} rightLow={this.batteryIconData.rightLow} />}
+                    />
+                ) : (
+                    <HeaderBatteryIcon
+                        readings={[{ battery, low, charging: this.batteryIconData.leftCharging && this.batteryIconData.rightCharging }]}
+                        fallback={<SingleBatteryIcon battery={battery} low={low} />}
+                    />
+                ),
                 text: this.text ? formatHeaderPercentage(battery) : undefined,
             });
         }
         else {
             this.batteryIcon.update({
                 visible: true,
-                icon: <SingleBatteryIcon battery={this.batteryIconData.battery} low={this.batteryIconData.low} />,
+                icon: (
+                    <HeaderBatteryIcon
+                        readings={[{ battery: this.batteryIconData.battery, low: this.batteryIconData.low, charging: this.batteryIconData.charging }]}
+                        fallback={<SingleBatteryIcon battery={this.batteryIconData.battery} low={this.batteryIconData.low} />}
+                    />
+                ),
                 text: this.text ? formatHeaderPercentage(this.batteryIconData.battery) : undefined,
             });
         }
