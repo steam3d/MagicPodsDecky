@@ -54,10 +54,12 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
     const [toggleHeaderBatteryIconSplit, setToggleHeaderBatteryIconSplit] = useState<boolean>(true);
 
     const [availableLanguages, setAvailableLanguages] = useState<{ tag: string; nativeName: string }[]>([])
+    const [languagePreference, setLanguagePreference] = useState<string>();
     const { i18n } = useTranslation();
 
     useEffect(() => {
         const getSetting = async () => {
+            setLanguagePreference(canonicalizeLanguage(await backend.loadSetting<string>("language") ?? ""));
             setSliderLowBattery(await backend.loadNumberSetting("notif_low_battery") ?? -1);
             setSliderLogLevel(await backend.loadNumberSetting("log_level") ?? -1);
             setToggleSwitchAncHotkey(await backend.loadBooleanSetting("anc_l5_r5_switch"));
@@ -97,6 +99,18 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
         backend.logDebug("Settings:", updatedLanguageValue);
         setAvailableLanguages(updatedLanguageValue);
     }, []);
+
+    const selectLanguage = async (language: string) => {
+        if (await backend.saveSetting("language", language) !== false) {
+            setLanguagePreference(language);
+            await i18n.changeLanguage(language || navigator.language);
+        }
+    };
+    const languages = [
+        { tag: "", nativeName: t("settings.language.system", { keySeparator: false }) },
+        ...availableLanguages,
+    ];
+
     return (
         <>
             <div style={{ marginLeft: "-8px", marginRight: "-8px" }}>
@@ -186,24 +200,21 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
                         <ButtonItem
                             layout="below"
                             label={t("settings_language_button_label")}
+                            disabled={languagePreference === undefined}
                             onClick={(e) =>
                                 showContextMenu(
                                     <Menu label={t("settings_language_menu_label")} cancelText={t("settings_language_menu_canceltext")} onCancel={() => { }}>
-                                        <MenuItem onSelected={async () => {
-                                            if (await backend.saveSetting("language", "") !== false)
-                                                await i18n.changeLanguage(navigator.language);
-                                        }}>
-                                            {t("settings.language.system", { keySeparator: false })}
-                                        </MenuItem>
-                                        {availableLanguages.map((lng) => (
-                                            <MenuItem key={lng.tag} disabled={canonicalizeLanguage(i18n.resolvedLanguage || i18n.language) === lng.tag} onSelected={() => { i18n.changeLanguage(lng.tag); backend.saveSetting("language", lng.tag); backend.logDebug(i18n.resolvedLanguage); }}>{lng.nativeName}</MenuItem>
+                                        {languages.map((lng) => (
+                                            <MenuItem key={lng.tag} disabled={languagePreference === lng.tag} onSelected={() => selectLanguage(lng.tag)}>
+                                                {lng.nativeName}
+                                            </MenuItem>
                                         ))}
                                     </Menu>,
                                     e.currentTarget ?? window
                                 )
                             }
                         >
-                            {availableLanguages.find(lng => lng.tag == canonicalizeLanguage(i18n.resolvedLanguage || i18n.language))?.nativeName || i18n.resolvedLanguage}
+                            {languages.find(lng => lng.tag === languagePreference)?.nativeName ?? languagePreference}
                         </ButtonItem>
                     </PanelSectionRow>
                 </PanelSection>
