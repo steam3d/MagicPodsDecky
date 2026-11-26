@@ -59,7 +59,7 @@ export const TabSettings: FC<{ backend: Backend; toggleAnimationOn: boolean, set
 
     useEffect(() => {
         const getSetting = async () => {
-            setLanguagePreference(canonicalizeLanguage(await backend.loadSetting<string>("language") ?? ""));
+            setLanguagePreference(canonicalizeLanguage(await backend.loadStringSetting("language") ?? ""));
             setSliderLowBattery(await backend.loadNumberSetting("notif_low_battery") ?? -1);
             setSliderLogLevel(await backend.loadNumberSetting("log_level") ?? -1);
             setToggleSwitchAncHotkey(await backend.loadBooleanSetting("anc_l5_r5_switch"));

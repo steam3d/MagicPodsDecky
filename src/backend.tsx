@@ -160,6 +160,10 @@ export class Backend {
         }
     }
 
+    public async loadStringSetting(key: string): Promise<string | null> {
+        return this.loadSetting<string>(key);
+    }
+
     async loadBooleanSetting(key: string): Promise<boolean> {
         const value = await this.loadSetting<string>(key);
         return String(value).toLowerCase() === "true";
